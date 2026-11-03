@@ -1,0 +1,170 @@
+/* =========================================================
+   PDF NOTURNO — folha de estilo única do repositório
+   {{EMPRESA}} · instituída 18/09/2026
+   Fundo escuro, fonte clara. Preserva a leitura do .md
+   renderizado quando o material sai da casa em PDF.
+   🔴 Não se escreve CSS novo por documento.
+   ========================================================= */
+
+/* tamanho da página em variável: a capa elétrica se mede por ela (01/11/2026).
+   Quem muda o @page size muda estas duas linhas no mesmo ato. */
+:root { --pag-l: 210mm; --pag-a: 297mm; }
+
+/* fontes locais (01/11/2026): a Lato vem de fontes/, ao lado desta folha. Nesta máquina ela
+   não está instalada e caía para Arial. Os títulos pedem TeX Gyre Pagella, que é um clone da
+   Palatino: no Windows a Palatino Linotype do sistema é o par fiel, antes da Georgia. */
+@font-face { font-family: "Lato"; font-weight: 400; font-style: normal; src: url("fontes/lato-400.woff2") format("woff2"); }
+@font-face { font-family: "Lato"; font-weight: 400; font-style: italic; src: url("fontes/lato-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Lato"; font-weight: 700; font-style: normal; src: url("fontes/lato-700.woff2") format("woff2"); }
+
+@page {
+  size: A4;
+  margin: 16mm 17mm 18mm 17mm;
+  background: #1e1e20;
+  @bottom-left {
+    content: "{{EMPRESA}}";
+    font-family: "Lato"; font-size: 7pt; color: #6e6b68;
+  }
+  @bottom-right {
+    content: counter(page);
+    font-family: "Lato"; font-size: 7pt; color: #6e6b68;
+  }
+}
+@page :first { @bottom-left { content: ""; } @bottom-right { content: ""; } }
+
+* { box-sizing: border-box; }
+
+html { background: #1e1e20; }
+body {
+  font-family: "Lato", "DejaVu Sans", sans-serif;
+  background: #1e1e20;
+  color: #d8d6d3;
+  font-size: 10pt;
+  line-height: 1.62;
+  margin: 0;
+}
+
+/* ---------- títulos ---------- */
+h1 {
+  font-family: "TeX Gyre Pagella", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 23pt; font-weight: normal;
+  color: #f6f4f1;
+  margin: 0 0 4mm 0; line-height: 1.18;
+  letter-spacing: -0.3pt;
+}
+h2 {
+  font-family: "TeX Gyre Pagella", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 15.5pt; font-weight: normal;
+  color: #f3f1ee;
+  margin: 9mm 0 3mm 0; line-height: 1.25;
+  padding-bottom: 2mm;
+  border-bottom: 1px solid #35353a;
+  break-after: avoid;
+}
+h3 {
+  font-family: "Lato", sans-serif;
+  font-size: 10.5pt; font-weight: 700;
+  color: #e9a183;
+  text-transform: uppercase; letter-spacing: 0.9pt;
+  margin: 6mm 0 2mm 0;
+  break-after: avoid;
+}
+h1 + .sub, h2 + .sub { margin-top: -1mm; }
+
+p { margin: 0 0 3mm 0; }
+strong, b { color: #f6f4f1; font-weight: 700; }
+em, i { color: #cfccc8; }
+a { color: #e9a183; text-decoration: none; }
+
+.sub { color: #9b9793; font-size: 10.5pt; margin-bottom: 6mm; }
+.muted { color: #918e8a; }
+.small { font-size: 8.6pt; }
+
+/* ---------- capa ---------- */
+.capa { padding-top: 38mm; break-after: page; }
+.capa .kicker {
+  font-size: 8.5pt; letter-spacing: 2.4pt; text-transform: uppercase;
+  color: #e9a183; font-weight: 700; margin-bottom: 7mm;
+}
+.capa h1 { font-size: 34pt; line-height: 1.08; margin-bottom: 6mm; }
+.capa .lead { font-size: 12.5pt; color: #b9b6b2; max-width: 138mm; line-height: 1.55; }
+.capa .rodape {
+  margin-top: 26mm; padding-top: 4mm; border-top: 1px solid #35353a;
+  font-size: 8.6pt; color: #6e6b68;
+}
+
+/* ---------- destaque ---------- */
+.destaque {
+  background: #26262a;
+  border-left: 2.6pt solid #e9a183;
+  border-radius: 0 2mm 2mm 0;
+  padding: 4mm 5mm;
+  margin: 5mm 0;
+}
+.destaque p:last-child { margin-bottom: 0; }
+.destaque .lead {
+  font-family: "TeX Gyre Pagella", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 13pt; color: #f6f4f1; display: block; margin-bottom: 2mm;
+  line-height: 1.3;
+}
+
+.nota {
+  background: #232326; border: 1px solid #33333a; border-radius: 2mm;
+  padding: 3.5mm 4.5mm; margin: 4mm 0; font-size: 9.2pt; color: #b3b0ac;
+}
+.nota strong { color: #e6e3df; }
+
+/* ---------- frase-âncora ---------- */
+.ancora {
+  font-family: "TeX Gyre Pagella", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 17pt; line-height: 1.3; color: #f6f4f1;
+  text-align: center; margin: 8mm 0; padding: 0 6mm;
+}
+.ancora span { color: #e9a183; }
+
+/* ---------- tabelas ---------- */
+table { width: 100%; border-collapse: collapse; margin: 4mm 0; font-size: 9.3pt; }
+th {
+  text-align: left; font-weight: 700; color: #a8a5a1;
+  font-size: 8pt; text-transform: uppercase; letter-spacing: 0.7pt;
+  padding: 0 3mm 2mm 0; border-bottom: 1px solid #3b3b41;
+}
+td { padding: 2.6mm 3mm 2.6mm 0; border-bottom: 1px solid #2c2c31; vertical-align: top; }
+td:last-child, th:last-child { padding-right: 0; }
+tr:last-child td { border-bottom: none; }
+td strong { color: #f0eeeb; }
+
+/* ---------- listas ---------- */
+ul, ol { margin: 0 0 3mm 0; padding-left: 5mm; }
+li { margin-bottom: 1.6mm; }
+li::marker { color: #e9a183; }
+
+/* ---------- números grandes ---------- */
+.numeros { display: table; width: 100%; margin: 5mm 0; }
+.numeros .col { display: table-cell; width: 33.33%; padding-right: 6mm; vertical-align: top; }
+.numeros .n {
+  font-family: "TeX Gyre Pagella", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 22pt; color: #f6f4f1; display: block; line-height: 1.1;
+}
+.numeros .lbl { font-size: 8.4pt; color: #918e8a; display: block; margin-top: 1.5mm; line-height: 1.35; }
+
+/* ---------- diagrama ---------- */
+.fluxo { width: 100%; margin: 5mm 0 3mm 0; }
+.legenda-fluxo { font-size: 8.2pt; color: #7d7a76; text-align: center; margin-top: 1mm; }
+
+.page-break { break-before: page; }
+
+/* ---------- bloco para copiar (roteiro, mensagem pronta, legenda) · 12/10/2026 ----------
+   Texto que o leitor vai selecionar e colar em outro lugar. Um bloco por coisa a copiar,
+   com o rótulo acima dizendo onde ele entra. */
+.copiar-rotulo {
+  font-size: 7.6pt; letter-spacing: 1.4pt; text-transform: uppercase;
+  color: #e9a183; font-weight: 700; margin: 5mm 0 1.5mm 0; break-after: avoid;
+}
+.copiar {
+  background: #151517; border: 1px solid #3b3b41; border-radius: 2mm;
+  padding: 4mm 4.5mm; margin: 0 0 4mm 0;
+  font-size: 10.5pt; line-height: 1.6; color: #f0eeeb;
+}
+.copiar p { margin: 0 0 3mm 0; }
+.copiar p:last-child { margin-bottom: 0; }

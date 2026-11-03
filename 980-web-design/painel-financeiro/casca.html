@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0b0b0b">
+  <title>Caixa · {{EMPRESA}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="runtime.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="runtime.js"></script>
+</head>
+<body>
+  <section id="porta" class="porta" hidden>
+    <form id="f-entrar">
+      <h1>Caixa</h1>
+      <input id="email" type="email" autocomplete="username" placeholder="e-mail" aria-label="E-mail" required>
+      <input id="senha" type="password" autocomplete="current-password" placeholder="senha" aria-label="Senha">
+      <button type="submit">Entrar</button>
+      <button id="pedir-link" class="link" type="button">Primeiro acesso ou esqueceu a senha? Receber link por e-mail</button>
+      <p id="porta-msg" role="status"></p>
+    </form>
+  </section>
+
+  <section id="definir" class="porta" hidden>
+    <form id="f-senha">
+      <h1>Caixa</h1>
+      <p class="lead">Crie a senha das próximas entradas. O link por e-mail fica só para quando esquecer.</p>
+      <input id="senha-nova" type="password" autocomplete="new-password" minlength="8" placeholder="nova senha (8 ou mais)" aria-label="Nova senha" required>
+      <input id="senha-conf" type="password" autocomplete="new-password" minlength="8" placeholder="repita a senha" aria-label="Repita a senha" required>
+      <button type="submit">Salvar senha e entrar</button>
+      <p id="definir-msg" role="status"></p>
+    </form>
+  </section>
+
+  <div id="painel" hidden>
+    <nav class="sistema" aria-label="Sistema {{EMPRESA}}"><span class="marca">{{EMPRESA}}</span><a href="/" aria-current="page">Caixa</a><a href="/projetos/">Projetos</a></nav>
+    <div id="dash-root">
+<!--ARTEFATO-->
+    </div>
+    <p class="rodape"><button id="trocar-senha" class="sair" type="button">trocar senha</button> · <button id="sair" class="sair" type="button">sair</button></p>
+  </div>
+</body>
+</html>

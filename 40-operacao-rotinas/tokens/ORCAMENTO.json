@@ -1,0 +1,8 @@
+{
+  "teto_semanal_tokens": null,
+  "operador": 0.40,
+  "agendado": 0.35,
+  "folga": 0.25,
+  "origem_teto": "a calibrar: python3 40-operacao-rotinas/ferramentas/medir-tokens.py --calibrar <pct do /usage>",
+  "ruflo_comando": null
+}

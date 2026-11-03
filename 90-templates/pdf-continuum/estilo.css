@@ -1,0 +1,134 @@
+/* ==========================================================================
+   PDF CONTINUUM — folha de estilo padrão
+   Não editar por documento. Variações vão em paletas (ver :root abaixo)
+   e são selecionadas pelo build-pdf.py com --paleta.
+   ========================================================================== */
+
+@font-face{font-family:'Lora';src:url('file:///usr/share/fonts/truetype/google-fonts/Lora-Variable.ttf');font-weight:400 700;font-style:normal}
+@font-face{font-family:'Lora';src:url('file:///usr/share/fonts/truetype/google-fonts/Lora-Italic-Variable.ttf');font-weight:400 700;font-style:italic}
+@font-face{font-family:'Poppins';src:url('file:///usr/share/fonts/truetype/google-fonts/Poppins-Light.ttf');font-weight:300;font-style:normal}
+@font-face{font-family:'Poppins';src:url('file:///usr/share/fonts/truetype/google-fonts/Poppins-Regular.ttf');font-weight:400;font-style:normal}
+@font-face{font-family:'Poppins';src:url('file:///usr/share/fonts/truetype/google-fonts/Poppins-Medium.ttf');font-weight:500;font-style:normal}
+@font-face{font-family:'Poppins';src:url('file:///usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf');font-weight:700;font-style:normal}
+@font-face{font-family:'Poppins';src:url('file:///usr/share/fonts/truetype/google-fonts/Poppins-Italic.ttf');font-weight:400;font-style:italic}
+@font-face{font-family:'Poppins';src:url('file:///usr/share/fonts/truetype/google-fonts/Poppins-LightItalic.ttf');font-weight:300;font-style:italic}
+
+/* --- as cores são injetadas pelo build-pdf.py no lugar de __PALETA__ --- */
+__PALETA__
+
+@page{
+  size:A4; margin:22mm 17mm 20mm 17mm;
+  background:var(--papel);
+  @top-center{
+    content:"__CABECALHO__";
+    font-family:'Poppins'; font-weight:400; font-size:6.3pt; letter-spacing:.16em;
+    color:var(--fraco); margin-bottom:7mm;
+  }
+  @bottom-center{
+    content:counter(page);
+    font-family:'Lora'; font-size:8.5pt; color:var(--realce); margin-top:6mm;
+  }
+}
+@page:first{ margin:0; @top-center{content:none} @bottom-center{content:none} }
+
+html{ background:var(--papel); }
+body{
+  font-family:'Poppins'; font-weight:300; font-size:8.4pt; line-height:1.62;
+  color:var(--tinta); background:var(--papel); hyphens:none;
+}
+
+/* ---------------- CAPA ---------------- */
+.cover{ page:first; height:297mm; width:210mm; position:relative;
+  page-break-after:always; background:var(--papel); }
+.cover .frame{ position:absolute; top:12mm; left:12mm; right:12mm; bottom:12mm;
+  border:.6pt solid var(--ouro-medio); }
+.cover .frame:after{ content:""; position:absolute; top:2.6mm; left:2.6mm; right:2.6mm;
+  bottom:2.6mm; border:.35pt solid var(--ouro-claro); }
+.cover .inner{ position:absolute; top:0; left:0; right:0; bottom:0; padding:34mm 26mm; }
+.cover .eyebrow{ font-family:'Poppins'; font-weight:400; font-size:7pt; letter-spacing:.34em;
+  color:var(--fraco); text-transform:uppercase; }
+.cover h1{ font-family:'Lora'; font-weight:400; font-size:33pt; line-height:1.14;
+  color:var(--realce); margin:9mm 0 0 0; letter-spacing:-.005em; }
+.cover h1 em{ font-style:italic; color:var(--tinta); }
+.cover .sub{ font-family:'Lora'; font-style:italic; font-size:12.5pt; color:var(--medio);
+  margin-top:6mm; line-height:1.5; max-width:112mm; }
+.cover .rule{ width:34mm; height:.9pt; background:var(--ouro); margin:11mm 0; }
+.cover .meta div{ font-size:8pt; color:var(--medio); padding:1.7mm 0;
+  border-bottom:.3pt solid var(--ouro-claro); display:flex; }
+.cover .meta b{ font-weight:500; color:var(--tinta); width:38mm; display:inline-block; }
+.cover .mark{ position:absolute; top:30mm; right:26mm; }
+.cover .foot{ position:absolute; left:26mm; right:26mm; bottom:30mm; }
+.cover .foot .l{ font-size:6.6pt; letter-spacing:.2em; color:var(--fraco); text-transform:uppercase; }
+.cover .foot .n{ font-family:'Lora'; font-size:10.5pt; color:var(--tinta); margin-top:2.5mm; }
+.cover .foot .d{ font-family:'Lora'; font-style:italic; font-size:7.4pt; color:var(--suave);
+  margin-top:1.5mm; }
+
+/* ---------------- TIPOGRAFIA ---------------- */
+h2{ font-family:'Lora'; font-weight:400; font-size:17pt; color:var(--realce);
+  margin:13mm 0 5mm 0; line-height:1.2; padding-bottom:3mm;
+  border-bottom:.7pt solid var(--ouro-medio);
+  page-break-after:avoid; page-break-inside:avoid; }
+h2:first-of-type{ margin-top:0; }
+h3{ font-family:'Poppins'; font-weight:500; font-size:9.6pt; color:var(--tinta);
+  margin:8mm 0 3mm 0; page-break-after:avoid; }
+h3:before{ content:"\25C6"; color:var(--ouro); font-size:6.5pt; margin-right:2.4mm;
+  vertical-align:middle; }
+h4{ font-family:'Poppins'; font-weight:500; font-size:8.6pt; color:var(--realce);
+  margin:6mm 0 2mm 0; }
+p{ margin:0 0 3.1mm 0; }
+strong{ font-weight:500; color:#111; }
+em{ font-style:italic; }
+a{ color:var(--realce); text-decoration:none; }
+
+/* ---------------- TABELAS ---------------- */
+table{ width:100%; border-collapse:collapse; margin:4mm 0 6mm 0; font-size:7.5pt;
+  page-break-inside:auto; }
+thead{ display:table-header-group; }
+tr{ page-break-inside:avoid; }
+th{ font-family:'Poppins'; font-weight:500; font-size:6.6pt; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--realce); text-align:left; vertical-align:bottom;
+  padding:0 3mm 2.2mm 0; border-bottom:.7pt solid var(--ouro); }
+td{ padding:2.4mm 3mm 2.4mm 0; vertical-align:top; border-bottom:.3pt solid var(--ouro-claro);
+  line-height:1.5; }
+td:last-child,th:last-child{ padding-right:0; }
+tbody tr:nth-child(even) td{ background:var(--zebra); }
+tbody tr:nth-child(even) td:first-child{ box-shadow:-2mm 0 0 var(--zebra); }
+tbody tr:nth-child(even) td:last-child{ box-shadow:2mm 0 0 var(--zebra); }
+
+/* ---------------- CITAÇÕES ---------------- */
+blockquote{ margin:4.5mm 0 5mm 0; padding:0 0 0 6mm; border-left:1.6pt solid var(--realce); }
+blockquote p{ font-family:'Lora'; font-style:italic; font-size:9.6pt; line-height:1.62;
+  color:var(--escuro); margin-bottom:2mm; }
+blockquote p:last-child{ margin-bottom:0; }
+blockquote strong{ font-style:normal; font-family:'Poppins'; font-weight:500; font-size:8.4pt; }
+
+/* ---------------- LISTAS ---------------- */
+ul,ol{ margin:0 0 3.5mm 0; padding-left:5mm; }
+li{ margin-bottom:1.4mm; padding-left:1mm; }
+li::marker{ color:var(--ouro); }
+
+/* ---------------- CÓDIGO E DIAGRAMAS ---------------- */
+pre{ background:var(--bloco); border-left:1.6pt solid var(--ouro); padding:4.5mm 5mm;
+  margin:4mm 0 5mm 0; font-size:6.9pt; line-height:1.55; overflow:hidden;
+  page-break-inside:avoid; }
+pre code{ font-family:'DejaVu Sans Mono'; color:var(--escuro); white-space:pre-wrap; }
+p code,td code,li code{ font-family:'DejaVu Sans Mono'; font-size:6.9pt; background:var(--chip);
+  padding:.3mm 1.1mm; color:var(--realce); border-radius:.6mm; }
+
+/* ---------------- MARCAS ---------------- */
+.cid{ font-family:'Poppins'; font-weight:500; font-size:6.6pt; letter-spacing:.05em;
+  color:var(--ouro-escuro); background:var(--chip); padding:.5mm 1.5mm; border-radius:.8mm;
+  white-space:nowrap; }
+.cid-inline{ background:none; padding:0; color:var(--fraco); font-weight:400; }
+.mk{ display:inline-block; font-family:'Poppins'; font-weight:700; text-align:center;
+  line-height:3.4mm; width:3.4mm; height:3.4mm; border-radius:50%; font-size:6pt;
+  vertical-align:baseline; margin-right:.8mm; }
+.mk-alert{ background:var(--realce); color:var(--papel); }
+.mk-star,.mk-amber{ background:none; color:var(--ouro); font-size:7pt; width:auto; }
+
+/* ---------------- ORNAMENTO ---------------- */
+.orn{ display:block; text-align:center; margin:8mm 0; page-break-after:avoid; }
+.orn span{ display:inline-block; width:26mm; height:.3pt; background:var(--ouro-medio);
+  vertical-align:middle; }
+.orn i{ color:var(--ouro); font-size:7pt; font-style:normal; margin:0 3.5mm;
+  vertical-align:middle; }

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- EXEMPLAR do PDF NOTURNO puro (01/11/2026). Fala só do próprio modelo.
+     Gerar: python3 90-templates/pdf-noturno/gerar_pdf.py 90-templates/pdf-noturno/exemplos/exemplo-noturno.html 90-templates/pdf-noturno/exemplos/EXEMPLO-NOTURNO.pdf -->
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>PDF noturno · exemplar do modelo</title>
+<link rel="stylesheet" href="../noturno.css">
+</head>
+<body>
+
+<div class="capa">
+  <div class="kicker">Template Continuum · exemplar do modelo</div>
+  <h1>PDF noturno</h1>
+  <p class="lead">A folha escura original da casa: fundo grafite, texto claro, destaque cobre, títulos em Palatino e corpo em Lato. Desde 16/10/2026 ela só sai quando o operador pede. O padrão é o elétrico, que roda por cima desta mesma folha.</p>
+  <div class="rodape">Exemplar · 1 de novembro de 2026 · 90-templates/pdf-noturno</div>
+</div>
+
+<h1>O que é este modelo</h1>
+<p class="sub">Uma folha de estilo única, escura, que leva para o PDF a leitura que o Markdown tem quando renderizado. Nasceu porque o .md aberto num bloco de notas vira texto cheio de sinais.</p>
+
+<div class="numeros">
+  <div class="col"><span class="n">2</span><span class="lbl">tons de folha: escuro para entender, claro para assinar</span></div>
+  <div class="col"><span class="n">3</span><span class="lbl">classes de documento: estrutura, decisão e formal</span></div>
+  <div class="col"><span class="n">1</span><span class="lbl">folha de estilo para todos os documentos, sem CSS por documento</span></div>
+</div>
+
+<table>
+  <tr><th style="width:34%">Pergunta do leitor</th><th style="width:20%">Classe</th><th>Gerador</th></tr>
+  <tr><td><strong>"Como isso funciona?"</strong></td><td>Estrutura</td><td>esta folha, com o diagrama abrindo cada seção</td></tr>
+  <tr><td><strong>"Por que eu faria isso?"</strong></td><td>Decisão</td><td>esta folha, com a economia no eixo</td></tr>
+  <tr><td><strong>"Eu assino?"</strong></td><td>Formal</td><td>o PDF claro, não este</td></tr>
+</table>
+
+<div class="destaque">
+  <span class="lead">Documento que se lê para entender vai no escuro. Documento que se lê para assinar vai no claro.</span>
+  <p>A classe se escolhe pelo estado do leitor, antes do gerador. Quem ainda não vê o mecanismo recebe estrutura.</p>
+</div>
+
+<p class="ancora">O <span>diagrama abre</span>, o texto detalha.</p>
+
+<div class="page-break"></div>
+<h1>Como ele se gera</h1>
+<p class="sub">O HTML carrega a folha, o Chrome sem interface imprime e o conferidor aprova ou reprova. Reprovado não se entrega.</p>
+
+<svg class="fluxo" viewBox="0 0 700 170" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .n1-bx  { fill:#2b2b30; stroke:#44444b; stroke-width:1; }
+  .n1-bxo { fill:#3a2f2b; stroke:#96684f; stroke-width:1.3; }
+  .n1-bxg { fill:#26302b; stroke:#4f7358; stroke-width:1.2; }
+  .n1-tx  { font-family:Lato; font-size:12.5px; fill:#e2dfdb; text-anchor:middle; }
+  .n1-txb { font-family:Lato; font-size:12.5px; font-weight:bold; fill:#f2efec; text-anchor:middle; }
+  .n1-txs { font-family:Lato; font-size:9.5px; fill:#98948f; text-anchor:middle; }
+  .n1-ln  { stroke:#6b6864; stroke-width:1.3; fill:none; }
+  .n1-lnd { stroke:#57544f; stroke-width:1.1; fill:none; stroke-dasharray:4 3; }
+</style>
+  <defs><marker id="n1-ar" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#6b6864"/></marker></defs>
+  <rect class="n1-bx" x="6" y="40" width="124" height="52" rx="5"/>
+  <text class="n1-tx" x="68" y="62">documento.html</text>
+  <text class="n1-txs" x="68" y="78">o conteúdo</text>
+  <rect class="n1-bx" x="152" y="40" width="124" height="52" rx="5"/>
+  <text class="n1-tx" x="214" y="62">noturno.css</text>
+  <text class="n1-txs" x="214" y="78">a folha e as fontes</text>
+  <rect class="n1-bx" x="298" y="40" width="124" height="52" rx="5"/>
+  <text class="n1-tx" x="360" y="62">Chrome</text>
+  <text class="n1-txs" x="360" y="78">imprime sem interface</text>
+  <rect class="n1-bxo" x="444" y="40" width="124" height="52" rx="5"/>
+  <text class="n1-txb" x="506" y="62">conferência</text>
+  <text class="n1-txs" x="506" y="78">gerar_pdf.py</text>
+  <rect class="n1-bxg" x="590" y="40" width="104" height="52" rx="5"/>
+  <text class="n1-txb" x="642" y="62">PDF</text>
+  <text class="n1-txs" x="642" y="78">aprovado</text>
+  <line class="n1-ln" x1="130" y1="66" x2="150" y2="66" marker-end="url(#n1-ar)"/>
+  <line class="n1-ln" x1="276" y1="66" x2="296" y2="66" marker-end="url(#n1-ar)"/>
+  <line class="n1-ln" x1="422" y1="66" x2="442" y2="66" marker-end="url(#n1-ar)"/>
+  <line class="n1-ln" x1="568" y1="66" x2="588" y2="66" marker-end="url(#n1-ar)"/>
+  <path class="n1-lnd" d="M506,92 V138 H68 V94" marker-end="url(#n1-ar)"/>
+  <text class="n1-txs" x="287" y="132">reprovado: corrige no modelo e gera de novo</text>
+</svg>
+<p class="legenda-fluxo">O retorno tracejado é a régua de 01/11/2026: defeito achado no PDF se corrige no modelo, não só no documento.</p>
+
+<h2>Os blocos desta folha</h2>
+<table>
+  <tr><th style="width:26%">Classe</th><th>Para quê</th></tr>
+  <tr><td><strong>.capa</strong></td><td>a primeira página: chamada, título, uma linha do que o documento mostra e o rodapé</td></tr>
+  <tr><td><strong>.numeros</strong></td><td>três números grandes com a legenda embaixo</td></tr>
+  <tr><td><strong>.destaque</strong></td><td>a frase que o leitor leva da seção, com a barra cobre</td></tr>
+  <tr><td><strong>.ancora</strong></td><td>uma frase central grande, com uma parte na cor de destaque</td></tr>
+  <tr><td><strong>.fluxo</strong></td><td>o diagrama em SVG, com a folha de estilo dentro do próprio SVG</td></tr>
+  <tr><td><strong>.nota</strong></td><td>a ressalva discreta, como a de baixo</td></tr>
+  <tr><td><strong>.copiar</strong></td><td>o texto que o leitor vai selecionar e colar em outro lugar</td></tr>
+</table>
+
+<div class="copiar-rotulo">o comando que gerou este PDF, na pasta do modelo</div>
+<div class="copiar">python3 gerar_pdf.py exemplos/exemplo-noturno.html exemplos/EXEMPLO-NOTURNO.pdf</div>
+
+<div class="nota"><strong>O que este exemplar não mostra:</strong> a classe decisão, que usa esta mesma folha com a economia no eixo. Ela não mostra a variante celular, que troca a página A4 por 90 × 160 mm e está no exemplar do elétrico em celular, nesta pasta.</div>
+
+</body>
+</html>

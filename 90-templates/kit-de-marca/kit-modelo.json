@@ -1,0 +1,229 @@
+{
+  "_leia": "Modelo preenchido com um kit inteiramente fictício (Ateliê Exemplo): marca, cores, falas e peças foram inventadas só para mostrar o formato. Troque tudo pelos dados da conta. Obrigatórios: os nove tokens de cor (--noite --carvao --borda --pedra --osso --papel --tinta --luz --halo), a combinação A, ao menos uma peça com _procedencia. 'fundo': 'claro' põe todo tipo no fundo claro; sem ele, o escuro é o padrão. Tipos do motor: N1 N2 N3 P1 P2 B1 C1 D1 F1 (F1 pede 'foto', relativa a este arquivo).",
+  "conta": "Ateliê Exemplo",
+  "titulo_italico": "kit de marca",
+  "assinatura": "@atelieexemplo",
+  "data": "<dd/mm/aaaa>",
+  "estado": "🟡 exemplo fictício, n=0 · numa conta real, aqui vão o estado da hipótese e o que falta ser escolhido na prancha",
+  "fundo": "claro",
+  "frase_amostra": "O barro ensina a esperar.",
+  "arquetipos": [
+    {
+      "papel": "dominante",
+      "nome": "Criador (a mão)",
+      "leitura": "faz o aluno terminar a primeira peça com a própria mão. O método é o gesto repetido, nunca a receita."
+    },
+    {
+      "papel": "da escrita",
+      "nome": "Cuidador",
+      "leitura": "fala devagar, mostra o erro como parte do processo e não ri da peça torta."
+    },
+    {
+      "papel": "da borda",
+      "nome": "Fora-da-lei",
+      "leitura": "contra a peça de vitrine que ninguém usa e contra o curso que ensina técnica sem deixar sujar a mão."
+    },
+    {
+      "papel": "sombra",
+      "nome": "Criador perfeccionista",
+      "leitura": "a peça perfeita como exigência: paralisa quem está começando. O kit nunca põe a peça de mestre no centro."
+    }
+  ],
+  "teste_da_peca": "a peça faz o aluno querer pôr a mão no barro hoje, sem medo de errar?",
+  "direcao": {
+    "sensacao": "a calma de quem trabalha com as mãos. Uma só.",
+    "extremo": "caderno de ateliê: papel cru, argila, um terracota só, e o traço riscado à mão.",
+    "memoravel": "a digital: uma marca de polegar em terracota que fecha a frase que importa. É o mesmo gesto em toda peça."
+  },
+  "regra_cor": "Fundo claro e cru sempre; escuro só na oferta. O terracota aparece em um lugar por peça: a palavra que vira, a digital ou o caminho. Nunca dourado chapado.",
+  "cores": [
+    {
+      "token": "--papel",
+      "hex": "#F7F5EF",
+      "nome": "cru",
+      "uso": "fundo dominante"
+    },
+    {
+      "token": "--papel-2",
+      "hex": "#ECE7DB",
+      "nome": "linho",
+      "uso": "cartão no claro"
+    },
+    {
+      "token": "--borda-claro",
+      "hex": "#D9D2C2",
+      "nome": "fio",
+      "uso": "divisória no claro"
+    },
+    {
+      "token": "--tinta",
+      "hex": "#2A2622",
+      "nome": "grafite",
+      "uso": "texto"
+    },
+    {
+      "token": "--pedra",
+      "hex": "#6D6A62",
+      "nome": "cinza de forno",
+      "uso": "rótulo, texto secundário"
+    },
+    {
+      "token": "--luz",
+      "hex": "#B4532A",
+      "nome": "terracota",
+      "uso": "o acento: a palavra que vira, a digital"
+    },
+    {
+      "token": "--halo",
+      "hex": "#D99A78",
+      "nome": "argila",
+      "uso": "brilho do acento, nunca texto"
+    },
+    {
+      "token": "--noite",
+      "hex": "#2B1D16",
+      "nome": "forno",
+      "uso": "fundo escuro, só na oferta"
+    },
+    {
+      "token": "--carvao",
+      "hex": "#3A2A21",
+      "nome": "brasa",
+      "uso": "cartão no escuro"
+    },
+    {
+      "token": "--borda",
+      "hex": "#54402F",
+      "nome": "fio no escuro",
+      "uso": "divisória no escuro"
+    },
+    {
+      "token": "--osso",
+      "hex": "#F7F5EF",
+      "nome": "cru",
+      "uso": "texto no escuro"
+    }
+  ],
+  "paletas": {
+    "terracota": {
+      "legenda": "terracota sobre cru (a principal)",
+      "cores": {}
+    },
+    "cobalto": {
+      "legenda": "azul-cobalto no lugar do terracota (o esmalte)",
+      "cores": {
+        "--luz": "#2F5D8C",
+        "--halo": "#86A6C6"
+      }
+    },
+    "oliva": {
+      "legenda": "tinta marrom e acento verde-oliva (o vidrado)",
+      "cores": {
+        "--tinta": "#3A3325",
+        "--luz": "#6E7432",
+        "--halo": "#A9AE6E"
+      }
+    }
+  },
+  "fontes_url": "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Lora:ital,wght@0,400;1,400&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&family=Figtree:wght@700;800&display=block",
+  "combos": {
+    "A": {
+      "legenda": "Playfair Display + DM Sans (a principal)",
+      "--f-display": "'Playfair Display',serif",
+      "--f-mono": "'DM Sans',sans-serif",
+      "--f-corpo": "'DM Sans',sans-serif",
+      "--f-nativa": "'Figtree',sans-serif",
+      "--t": "96px",
+      "--t-track": "-0.002em"
+    },
+    "B": {
+      "legenda": "Lora + DM Mono no rótulo (mais caderno de anotação)",
+      "--f-display": "'Lora',serif",
+      "--f-mono": "'DM Mono',monospace",
+      "--f-corpo": "'DM Sans',sans-serif",
+      "--t": "100px",
+      "--t-track": "-0.002em"
+    }
+  },
+  "prancha": {
+    "peca_teste": "ex-P1-primeira"
+  },
+  "tipos": [
+    {
+      "codigo": "P1",
+      "nome": "Página de caderno",
+      "quando": "a promessa ou uma frase de quem assina, com o grifo no acento"
+    },
+    {
+      "codigo": "N1",
+      "nome": "Antes e depois",
+      "quando": "o que o aluno faz hoje à esquerda, o caminho à direita"
+    },
+    {
+      "codigo": "D1",
+      "nome": "A pergunta",
+      "quando": "uma pergunta do quiz, com a marca na resposta que abre o método"
+    },
+    {
+      "codigo": "C1",
+      "nome": "Carrossel",
+      "quando": "a narrativa central, em partes"
+    },
+    {
+      "codigo": "F1",
+      "nome": "Retrato",
+      "quando": "o rosto de quem assina, com uma frase dele"
+    },
+    {
+      "codigo": "P2",
+      "nome": "Tela lisa",
+      "quando": "uma fala de quem assina em fonte nativa, sem arte"
+    }
+  ],
+  "gravacao": "Luz de janela lateral, bancada à vista e as mãos em primeiro plano; avental cru; peça inacabada na mesa quando for explicar. Nunca ring light frontal, nunca fundo escuro de estúdio. Som: ambiente limpo, sem trilha motivacional.",
+  "veto": [
+    "visual de loja de decoração: peça perfeita sobre mármore",
+    "fundo escuro fora da oferta, neon, vidro, pílula, ícone por item, aspas gigantes",
+    "dourado chapado ou metálico",
+    "o termo técnico como título no centro da peça: o gesto vem antes do nome",
+    "estética que a conta recusa (preencher com os itens citados)",
+    "foto de banco com mãos limpas fingindo trabalhar",
+    "travessão no texto da peça (exemplo de regra de voz)",
+    "léxico morto: '<palavra 1>', '<palavra 2>'",
+    "Inter (exemplo de fonte vetada)"
+  ],
+  "pecas": [
+    {
+      "id": "ex-P1-primeira",
+      "tipo": "P1",
+      "formato": "feed",
+      "combo": "A",
+      "_procedencia": "exemplo fictício · numa conta real: promessa (PILARES.md l.<n>: '<promessa dos pilares>') · corpo: fala de quem assina, '<fala literal>' (DESTILACAO-CALL-<data>.md l.<n> [hh:mm:ss]) · lei: '<regra da voz>' (skill de voz da conta, l.<n>)",
+      "rotulo": "Cerâmica para quem nunca fez",
+      "titulo_a": "A primeira peça sai torta,",
+      "grifo": "e é ela que te ensina.",
+      "titulo_b": "",
+      "corpo": "Aprenda a abrir, secar e queimar com as suas mãos, sem precisar de torno em casa.",
+      "lei": "errar faz parte do barro."
+    },
+    {
+      "id": "ex-D1-peca",
+      "tipo": "D1",
+      "formato": "feed",
+      "combo": "A",
+      "_procedencia": "exemplo fictício · numa conta real: cena do público: '<fala literal do banco>' (lexico-icp/BANCO.md XX-LEX-04, D) · opções: estrutura nossa · '<promessa do quiz>' (CLAUDE.md da conta l.<n>)",
+      "rotulo": "Quiz · a sua primeira peça",
+      "titulo_a": "A peça rachou no forno.",
+      "titulo_b": "O que você pensa?",
+      "vira_luz": false,
+      "opcoes": [
+        "eu não levo jeito",
+        "o barro estava ruim",
+        "ainda não sei secar devagar"
+      ],
+      "marcada": 2,
+      "anotacao": "→ é aqui que o método começa",
+      "lei": "toda rachadura tem causa."
+    }
+  ]
+}

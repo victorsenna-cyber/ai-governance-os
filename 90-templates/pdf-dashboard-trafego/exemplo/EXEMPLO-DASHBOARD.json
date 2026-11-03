@@ -1,0 +1,171 @@
+{
+  "arquivo": "EXEMPLO-DASHBOARD",
+  "chips": [
+    "<b>Empresa Exemplo</b> · exemplares dos modelos",
+    "4 modelos · 5 exemplares",
+    "<b>novembro de 2026</b> · medido"
+  ],
+  "kpis": [
+    {
+      "rotulo": "Modelos de PDF",
+      "valor": 4,
+      "sub": "um por família"
+    },
+    {
+      "rotulo": "Exemplares",
+      "valor": 5,
+      "sub": "o elétrico tem A4 e celular"
+    },
+    {
+      "rotulo": "Fontes Type3",
+      "valor": 0,
+      "sub": "nos cinco exemplares",
+      "destaque": true
+    },
+    {
+      "rotulo": "Com conferência",
+      "valor": "3 de 4",
+      "sub": "o claro ainda não tem",
+      "destaque": true
+    },
+    {
+      "rotulo": "Páginas somadas",
+      "valor": 16,
+      "sub": "nos cinco exemplares"
+    },
+    {
+      "rotulo": "Formatos",
+      "valor": 3,
+      "sub": "A4, A4 deitado e celular"
+    }
+  ],
+  "graficos": [
+    {
+      "titulo": "Páginas por exemplar",
+      "sub": "este dashboard em destaque",
+      "tipo": "barras",
+      "pontos": [
+        [
+          "Claro",
+          3
+        ],
+        [
+          "Noturno",
+          3
+        ],
+        [
+          "Elétr. A4",
+          4
+        ],
+        [
+          "Elétr. celular",
+          5
+        ],
+        [
+          "Dashboard",
+          1
+        ]
+      ]
+    },
+    {
+      "titulo": "Documentos por semana",
+      "sub": "dados fictícios, para mostrar a linha",
+      "tipo": "linha",
+      "pontos": [
+        [
+          "S1",
+          6
+        ],
+        [
+          "S2",
+          9
+        ],
+        [
+          "S3",
+          8
+        ],
+        [
+          "S4",
+          12
+        ]
+      ]
+    }
+  ],
+  "tabela": {
+    "titulo": "Por modelo",
+    "colunas": [
+      "Modelo",
+      "Fundo",
+      "Formato",
+      "Entrada",
+      "Gerador",
+      "Fontes",
+      "Conferência",
+      "Páginas",
+      "KB"
+    ],
+    "destaque": [
+      6,
+      7
+    ],
+    "linhas": [
+      [
+        "Claro",
+        "papel quente",
+        "A4",
+        "Markdown + capa JSON",
+        "build-pdf.py",
+        "Lora · Poppins",
+        "não tem",
+        3,
+        103
+      ],
+      [
+        "Noturno",
+        "grafite",
+        "A4",
+        "HTML",
+        "gerar_pdf.py",
+        "Lato · Palatino",
+        "sim",
+        3,
+        88
+      ],
+      [
+        "Elétrico A4",
+        "quase preto",
+        "A4",
+        "HTML",
+        "gerar_pdf.py",
+        "Anton · Inter · Montserrat",
+        "sim",
+        4,
+        96
+      ],
+      [
+        "Elétrico celular",
+        "quase preto",
+        "90 × 160 mm",
+        "HTML",
+        "gerar_pdf.py",
+        "Anton · Inter · Montserrat",
+        "sim",
+        5,
+        60
+      ],
+      [
+        "Dashboard",
+        "quase preto e ciano",
+        "A4 deitado",
+        "JSON",
+        "gerar_dashboard.py",
+        "Plus Jakarta Sans",
+        "sim",
+        1,
+        "—"
+      ]
+    ]
+  },
+  "nota": "Fonte: PyMuPDF nos exemplares de 90-templates, novembro de 2026. A linha de documentos por semana é fictícia: serve só para mostrar o gráfico. O dashboard não mede o próprio peso.",
+  "empresa": "Template Continuum"
+}

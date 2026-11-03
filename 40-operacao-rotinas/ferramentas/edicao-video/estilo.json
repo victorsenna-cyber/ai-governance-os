@@ -1,0 +1,40 @@
+{
+  "legenda": {
+    "fonte": "Montserrat ExtraBold",
+    "tamanho": 80,
+    "maiusculas": true,
+    "cor_texto": "#FFFFFF",
+    "cor_ativa": "#FFD400",
+    "cor_destaque": "#5CE1E6",
+    "cor_contorno": "#000000",
+    "contorno": 7,
+    "sombra": 0,
+    "escala_ativa": 112,
+    "posicao_y": 0.70,
+    "max_palavras": 3,
+    "max_caracteres": 18
+  },
+  "gancho": {
+    "fonte": "Montserrat ExtraBold",
+    "tamanho": 62,
+    "maiusculas": false,
+    "cor_texto": "#000000",
+    "cor_caixa": "#FFFFFF",
+    "posicao_y": 0.12
+  },
+  "barra_progresso": {
+    "ativa": true,
+    "cor": "#FFFFFF",
+    "altura": 10
+  },
+  "video": {
+    "contraste": 1.04,
+    "saturacao": 1.08,
+    "nitidez": 0.35
+  },
+  "audio": {
+    "lufs": -14,
+    "denoise_db": -25,
+    "rnnoise_modelo": null
+  }
+}

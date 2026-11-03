@@ -1,0 +1,168 @@
+[
+  {
+    "id": "demo-N1",
+    "tipo": "N1",
+    "formato": "feed",
+    "combo": "A",
+    "_procedencia": "exemplo fictício · numa peça real, aqui vai a fonte de cada frase",
+    "rotulo": "Como uma peça nasce",
+    "titulo_a": "O forno é a",
+    "titulo_b": "última etapa.",
+    "vira_luz": false,
+    "rot_caos": "Como costuma ser",
+    "rot_ordem": "A ordem",
+    "caos": [
+      "esmalte",
+      "torno",
+      "forno",
+      "molde",
+      "argila",
+      "pincel"
+    ],
+    "ordem": [
+      "amassar",
+      "abrir",
+      "secar",
+      "queimar",
+      "esmaltar"
+    ],
+    "lei": "cada etapa só sustenta a seguinte.",
+    "data": "exemplo"
+  },
+  {
+    "id": "demo-N2",
+    "tipo": "N2",
+    "formato": "feed",
+    "combo": "A",
+    "_procedencia": "exemplo fictício · numa peça real, aqui vai a fonte de cada frase",
+    "rotulo": "Bastidor · turma da manhã",
+    "titulo_a": "A receita cabe",
+    "titulo_b": "em cinco linhas.",
+    "corpo": "Cada aluno recebe a mesma ficha: quanto de água, quanto tempo e o que nunca se faz.",
+    "print_titulo": "ficha/",
+    "print_linhas": [
+      "argila.txt",
+      "!secagem.txt",
+      "queima.txt",
+      "esmalte.txt",
+      "erros.txt"
+    ],
+    "chamada": "A ficha completa está no link"
+  },
+  {
+    "id": "demo-N3",
+    "tipo": "N3",
+    "formato": "story",
+    "combo": "A",
+    "_procedencia": "exemplo fictício · numa peça real, aqui vai a fonte de cada frase",
+    "rotulo": "Por dentro da peça",
+    "titulo_a": "A rachadura não começa",
+    "titulo_b": "no forno.",
+    "lei": "ela começa na secagem, dias antes.",
+    "vira_luz": false
+  },
+  {
+    "id": "demo-P1",
+    "tipo": "P1",
+    "formato": "feed",
+    "combo": "A",
+    "_procedencia": "exemplo fictício · numa peça real, aqui vai a fonte de cada frase",
+    "rotulo": "Diagnóstico · primeira peça",
+    "titulo_a": "Trocar de argila é o que",
+    "grifo": "atrasa o próximo mês.",
+    "corpo": "Cada troca zera o que você aprendeu sobre o ponto da massa.",
+    "lei": "para aprender, repita.",
+    "data": "exemplo"
+  },
+  {
+    "id": "demo-P2",
+    "tipo": "P2",
+    "formato": "story",
+    "combo": "A",
+    "_procedencia": "exemplo fictício · numa peça real, aqui vai a fonte de cada frase",
+    "etiqueta": "o ciclo",
+    "paragrafos": [
+      "A peça racha.",
+      "Você troca de argila.",
+      "E começa do zero.",
+      "(cada troca [[zera o aprendizado]])"
+    ],
+    "lei": "para aprender, repita."
+  },
+  {
+    "id": "demo-B1",
+    "tipo": "B1",
+    "formato": "story",
+    "combo": "A",
+    "_procedencia": "exemplo fictício · numa peça real, aqui vai a fonte de cada frase",
+    "rotulo": "Caderno · aula 1",
+    "titulo_a": "A única anotação",
+    "titulo_b": "que importa.",
+    "print_titulo": "caderno de ateliê",
+    "print_linhas": [
+      "!> seque devagar, longe do vento",
+      "  e só depois queime",
+      "",
+      "→ dia 1: abrir",
+      "→ dia 3: virar",
+      "→ dia 7: queimar"
+    ],
+    "corpo": "O resto se aprende com a mão na massa."
+  },
+  {
+    "id": "demo-C1-02",
+    "tipo": "C1",
+    "formato": "feed",
+    "combo": "A",
+    "n": 2,
+    "total": 5,
+    "_procedencia": "exemplo fictício · numa peça real, aqui vai a fonte de cada frase",
+    "rotulo": "erro de ordem",
+    "titulo_a": "Começar",
+    "titulo_b": "pelo esmalte.",
+    "vira_luz": false,
+    "corpo": "Esmaltar peça mal seca é pagar para ver a cor estourar.",
+    "lei": "o esmalte mostra o que já existe. inclusive a rachadura."
+  },
+  {
+    "id": "demo-C1-05",
+    "tipo": "C1",
+    "formato": "feed",
+    "combo": "A",
+    "n": 5,
+    "total": 5,
+    "_procedencia": "exemplo fictício · numa peça real, aqui vai a fonte de cada frase",
+    "rotulo": "a ordem",
+    "titulo_a": "Cada etapa",
+    "titulo_b": "sustenta a seguinte.",
+    "ordem": [
+      "amassar",
+      "abrir",
+      "secar",
+      "queimar",
+      "esmaltar"
+    ],
+    "lei": "salve para conferir antes de queimar."
+  },
+  {
+    "id": "demo-D1",
+    "tipo": "D1",
+    "formato": "feed",
+    "combo": "A",
+    "_procedencia": "exemplo fictício · numa peça real, aqui vai a fonte de cada frase",
+    "rotulo": "Diagnóstico · 1 minuto",
+    "titulo_a": "Onde a sua peça",
+    "titulo_b": "trava primeiro?",
+    "opcoes": [
+      "A massa está seca demais",
+      "A parede saiu desigual",
+      "A secagem foi rápida",
+      "A queima subiu depressa",
+      "Falta esmalte"
+    ],
+    "marcada": 2,
+    "anotacao": "a que aparece é a última. a que causa costuma vir antes.",
+    "lei": "responda nos comentários com a letra.",
+    "vira_luz": false
+  }
+]

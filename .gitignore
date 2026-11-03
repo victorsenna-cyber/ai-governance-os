@@ -1,0 +1,87 @@
+# =============================================================
+# .gitignore — repositório Governança
+# Sobe governança + clientes, sem os livros de terceiros.
+# =============================================================
+
+# --- Livros de terceiros (copyright) -------------------------
+# Material de referência com direito autoral. Fica local, nunca
+# versionado.
+70-metodologias-chave/*.pdf
+70-metodologias-chave/*.epub
+70-metodologias-chave/*.mobi
+
+# Cópia do mesmo livro dentro de pasta de cliente
+**/Onboarding Orquestrado - Donna Weber.pdf
+
+# --- Artefatos de build / dependências -----------------------
+# Nota: `build/` e `dist/` NÃO são ignorados de forma ampla — este é um
+# repo de documentos, e pastas com esse nome em projeto de cliente
+# podem ser a única cópia de um entregável.
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.next/
+.cache/
+.parcel-cache/
+
+# --- Lixo de sistema operacional -----------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# --- Temporários de Office / editores ------------------------
+~$*
+*.tmp
+*.swp
+*.bak
+
+# --- Segredos (nunca versionar) ------------------------------
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+credentials*.json
+service-account*.json
+
+*.zip
+*.mp4
+.fuse_hidden*
+
+# --- Mídia de vídeo (15/10/2026, METODO-EDICAO-DE-VIDEO-CURTO) ---
+# O bruto e o render ficam na máquina; versiona-se transcrição e roteiro.
+950-marketing/conteudo-perfil/**/*.mp4
+950-marketing/conteudo-perfil/**/*.mov
+950-marketing/conteudo-perfil/**/*.mkv
+950-marketing/conteudo-perfil/**/*.m4a
+950-marketing/conteudo-perfil/**/*.wav
+950-marketing/conteudo-perfil/**/*.png
+40-operacao-rotinas/ferramentas/edicao-video/fontes/*.ttf
+40-operacao-rotinas/ferramentas/edicao-video/fontes/*.otf
+
+# Segredos de projeto de cliente
+**/env
+**/.env
+945-branding/**/saida/
+**/prancha-*.png
+980-web-design/**/prancha/telas/
+980-web-design/**/*-upload.zip
+clientes/**/branding/**/saida/
+clientes/**/branding/**/kit.png
+
+# --- Lixo de build de executor externo ---
+**/npm-cache/
+
+# --- Repositórios vivos de cliente (git próprio; CLAUDE.md §11.6) ---
+# Cada um tem o seu remoto e é sincronizado pelo sincronizar.py da Governança.
+# A lista, com o remoto de cada um: clientes/<Cliente>/entregaveis/repositorios.json
+# Uma linha aqui por repositório; sem ela a sincronia o pula, para ele não virar gitlink:
+# clientes/<Cliente>/entregaveis/<pasta>/
+
+# --- Dicionário do gate de público: tem nome, nunca vai a repositório público (POLITICAS-DE-DECISAO.md §8) ---
+40-operacao-rotinas/ferramentas/varrer-publico.txt

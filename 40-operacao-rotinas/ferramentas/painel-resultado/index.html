@@ -1,0 +1,977 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Painel de Resultado</title>
+<link rel="icon" href="logo-continuum.png">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: barra lateral com os clientes · topo com o cliente aberto e as ações · grade de cartões
+   (indicadores → funil e metas + risco e confiança → projeção por verba → tabelas → histórico).
+   Direção visual: quase preto com azul petróleo, ciano como único destaque,
+   gráfico de área em degradê, barra de progresso em traços, botões em pílula. Escuro por escolha: um tema só. */
+:root {
+  --bg:#030303; --lado:#06090B; --card:#0A1215; --card2:#112B33; --campo:rgba(255,255,255,.035);
+  --line:rgba(181,181,181,.11); --line2:rgba(86,215,253,.22);
+  --ink:#FCFCFC; --ink2:#B5B5B5; --mute:#6E7A7E;
+  --cyan:#56D7FD; --cyan-ink:#04161C; --cyan-l:rgba(86,215,253,.10); --cyan-m:rgba(86,215,253,.30);
+  --ok:#5BE3A4; --ok-l:rgba(91,227,164,.12); --warn:#F6C25B; --warn-l:rgba(246,194,91,.12); --err:#FF7A6B; --err-l:rgba(255,122,107,.12);
+  --f:'Plus Jakarta Sans', 'Segoe UI', Helvetica, Arial, sans-serif;
+  --r:22px;
+  --vidro:linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.035));
+  --vidro-borda:rgba(255,255,255,.16);
+  color-scheme:dark;
+}
+[hidden] { display:none !important; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html, body { background:var(--bg); color:var(--ink); font-family:var(--f); }
+body { font-size:14px; line-height:1.5; min-height:100vh;
+  background:radial-gradient(1100px 520px at 85% -8%, rgba(17,43,51,.55), transparent 62%), radial-gradient(700px 420px at 0% 100%, rgba(17,43,51,.25), transparent 60%), var(--bg); }
+button, input, select { font:inherit; color:inherit; }
+table { font:inherit; }
+.num { font-variant-numeric:tabular-nums; }
+h1, h2, h3 { text-wrap:balance; font-weight:600; letter-spacing:-.01em; }
+
+/* barra lateral */
+.app { display:flex; min-height:100vh; }
+.lateral { width:260px; flex-shrink:0; background:var(--lado); border-right:1px solid var(--line); display:flex; flex-direction:column;
+  position:sticky; top:0; height:100vh; padding-block:26px; padding-left:max(18px, env(safe-area-inset-left, 0px)); padding-right:18px; }
+.logo { display:flex; justify-content:center; padding:0 10px 18px; }
+.logo img { width:92px; height:auto; display:block; filter:drop-shadow(0 8px 22px rgba(86,215,253,.18)); }
+.secao { font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); padding:4px 12px 10px; }
+#navClientes { display:grid; gap:4px; overflow-y:auto; flex:1; align-content:start; }
+.item { display:flex; align-items:center; gap:12px; width:100%; border:0; background:none; text-align:left; padding:8px 12px 8px 8px; border-radius:999px; cursor:pointer; color:var(--ink2); }
+.item:hover { color:var(--ink); background:rgba(255,255,255,.03); }
+.item.ativo { background:rgba(255,255,255,.07); color:var(--ink); box-shadow:inset 0 0 0 1px var(--line); }
+.item .ini { width:32px; height:32px; flex-shrink:0; border-radius:50%; display:grid; place-items:center; font-size:12px; font-weight:700; background:rgba(255,255,255,.06); color:var(--ink2); }
+.item.ativo .ini { background:var(--ink); color:var(--bg); }
+.item b { display:block; font-weight:600; font-size:14px; line-height:1.25; }
+.item small { display:block; font-size:12px; color:var(--mute); }
+.lateral .rodape { padding-top:14px; display:grid; gap:12px; }
+body.modo-cliente .secao, body.modo-cliente #navClientes, body.modo-cliente #btnNovoCliente, body.modo-cliente .menu { display:none; }
+body.modo-cliente #navClientes + .rodape, body.modo-cliente .rodape { margin-top:auto; }
+.link-box { display:flex; gap:8px; align-items:center; margin:6px 0; }
+.link-box input { flex:1; min-width:0; font-size:13px; color:var(--cyan); }
+.fixo-v { font-size:13px; color:var(--ink2); padding-top:6px; }
+.modo { font-size:12px; color:var(--mute); display:flex; gap:8px; align-items:flex-start; }
+.modo i { width:8px; height:8px; border-radius:50%; background:var(--mute); margin-top:5px; flex-shrink:0; }
+.modo.nuvem i { background:var(--cyan); box-shadow:0 0 8px var(--cyan); }
+
+/* corpo */
+.corpo { flex:1; min-width:0; display:flex; flex-direction:column; }
+.topo { position:sticky; top:env(safe-area-inset-top, 0px); z-index:5; background:rgba(3,3,3,.82); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  display:flex; gap:14px; align-items:center; flex-wrap:wrap; border-bottom:1px solid var(--line);
+  padding-block:18px; padding-left:32px; padding-right:max(32px, env(safe-area-inset-right, 0px)); }
+body::before { content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top, 0px); z-index:10; background:var(--bg); }
+.topo .titulo { margin-right:auto; min-width:0; flex:1 1 260px; }
+.topo h1 { font-size:24px; line-height:1.3; }
+.topo p { color:var(--ink2); font-size:13px; }
+.menu { display:none; border:1px solid var(--vidro-borda); background:var(--vidro); box-shadow:inset 0 1px 1px rgba(255,255,255,.25); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border-radius:14px; width:42px; height:42px; cursor:pointer; place-items:center; }
+main { padding-block:26px 56px; padding-left:32px; padding-right:max(32px, env(safe-area-inset-right, 0px)); display:grid; grid-template-columns:minmax(0,1fr); gap:20px; }
+
+.btn { position:relative; overflow:hidden; isolation:isolate; border:1px solid rgba(190,240,255,.45); color:#fff; font-weight:600; padding:10px 20px; border-radius:999px; cursor:pointer; white-space:nowrap;
+  background:linear-gradient(180deg, rgba(150,232,255,.55) 0%, rgba(86,215,253,.30) 50%, rgba(30,140,180,.38) 100%);
+  -webkit-backdrop-filter:blur(16px) saturate(170%); backdrop-filter:blur(16px) saturate(170%); text-shadow:0 1px 2px rgba(0,30,45,.45);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.7), inset 0 -3px 8px rgba(0,50,70,.35), 0 10px 28px -10px rgba(86,215,253,.55); transition:transform .15s ease, filter .15s ease; }
+.btn::before { content:""; position:absolute; z-index:-1; left:6%; right:6%; top:1px; height:52%; border-radius:999px; background:linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,0)); pointer-events:none; }
+.btn:hover { filter:brightness(1.08); transform:translateY(-1px); }
+.btn:active { transform:translateY(0) scale(.98); }
+.btn.contorno { color:var(--ink); border-color:var(--vidro-borda); background:var(--vidro); text-shadow:none;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.28), inset 0 -2px 6px rgba(0,0,0,.25), 0 10px 26px -14px rgba(0,0,0,.9); }
+.btn.contorno::before { background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,0)); }
+.btn.perigo { color:#FFD9D3; border-color:rgba(255,122,107,.5); background:linear-gradient(180deg, rgba(255,140,125,.28), rgba(255,122,107,.08)); text-shadow:none;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.25), 0 10px 26px -14px rgba(255,122,107,.5); }
+.btn.perigo.armado { background:linear-gradient(180deg, rgba(255,150,135,.75), rgba(255,122,107,.45)); color:#fff; }
+.btn.bloco { width:100%; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline:2px solid var(--cyan); outline-offset:2px; }
+
+.chips { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+.chip { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; padding:4px 11px; border-radius:999px; background:var(--cyan-l); color:var(--cyan); }
+.chip::before { content:""; width:6px; height:6px; border-radius:50%; background:currentColor; flex-shrink:0; }
+.chip.neutro { background:rgba(255,255,255,.05); color:var(--ink2); }
+.chip.bom { background:var(--ok-l); color:var(--ok); } .chip.atencao { background:var(--warn-l); color:var(--warn); } .chip.ruim { background:var(--err-l); color:var(--err); }
+
+/* cartões */
+.grade { display:grid; gap:20px; grid-template-columns:repeat(12, minmax(0,1fr)); }
+.c4 { grid-column:span 4; } .c8 { grid-column:span 8; } .c12 { grid-column:span 12; } .c3 { grid-column:span 3; }
+.cartao { background:linear-gradient(180deg, rgba(22,48,57,.55), rgba(9,15,18,.96) 58%); border:1px solid rgba(255,255,255,.06); border-radius:var(--r); padding:24px 26px; min-width:0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07), 0 28px 60px -28px rgba(0,0,0,.95), 0 2px 6px rgba(0,0,0,.45); transition:transform .25s ease, box-shadow .25s ease; }
+.cartao:hover { transform:translateY(-2px); box-shadow:inset 0 1px 0 rgba(255,255,255,.09), 0 36px 70px -30px rgba(0,0,0,1), 0 0 0 1px rgba(86,215,253,.08); }
+.cartao > header { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:18px; flex-wrap:wrap; }
+.cartao h2 { font-size:17px; line-height:1.35; }
+.cartao header p { color:var(--ink2); font-size:13px; margin-top:2px; }
+.empilha { display:grid; gap:20px; align-content:start; }
+
+.kpi { display:flex; flex-direction:column; gap:12px; }
+.kpi .linha { display:flex; justify-content:space-between; align-items:center; gap:10px; }
+.kpi .rot { color:var(--ink2); font-size:13px; }
+.icone { width:40px; height:40px; border-radius:12px; display:grid; place-items:center; flex-shrink:0; background:linear-gradient(160deg, #17424E, #0B2027); color:var(--cyan); border:1px solid rgba(86,215,253,.16); box-shadow:inset 0 1px 0 rgba(255,255,255,.08); }
+.icone.ok { background:var(--ok-l); color:var(--ok); border-color:transparent; } .icone.err { background:var(--err-l); color:var(--err); border-color:transparent; }
+.icone svg { width:19px; height:19px; }
+.kpi .valor { font-size:28px; font-weight:600; line-height:1.15; letter-spacing:-.02em; }
+.kpi .valor.neg { color:var(--err); }
+.kpi .det { font-size:13px; color:var(--ink2); }
+.kpi .det b { color:var(--ink); font-weight:600; }
+.selo { display:inline-block; font-size:12px; font-weight:600; padding:1px 8px; border-radius:6px; margin-right:6px; }
+.selo.ok { background:var(--ok-l); color:var(--ok); } .selo.err { background:var(--err-l); color:var(--err); }
+
+/* funil e metas */
+.funil { display:grid; grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr); gap:8px; align-items:stretch; }
+.passo { border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01)); box-shadow:inset 0 1px 0 rgba(255,255,255,.05); border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:4px; min-width:0; }
+.passo .rot { font-size:12px; color:var(--mute); text-transform:uppercase; letter-spacing:.08em; font-weight:600; }
+.passo .grande-f { font-size:30px; font-weight:600; letter-spacing:-.02em; line-height:1.15; }
+.passo .sub { font-size:13px; color:var(--ink2); }
+.passo .meta-l { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:12px; color:var(--ink2); margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); }
+.passo .meta-l .junto { display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
+.passo .meta-l input { width:52px; text-align:center; padding:5px 4px; font-weight:700; color:var(--cyan); }
+.passo .alvo { font-size:12px; color:var(--mute); }
+.passo .alvo b { color:var(--cyan); font-weight:600; }
+.passo .curta { font-size:11px; color:var(--warn); font-weight:600; margin-top:4px; }
+.seta-f { display:grid; place-items:center; color:var(--mute); font-size:16px; }
+.valem { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; margin-top:16px; }
+.iter-baixo { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:14px; margin-top:16px; align-items:stretch; }
+.iter-baixo .valem { grid-template-columns:1fr; margin-top:0; }
+.barras { display:flex; gap:14px; align-items:flex-end; min-height:190px; padding:14px 16px 10px; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.02); }
+.barra-c { flex:1; display:flex; flex-direction:column; align-items:center; align-self:stretch; gap:6px; min-width:0; }
+.barra-t { flex:1; width:100%; display:flex; align-items:flex-end; }
+.barra-t i { display:block; width:100%; border-radius:9px 9px 3px 3px; background:linear-gradient(180deg, rgba(86,215,253,.8), rgba(86,215,253,.06)); box-shadow:inset 0 1px 0 rgba(255,255,255,.4); }
+.barra-t i.base { background:linear-gradient(180deg, rgba(181,181,181,.5), rgba(181,181,181,.05)); }
+.barra-t i.neg { background:linear-gradient(180deg, rgba(255,122,107,.75), rgba(255,122,107,.06)); }
+.barra-v { font-size:12px; font-weight:600; } .barra-v.neg { color:var(--err); }
+.barra-m { font-size:12px; color:var(--mute); white-space:nowrap; }
+.vale { border:1px solid var(--line); border-radius:14px; padding:14px 16px; font-size:13px; color:var(--ink2); background:rgba(255,255,255,.02); }
+.vale b { display:block; font-size:20px; color:var(--ink); font-weight:600; margin:2px 0; }
+
+/* projeção */
+.controles { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-bottom:18px; }
+.ctl label { display:flex; justify-content:space-between; font-size:13px; color:var(--ink2); margin-bottom:8px; gap:8px; }
+.ctl label b { color:var(--ink); }
+.ctl .par { display:flex; gap:10px; align-items:center; }
+input[type=range] { flex:1; accent-color:var(--cyan); height:24px; min-width:0; }
+.ctl input[type=text] { width:92px; }
+.cenarios { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; margin-top:14px; }
+.cen { border:1px solid var(--line); border-radius:14px; padding:14px 16px; background:rgba(255,255,255,.02); }
+.cen.base { border-color:var(--line2); background:var(--cyan-l); }
+.cen .t { font-size:12px; color:var(--ink2); }
+.cen .v { font-size:22px; font-weight:600; margin:4px 0 2px; }
+.cen .s { font-size:12px; color:var(--ink2); }
+.pos { color:var(--ok); } .neg { color:var(--err); } .cap { color:var(--warn); }
+
+.grafico { position:relative; width:100%; min-width:0; }
+.grafico svg { display:block; overflow:visible; }
+.grafico text { fill:var(--mute); font-size:12px; font-family:var(--f); }
+.dica { position:absolute; pointer-events:none; color:var(--ink); background:rgba(14,30,36,.72); border:1px solid var(--vidro-borda); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border-radius:12px; padding:8px 12px; font-size:12px; min-width:170px; transform:translate(-50%, -100%); white-space:nowrap; box-shadow:inset 0 1px 1px rgba(255,255,255,.18), 0 14px 30px -12px rgba(0,0,0,.9); }
+.dica b { display:block; font-weight:600; margin-bottom:2px; }
+.dica span { display:block; color:var(--ink2); }
+.legenda { display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--ink2); margin-top:10px; }
+.legenda span { display:inline-flex; align-items:center; gap:6px; }
+.legenda i { width:14px; height:3px; border-radius:2px; background:var(--cyan); }
+.legenda i.banda { height:10px; background:var(--cyan-m); opacity:.6; }
+.legenda i.zero { height:0; border-top:2px dashed var(--err); background:none; }
+.legenda i.teto { width:10px; height:10px; border-radius:50%; background:var(--warn); }
+
+/* risco e confiança */
+.grande { font-size:30px; font-weight:600; line-height:1.15; letter-spacing:-.02em; }
+.grande small { font-size:13px; font-weight:400; color:var(--ink2); letter-spacing:0; }
+.tracos { display:flex; gap:3px; height:30px; margin:14px 0 8px; }
+.tracos i { flex:1; border-radius:2px; background:rgba(255,255,255,.08); }
+.tracos i.on { background:var(--cyan); } .tracos i.on.quente { background:var(--warn); } .tracos i.on.estoura { background:var(--err); }
+.marcas { display:flex; justify-content:space-between; gap:10px; font-size:12px; color:var(--mute); flex-wrap:wrap; }
+.texto { color:var(--ink2); font-size:13px; margin-top:10px; }
+.texto b { color:var(--ink); font-weight:600; }
+.faixa { position:relative; height:30px; margin:16px 0 6px; }
+.faixa .trilho { position:absolute; left:0; right:0; top:14px; height:2px; background:var(--line); }
+.faixa .int { position:absolute; top:9px; height:12px; background:var(--cyan-m); border-radius:6px; }
+.faixa .ponto { position:absolute; top:4px; width:4px; height:22px; margin-left:-2px; background:var(--cyan); border-radius:2px; box-shadow:0 0 10px var(--cyan); }
+.faixa .empate { position:absolute; top:0; height:30px; margin-left:-1px; border-left:2px dashed var(--err); }
+
+/* abas e tabelas */
+.abas { display:flex; gap:4px; background:var(--vidro); padding:4px; border-radius:999px; border:1px solid var(--vidro-borda); box-shadow:inset 0 1px 1px rgba(255,255,255,.18); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); }
+.abas button { border:0; background:none; padding:6px 14px; border-radius:999px; cursor:pointer; color:var(--ink2); font-weight:600; font-size:13px; }
+.abas button.ativo { color:#fff; background:linear-gradient(180deg, rgba(150,232,255,.55), rgba(40,150,190,.4)); box-shadow:inset 0 1px 1px rgba(255,255,255,.6), 0 6px 16px -8px rgba(86,215,253,.6); text-shadow:0 1px 2px rgba(0,30,45,.4); }
+.rolagem { overflow-x:auto; }
+table { width:100%; border-collapse:collapse; }
+th { text-align:left; font-size:12px; font-weight:500; color:var(--mute); padding:10px 12px; border-bottom:1px solid var(--line); white-space:nowrap; }
+td { padding:12px; border-bottom:1px solid var(--line); white-space:nowrap; font-variant-numeric:tabular-nums; }
+tr:last-child td { border-bottom:0; }
+tr.destaque td { background:var(--cyan-l); }
+tr.destaque td:first-child { border-radius:10px 0 0 10px; } tr.destaque td:last-child { border-radius:0 10px 10px 0; }
+.mini { border:0; background:none; color:var(--mute); cursor:pointer; font-size:12px; font-weight:600; padding:4px 10px; border-radius:999px; }
+.mini:hover { color:var(--err); background:var(--err-l); }
+.mini.armado { color:var(--bg); background:var(--err); }
+.nota { color:var(--mute); font-size:12px; margin-top:14px; max-width:84ch; }
+
+/* vazio */
+.vazio { text-align:center; padding:56px 24px; }
+.vazio h2 { font-size:20px; margin-bottom:8px; }
+.vazio p { color:var(--ink2); max-width:52ch; margin:0 auto 20px; }
+
+/* formulário */
+.veu { position:fixed; inset:0; background:rgba(0,0,0,.65); backdrop-filter:blur(4px); z-index:20; display:grid; place-items:center;
+  padding-block:max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-bottom, 0px)); padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); }
+.janela { background:linear-gradient(180deg, #0F1E23, #0A1215 60%); border:1px solid var(--line2); border-radius:var(--r); width:min(540px, 100%); max-height:100%; overflow-y:auto; padding:26px 28px; }
+.janela h2 { font-size:18px; margin-bottom:4px; }
+.janela > p { color:var(--ink2); font-size:13px; margin-bottom:18px; }
+.campos { display:grid; grid-template-columns:1fr 1fr; gap:14px 16px; }
+.campos .todo { grid-column:1 / -1; }
+.campos label { display:block; font-size:13px; font-weight:600; color:var(--ink); margin-bottom:6px; }
+.campos label em { font-style:normal; font-weight:400; color:var(--mute); }
+.campos small { display:block; font-size:12px; color:var(--mute); margin-top:4px; }
+input[type=text], input[type=date], select { width:100%; background:var(--campo); border:1px solid var(--line); border-radius:10px; padding:10px 12px; font-size:14px; }
+select option { background:#0A1215; }
+input[type=text]:focus, input[type=date]:focus, select:focus { outline:none; border-color:var(--cyan); box-shadow:0 0 0 3px var(--cyan-l); }
+.erro { color:var(--err); font-size:13px; min-height:18px; margin-top:12px; }
+.botoes { display:flex; gap:10px; justify-content:flex-end; margin-top:8px; flex-wrap:wrap; }
+.botoes .esq { margin-right:auto; }
+.aviso { position:fixed; right:max(20px, env(safe-area-inset-right, 0px)); bottom:max(20px, env(safe-area-inset-bottom, 0px)); color:var(--ink); background:rgba(14,30,36,.75); border:1px solid var(--vidro-borda); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); box-shadow:inset 0 1px 1px rgba(255,255,255,.2), 0 14px 30px -12px rgba(0,0,0,.9); padding:10px 18px; border-radius:999px; font-weight:600; z-index:30; }
+
+@media (max-width:1200px) { .c3 { grid-column:span 6; } .c8, .c4 { grid-column:span 12; } .empilha { grid-template-columns:1fr 1fr; } }
+@media (max-width:1024px) {
+  .lateral { position:fixed; left:0; top:0; z-index:25; transform:translateX(-100%); transition:transform .2s; padding-top:max(26px, env(safe-area-inset-top, 0px)); }
+  .lateral.aberta { transform:none; box-shadow:0 0 0 100vmax rgba(0,0,0,.55); }
+  .menu { display:grid; }
+}
+@media (max-width:720px) {
+  .topo, main { padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); }
+  .c3 { grid-column:span 12; } .empilha, .controles, .cenarios, .valem, .iter-baixo { grid-template-columns:1fr; }
+  .funil { grid-template-columns:minmax(0,1fr); } .seta-f { transform:rotate(90deg); height:20px; }
+  .cartao, .janela { padding:20px; } .campos { grid-template-columns:1fr; }
+  .grade, main { gap:14px; } .topo h1 { font-size:20px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+
+<div class="app">
+  <aside class="lateral" id="lateral" aria-label="Clientes">
+    <div class="logo"><img src="logo-continuum.png" alt="{{EMPRESA}}" width="92" height="95"></div>
+    <div class="secao">Clientes</div>
+    <nav id="navClientes"></nav>
+    <div class="rodape">
+      <button class="btn contorno bloco" id="btnConfig" type="button" hidden>Configurações</button>
+      <button class="btn contorno bloco" id="btnNovoCliente" type="button">+ Novo cliente</button>
+      <div class="modo" id="modo"><i></i><span>Conectando…</span></div>
+    </div>
+  </aside>
+
+  <div class="corpo">
+    <div class="topo">
+      <button class="menu" id="btnMenu" type="button" aria-label="Abrir clientes">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <div class="titulo" id="titulo"><h1>Painel de Resultado</h1><p>Abra um cliente na lateral.</p></div>
+      <div id="acoesTopo" style="display:flex;gap:10px;flex-wrap:wrap"></div>
+    </div>
+    <main id="painel"></main>
+  </div>
+</div>
+
+<div class="veu" id="veu" hidden>
+  <form class="janela" id="janela" novalidate></form>
+</div>
+<div class="aviso" id="aviso" role="status" hidden></div>
+
+<script>
+// ---------- utilidades ----------
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+const lerNum = v => { const x = parseFloat(String(v ?? '').trim().replace(/\.(?=\d{3}(\D|$))/g, '').replace(',', '.')); return isFinite(x) ? x : NaN; };
+const brl = v => isFinite(v) ? v.toLocaleString('pt-BR', { style:'currency', currency:'BRL', maximumFractionDigits:0 }) : '—';
+const brl2 = v => isFinite(v) ? v.toLocaleString('pt-BR', { style:'currency', currency:'BRL', minimumFractionDigits:2, maximumFractionDigits:2 }) : '—';
+const pct = (v, c = 1) => isFinite(v) ? (v * 100).toLocaleString('pt-BR', { maximumFractionDigits:c }) + '%' : '—';
+const dec = (v, c = 1) => isFinite(v) ? v.toLocaleString('pt-BR', { maximumFractionDigits:c }) : '—';
+const campo = v => (v !== null && v !== undefined && v !== '' && isFinite(v)) ? String(v).replace('.', ',') : '';
+const qtd = v => v < 10 ? dec(v, 1) : dec(Math.round(v), 0);
+const dataBR = s => s ? new Date(s + 'T12:00').toLocaleDateString('pt-BR') : '';
+const hoje = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
+const novoId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+const iniciais = n => (n || '?').split(/[\s·]+/).filter(Boolean).slice(0, 2).map(p => p[0].toUpperCase()).join('');
+function avisar(t) { const a = $('aviso'); a.textContent = t; a.hidden = false; clearTimeout(avisar.t); avisar.t = setTimeout(() => a.hidden = true, 2600); }
+
+// Faixa provável (80%). Taxa: intervalo de Wilson. Contagem sem denominador (compras no site): aproximação de Poisson.
+const Z80 = 1.2816;
+function wilson(k, n, z = Z80) {
+  if (!(n > 0)) return [0, 1];
+  const p = k / n, z2 = z * z, d = 1 + z2 / n, c = (p + z2 / (2 * n)) / d, h = z * Math.sqrt(p * (1 - p) / n + z2 / (4 * n * n)) / d;
+  return [Math.max(0, c - h), Math.min(1, c + h)];
+}
+function poisson(k, z = Z80) { return [k > 0 ? Math.pow(Math.max(0, Math.sqrt(k) - z / 2), 2) : 0, Math.pow(Math.sqrt(k + 1) + z / 2, 2)]; }
+
+const I = {
+  lucro:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>',
+  margem:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 5L5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg>',
+  conversa:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>',
+  venda:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>'
+};
+
+// Metas de iteração por mês, em percentual: quanto o custo por conversa cai e quanto a taxa
+// de conversão das conversas sobe. Valores de partida, a calibrar com as primeiras contas.
+const METAS = { custo:10, taxa:20 };
+// Amostra mínima antes de tomar decisão sobre a taxa (método de iteração de CPA §7).
+const AMOSTRA = { conversas:30 };
+
+// ---------- armazenamento: o repo, pelo servidor local (servir.py); sem ele, só este navegador ----------
+// Cada cliente vira clientes/<Cliente>/NN - tráfego pago/painel.json; o servidor sincroniza com a main depois de gravar.
+const CHAVE = 'continuum.painelResultado.v2';
+const S = { modo:'local', clientes:{}, atual:null, aba:'prazo', pronto:false, k:null, sync:'' };
+function lerLocal() { try { return JSON.parse(localStorage.getItem(CHAVE)) || {}; } catch (e) { return {}; } }
+function gravarLocal() { try { localStorage.setItem(CHAVE, JSON.stringify(S.clientes)); return true; } catch (e) { return false; } }
+const ordenados = () => Object.keys(S.clientes).sort((a, b) => (S.clientes[a].nome || '').localeCompare(S.clientes[b].nome || '', 'pt-BR'));
+// O id é a primeira palavra do nome do cliente, sem acento; o servidor acha a pasta de tráfego dele em clientes/.
+function idPara(nome) {
+  const base = (nome.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().match(/[a-z0-9]+/g) || ['cliente'])[0].slice(0, 30);
+  let id = base, n = 2; while (S.clientes[id]) id = base + '-' + n++;
+  return id;
+}
+async function salvarCliente(c, redesenhar = true) {
+  S.clientes[c.id] = c;
+  if (S.modo === 'cliente') { if (redesenhar) render(); return; } // página do cliente: só simula, nunca grava
+  if (S.modo === 'repo') {
+    try {
+      const { id, ...corpo } = c;
+      const r = await fetch('/api/clientes/' + encodeURIComponent(id), { method:'PUT', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify(corpo) });
+      if (!r.ok) throw new Error(r.status);
+      lerEstado();
+    } catch (e) { avisar('Não gravou no repo. O painel ainda está aberto pelo atalho?'); throw e; }
+  } else if (!gravarLocal()) { avisar('Este navegador não deixou salvar.'); }
+  if (redesenhar) render();
+}
+async function apagarCliente(id) {
+  delete S.clientes[id];
+  if (S.modo === 'repo') { try { await fetch('/api/clientes/' + encodeURIComponent(id), { method:'DELETE' }); lerEstado(); } catch (e) { avisar('Não apagou. Tente de novo.'); } }
+  else gravarLocal();
+  S.atual = ordenados()[0] || null; render();
+}
+function marcarModo() {
+  const m = $('modo'); m.className = 'modo' + (S.modo === 'repo' ? ' nuvem' : '');
+  $('btnConfig').hidden = S.modo !== 'repo';
+  m.querySelector('span').textContent = S.modo === 'cliente'
+    ? 'Painel preparado pela {{EMPRESA}}. Só leitura: a verba por dia pode ser simulada para cima, sem gravar nada.'
+    : S.modo === 'repo'
+    ? 'Salvo no repo, na pasta de tráfego de cada cliente. ' + (S.sync ? 'Sincronização: ' + S.sync + '.' : '')
+    : (/^(127\.0\.0\.1|localhost)$/.test(location.hostname) || location.protocol === 'file:'
+      ? 'Salvo só neste navegador. Abra pelo atalho "Painel de Resultado" para gravar no repo.'
+      : 'Versão web: o que se lança aqui fica só neste navegador. Os clientes do repo abrem pelo atalho no computador.');
+}
+async function lerEstado() {
+  try { const r = await fetch('/api/estado'); if (r.ok) { S.sync = (await r.json()).sync; marcarModo(); } } catch (e) { /* servidor fechado: fica o último estado */ }
+}
+// Busca gasto e conversas na Meta (servidor) e recarrega os clientes. Vendas continuam manuais.
+async function atualizarMeta(avisoManual) {
+  if (S.modo !== 'repo' || !Object.values(S.clientes).some(c => c.metaConta)) return;
+  try {
+    const r = await fetch('/api/meta/atualizar', { method:'POST' }), res = await r.json();
+    if (res.erro) { if (avisoManual) avisar(res.erro); return; }
+    const erros = Object.values(res.erros || {});
+    if (erros.length) avisar('Meta: ' + erros.join(' · '));
+    else if (avisoManual) avisar('Dados da Meta atualizados.');
+    if (!(res.atualizados || []).length) return;
+    const lista = await (await fetch('/api/clientes', { cache:'no-store' })).json();
+    lista.forEach(c => { if (!editando) S.clientes[c.id] = c; });
+    lerEstado(); if (!editando && $('veu').hidden) render();
+  } catch (e) { if (avisoManual) avisar('O servidor local não respondeu.'); }
+}
+let editando = false; // enquanto se digita uma meta ou se arrasta um controle, nada redesenha a página inteira
+async function iniciar() {
+  const emb = document.getElementById('dados-cliente'); // a página do cliente traz os números dele embutidos
+  if (emb) {
+    const c = JSON.parse(emb.textContent);
+    S.modo = 'cliente'; S.clientes = { [c.id]:c }; S.atual = c.id; S.verbaBase = +c.verbaDia || 0; S.pronto = true;
+    document.body.classList.add('modo-cliente'); marcarModo(); render(); return;
+  }
+  try {
+    const r = await fetch('/api/clientes', { cache:'no-store' });
+    if (!r.ok) throw new Error(r.status);
+    const lista = await r.json(); S.modo = 'repo'; S.clientes = {};
+    lista.forEach(c => { S.clientes[c.id] = c; });
+    lerEstado(); setInterval(lerEstado, 60000); // o pulso também mantém o servidor aberto enquanto há janela
+    setTimeout(() => atualizarMeta(false), 300); setInterval(() => atualizarMeta(false), 3600000); // dados da Meta: ao abrir e a cada 60 min
+  } catch (e) { S.modo = 'local'; S.clientes = lerLocal(); }
+  S.atual = ordenados()[0] || null; S.pronto = true;
+  marcarModo(); render();
+}
+
+// ---------- a conta ----------
+// Um cliente antigo (com margem e custo fixo) é lido no formato novo: custo fixo vira assessoria; margem sai da conta.
+function normal(c) {
+  const ass = c.assessoria !== undefined && c.assessoria !== null && c.assessoria !== '' ? +c.assessoria : (+c.fixo || 0);
+  const mt = c.metas || {};
+  return { ...c, tipo:c.tipo === 'site' ? 'site' : 'conversa', ticket:+c.ticket || 0, assessoria:ass > 0 ? ass : 0,
+    metas:{ custo:isFinite(+mt.custo) && mt.custo !== null ? +mt.custo : METAS.custo, taxa:isFinite(+mt.taxa) && mt.taxa !== null ? +mt.taxa : METAS.taxa }, leituras:c.leituras || [] };
+}
+function conta(c0) {
+  const c = normal(c0);
+  const ls = c.leituras.slice().sort((a, b) => a.data < b.data ? -1 : a.data > b.data ? 1 : 0);
+  const l = ls[ls.length - 1];
+  if (!l) return null;
+  const site = c.tipo === 'site', ticket = c.ticket;
+  const gasto = +l.gasto, dias = +l.dias > 0 ? +l.dias : 0;
+  const conv = site ? NaN : +l.conversas;
+  const vendas = Math.max(0, +l.vendas || 0);
+  const fat = vendas * ticket, assPer = c.assessoria * dias / 30;
+  const lucroMidia = fat - gasto, lucro = lucroMidia - assPer;
+  const margemMidia = fat > 0 ? lucroMidia / fat : NaN, margem = fat > 0 ? lucro / fat : NaN;
+  const cpa = vendas > 0 ? gasto / vendas : Infinity, roas = fat / gasto;
+  const cpConv = !site ? (+l.custo > 0 ? +l.custo : gasto / conv) : NaN; // custo por conversa: o do Gerenciador, se lançado
+  const r2 = !site ? vendas / conv : NaN;                                // taxa de conversão das conversas
+
+  // projeção: custo da unidade do topo (u), taxa até a venda (t) e a faixa provável
+  let u, t, n, modo, topo;
+  if (!site) { u = cpConv; t = r2; n = conv; modo = 'taxa'; topo = 'conversas'; }
+  else { u = gasto; t = vendas; n = 1; modo = 'contagem'; topo = null; }
+  const [tLo, tHi] = modo === 'taxa' ? wilson(vendas, n) : poisson(vendas);
+  const vpr = { lo:tLo / u, base:t / u, hi:tHi / u };   // vendas por real de mídia, em cada cenário
+  const taxaEmpate = modo === 'taxa' ? u / ticket : NaN;
+  const mediaDia = dias > 0 ? gasto / dias : NaN;
+  const vDia = +c.verbaDia > 0 ? +c.verbaDia : (mediaDia > 0 ? Math.round(mediaDia * 100) / 100 : 20);
+  const D = Math.max(1, +c.horizonte || 30);
+  const teto = +c.teto, tetoDia = teto > 0 ? teto / 7 : Infinity;
+  const proj = (vd, d, cen = 'base') => {
+    const verba = vd * d, bruto = verba * vpr[cen], cap = tetoDia * d, v = Math.min(bruto, cap);
+    return { verba, topo:modo === 'taxa' ? verba / u : NaN, v, limitado:bruto > cap + 1e-9, fat:v * ticket, lucro:v * ticket - verba - c.assessoria * d / 30 };
+  };
+  const capVerba = isFinite(tetoDia) && vpr.base > 0 ? tetoDia / vpr.base : NaN; // verba diária em que a entrega trava
+  let estado;
+  if (vendas === 0) estado = ['sem venda ainda', 'atencao'];
+  else if (cpa < ticket * 0.67) estado = ['a mídia se paga', 'bom'];
+  else if (cpa <= ticket) estado = ['se paga, margem curta', 'atencao'];
+  else estado = ['mídia no vermelho', 'ruim'];
+  const conf = vendas < 5 ? ['leitura frágil', 'ruim'] : vendas < 20 ? ['leitura firmando', 'atencao'] : ['leitura firme', 'bom'];
+  return { c, ls, l, site, ticket, gasto, dias, conv, vendas, fat, assPer, lucroMidia, lucro, margemMidia, margem, cpa, roas,
+    cpConv, r2, u, t, n, modo, topo, tLo, tHi, vpr, taxaEmpate, mediaDia, vDia, D, teto, tetoDia, capVerba, proj, estado, conf };
+}
+
+// Três meses de iteração, na verba de hoje (30 dias). Mês 1 é a linha de base, sem meta. `liga` escolhe quais metas entram.
+// Cada mês o custo por conversa cai `custo`% e a taxa sobe `taxa`% sobre a do mês anterior.
+function iteracao(k, liga = { custo:true, taxa:true }) {
+  const m = k.c.metas, verba = k.vDia * 30, cap = k.tetoDia * 30;
+  return [0, 1, 2].map(i => {
+    const a = liga.custo ? i : 0, b = liga.taxa ? i : 0;
+    let cpTopo = NaN, rFim = NaN, topoN = NaN, v;
+    if (!k.site) {
+      cpTopo = k.cpConv * Math.pow(1 - m.custo / 100, a);
+      rFim = Math.min(1, k.r2 * Math.pow(1 + m.taxa / 100, b));
+      topoN = verba / cpTopo; v = topoN * rFim;
+    } else {
+      const cpa = k.vendas > 0 ? k.cpa * Math.pow(1 - m.custo / 100, a) : Infinity; v = isFinite(cpa) ? verba / cpa : 0;
+    }
+    const vc = Math.min(v, cap);
+    return { i, cpTopo, rFim, topoN, v:vc, limitado:v > cap + 1e-9, cpa:v > 0 ? verba / v : Infinity, sobra:vc * k.ticket - verba - k.c.assessoria };
+  });
+}
+
+// ---------- gráficos: desenhados na largura real do cartão, com texto em tamanho fixo ----------
+function escala(min, max, n = 4) {
+  const bruto = (max - min) / n || 1, p10 = Math.pow(10, Math.floor(Math.log10(bruto)));
+  const passo = [1, 2, 2.5, 5, 10].map(x => x * p10).find(x => x >= bruto);
+  const ticks = []; for (let v = Math.floor(min / passo) * passo; v <= Math.ceil(max / passo) * passo + 1e-6; v += passo) ticks.push(v);
+  return ticks;
+}
+const brlCurto = v => Math.abs(v) >= 1000 ? 'R$ ' + dec(v / 1000, 1) + ' mil' : brl(v);
+const DEF = id => `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#56D7FD" stop-opacity=".38"/><stop offset="1" stop-color="#56D7FD" stop-opacity="0"/></linearGradient></defs>`;
+
+// Projeção: lucro em D dias conforme a verba diária. A curva sobe até o teto de entrega e desce depois dele.
+function desenharProjecao(k) {
+  const box = $('gProj'); if (!box) return;
+  const W = Math.max(280, box.clientWidth), H = Math.round(Math.min(330, Math.max(230, W * 0.34)));
+  const m = { l:70, r:24, t:36, b:36 }, iw = W - m.l - m.r, ih = H - m.t - m.b, chao = m.t + ih;
+  const xMax = Math.max(+$('rVerba').max || 200, k.vDia * 1.2, isFinite(k.capVerba) ? k.capVerba * 1.6 : 0);
+  const N = 80, pts = Array.from({ length:N + 1 }, (_, i) => { const vd = xMax * i / N; return { vd, b:k.proj(vd, k.D, 'base'), lo:k.proj(vd, k.D, 'lo').lucro, hi:k.proj(vd, k.D, 'hi').lucro }; });
+  // a escala segue o cenário de hoje e o piso; o teto da faixa, quando dispara, fica recortado na borda do gráfico
+  const topoBase = Math.max(0, ...pts.map(p => p.b.lucro)), topoHi = Math.max(0, ...pts.map(p => p.hi));
+  const ticks = escala(Math.min(0, ...pts.map(p => p.lo)), Math.min(topoHi, topoBase * 1.5) || 1);
+  const yMin = ticks[0], yMax = ticks[ticks.length - 1];
+  const X = v => m.l + v / xMax * iw, Y = v => m.t + (yMax - v) / (yMax - yMin) * ih;
+  const estreito = W < 520, xt = escala(0, xMax, estreito ? 3 : 5).filter(v => v <= xMax + 1e-6);
+  const linha = pts.map((p, i) => `${i ? 'L' : 'M'}${X(p.vd).toFixed(1)},${Y(p.b.lucro).toFixed(1)}`).join('');
+  const banda = pts.map((p, i) => `${i ? 'L' : 'M'}${X(p.vd).toFixed(1)},${Y(p.hi).toFixed(1)}`).join('') + pts.slice().reverse().map(p => `L${X(p.vd).toFixed(1)},${Y(p.lo).toFixed(1)}`).join('') + 'Z';
+  const area = linha + `L${X(xMax)},${chao}L${X(0)},${chao}Z`;
+  const hoje = k.proj(k.vDia, k.D, 'base');
+  const pico = isFinite(k.capVerba) && k.capVerba < xMax ? { vd:k.capVerba, l:k.proj(k.capVerba, k.D, 'base').lucro } : null;
+  const larg = Math.max(18, Math.min(34, iw / 16));
+  box.innerHTML = `<svg width="${W}" height="${H}" role="img" aria-label="Lucro em ${k.D} dias conforme a verba por dia">
+    <defs>
+      <linearGradient id="gradProj" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#56D7FD" stop-opacity=".34"/><stop offset=".7" stop-color="#56D7FD" stop-opacity=".06"/><stop offset="1" stop-color="#56D7FD" stop-opacity="0"/></linearGradient>
+      <linearGradient id="gradCol" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#56D7FD" stop-opacity=".22"/><stop offset="1" stop-color="#56D7FD" stop-opacity=".02"/></linearGradient>
+      <marker id="seta" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M1,1 L6,4 L1,7" fill="none" stroke="rgba(181,181,181,.45)" stroke-width="1.2"/></marker>
+      <clipPath id="recorte"><rect x="${m.l}" y="${m.t - 2}" width="${iw}" height="${ih + 2}"/></clipPath>
+      <filter id="brilho" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+    </defs>
+    ${ticks.map(v => `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="rgba(181,181,181,.09)" stroke-dasharray="4 6"/><text x="${m.l - 12}" y="${Y(v) + 4}" text-anchor="end">${brlCurto(v)}</text>`).join('')}
+    ${xt.map(v => `<text x="${X(v)}" y="${H - 8}" text-anchor="middle">${brl(v)}${estreito ? '' : '/dia'}</text>`).join('')}
+    <line x1="${m.l}" x2="${m.l}" y1="${chao}" y2="${m.t - 14}" stroke="rgba(181,181,181,.35)" marker-end="url(#seta)"/>
+    <line x1="${m.l}" x2="${W - m.r + 12}" y1="${chao}" y2="${chao}" stroke="rgba(181,181,181,.35)" marker-end="url(#seta)"/>
+    <path d="${banda}" fill="rgba(86,215,253,.06)" clip-path="url(#recorte)"/>
+    <path d="${area}" fill="url(#gradProj)"/>
+    <rect id="gCol" x="${X(k.vDia) - larg / 2}" y="${Y(hoje.lucro)}" width="${larg}" height="${Math.max(0, chao - Y(hoje.lucro))}" rx="4" fill="url(#gradCol)"/>
+    ${yMin < 0 ? `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(0)}" y2="${Y(0)}" stroke="var(--err)" stroke-width="1.2" stroke-dasharray="5 5" opacity=".7"/>` : ''}
+    <path d="${linha}" fill="none" stroke="#56D7FD" stroke-width="5" opacity=".25" filter="url(#brilho)"/>
+    <path d="${linha}" fill="none" stroke="var(--cyan)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+    ${pico ? `<circle cx="${X(pico.vd)}" cy="${Y(pico.l)}" r="4.5" fill="var(--warn)" stroke="var(--bg)" stroke-width="2"/><text x="${X(pico.vd)}" y="${Y(pico.l) - 14}" text-anchor="middle" style="fill:var(--warn);font-weight:600">teto de entrega · ${brl(pico.vd)}/dia</text>` : ''}
+    <circle id="gHalo" cx="${X(k.vDia)}" cy="${Y(hoje.lucro)}" r="11" fill="#56D7FD" opacity=".18"/>
+    <circle id="gPonto" cx="${X(k.vDia)}" cy="${Y(hoje.lucro)}" r="5.5" fill="var(--cyan)" stroke="#E9FAFF" stroke-width="1.5"/>
+    <text id="gRot" x="${X(k.vDia)}" y="${Y(hoje.lucro) - 16}" text-anchor="middle" style="fill:var(--ink);font-weight:600">${brl(hoje.lucro)}</text>
+    <rect id="gAlvo" x="${m.l}" y="${m.t}" width="${iw}" height="${ih}" fill="transparent" style="cursor:crosshair"/>
+  </svg><div class="dica" id="gDica" hidden></div>`;
+  const col = $('gCol'), halo = $('gHalo'), ponto = $('gPonto'), rot = $('gRot'), dica = $('gDica');
+  const marcar = (x, y, valor) => {
+    col.setAttribute('x', x - larg / 2); col.setAttribute('y', y); col.setAttribute('height', Math.max(0, chao - y));
+    [halo, ponto].forEach(c => { c.setAttribute('cx', x); c.setAttribute('cy', y); });
+    rot.setAttribute('x', x); rot.setAttribute('y', y - 16); rot.textContent = brl(valor);
+  };
+  const mover = ev => {
+    const r = box.getBoundingClientRect(), x = Math.max(m.l, Math.min(W - m.r, ev.clientX - r.left));
+    const vd = (x - m.l) / iw * xMax, b = k.proj(vd, k.D, 'base'), lo = k.proj(vd, k.D, 'lo').lucro, hi = k.proj(vd, k.D, 'hi').lucro, y = Y(b.lucro);
+    marcar(x, y, b.lucro);
+    dica.hidden = false; dica.style.left = Math.max(90, Math.min(W - 90, x)) + 'px'; dica.style.top = (y - 30) + 'px';
+    dica.innerHTML = `<b>${brl2(vd)} por dia</b><span>~${qtd(b.v)} vendas${b.limitado ? ' · no teto de entrega' : ''}</span><span>faixa provável: ${brl(lo)} a ${brl(hi)}</span>`;
+  };
+  const sair = () => { marcar(X(k.vDia), Y(hoje.lucro), hoje.lucro); dica.hidden = true; };
+  const alvo = $('gAlvo');
+  alvo.addEventListener('pointermove', mover); alvo.addEventListener('pointerdown', mover); alvo.addEventListener('pointerleave', sair);
+}
+// Curva suave que não passa dos pontos (monotônica, Fritsch–Carlson): não inventa pico entre duas leituras.
+function curva(px, py) {
+  const n = px.length;
+  if (n < 3) return px.map((x, i) => `${i ? 'L' : 'M'}${x.toFixed(1)},${py[i].toFixed(1)}`).join('');
+  const dx = [], s = [];
+  for (let i = 0; i < n - 1; i++) { dx[i] = px[i + 1] - px[i]; s[i] = (py[i + 1] - py[i]) / dx[i]; }
+  const t = [s[0]];
+  for (let i = 1; i < n - 1; i++) t[i] = s[i - 1] * s[i] <= 0 ? 0 : 3 * (dx[i - 1] + dx[i]) / ((2 * dx[i] + dx[i - 1]) / s[i - 1] + (dx[i] + 2 * dx[i - 1]) / s[i]);
+  t[n - 1] = s[n - 2];
+  let d = `M${px[0].toFixed(1)},${py[0].toFixed(1)}`;
+  for (let i = 0; i < n - 1; i++) d += `C${(px[i] + dx[i] / 3).toFixed(1)},${(py[i] + t[i] * dx[i] / 3).toFixed(1)} ${(px[i + 1] - dx[i] / 3).toFixed(1)},${(py[i + 1] - t[i + 1] * dx[i] / 3).toFixed(1)} ${px[i + 1].toFixed(1)},${py[i + 1].toFixed(1)}`;
+  return d;
+}
+// Histórico: só a partir de 3 leituras; com menos, duas medidas soltas viram tendência falsa.
+function desenharHistorico(k) {
+  const box = $('gHist'); if (!box) return;
+  const val = l => +l.custo > 0 ? +l.custo : k.site ? (+l.vendas > 0 ? +l.gasto / +l.vendas : NaN) : (+l.conversas > 0 ? +l.gasto / +l.conversas : NaN);
+  const ls = k.ls.filter(l => isFinite(val(l))), v = ls.map(val);
+  const W = Math.max(280, box.clientWidth), H = 110, m = { l:8, r:72, t:14, b:24 }, iw = W - m.l - m.r, ih = H - m.t - m.b;
+  const mx = Math.max(...v) * 1.15, X = i => m.l + i / (ls.length - 1) * iw, Y = x => m.t + (mx - x) / mx * ih, u = v.length - 1;
+  const d = curva(v.map((_, i) => X(i)), v.map(Y));
+  box.innerHTML = `<svg width="${W}" height="${H}" role="img" aria-label="${k.site ? 'Custo por venda' : 'Custo por conversa'} a cada leitura">${DEF('gradHist')}
+    <path d="${d}L${X(u)},${Y(0)}L${X(0)},${Y(0)}Z" fill="url(#gradHist)"/><path d="${d}" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linejoin="round"/>
+    ${v.map((x, i) => `<circle cx="${X(i)}" cy="${Y(x)}" r="${i === u ? 5 : 3}" fill="${i === u ? 'var(--cyan)' : 'var(--card2)'}" stroke="var(--cyan)" stroke-width="2"><title>${dataBR(ls[i].data)}: ${brl2(x)}</title></circle>`).join('')}
+    <text x="${X(u) + 10}" y="${Y(v[u]) + 4}" style="fill:var(--ink);font-weight:600">${brl2(v[u])}</text>
+    <text x="${X(0)}" y="${H - 4}">${dataBR(ls[0].data)}</text><text x="${X(u)}" y="${H - 4}" text-anchor="end">${dataBR(ls[u].data)}</text>
+  </svg>`;
+}
+function desenharGraficos() { if (S.k) { desenharProjecao(S.k); desenharHistorico(S.k); } }
+let redim; window.addEventListener('resize', () => { clearTimeout(redim); redim = setTimeout(desenharGraficos, 120); });
+
+// ---------- tela ----------
+function render() {
+  const ids = Object.keys(S.clientes).sort((a, b) => (S.clientes[a].nome || '').localeCompare(S.clientes[b].nome || '', 'pt-BR'));
+  $('navClientes').innerHTML = ids.length ? ids.map(id => {
+    const c = S.clientes[id], k = conta(c);
+    return `<button class="item ${id === S.atual ? 'ativo' : ''}" data-id="${esc(id)}" type="button"><span class="ini">${esc(iniciais(c.nome))}</span><span><b>${esc(c.nome)}</b><small>${k ? (k.vendas + (k.vendas === 1 ? ' venda' : ' vendas') + ' · ' + dataBR(k.l.data)) : 'sem leitura'}</small></span></button>`;
+  }).join('') : `<p class="nota" style="padding:0 12px">${S.pronto ? 'Nenhum cliente ainda.' : 'Carregando…'}</p>`;
+
+  const c = S.clientes[S.atual], p = $('painel'), acoes = $('acoesTopo');
+  S.k = null;
+  if (!c) {
+    $('titulo').innerHTML = '<h1>Painel de Resultado</h1><p>Gasto, conversas e vendas de cada cliente, e a projeção que sai deles.</p>';
+    acoes.innerHTML = '';
+    p.innerHTML = `<section class="cartao vazio"><h2>${S.pronto ? 'Comece pelo primeiro cliente' : 'Carregando os clientes…'}</h2><p>Cadastre o cliente com o ticket e o tipo de campanha. Depois, cada leitura leva o gasto e as conversas do Gerenciador e as vendas do WhatsApp.</p>${S.pronto ? '<button class="btn" type="button" data-acao="novoCliente">+ Novo cliente</button>' : ''}</section>`;
+    return;
+  }
+  const k = conta(c), cn = normal(c);
+  acoes.innerHTML = S.modo === 'cliente' ? '<span class="chip neutro">somente leitura</span>'
+    : `${S.modo === 'repo' ? '<button class="btn contorno" type="button" data-acao="compartilhar">Compartilhar</button>' : ''}${S.modo === 'repo' && c.metaConta ? '<button class="btn contorno" type="button" data-acao="atualizarMeta">Atualizar da Meta</button>' : ''}<button class="btn contorno" type="button" data-acao="editarCliente">Editar cliente</button><button class="btn" type="button" data-acao="novaLeitura">+ Nova leitura</button>`;
+  const tipoTxt = cn.tipo === 'site' ? 'campanha de site' : 'campanha de conversa';
+  $('titulo').innerHTML = `<h1>${esc(c.nome)}</h1>${k ? `<div class="chips"><span class="chip ${k.estado[1]}">${k.estado[0]}</span><span class="chip ${k.conf[1]}">n = ${k.vendas} ${k.vendas === 1 ? 'venda' : 'vendas'} · ${k.conf[0]}</span><span class="chip neutro">${tipoTxt}</span><span class="chip neutro">leitura de ${dataBR(k.l.data)}${k.dias > 0 ? ' · ' + dec(k.dias, 1) + (k.dias === 1 ? ' dia' : ' dias') + ' no ar' : ''}</span></div>` : `<p>Ticket ${brl2(cn.ticket)} · ${tipoTxt} · sem leitura ainda</p>`}`;
+  if (!k) {
+    p.innerHTML = `<section class="cartao vazio"><h2>Registre a primeira leitura</h2><p>Gasto e ${cn.tipo === 'site' ? 'conversões' : 'conversas iniciadas'} do Gerenciador${cn.tipo === 'conversa' ? ', mais as vendas do WhatsApp' : ''}. Com eles saem o custo por venda, a margem real e a projeção.</p><button class="btn" type="button" data-acao="novaLeitura">+ Nova leitura</button></section>`;
+    return;
+  }
+  S.k = k;
+
+  // indicadores
+  const kpi = (icone, cls, rot, valor, det, neg) => `<section class="cartao kpi c3"><div class="linha"><span class="rot">${rot}</span><span class="icone ${cls}">${icone}</span></div><div class="valor num ${neg ? 'neg' : ''}">${valor}</div><div class="det">${det}</div></section>`;
+  const comAss = k.c.assessoria > 0;
+  const linhaRoas = k.vendas > 0 ? `<span><span class="selo ${k.roas >= 1 ? 'ok' : 'err'}">${dec(k.roas, 1)}×</span>de retorno · <b>${brl2(k.fat)}</b> faturados</span>` : '<span>nenhuma venda ainda</span>';
+  const quarto = k.site
+    ? kpi(I.conversa, '', 'Conversões', dec(k.vendas, 0), `<span>${brl2(k.gasto)} de mídia</span>`)
+    : kpi(I.conversa, '', 'Custo por conversa', brl2(k.cpConv), `<span><b>${dec(k.conv, 0)}</b> conversas · ${brl2(k.gasto)} de mídia</span>`);
+  const indicadores = `<div class="grade">
+    ${kpi(I.lucro, k.lucro >= 0 ? 'ok' : 'err', comAss ? 'Lucro depois da assessoria' : 'Lucro sobre a mídia', brl2(k.lucro), linhaRoas, k.lucro < 0)}
+    ${kpi(I.margem, isFinite(k.margem) && k.margem >= 0 ? 'ok' : 'err', 'Margem real', isFinite(k.margem) ? pct(k.margem) : '—',
+      `<span>${isFinite(k.margem) ? (comAss ? `${pct(k.margemMidia)} depois da mídia · ${brl2(k.assPer)} de assessoria no período` : 'do faturamento, depois da mídia') : 'aparece com a primeira venda'}</span>`, isFinite(k.margem) && k.margem < 0)}
+    ${kpi(I.venda, k.vendas > 0 && k.cpa <= k.ticket ? 'ok' : 'err', 'Custo por venda', k.vendas > 0 ? brl2(k.cpa) : '—', `<span>a mídia empata a <b>${brl2(k.ticket)}</b>, o ticket</span>`)}
+    ${quarto}
+  </div>`;
+
+  // funil e metas de iteração
+  const funil = `<section class="cartao c8" id="cardFunil">${htmlFunil(k)}<div id="iterVivo">${htmlIteracao(k)}</div></section>`;
+
+  // risco: a folga por venda, em reais
+  const uso = k.vendas > 0 ? k.cpa / k.ticket : 0, folgaR = k.ticket - k.cpa, NT = 36, acesos = Math.min(NT, Math.round(uso * NT));
+  const tracos = Array.from({ length:NT }, (_, i) => `<i class="${i < acesos ? 'on' + (uso > 1 ? ' estoura' : uso > .67 ? ' quente' : '') : ''}"></i>`).join('');
+  const vendasMes = Math.ceil((k.vDia * 30 + k.c.assessoria) / k.ticket);
+  const risco = `<section class="cartao"><header><div><h2>Margem de risco</h2><p>Quanto cada venda ainda aguenta antes de a mídia parar de se pagar.</p></div></header>
+    ${k.vendas > 0 ? `<div class="grande num ${folgaR >= 0 ? '' : 'neg'}">${folgaR >= 0 ? brl2(folgaR) : '−' + brl2(-folgaR)} <small>${folgaR >= 0 ? 'de folga por venda' : 'de prejuízo por venda'}</small></div>
+    <div class="tracos" aria-hidden="true">${tracos}</div>
+    <div class="marcas"><span>hoje ${brl2(k.cpa)} por venda (${dec(Math.min(uso, 9.99) * 100, 0)}% do limite)</span><span>empata a ${brl2(k.ticket)}</span></div>
+    <p class="texto">${folgaR >= 0 ? (k.modo === 'taxa' ? `Com o custo por conversa de hoje, a taxa pode cair até <b>${pct(k.taxaEmpate, 2)}</b> antes de a mídia parar de se pagar.` : 'O custo por venda pode subir até o ticket antes de a mídia parar de se pagar.') : 'Mais verba é mais prejuízo: primeiro cai o custo ou sobe a taxa.'}${comAss ? ` Para pagar ${brl(k.vDia * 30)} de mídia e ${brl(k.c.assessoria)} de assessoria no mês, são <b>${vendasMes} vendas</b>.` : ''}</p>`
+    : `<div class="grande num">${k.modo === 'taxa' ? `1 a cada ${dec(Math.ceil(1 / k.taxaEmpate), 0)} <small>conversas paga a mídia</small>` : '—'}</div><p class="texto">Sem venda, não há custo por venda.${k.modo === 'taxa' ? ` A mídia empata se <b>${pct(k.taxaEmpate, 2)}</b> das conversas virarem venda.` : ''}${comAss ? ` Mídia e assessoria do mês pedem <b>${vendasMes} vendas</b>.` : ''}</p>`}
+  </section>`;
+
+  // projeção
+  const maxVerba = Math.max(200, Math.ceil(k.vDia * 5 / 10) * 10);
+  const projecao = `<section class="cartao c12">
+    <header><div><h2>Projeção · lucro em <span id="lDias2">${k.D}</span> dias por verba diária</h2><p>Números de hoje, sem melhora${comAss ? `, já descontados ${brl(k.c.assessoria)}/mês de assessoria` : ''}.${isFinite(k.capVerba) ? ' A curva sobe até o teto de entrega e desce depois dele.' : ' Sem teto de entrega no cadastro, a curva não para de subir: na vida real, a agenda trava antes.'}</p></div></header>
+    <div class="controles">
+      <div class="ctl"><label for="rVerba">Verba por dia <b class="num" id="lVerba">${brl2(k.vDia)}</b></label><div class="par"><input type="range" id="rVerba" min="${S.modo === 'cliente' ? Math.max(1, Math.floor(S.verbaBase)) : 5}" max="${maxVerba}" step="1" value="${Math.round(k.vDia)}"><input type="text" id="tVerba" inputmode="decimal" value="${campo(k.vDia)}" aria-label="Verba por dia em reais"></div>${k.mediaDia > 0 ? `<p class="nota" style="margin-top:6px">Média até aqui: ${brl2(k.mediaDia)}/dia.</p>` : ''}</div>
+      ${S.modo === 'cliente' ? `<div class="ctl"><label>Período <b class="num" id="lDias">${k.D} dias</b></label><p class="fixo-v">A verba por dia pode ser simulada para cima, a partir de ${brl2(S.verbaBase)}. Nada do que se mexe aqui é gravado.</p></div>` : `<div class="ctl"><label for="rDias">Por quantos dias <b class="num" id="lDias">${k.D} dias</b></label><div class="par"><input type="range" id="rDias" min="7" max="90" step="1" value="${Math.min(90, k.D)}"><input type="text" id="tDias" inputmode="numeric" value="${k.D}" aria-label="Dias de projeção"></div></div>`}
+    </div>
+    <div class="grafico" id="gProj"></div>
+    <div class="legenda"><span><i></i>${k.modo === 'taxa' ? 'taxa medida' : 'custo por venda de hoje'}</span><span><i class="banda"></i>faixa provável</span><span><i class="zero"></i>empate</span>${isFinite(k.capVerba) ? '<span><i class="teto"></i>teto de entrega</span>' : ''}</div>
+    <div id="projVivo">${htmlProj(k)}</div>
+  </section>`;
+
+  // histórico
+  const cab = k.site ? '<th>Data</th><th>Dias</th><th>Gasto</th><th>Compras</th><th>Custo/venda</th><th>Margem real</th><th></th>'
+    : '<th>Data</th><th>Dias</th><th>Gasto</th><th>Conversas</th><th>Vendas</th><th>Custo/conversa</th><th>Taxa</th><th>Custo/venda</th><th>Margem real</th><th></th>';
+  const hist = k.ls.slice().reverse().map(l => {
+    const g = +l.gasto, cpl = +l.custo > 0 ? +l.custo : NaN, cv = +l.conversas, v = +l.vendas || 0, f = v * k.ticket, ass = k.c.assessoria * (+l.dias || 0) / 30;
+    const mg = f > 0 ? (f - g - ass) / f : NaN, del = S.modo === 'cliente' ? '<td></td>' : `<td style="text-align:right"><button class="mini" type="button" data-apagar="${esc(l.id)}">Excluir</button></td>`;
+    return k.site
+      ? `<tr><td>${dataBR(l.data)}</td><td>${dec(+l.dias || 0, 1)}</td><td>${brl2(g)}</td><td>${v}</td><td>${v > 0 ? brl2(cpl > 0 ? cpl : g / v) : '—'}</td><td>${pct(mg)}</td>${del}</tr>`
+      : `<tr><td>${dataBR(l.data)}</td><td>${dec(+l.dias || 0, 1)}</td><td>${brl2(g)}</td><td>${dec(cv, 0)}</td><td>${v}</td><td>${brl2(cpl > 0 ? cpl : g / cv)}</td><td>${pct(v / cv)}</td><td>${v > 0 ? brl2(g / v) : '—'}</td><td>${pct(mg)}</td>${del}</tr>`;
+  }).join('');
+  const nGraf = k.ls.filter(l => +l.gasto > 0).length;
+  const historico = `<section class="cartao c12"><header><div><h2>Histórico de leituras</h2><p>Cada leitura guarda os totais da campanha naquele dia. A mais recente alimenta o painel.</p></div></header>
+    ${nGraf >= 3 ? `<div class="grafico" id="gHist"></div><p class="nota" style="margin-top:2px">${k.site ? 'Custo por venda' : 'Custo por conversa'} a cada leitura.</p>` : `<p class="nota" style="margin-top:0">O gráfico da evolução do ${k.site ? 'custo por venda' : 'custo por conversa'} aparece a partir da terceira leitura: com duas, a linha seria tendência inventada.</p>`}
+    <div class="rolagem" style="margin-top:12px"><table><thead><tr>${cab}</tr></thead><tbody>${hist}</tbody></table></div>
+    <p class="nota">${S.modo === 'cliente' ? 'O custo por venda é a divisão de dois números: o custo por conversa, que cai iterando o anúncio, e a taxa de conversão, que sobe iterando o atendimento. Projeção, não promessa.' : 'O custo por venda não se promete ao cliente: é a divisão de dois números. O custo cai iterando o anúncio; a taxa sobe iterando o atendimento.'}</p>
+  </section>`;
+
+  p.innerHTML = `${indicadores}<div class="grade">${funil}<div class="c4 empilha">${risco}<section class="cartao" id="confVivo">${htmlConf(k)}</section></div></div><div class="grade">${projecao}<section class="cartao c12" id="tabVivo">${htmlTabelas(k)}</section>${historico}</div>`;
+  ligarControles(c); ligarMetas(c);
+  requestAnimationFrame(desenharGraficos); // mede a largura do cartão depois do layout
+}
+
+function htmlFunil(k) {
+  const m = k.c.metas, it = iteracao(k);
+  const metaIn = (id, val, rot) => S.modo === 'cliente' ? `<div class="meta-l"><span>${rot} <b style="color:var(--cyan)">${campo(val)}% ao mês</b></span></div>` : `<div class="meta-l"><label for="${id}">${rot}</label><span class="junto"><input type="text" id="${id}" inputmode="decimal" value="${campo(val)}" aria-label="${rot} em percentual ao mês">% ao mês</span></div>`;
+  const seta = '<div class="seta-f" aria-hidden="true">→</div>';
+  if (!k.site) {
+    const curta = k.conv >= AMOSTRA.conversas ? '' : `<div class="curta">amostra curta: ${dec(k.conv, 0)} de ${AMOSTRA.conversas} conversas</div>`;
+    return `<header><div><h2>Funil e metas de iteração</h2><p>As metas são quanto se quer melhorar por mês. O mês 1 mede; elas entram nos meses 2 e 3.</p></div></header>
+    <div class="funil">
+      <div class="passo"><span class="rot">Custo por conversa</span><span class="grande-f num">${brl2(k.cpConv)}</span><span class="sub">${dec(k.conv, 0)} conversas iniciadas</span>${metaIn('mCusto', m.custo, 'Meta: cair')}<span class="alvo">no mês 3: <b class="num" id="alvoCusto">${brl2(it[2].cpTopo)}</b></span></div>
+      ${seta}
+      <div class="passo"><span class="rot">Taxa de conversão</span><span class="grande-f num">${pct(k.r2)}</span><span class="sub">${k.vendas > 0 ? `1 venda a cada ${dec(Math.round(1 / k.r2), 0)} conversas` : 'nenhuma venda ainda'}</span>${metaIn('mTaxa', m.taxa, 'Meta: subir')}<span class="alvo">no mês 3: <b class="num" id="alvoTaxa">${pct(it[2].rFim)}</b></span>${curta}</div>
+      ${seta}
+      <div class="passo"><span class="rot">Custo por venda</span><span class="grande-f num">${k.vendas > 0 ? brl2(k.cpa) : '—'}</span><span class="sub">${k.vendas} ${k.vendas === 1 ? 'venda' : 'vendas'} · empata a ${brl(k.ticket)}</span><div class="meta-l"><span>Resultado das duas metas</span></div><span class="alvo">no mês 3: <b class="num" id="alvoVenda">${brl2(it[2].cpa)}</b></span></div>
+    </div>${k.vendas === 0 ? '<p class="nota">Sem venda, a meta de taxa não tem base: ela passa a valer com a primeira venda.</p>' : ''}`;
+  }
+  return `<header><div><h2>Funil e metas de iteração</h2><p>A meta é quanto se quer derrubar o custo por venda por mês. O mês 1 mede.</p></div></header>
+    <div class="funil">
+      <div class="passo"><span class="rot">Mídia</span><span class="grande-f num">${brl2(k.gasto)}</span><span class="sub">${k.dias > 0 ? dec(k.dias, 1) + ' dias no ar' : ''}</span></div>
+      ${seta}
+      <div class="passo"><span class="rot">Custo por venda</span><span class="grande-f num">${k.vendas > 0 ? brl2(k.cpa) : '—'}</span><span class="sub">empata a ${brl(k.ticket)}</span>${metaIn('mCusto', m.custo, 'Meta: cair')}<span class="alvo">no mês 3: <b class="num" id="alvoCusto">${brl2(it[2].cpa)}</b></span></div>
+      ${seta}
+      <div class="passo"><span class="rot">Compras</span><span class="grande-f num">${k.vendas}</span><span class="sub">conversões do Gerenciador</span></div>
+    </div>`;
+}
+function htmlIteracao(k) {
+  const ms = iteracao(k), so1 = iteracao(k, { custo:true, taxa:false })[2], so2 = iteracao(k, { custo:false, taxa:true })[2], base3 = iteracao(k, { custo:false, taxa:false })[2];
+  const m = k.c.metas;
+  const cols = k.site
+    ? '<th></th><th>Vendas</th><th>Custo/venda</th><th>Sobra no mês</th>'
+    : '<th></th><th>Custo/conversa</th><th>Conversas</th><th>Taxa</th><th>Vendas</th><th>Custo/venda</th><th>Sobra no mês</th>';
+  const lin = r => {
+    const rot = `Mês ${r.i + 1}${r.i === 0 ? ' · base' : ' · meta'}`, vend = `~${qtd(r.v)}${r.limitado ? ' · teto' : ''}`, sob = `<td class="${r.sobra >= 0 ? 'pos' : 'neg'}">${brl(r.sobra)}</td>`;
+    return k.site
+      ? `<tr class="${r.i === 0 ? 'destaque' : ''}"><td>${rot}</td><td class="${r.limitado ? 'cap' : ''}">${vend}</td><td>${brl2(r.cpa)}</td>${sob}</tr>`
+      : `<tr class="${r.i === 0 ? 'destaque' : ''}"><td>${rot}</td><td>${brl2(r.cpTopo)}</td><td>${dec(Math.round(r.topoN), 0)}</td><td>${pct(r.rFim)}</td><td class="${r.limitado ? 'cap' : ''}">${vend}</td><td>${brl2(r.cpa)}</td>${sob}</tr>`;
+  };
+  const valor1 = so1.sobra - base3.sobra, valor2 = so2.sobra - base3.sobra;
+  const maxS = Math.max(1, ...ms.map(r => Math.abs(r.sobra)));
+  const barras = `<div class="barras" role="img" aria-label="Sobra no mês, meses 1 a 3">${ms.map(r => `<div class="barra-c"><span class="barra-v num ${r.sobra < 0 ? 'neg' : ''}">${brlCurto(r.sobra)}</span><div class="barra-t"><i class="${r.sobra < 0 ? 'neg' : r.i === 0 ? 'base' : ''}" style="height:${Math.max(3, Math.abs(r.sobra) / maxS * 100)}%"></i></div><span class="barra-m">Mês ${r.i + 1}${r.i === 0 ? ' · hoje' : ''}</span></div>`).join('')}</div>`;
+  const valem = `<div class="valem">
+    <div class="vale">Só a meta de custo por ${k.site ? 'venda' : 'conversa'} vale, no mês 3<b class="${valor1 >= 0 ? 'pos' : 'neg'}">${valor1 >= 0 ? '+' : ''}${brl(valor1)}/mês</b>−${dec(m.custo, 1)}% ao mês · alavanca nossa: anúncio e campanha</div>
+    ${k.site ? '' : `<div class="vale">Só a meta de taxa vale, no mês 3<b class="${valor2 >= 0 ? 'pos' : 'neg'}">${valor2 >= 0 ? '+' : ''}${brl(valor2)}/mês</b>+${dec(m.taxa, 1)}% ao mês · alavanca compartilhada: o roteiro é nosso, a resposta é ${S.modo === 'cliente' ? 'sua' : 'do cliente'}</div>`}
+  </div>`;
+  return `<div class="rolagem" style="margin-top:20px"><table><thead><tr>${cols}</tr></thead><tbody>${ms.map(lin).join('')}</tbody></table></div>
+    <div class="iter-baixo">${barras}${valem}</div>
+    <p class="nota">Na verba de hoje, ${brl2(k.vDia)}/dia (${brl(k.vDia * 30)} no mês)${k.c.assessoria > 0 ? ` e ${brl(k.c.assessoria)} de assessoria` : ''}. Cada mês a meta incide sobre o mês anterior. Uma mudança por alavanca por ciclo: duas ao mesmo tempo, não se sabe qual funcionou. Mudança que baixa o custo por conversa e derruba a taxa a ponto de subir o custo por venda sai.${S.modo === 'cliente' ? '' : ' Metas de partida, a calibrar com as primeiras contas.'}</p>`;
+}
+function htmlProj(k) {
+  const base = k.proj(k.vDia, k.D, 'base'), cons = k.proj(k.vDia, k.D, 'lo'), alto = k.proj(k.vDia, k.D, 'hi');
+  const rot = cen => k.modo === 'taxa' ? 'taxa ' + pct(cen === 'lo' ? k.tLo : cen === 'hi' ? k.tHi : k.t, 2) : `custo/venda ${brl2(1 / k.vpr[cen])}`;
+  return `<div class="cenarios">
+      <div class="cen"><div class="t">Piso da faixa · ${rot('lo')}</div><div class="v num ${cons.lucro >= 0 ? 'pos' : 'neg'}">${brl(cons.lucro)}</div><div class="s">~${qtd(cons.v)} vendas · número para decidir verba</div></div>
+      <div class="cen base"><div class="t">Hoje · ${rot('base')}</div><div class="v num ${base.lucro >= 0 ? 'pos' : 'neg'}">${brl(base.lucro)}</div><div class="s">~${qtd(base.v)} vendas · ${brl(base.fat)} faturados${base.limitado ? ' · <b class="cap">no teto de entrega</b>' : ''}</div></div>
+      <div class="cen"><div class="t">Teto da faixa · ${rot('hi')}</div><div class="v num ${alto.lucro >= 0 ? 'pos' : 'neg'}">${brl(alto.lucro)}</div><div class="s">~${qtd(alto.v)} vendas${alto.limitado ? ' · travado no teto de entrega' : ''} · não é meta</div></div>
+    </div>
+    <p class="nota">${brl(base.verba)} de mídia em ${k.D} dias${k.modo === 'taxa' ? ` · ${dec(Math.round(base.topo), 0)} ${k.topo} a ${brl2(k.u)}` : ''}.${isFinite(k.capVerba) ? ` Com ${dec(k.teto, 0)} entregas por semana, acima de <b>${brl2(k.capVerba)}/dia</b> o anúncio traz mais venda do que dá para entregar: dali para cima, a resposta é preço ou mais gente, não verba.` : ''}</p>`;
+}
+function htmlConf(k) {
+  const alvoN = 5, faltam = Math.max(0, alvoN - k.vendas);
+  if (k.modo === 'contagem') {
+    const cLo = k.tHi > 0 ? k.gasto / k.tHi : NaN, cHi = k.tLo > 0 ? k.gasto / k.tLo : Infinity;
+    return `<header><div><h2>Quanto confiar no custo por venda</h2><p>${k.vendas} ${k.vendas === 1 ? 'compra' : 'compras'} com ${brl2(k.gasto)}.</p></div></header>
+      <div class="grande num">${brl(cLo)} a ${isFinite(cHi) ? brl(cHi) : 'sem teto'}</div>
+      <p class="texto">Faixa provável do custo por venda real (80%). ${isFinite(cHi) && cHi < k.ticket ? 'Até o pior caso fica abaixo do ticket.' : 'O pior caso passa do ticket: ainda não dá para afirmar que se paga.'}${faltam > 0 ? ` Ela estreita com ${alvoN} compras: faltam ${faltam}.` : ''}</p>`;
+  }
+  const esc2 = Math.max(k.tHi, k.taxaEmpate) * 1.15, x = v => Math.min(100, v / esc2 * 100);
+  const taxaUso = k.t > 0 ? k.t : k.tHi / 2, topoFalta = faltam / taxaUso, verbaFalta = topoFalta * k.u, diasFalta = k.vDia > 0 ? verbaFalta / k.vDia : NaN;
+  return `<header><div><h2>Quanto confiar na taxa</h2><p>${k.vendas} ${k.vendas === 1 ? 'venda' : 'vendas'} em ${dec(k.n, 0)} conversas: a taxa real provavelmente está entre</p></div></header>
+    <div class="grande num">${pct(k.tLo)} <small>e</small> ${pct(k.tHi)}</div>
+    <div class="faixa" aria-hidden="true"><div class="trilho"></div><div class="int" style="left:${x(k.tLo)}%;width:${Math.max(1, x(k.tHi) - x(k.tLo))}%"></div><div class="ponto" style="left:${x(k.t)}%"></div><div class="empate" style="left:${x(k.taxaEmpate)}%"></div></div>
+    <div class="marcas"><span style="color:var(--err)">empate ${pct(k.taxaEmpate, 2)}</span><span style="color:var(--cyan)">medida ${pct(k.t)}</span></div>
+    <p class="texto">Faixa de 80%. ${k.tLo > k.taxaEmpate ? 'Até o piso paga a mídia.' : k.tHi < k.taxaEmpate ? 'Nem o teto paga a mídia.' : 'O piso fica abaixo do empate: ainda não dá para afirmar que se paga.'}${faltam > 0 ? ` Ela estreita com ${alvoN} vendas: faltam ${faltam}, perto de <b>${dec(Math.ceil(topoFalta), 0)} conversas</b> e ${brl(verbaFalta)} de mídia${diasFalta > 0 ? `, ~${dec(Math.ceil(diasFalta), 0)} dias na verba projetada` : ''}. Antes disso, escalar é aposta.` : ''}</p>`;
+}
+function htmlTabelas(k) {
+  const topoCol = k.modo === 'taxa';
+  const lin = (rot, vd, d, dest) => { const b = k.proj(vd, d, 'base'), lo = k.proj(vd, d, 'lo');
+    return `<tr class="${dest ? 'destaque' : ''}"><td>${rot}</td><td>${brl(b.verba)}</td>${topoCol ? `<td>${dec(Math.round(b.topo), 0)}</td>` : ''}<td class="${b.limitado ? 'cap' : ''}">~${qtd(b.v)}${b.limitado ? ' · teto' : ''}</td><td>${brl(b.fat)}</td><td class="${b.lucro >= 0 ? 'pos' : 'neg'}">${brl(b.lucro)}</td><td class="${lo.lucro >= 0 ? 'pos' : 'neg'}">${brl(lo.lucro)}</td></tr>`; };
+  const prazos = [...new Set([7, 15, 30, 60, k.D])].sort((a, b) => a - b);
+  const corpo = S.aba === 'prazo'
+    ? prazos.map(d => lin(`${d} dias`, k.vDia, d, d === k.D)).join('')
+    : [0.5, 1, 2, 3, 5].map(mu => lin(`${brl2(k.vDia * mu)}/dia${mu === 1 ? ' · atual' : ''}`, k.vDia * mu, k.D, mu === 1)).join('');
+  return `<header><div><h2>${S.aba === 'prazo' ? 'Por prazo, na mesma verba' : `Se a verba mudar · ${k.D} dias`}</h2><p>${S.aba === 'prazo' ? `${brl2(k.vDia)} por dia, números de hoje.` : 'O custo sobe quando a verba sobe: as linhas de 3× e 5× são teto, não previsão.'}</p></div>
+    <div class="abas" role="tablist"><button type="button" role="tab" data-aba="prazo" class="${S.aba === 'prazo' ? 'ativo' : ''}" aria-selected="${S.aba === 'prazo'}">Por prazo</button><button type="button" role="tab" data-aba="verba" class="${S.aba === 'verba' ? 'ativo' : ''}" aria-selected="${S.aba === 'verba'}">Por verba</button></div></header>
+    <div class="rolagem"><table><thead><tr><th>${S.aba === 'prazo' ? 'Prazo' : 'Verba'}</th><th>Mídia</th>${topoCol ? '<th>Conversas</th>' : ''}<th>Vendas</th><th>Faturamento</th><th>Lucro</th><th>Lucro no piso</th></tr></thead><tbody>${corpo}</tbody></table></div>`;
+}
+function atualizarVivo(c) {
+  const k = conta(c); S.k = k;
+  $('projVivo').innerHTML = htmlProj(k); $('confVivo').innerHTML = htmlConf(k); $('tabVivo').innerHTML = htmlTabelas(k); $('iterVivo').innerHTML = htmlIteracao(k);
+  $('lVerba').textContent = brl2(k.vDia); $('lDias').textContent = k.D + ' dias'; $('lDias2').textContent = k.D;
+  atualizarAlvos(k); desenharProjecao(k); return k;
+}
+function atualizarAlvos(k) {
+  const it = iteracao(k);
+  if ($('alvoCusto')) $('alvoCusto').textContent = brl2(k.site ? it[2].cpa : it[2].cpTopo);
+  if ($('alvoTaxa')) $('alvoTaxa').textContent = pct(it[2].rFim);
+  if ($('alvoVenda')) $('alvoVenda').textContent = brl2(it[2].cpa);
+}
+
+// controles e metas: mexem na tela na hora e salvam uma vez por pausa, sem redesenhar a página inteira
+let salvarDepois;
+function agendarSalvar(c) {
+  if (S.modo === 'cliente') return;
+  editando = true; clearTimeout(salvarDepois);
+  salvarDepois = setTimeout(() => salvarCliente(JSON.parse(JSON.stringify(c)), false).catch(() => {}).finally(() => { editando = false; }), 900);
+}
+function ligarControles(c) {
+  const aplicar = (vd, d, origem) => {
+    if (vd > 0) c.verbaDia = Math.round((S.modo === 'cliente' ? Math.max(vd, S.verbaBase) : vd) * 100) / 100;
+    if (d > 0 && S.modo !== 'cliente') c.horizonte = Math.max(1, Math.min(365, Math.round(d)));
+    const k = atualizarVivo(c);
+    if (origem !== 'tVerba') $('tVerba').value = campo(k.vDia);
+    if (origem !== 'tDias' && $('tDias')) $('tDias').value = k.D;
+    if (origem !== 'rVerba') { if (k.vDia > +$('rVerba').max) $('rVerba').max = Math.ceil(k.vDia); $('rVerba').value = Math.round(k.vDia); }
+    if (origem !== 'rDias' && $('rDias')) $('rDias').value = Math.min(90, k.D);
+    agendarSalvar(c);
+  };
+  $('rVerba').addEventListener('input', e => aplicar(+e.target.value, null, 'rVerba'));
+  if ($('rDias')) $('rDias').addEventListener('input', e => aplicar(null, +e.target.value, 'rDias'));
+  $('tVerba').addEventListener('change', e => { const v = lerNum(e.target.value); if (v > 0) aplicar(v, null, S.modo === 'cliente' && v < S.verbaBase ? '' : 'tVerba'); });
+  if ($('tDias')) $('tDias').addEventListener('change', e => { const v = lerNum(e.target.value); if (v > 0) aplicar(null, v, 'tDias'); });
+}
+function ligarMetas(c) {
+  [['mCusto', 'custo', 90], ['mTaxa', 'taxa', 500]].forEach(([id, chave, max]) => {
+    const el = $(id); if (!el) return;
+    el.addEventListener('input', () => {
+      const v = lerNum(el.value); if (!(v >= 0 && v <= max)) return;
+      c.metas = { ...normal(c).metas, [chave]:v };
+      const k = conta(c); S.k = k;
+      $('iterVivo').innerHTML = htmlIteracao(k); atualizarAlvos(k);
+      agendarSalvar(c);
+    });
+  });
+}
+
+// ---------- formulários ----------
+function abrir(html, aoSalvar) {
+  const j = $('janela'); j.innerHTML = html; $('veu').hidden = false;
+  const primeiro = j.querySelector('input, select'); if (primeiro) primeiro.focus();
+  j.onsubmit = ev => { ev.preventDefault(); const erro = aoSalvar(new FormData(j)); if (typeof erro === 'string') j.querySelector('.erro').textContent = erro; };
+  j.querySelector('[data-fechar]').onclick = fechar;
+}
+function fechar() { $('veu').hidden = true; $('janela').innerHTML = ''; }
+const inp = (id, rot, val, extra = '', dica = '') => `<div class="${extra}"><label for="${id}">${rot}</label><input type="text" id="${id}" name="${id}" value="${esc(val)}" inputmode="decimal" autocomplete="off">${dica ? `<small>${dica}</small>` : ''}</div>`;
+
+function formCliente(c0) {
+  const novo = !c0, c = c0 ? normal(c0) : { tipo:'conversa', assessoria:0, horizonte:30, metas:{ ...METAS } };
+  abrir(`<h2>${novo ? 'Novo cliente' : 'Editar cliente'}</h2><p>O que vale para todas as leituras deste cliente. A margem sai das leituras: não se digita.</p>
+    <div class="campos">
+      <div class="todo"><label for="fNome">Cliente e produto</label><input type="text" id="fNome" name="fNome" value="${esc(c.nome || '')}" placeholder="Cliente · produto" autocomplete="off"></div>
+      ${inp('fTicket', 'Ticket (R$)', campo(c.ticket), '', 'O valor que entra por venda.')}
+      <div><label for="fTipo">Tipo de campanha</label><select id="fTipo" name="fTipo"><option value="conversa" ${c.tipo === 'conversa' ? 'selected' : ''}>Conversa no WhatsApp</option><option value="site" ${c.tipo === 'site' ? 'selected' : ''}>Compra no site</option></select><small>Conversa: a venda se fecha no WhatsApp.</small></div>
+      ${inp('fAss', 'Assessoria (R$/mês) <em>opcional</em>', c.assessoria > 0 ? campo(c.assessoria) : '', '', 'Entra proporcional aos dias no ar.')}
+      ${inp('fTeto', 'Teto de entrega por semana <em>opcional</em>', campo(c.teto), '', 'Quantas vendas dá para entregar.')}
+      ${inp('fMetaConta', 'Conta de anúncios (ID, só números) <em>opcional</em>', c.metaConta || '', '', 'Com ela, gasto e conversas vêm da Meta sozinhos.')}
+      ${inp('fMetaCamps', 'Campanhas (IDs separados por vírgula) <em>opcional</em>', (c.metaCampanhas || []).join(', '), '', 'Vazio = a conta inteira.')}
+    </div>
+    <div class="erro" role="alert"></div>
+    <div class="botoes">${novo ? '' : '<button class="btn perigo esq" type="button" id="btnApagarCliente">Excluir cliente</button>'}<button class="btn contorno" type="button" data-fechar>Cancelar</button><button class="btn" type="submit">Salvar</button></div>`,
+  f => {
+    const nome = String(f.get('fNome') || '').trim(), ticket = lerNum(f.get('fTicket'));
+    if (!nome) return 'Dê um nome ao cliente.';
+    if (!(ticket > 0)) return 'Preencha o ticket em reais.';
+    const ass = lerNum(f.get('fAss')), teto = lerNum(f.get('fTeto'));
+    const reg = { ...(c0 || {}), id:(c0 && c0.id) || idPara(nome), nome, ticket, tipo:f.get('fTipo') === 'site' ? 'site' : 'conversa',
+      assessoria:ass > 0 ? ass : 0, teto:teto > 0 ? teto : null, metas:{ ...c.metas }, leituras:(c0 && c0.leituras) || [] };
+    delete reg.margem; delete reg.fixo;
+    const mConta = String(f.get('fMetaConta') || '').replace(/\D/g, ''), mCamps = String(f.get('fMetaCamps') || '').split(/[,\s;]+/).map(x => x.replace(/\D/g, '')).filter(Boolean);
+    if (mConta) { reg.metaConta = mConta; reg.metaCampanhas = mCamps; } else { delete reg.metaConta; delete reg.metaCampanhas; }
+    S.atual = reg.id; fechar();
+    salvarCliente(reg).then(() => { avisar(novo ? 'Cliente criado.' : 'Cliente salvo.'); if (novo) formLeitura(S.clientes[reg.id]); }).catch(() => {});
+  });
+  const ap = $('btnApagarCliente');
+  if (ap) ap.onclick = () => {
+    if (!ap.classList.contains('armado')) { ap.classList.add('armado'); ap.textContent = 'Confirmar: apaga tudo'; setTimeout(() => { ap.classList.remove('armado'); ap.textContent = 'Excluir cliente'; }, 4000); return; }
+    fechar(); apagarCliente(c0.id).then(() => avisar('Cliente excluído.'));
+  };
+}
+function formLeitura(c0) {
+  const c = normal(c0), site = c.tipo === 'site';
+  const ls = c.leituras.slice().sort((a, b) => a.data < b.data ? -1 : 1), u = ls[ls.length - 1];
+  const diasSug = u ? Math.max(0, (+u.dias || 0) + Math.round((new Date(hoje() + 'T12:00') - new Date(u.data + 'T12:00')) / 864e5)) : '';
+  const ult = (v, fmt) => u && v !== undefined && v !== null && v !== '' ? `Última leitura: ${fmt(+v)}.` : '';
+  const nQtd = site ? 'Conversões (compras no site)' : 'Conversas iniciadas', nCusto = site ? 'Custo por conversão (R$)' : 'Custo por conversa (R$)';
+  const custoAnt = u ? (+u.custo > 0 ? +u.custo : (site ? (+u.vendas > 0 ? u.gasto / u.vendas : NaN) : u.gasto / u.conversas)) : NaN;
+  abrir(`<h2>Nova leitura · ${esc(c.nome)}</h2><p>Totais da campanha até hoje. Do Gerenciador: valor gasto, ${site ? 'conversões' : 'conversas'} e custo por resultado. Preencha dois deles e o terceiro sai da conta.${site ? '' : ' As vendas vêm do WhatsApp.'}</p>
+    <div class="campos">
+      <div><label for="fData">Data da leitura</label><input type="date" id="fData" name="fData" value="${hoje()}"></div>
+      ${inp('fDias', 'Dias no ar', campo(diasSug))}
+      ${inp('fGasto', 'Valor gasto (R$)', '', '', ult(u && u.gasto, brl2) || 'Do Gerenciador.')}
+      ${inp('fQtd', nQtd, '', '', ult(u && (site ? u.vendas : u.conversas), v => dec(v, 0)) || 'Do Gerenciador.')}
+      ${inp('fCusto', nCusto, '', site ? 'todo' : '', (isFinite(custoAnt) ? `Última leitura: ${brl2(custoAnt)}. ` : '') + 'Custo por resultado, no Gerenciador.')}
+      ${site ? '' : inp('fVendas', 'Vendas', '', '', ult(u && u.vendas, v => dec(v, 0)) || 'Do WhatsApp: das conversas do anúncio.')}
+    </div>
+    <p class="nota" id="fConfere" style="margin-top:10px"></p>
+    <div class="erro" role="alert"></div>
+    <div class="botoes"><button class="btn contorno" type="button" data-fechar>Cancelar</button><button class="btn" type="submit">Salvar leitura</button></div>`,
+  f => {
+    const data = f.get('fData'), dias = lerNum(f.get('fDias')), gasto = lerNum(f.get('fGasto')), qtd = lerNum(f.get('fQtd')), custo = lerNum(f.get('fCusto'));
+    const vendas = site ? qtd : lerNum(f.get('fVendas'));
+    if (!data) return 'Escolha a data da leitura.';
+    if (!(gasto > 0)) return 'Preencha o valor gasto, ou o custo por resultado e a quantidade.';
+    if (!(qtd >= 0) || (!site && !(qtd > 0))) return site ? 'Preencha as conversões.' : 'Preencha as conversas iniciadas: sem elas não há custo por conversa.';
+    if (!site && !(vendas >= 0)) return 'Preencha as vendas do WhatsApp. Se não houve venda, escreva 0.';
+    if (!site && vendas > qtd) return 'As vendas não passam do número de conversas.';
+    const outras = c.leituras.filter(l => l.data !== data);
+    const nova = { id:novoId(), data, dias:dias > 0 ? dias : null, gasto, vendas, custo:custo > 0 ? custo : null };
+    if (!site) nova.conversas = qtd;
+    const reg = { ...c0, leituras:[...outras, nova] };
+    fechar(); salvarCliente(reg).then(() => avisar('Leitura salva.')).catch(() => {});
+  });
+  // gasto = custo × quantidade: com dois preenchidos à mão, o terceiro se completa
+  const ids = ['fGasto', 'fQtd', 'fCusto'], digitados = new Set();
+  const completar = () => {
+    const g = lerNum($('fGasto').value), q = lerNum($('fQtd').value), cu = lerNum($('fCusto').value), conf = $('fConfere');
+    const falta = ids.filter(i => !digitados.has(i));
+    if (falta.length === 1) {
+      const alvo = $(falta[0]);
+      const v = falta[0] === 'fGasto' ? cu * q : falta[0] === 'fQtd' ? (cu > 0 ? Math.round(g / cu) : NaN) : (q > 0 ? g / q : NaN);
+      alvo.value = isFinite(v) && v > 0 ? campo(Math.round(v * 100) / 100) : '';
+      alvo.style.color = 'var(--cyan)';
+      conf.textContent = alvo.value ? `${alvo.previousElementSibling.textContent} calculado: ${alvo.value}.` : '';
+    } else if (falta.length === 0 && g > 0 && q > 0 && cu > 0) {
+      const calc = g / q;
+      conf.textContent = Math.abs(calc / cu - 1) > 0.02 ? `Valor gasto ÷ ${site ? 'conversões' : 'conversas'} dá ${brl2(calc)}, diferente do custo digitado. Vale o custo digitado; confira os números.` : '';
+    } else conf.textContent = '';
+  };
+  ids.forEach(i => $(i).addEventListener('input', () => {
+    if ($(i).value.trim()) digitados.add(i); else digitados.delete(i);
+    $(i).style.color = '';
+    completar();
+  }));
+}
+
+// Compartilhar: o servidor local publica uma página só com os números deste cliente, num link secreto.
+// O token da Hostinger se configura uma vez, em Configurações; aqui o botão só entrega o link.
+const lerCompart = async id => (await fetch('/api/compartilhar/' + encodeURIComponent(id), { cache:'no-store' })).json();
+async function formCompartilhar(c) {
+  let st;
+  try { st = await lerCompart(c.id); } catch (e) { avisar('O servidor local não respondeu. Abra pelo atalho.'); return; }
+  if (!st.token) { avisar('Falta o token da Hostinger: configure uma vez e volte aqui.'); formConfig(); return; }
+  if (!st.url) {
+    avisar('Gerando o link…');
+    try {
+      const res = await (await fetch('/api/compartilhar/' + encodeURIComponent(c.id), { method:'POST', headers:{ 'Content-Type':'application/json' }, body:'{}' })).json();
+      if (res.erro) { avisar(res.erro); return; }
+      st = await lerCompart(c.id);
+    } catch (e) { avisar('O servidor local não respondeu.'); return; }
+  }
+  abrir(`<h2>Link de ${esc(c.nome)}</h2><p>Só os números de ${esc(c.nome)}, só leitura. Quem abre pode simular mais verba por dia, sem gravar nada. A página se atualiza sozinha a cada leitura nova.</p>
+    <div class="link-box"><input type="text" id="fLink" value="${esc(st.url)}" readonly aria-label="Link do cliente"><button class="btn" type="button" id="btnCopiar">Copiar</button></div>
+    <p class="nota" style="margin-top:0">${st.atualizado ? 'Página atualizada em ' + esc(st.atualizado) + '.' : ''}${st.erro ? ' <span style="color:var(--err)">A última atualização falhou: ' + esc(st.erro) + '.</span>' : ''}</p>
+    <div class="erro" role="alert"></div>
+    <div class="botoes"><button class="btn perigo esq" type="button" id="btnParar">Parar de compartilhar</button><button class="btn contorno" type="submit">Atualizar agora</button><button class="btn contorno" type="button" data-fechar>Fechar</button></div>`,
+  () => {
+    const erro = $('janela').querySelector('.erro'); erro.textContent = 'Atualizando a página do cliente…';
+    fetch('/api/compartilhar/' + encodeURIComponent(c.id), { method:'POST', headers:{ 'Content-Type':'application/json' }, body:'{}' })
+      .then(r => r.json()).then(res => { if (res.erro) { erro.textContent = res.erro; return; } fechar(); formCompartilhar(c); avisar('Página do cliente atualizada.'); })
+      .catch(() => { erro.textContent = 'O servidor local não respondeu.'; });
+  });
+  const campoLink = $('fLink');
+  const copiar = () => navigator.clipboard.writeText(campoLink.value).then(() => avisar('Link copiado.')).catch(() => { campoLink.focus(); campoLink.select(); avisar('Link selecionado: copie com Ctrl+C.'); });
+  $('btnCopiar').onclick = copiar;
+  copiar();
+  const pa = $('btnParar');
+  pa.onclick = () => {
+    if (!pa.classList.contains('armado')) { pa.classList.add('armado'); pa.textContent = 'Confirmar: desativa o link'; setTimeout(() => { pa.classList.remove('armado'); pa.textContent = 'Parar de compartilhar'; }, 4000); return; }
+    fetch('/api/compartilhar/' + encodeURIComponent(c.id), { method:'DELETE' }).then(r => r.json())
+      .then(res => { if (res.erro) { $('janela').querySelector('.erro').textContent = res.erro; return; } fechar(); avisar('Link desativado.'); })
+      .catch(() => { $('janela').querySelector('.erro').textContent = 'O servidor local não respondeu.'; });
+  };
+}
+async function formConfig() {
+  let cfg;
+  try { cfg = await (await fetch('/api/config', { cache:'no-store' })).json(); } catch (e) { avisar('O servidor local não respondeu. Abra pelo atalho.'); return; }
+  abrir(`<h2>Configurações</h2><p>Vale para todos os clientes.</p>
+    <div class="campos"><div class="todo"><label for="fToken">Token da API da Hostinger</label>
+      <input type="text" id="fToken" name="fToken" autocomplete="off" placeholder="${cfg.token ? 'configurado: cole outro só para trocar' : 'cole o token aqui'}">
+      <small>${cfg.token ? '<span style="color:var(--ok)">Configurado.</span> ' : ''}Um só, da sua conta, para todos os clientes. hPanel → Perfil → API. Fica salvo só neste computador, fora do repo, e é conferido com a Hostinger antes de salvar.</small></div>
+      <div class="todo"><label for="fTokenMeta">Token da Meta (usuário do sistema)</label>
+      <input type="text" id="fTokenMeta" name="fTokenMeta" autocomplete="off" placeholder="${cfg.meta ? 'configurado: cole outro só para trocar' : 'cole o token aqui'}">
+      <small>${cfg.meta ? '<span style="color:var(--ok)">Configurado.</span> ' : ''}Traz gasto e conversas das contas de anúncios sozinho. Fica salvo só neste computador, fora do repo, e é conferido com a Meta antes de salvar.</small></div></div>
+    <div class="erro" role="alert"></div>
+    <div class="botoes"><button class="btn contorno" type="button" data-fechar>Fechar</button><button class="btn" type="submit">Salvar</button></div>`,
+  f => {
+    const token = String(f.get('fToken') || '').trim(), tMeta = String(f.get('fTokenMeta') || '').trim(), erro = $('janela').querySelector('.erro');
+    if (!token && !tMeta) return cfg.token || cfg.meta ? 'Já configurado. Para trocar, cole o novo.' : 'Cole um token.';
+    erro.textContent = 'Conferindo…';
+    const enviar = (rota, t) => fetch(rota, { method:'POST', headers:{ 'Content-Type':'application/json' }, body:JSON.stringify({ token:t }) }).then(r => r.json());
+    (async () => {
+      if (token) { const res = await enviar('/api/token', token); if (res.erro) { erro.textContent = res.erro; return; } }
+      if (tMeta) { const res = await enviar('/api/token-meta', tMeta); if (res.erro) { erro.textContent = res.erro; return; } }
+      fechar(); avisar('Token salvo.' + (tMeta ? ' Buscando os dados da Meta…' : ' O Compartilhar já entrega o link.'));
+      if (tMeta) atualizarMeta(true);
+    })().catch(() => { erro.textContent = 'O servidor local não respondeu.'; });
+  });
+}
+
+// ---------- eventos ----------
+document.addEventListener('click', ev => {
+  const t = ev.target.closest('button'); if (!t) return;
+  if (t.dataset.id) { S.atual = t.dataset.id; $('lateral').classList.remove('aberta'); render(); return; }
+  if (t.dataset.aba) { S.aba = t.dataset.aba; $('tabVivo').innerHTML = htmlTabelas(conta(S.clientes[S.atual])); return; }
+  const a = t.dataset.acao, c = S.clientes[S.atual];
+  if (a === 'novoCliente') formCliente();
+  if (a === 'editarCliente' && c) formCliente(c);
+  if (a === 'compartilhar' && c) formCompartilhar(c);
+  if (a === 'novaLeitura' && c) formLeitura(c);
+  if (a === 'atualizarMeta') atualizarMeta(true);
+  if (t.dataset.apagar && c) {
+    if (!t.classList.contains('armado')) { t.classList.add('armado'); t.textContent = 'Confirmar'; setTimeout(() => { t.classList.remove('armado'); t.textContent = 'Excluir'; }, 3500); return; }
+    salvarCliente({ ...c, leituras:(c.leituras || []).filter(l => l.id !== t.dataset.apagar) }).then(() => avisar('Leitura excluída.')).catch(() => {});
+  }
+});
+$('btnNovoCliente').onclick = () => { $('lateral').classList.remove('aberta'); formCliente(); };
+$('btnConfig').onclick = () => { $('lateral').classList.remove('aberta'); formConfig(); };
+$('btnMenu').onclick = () => $('lateral').classList.toggle('aberta');
+$('veu').addEventListener('click', ev => { if (ev.target === $('veu')) fechar(); });
+document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && !$('veu').hidden) fechar(); });
+
+iniciar();
+</script>

@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "P=; for c in python3 python py; do $c -c '' 2>/dev/null && P=$c && break; done; [ -n \"$P\" ] && PYTHONUTF8=1 $P \"$CLAUDE_PROJECT_DIR/40-operacao-rotinas/ferramentas/sincronizar.py\" --hook",
+            "timeout": 180
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "P=; for c in python3 python py; do $c -c '' 2>/dev/null && P=$c && break; done; [ -n \"$P\" ] && PYTHONUTF8=1 $P \"$CLAUDE_PROJECT_DIR/40-operacao-rotinas/ferramentas/sincronizar.py\" --hook",
+            "timeout": 180
+          }
+        ]
+      }
+    ]
+  }
+}

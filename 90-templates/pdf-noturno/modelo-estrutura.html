@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  MODELO — DOCUMENTO DE ESTRUTURA (classe canônica, 19/09/2026)
+  Responde: "COMO isso funciona?"  ·  Eixo: o mecanismo
+  Exemplar: um PDF de funil (classe ESTRUTURA)
+  ============================================================
+
+  COMO USAR  (elétrico, o padrão da casa desde 16/10/2026 · revisto em 01/11/2026)
+    1. copiar ESTE arquivo, noturno.css, eletrico.css e a pasta fontes/ para a
+       pasta de trabalho. Partir daqui, nunca do HTML do último cliente: o remendo
+       de um documento viaja junto com a cópia (foi assim que a fita cortada passou
+       de um documento para o seguinte).
+    2. trocar o conteúdo, manter a SEQUÊNCIA das páginas. Celular: carregar
+       noturno-celular.css entre o noturno.css e o eletrico.css.
+    3. python3 gerar_pdf.py documento.html --png pasta/   (imprime pelo Chrome e confere)
+       Reprovado = não entregar. Depois OLHAR o PNG da capa e as páginas.
+    4. 🔴 NÃO escrever CSS de capa no documento: altura, top e largura da fita se
+       medem pela página. A frase da fita vai UMA vez no data-texto.
+
+  A SEQUÊNCIA É A REGRA (README §3-bis)
+    capa → MAPA INTEIRO → uma seção por caixa do mapa
+         → o que falta (nosso x seu) → o que este documento NÃO faz
+
+  TRÊS RESTRIÇÕES QUE JÁ CUSTARAM CARO
+    1. o <style> do SVG vai DENTRO do <svg>. No <head> ele é ignorado
+       e o diagrama sai com todas as caixas pretas.
+    2. sem emoji: as fontes do ambiente não têm os glifos.
+    3. sem projeção financeira no eixo. Se apareceu ROI no meio do
+       mecanismo, o documento virou classe DECISÃO por acidente.
+
+  PALETA ELÉTRICA dos diagramas (não alterar por documento)
+    fundo #05070F · caixa #0B1026/#223063 · destaque #0E1A44/#2F6BFF
+    positivo #0B1D2E/#5B8CFF · tracejado #070B1A/#2A3560
+    texto #E4E8F3 · texto forte #FFFFFF · texto fraco #8A93AD · seta #3D4C86
+  CLASSES DO SVG COM PREFIXO POR DIAGRAMA (d1-, d2-...): no Chrome o <style> de um
+  SVG vale para o documento inteiro, e a mesma classe em dois SVGs briga.
+-->
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>TÍTULO</title>
+<link rel="stylesheet" href="noturno.css">
+<!-- celular: <link rel="stylesheet" href="noturno-celular.css"> AQUI, entre os dois -->
+<link rel="stylesheet" href="eletrico.css">
+</head>
+<body>
+
+<!-- ========== CAPA ========== -->
+<!-- a frase de cada fita vai UMA vez, terminando em " · ". A folha repete e corta o que sobra. -->
+<div class="capa">
+  <div class="fita a" data-texto="nome do cliente · nome do documento · "></div>
+  <div class="fita b" data-texto="o que o leitor encontra · o que vem depois · o que falta decidir · "></div>
+  <div class="miolo">
+    <div class="kicker">C L I E N T E &nbsp; · &nbsp; C O N T I N U U M</div>
+    <h1>Título que nomeia<br>a <span>coisa</span></h1>
+    <p class="lead">Uma linha dizendo o que o documento mostra. Não o que ele promete.</p>
+    <div class="botao">COMECE PELA PÁGINA 2</div>
+  </div>
+  <div class="rodape">{{EMPRESA}} · DOCUMENTO DE ESTRUTURA · MÊS DE ANO</div>
+</div>
+
+<!-- ==========================================================
+     PÁGINA 2 — O MAPA INTEIRO
+     A página mais importante. Tudo que vem depois é o detalhe
+     de uma destas caixas, e a frase abaixo do título diz isso.
+     Padrão: FLUXO DE DECISÃO (CAMADA-DE-VER §3.1)
+     ========================================================== -->
+<h1>O [objeto] inteiro</h1>
+<p class="sub">Tudo que vem depois neste documento é o detalhe de uma destas caixas.</p>
+
+<svg class="fluxo" viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .d1-bx  { fill:#0B1026; stroke:#223063; stroke-width:1; }
+  .d1-bxo { fill:#0E1A44; stroke:#2F6BFF; stroke-width:1.3; }   /* o nó que importa */
+  .d1-bxg { fill:#0B1D2E; stroke:#5B8CFF; stroke-width:1.2; }   /* onde entra dinheiro/ganho */
+  .d1-bxd { fill:#070B1A; stroke:#2A3560; stroke-width:1; stroke-dasharray:3 3; }
+  .d1-tx  { font-family:Lato; font-size:12.5px; fill:#E4E8F3; text-anchor:middle; }
+  .d1-txb { font-family:Lato; font-size:12.5px; font-weight:bold; fill:#FFFFFF; text-anchor:middle; }
+  .d1-txs { font-family:Lato; font-size:9.5px; fill:#8A93AD; text-anchor:middle; }
+  .d1-txl { font-family:Lato; font-size:9.5px; fill:#BFD0FF; }  /* rótulo de seta, alinhado à esquerda */
+  .d1-ln  { stroke:#3D4C86; stroke-width:1.3; fill:none; }
+  .d1-lnd { stroke:#2A3560; stroke-width:1.1; fill:none; stroke-dasharray:4 3; }  /* loop de retorno */
+</style>
+  <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+    <path d="M0,0 L7,3 L0,6 z" fill="#3D4C86"/></marker></defs>
+
+  <!-- nó simples: 3 a 6 palavras -->
+  <rect class="d1-bx" x="270" y="8" width="160" height="38" rx="5"/>
+  <text class="d1-tx" x="350" y="32">Primeira etapa</text>
+  <path class="d1-ln" marker-end="url(#ar)" d="M350,48 L350,60"/>
+
+  <!-- nó com subtítulo: o subtítulo é fato, não adjetivo -->
+  <rect class="d1-bx" x="270" y="64" width="160" height="42" rx="5"/>
+  <text class="d1-tx" x="350" y="82">Segunda etapa</text>
+  <text class="d1-txs" x="350" y="98">o detalhe que a qualifica</text>
+  <path class="d1-ln" marker-end="url(#ar)" d="M350,108 L350,118"/>
+
+  <!-- o nó que importa, em destaque -->
+  <rect class="d1-bxo" x="270" y="122" width="160" height="42" rx="5"/>
+  <text class="d1-txb" x="350" y="140">A PEÇA CENTRAL</text>
+  <text class="d1-txs" x="350" y="156">a restrição dela</text>
+  <path class="d1-ln" marker-end="url(#ar)" d="M350,166 L350,176"/>
+
+  <!-- LOSANGO: pergunta binária, AS DUAS saídas rotuladas (regra 3) -->
+  <path class="d1-bx" d="M350,178 L414,208 L350,238 L286,208 Z"/>
+  <text class="d1-tx" x="350" y="212">Passou?</text>
+
+  <path class="d1-ln" marker-end="url(#ar)" d="M286,208 L212,208"/>
+  <text class="d1-txl" x="234" y="201">não</text>
+  <rect class="d1-bxd" x="58" y="188" width="148" height="42" rx="5"/>
+  <text class="d1-tx" x="132" y="206">O que se aprende</text>
+  <text class="d1-txs" x="132" y="221">com quem não passou</text>
+
+  <!-- LOOP: todo processo real tem retorno (regra 4).
+       ATENÇÃO: a linha sai da BORDA da caixa, nunca de dentro dela -->
+  <path class="d1-lnd" marker-end="url(#ar)" d="M132,188 L132,27 L264,27"/>
+  <text class="d1-txl" x="14" y="112">o que muda</text>
+  <text class="d1-txl" x="14" y="126">na próxima volta</text>
+
+  <path class="d1-ln" marker-end="url(#ar)" d="M350,240 L350,252"/>
+  <text class="d1-txl" x="358" y="252">sim</text>
+  <rect class="d1-bxg" x="240" y="256" width="220" height="50" rx="5"/>
+  <text class="d1-txb" x="350" y="276">Onde o ganho aparece</text>
+  <text class="d1-txs" x="350" y="293">e o que ele inclui</text>
+
+  <path class="d1-ln" marker-end="url(#ar)" d="M350,308 L350,320"/>
+  <rect class="d1-bx" x="170" y="324" width="360" height="46" rx="5"/>
+  <text class="d1-tx" x="350" y="345">Estado final</text>
+  <text class="d1-txs" x="350" y="361">o que a pessoa tem na mão</text>
+
+  <!-- bifurcação de saída: os dois destinos possíveis -->
+  <path class="d1-ln" marker-end="url(#ar)" d="M170,347 L148,347 L148,378"/>
+  <rect class="d1-bx" x="46" y="382" width="204" height="26" rx="4"/>
+  <text class="d1-txs" x="148" y="399">um caminho adiante</text>
+
+  <path class="d1-ln" marker-end="url(#ar)" d="M530,347 L586,347 L586,378"/>
+  <rect class="d1-bx" x="484" y="382" width="190" height="26" rx="4"/>
+  <text class="d1-txs" x="579" y="399">o outro</text>
+</svg>
+
+<div class="nota"><strong>O que buscamos com isso:</strong> uma frase, sem número, dizendo o estado que o desenho produz. Não é promessa de resultado — é descrição de mecanismo.</div>
+
+<!-- ==========================================================
+     UMA SEÇÃO POR CAIXA DO MAPA
+     Tabela de "o que cada peça faz": UM trabalho por peça.
+     Se uma peça tem dois trabalhos, provavelmente são duas peças.
+     ========================================================== -->
+<div class="page-break"></div>
+<h1>O que cada peça faz</h1>
+<p class="sub">Cada uma resolve uma coisa só. É isso que permite trocar uma por vez e saber o que mudou.</p>
+
+<table>
+  <tr><th style="width:23%">Peça</th><th>O trabalho dela</th></tr>
+  <tr><td><strong>Nome da caixa</strong></td><td>o que ela faz, em uma frase, com <strong>o ponto que decide em negrito</strong>.</td></tr>
+  <tr><td><strong>Outra</strong></td><td>idem. Frase, não parágrafo.</td></tr>
+</table>
+
+<h2>As escolhas de ordem que fazem diferença</h2>
+<p><strong>Por que X vem antes de Y.</strong> A razão mecânica, não a preferência.</p>
+
+<div class="destaque">
+  <span class="lead">A frase que o leitor precisa levar desta seção.</span>
+  <p>O fato que a sustenta, com a citação literal dele quando existir — <em>"assim, entre aspas"</em> — e a consequência.</p>
+</div>
+
+<!-- ==========================================================
+     PADRÃO 2 — CADEIA / SEQUÊNCIA HORIZONTAL (CAMADA-DE-VER §3.2)
+     Para "o que vem antes do quê". Inclui a linha que declara
+     quando a ordem de leitura e a de construção são diferentes.
+     ========================================================== -->
+<div class="page-break"></div>
+<h1>Dentro de [a peça central]</h1>
+<p class="sub">Os blocos, sempre nessa ordem. Cada um responde uma pergunta que a pessoa faz sozinha.</p>
+
+<svg class="fluxo" viewBox="0 0 700 226" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .d2-bx  { fill:#0B1026; stroke:#223063; stroke-width:1; }
+  .d2-bxo { fill:#0E1A44; stroke:#2F6BFF; stroke-width:1.3; }
+  .d2-bxg { fill:#0B1D2E; stroke:#5B8CFF; stroke-width:1.2; }
+  .d2-bxd { fill:#070B1A; stroke:#2A3560; stroke-width:1; stroke-dasharray:3 3; }
+  .d2-tx  { font-family:Lato; font-size:12.5px; fill:#E4E8F3; text-anchor:middle; }
+  .d2-txb { font-family:Lato; font-size:11.5px; font-weight:bold; fill:#FFFFFF; text-anchor:middle; }
+  .d2-txs { font-family:Lato; font-size:9.5px; fill:#8A93AD; text-anchor:middle; }
+  .d2-ln  { stroke:#3D4C86; stroke-width:1.3; fill:none; }
+</style>
+  <defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+    <path d="M0,0 L7,3 L0,6 z" fill="#3D4C86"/></marker></defs>
+
+  <rect class="d2-bx" x="14" y="14" width="150" height="58" rx="5"/>
+  <text class="d2-txb" x="89" y="35">PRIMEIRO</text>
+  <text class="d2-txs" x="89" y="52">a pergunta que ele</text>
+  <text class="d2-txs" x="89" y="65">responde</text>
+
+  <rect class="d2-bx" x="192" y="14" width="150" height="58" rx="5"/>
+  <text class="d2-txb" x="267" y="35">SEGUNDO</text>
+  <text class="d2-txs" x="267" y="52">idem</text>
+
+  <rect class="d2-bxo" x="370" y="14" width="150" height="58" rx="5"/>
+  <text class="d2-txb" x="445" y="35">O MAIOR</text>
+  <text class="d2-txs" x="445" y="52">idem</text>
+
+  <rect class="d2-bx" x="548" y="14" width="138" height="58" rx="5"/>
+  <text class="d2-txb" x="617" y="35">ÚLTIMO</text>
+  <text class="d2-txs" x="617" y="52">idem</text>
+
+  <path class="d2-ln" marker-end="url(#ar2)" d="M164,43 L188,43"/>
+  <path class="d2-ln" marker-end="url(#ar2)" d="M342,43 L366,43"/>
+  <path class="d2-ln" marker-end="url(#ar2)" d="M520,43 L544,43"/>
+
+  <text class="d2-txs" x="89" y="88">o mais sensível</text>
+  <text class="d2-txs" x="445" y="88">o maior</text>
+
+  <rect class="d2-bxd" x="14" y="98" width="672" height="30" rx="5"/>
+  <text class="d2-txs" x="350" y="117">esta é a ordem de leitura — a ordem de construção é a inversa</text>
+
+  <path class="d2-ln" marker-end="url(#ar2)" d="M350,130 L350,148"/>
+  <rect class="d2-bxg" x="150" y="152" width="400" height="52" rx="5"/>
+  <text class="d2-tx" x="350" y="176">Por onde se começa de verdade.</text>
+  <text class="d2-txs" x="350" y="192">A razão, em uma linha.</text>
+</svg>
+
+<h2>Por que [o bloco] é o mais sensível</h2>
+<p>A razão mecânica. <strong>O ponto que decide em negrito</strong>, e nada de adjetivo.</p>
+
+<!-- ==========================================================
+     PADRÃO 3 — CORRENTE / CADEIA LÓGICA (METODO-PONTOS-LOGICOS)
+     Elos empilhados. 5 a 8, nunca 20. A CONCLUSÃO NÃO ENTRA:
+     o último elo fica de fora, tracejado, e é do leitor.
+     ========================================================== -->
+<div class="page-break"></div>
+<h1>O mecanismo</h1>
+<p class="sub">Passos encadeados. Cada um só faz sentido depois do anterior — e o último não se escreve.</p>
+
+<svg class="fluxo" viewBox="0 0 700 270" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .d3-bx  { fill:#0B1026; stroke:#223063; stroke-width:1; }
+  .d3-bxo { fill:#0E1A44; stroke:#2F6BFF; stroke-width:1.3; }
+  .d3-tx  { font-family:Lato; font-size:12.5px; fill:#E4E8F3; text-anchor:middle; }
+  .d3-txs { font-family:Lato; font-size:9.5px; fill:#8A93AD; text-anchor:middle; }
+  .d3-ln  { stroke:#3D4C86; stroke-width:1.3; fill:none; }
+  .d3-lnd { stroke:#2A3560; stroke-width:1.1; fill:none; stroke-dasharray:4 3; }
+</style>
+  <defs><marker id="ar3" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+    <path d="M0,0 L7,3 L0,6 z" fill="#3D4C86"/></marker></defs>
+
+  <rect class="d3-bx" x="80" y="8" width="540" height="42" rx="5"/>
+  <text class="d3-tx" x="350" y="33">Elo 1 — a premissa que ele já aceita</text>
+  <path class="d3-ln" marker-end="url(#ar3)" d="M350,52 L350,64"/>
+
+  <rect class="d3-bxo" x="80" y="68" width="540" height="56" rx="5"/>
+  <text class="d3-tx" x="350" y="90">Elo 2 — o mais forte da corrente,</text>
+  <text class="d3-tx" x="350" y="110">e de preferência literal, na fala dele</text>
+  <path class="d3-ln" marker-end="url(#ar3)" d="M350,126 L350,138"/>
+
+  <rect class="d3-bx" x="80" y="142" width="540" height="42" rx="5"/>
+  <text class="d3-tx" x="350" y="167">Elo 3 — sem ele, o quarto não tem razão de existir</text>
+  <path class="d3-ln" marker-end="url(#ar3)" d="M350,186 L350,198"/>
+
+  <rect class="d3-bx" x="80" y="202" width="540" height="42" rx="5"/>
+  <text class="d3-tx" x="350" y="227">Elo 4 — o penúltimo, e o último que se escreve</text>
+
+  <path class="d3-lnd" d="M350,246 L350,256"/>
+  <text class="d3-txs" x="350" y="268">a conclusão não entra na peça — ela é de quem lê</text>
+</svg>
+
+<div class="destaque">
+  <span class="lead">Os passos são frases dele. Nenhum foi escrito por nós.</span>
+  <p>A citação literal do elo mais forte, com aspas.</p>
+</div>
+
+<h2>Por que corrente, e não lista</h2>
+<p>Uma lista perde qualquer item sem quebrar. <strong>Uma corrente não:</strong> tire o elo N e o N+1 deixa de ter razão de existir.</p>
+
+<div class="nota"><strong>O que fica fora, por decisão dele:</strong> a restrição que o cliente impôs, com a citação, tratada como <strong>restrição de escrita e não como observação</strong>.</div>
+
+<!-- ==========================================================
+     PADRÃO 4 — CICLO / ITERAÇÃO
+     Para "como isso melhora sozinho". O retorno é o argumento.
+     ========================================================== -->
+<div class="page-break"></div>
+<h1>Como cada ciclo ensina o próximo</h1>
+<p class="sub">É esta parte que separa um sistema de uma campanha.</p>
+
+<svg class="fluxo" viewBox="0 0 700 130" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .d4-bx  { fill:#0B1026; stroke:#223063; stroke-width:1; }
+  .d4-bxo { fill:#0E1A44; stroke:#2F6BFF; stroke-width:1.3; }
+  .d4-tx  { font-family:Lato; font-size:12px; fill:#E4E8F3; text-anchor:middle; }
+  .d4-txs { font-family:Lato; font-size:9.5px; fill:#8A93AD; text-anchor:middle; }
+  .d4-ln  { stroke:#3D4C86; stroke-width:1.3; fill:none; }
+</style>
+  <defs><marker id="ar4" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+    <path d="M0,0 L7,3 L0,6 z" fill="#3D4C86"/></marker></defs>
+
+  <rect class="d4-bx" x="16" y="14" width="148" height="46" rx="5"/>
+  <text class="d4-tx" x="90" y="42">Roda</text>
+
+  <rect class="d4-bx" x="196" y="14" width="160" height="46" rx="5"/>
+  <text class="d4-tx" x="276" y="36">O que se mede</text>
+  <text class="d4-txs" x="276" y="51">e com que granularidade</text>
+
+  <rect class="d4-bxo" x="388" y="14" width="170" height="46" rx="5"/>
+  <text class="d4-tx" x="473" y="36">Troca o que falhou</text>
+  <text class="d4-txs" x="473" y="51">quase sempre o começo</text>
+
+  <rect class="d4-bx" x="590" y="14" width="96" height="46" rx="5"/>
+  <text class="d4-tx" x="638" y="42">Nova volta</text>
+
+  <path class="d4-ln" marker-end="url(#ar4)" d="M164,37 L192,37"/>
+  <path class="d4-ln" marker-end="url(#ar4)" d="M356,37 L384,37"/>
+  <path class="d4-ln" marker-end="url(#ar4)" d="M558,37 L586,37"/>
+  <path class="d4-ln" marker-end="url(#ar4)" d="M638,60 L638,94 L90,94 L90,64"/>
+  <text class="d4-txs" x="364" y="112">e o ciclo recomeça sabendo mais do que sabia</text>
+</svg>
+
+<!-- ==========================================================
+     PENÚLTIMA — O QUE AINDA PRECISA EXISTIR
+     Nosso x seu, explícito. A coluna "de quem" é o que
+     transforma entusiasmo em cronograma.
+     ========================================================== -->
+<div class="page-break"></div>
+<h1>O que ainda precisa existir</h1>
+<p class="sub">Dito com clareza, porque cronograma feito sobre otimismo estoura.</p>
+
+<table>
+  <tr><th style="width:56%">O que</th><th>De quem</th></tr>
+  <tr><td>item</td><td>nosso</td></tr>
+  <tr><td><strong>item que depende dele</strong></td><td><strong>seu</strong></td></tr>
+</table>
+
+<div class="destaque">
+  <span class="lead">O total do lado dele, somado, em uma frase.</span>
+  <p>E o que já existe e ele talvez não tenha percebido que existe.</p>
+</div>
+
+<!-- ==========================================================
+     ÚLTIMA — O QUE ESTE DOCUMENTO NÃO FAZ
+     A página que mais protege. Nomeia o que só se sabe depois.
+     Nunca cortar esta seção para caber.
+     ========================================================== -->
+<h2>O que este documento não faz</h2>
+<p>Não promete quanto nem em quanto tempo. <strong>As coisas que só se sabem depois do primeiro ciclo:</strong> listar, nominalmente.</p>
+<p>O que ele mostra é <strong>como o mecanismo funciona</strong> — e por que, uma vez montado, ele continua funcionando sem depender de [a restrição que ele tem hoje].</p>
+
+</body></html>

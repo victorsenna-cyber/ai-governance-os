@@ -1,0 +1,12 @@
+# Fim de linha LF em todo texto, em qualquer sistema (Windows, macOS, Linux).
+* text=auto eol=lf
+*.bat text eol=crlf
+*.sh text eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.zip binary

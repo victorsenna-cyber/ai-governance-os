@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "P=; for c in python3 python py; do $c -c '' 2>/dev/null && P=$c && break; done; if [ -n \"$P\" ]; then PYTHONUTF8=1 $P \"$CLAUDE_PROJECT_DIR/{FERRAMENTAS}/sincronizar.py\" --hook; else echo '⚠️ Python não encontrado: este computador não está sincronizando com o GitHub ({FERRAMENTAS}/README.md)'; fi",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "P=; for c in python3 python py; do $c -c '' 2>/dev/null && P=$c && break; done; if [ -n \"$P\" ]; then PYTHONUTF8=1 $P \"$CLAUDE_PROJECT_DIR/{FERRAMENTAS}/sincronizar.py\" --hook; else echo '⚠️ Python não encontrado: este computador não está sincronizando com o GitHub ({FERRAMENTAS}/README.md)'; fi",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}

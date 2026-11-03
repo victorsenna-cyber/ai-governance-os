@@ -1,0 +1,41 @@
+# Repo → Supabase: a cada push na main que mexa nas finanças, o painel recebe a versão nova.
+# Fonte única continua sendo o .md; o Supabase é cópia de leitura (40-operacao-rotinas/ferramentas/financas-painel.py).
+name: financas-painel
+on:
+  push:
+    branches: [main]
+    paths:
+      - "940-operador/FINANCAS.md"
+      - "45-financeiro/**"
+      - "940-operador/cartao-compartilhado/CARTAO-COMPARTILHADO.md"
+      - "40-operacao-rotinas/ferramentas/financas-painel.py"
+  workflow_dispatch:
+  schedule:
+    - cron: "5 3 * * *" # logo após a meia-noite de Brasília (ajuste ao seu fuso): as diárias projetadas andam um dia mesmo sem push
+
+# Cada execução publica o estado inteiro da main, então a mais nova torna as antigas inúteis.
+# Sem cancel-in-progress, uma execução presa na fila do GitHub segurou a seguinte por mais de 30 min.
+concurrency:
+  group: financas-painel
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            940-operador/FINANCAS.md
+            45-financeiro
+            940-operador/cartao-compartilhado/CARTAO-COMPARTILHADO.md
+            40-operacao-rotinas/ferramentas/financas-painel.py
+          sparse-checkout-cone-mode: false
+      - name: Publicar no Supabase
+        env:
+          FINANCAS_SUPABASE_URL: {{SUPABASE_URL}}
+          FINANCAS_SUPABASE_KEY: {{SUPABASE_ANON_KEY}} # publicável, não é segredo
+          FINANCAS_SYNC_TOKEN: ${{ secrets.FINANCAS_SYNC_TOKEN }}
+        run: python3 40-operacao-rotinas/ferramentas/financas-painel.py --publicar

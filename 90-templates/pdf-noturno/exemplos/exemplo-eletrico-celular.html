@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- EXEMPLAR do PDF ELÉTRICO em CELULAR, 90 × 160 mm (01/11/2026). Fala só do próprio modelo.
+     Gerar, na pasta do modelo: python3 gerar_pdf.py exemplos/exemplo-eletrico-celular.html exemplos/EXEMPLO-ELETRICO-CELULAR.pdf -->
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>PDF elétrico celular · exemplar do modelo</title>
+<link rel="stylesheet" href="../noturno.css">
+<link rel="stylesheet" href="../noturno-celular.css">
+<link rel="stylesheet" href="../eletrico.css">
+</head>
+<body>
+
+<div class="capa">
+  <div class="fita a" data-texto="pdf elétrico · celular · 90 × 160 mm · "></div>
+  <div class="fita b" data-texto="para quem só tem o telefone · uma ideia por tela · "></div>
+  <div class="miolo">
+    <div class="kicker">E X E M P L A R</div>
+    <h1>O PDF<br>no <span>celular</span></h1>
+    <p class="lead">O mesmo elétrico, numa página do tamanho da tela do telefone. Esta peça fala só dela mesma.</p>
+    <div class="botao">ROLE PARA BAIXO</div>
+  </div>
+  <div class="rodape">TEMPLATE CONTINUUM · NOVEMBRO DE 2026</div>
+</div>
+
+<div class="rotulo">01 · quando usar</div>
+<h2>Quem recebe só tem o <span>telefone</span></h2>
+<p class="sub">É o caso de boa parte das contas: a pessoa abre o PDF no WhatsApp e lê de pé, entre uma tarefa e outra.</p>
+<div class="destaque">
+  <span class="lead">Uma ideia por tela.</span>
+  <p>Se a tela pede rolagem lateral ou letra pequena demais, o conteúdo é que está grande demais.</p>
+</div>
+
+<div class="page-break"></div>
+<div class="rotulo">02 · o que muda do A4</div>
+<h2>Muda a <span>página</span>, o resto fica</h2>
+<div class="passo"><div class="num">1</div><div class="txt"><strong>A página</strong>90 × 160 mm em vez de A4, com o corpo de letra maior.</div></div>
+<div class="passo"><div class="num">2</div><div class="txt"><strong>A capa</strong>a mesma do A4, medida pela página. Nada se ajusta à mão.</div></div>
+<div class="passo"><div class="num">3</div><div class="txt"><strong>O que não muda</strong>cor, fonte, classe e conferência.</div></div>
+
+<div class="page-break"></div>
+<div class="rotulo">03 · como se gera</div>
+<h2>Uma folha a <span>mais</span></h2>
+<p class="sub">A folha do celular entra entre as outras duas, nesta ordem:</p>
+<ul class="arquivos">
+  <li>noturno.css</li>
+  <li>noturno-celular.css</li>
+  <li>eletrico.css</li>
+</ul>
+<p class="sub">Depois, o mesmo conferidor do A4: python3 gerar_pdf.py documento.html.</p>
+<div class="nota"><strong>Exemplar de uso real:</strong> um mapa de repositório, com 18 telas.</div>
+
+<div class="page-break"></div>
+<div class="rotulo">04 · o limite</div>
+<h2>Tabela larga <span>não cabe</span></h2>
+<p class="sub">Tabela com mais de duas colunas aperta até ficar ilegível. Nesse caso, o documento vai em A4, ou a tabela vira uma sequência de passos.</p>
+<div class="nota"><strong>Este exemplar</strong> não usa dado de cliente. Ele mostra só a forma do modelo.</div>
+
+</body>
+</html>

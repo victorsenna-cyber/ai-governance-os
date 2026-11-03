@@ -1,0 +1,15 @@
+/* =========================================================
+   PDF NOTURNO · variante CELULAR · instituída 12/10/2026
+   Carregar DEPOIS de noturno.css, só quando o leitor vai abrir o PDF no celular
+   (cliente sem computador). Muda o tamanho da página e a capa. Nada mais.
+   ========================================================= */
+:root { --pag-l: 90mm; --pag-a: 160mm; }   /* a capa elétrica se mede por elas */
+@page { size: 90mm 160mm; margin: 9mm 8mm 11mm 8mm; }
+body { font-size: 10pt; }
+h2 { font-size: 14pt; margin-top: 0; }
+.capa { padding-top: 22mm; }
+.capa h1 { font-size: 25pt; }
+.capa .lead { font-size: 11.5pt; }
+.capa .rodape { margin-top: 16mm; }
+table { font-size: 8.8pt; }
+.destaque, .nota { break-inside: avoid; }

@@ -1,0 +1,45 @@
+# Repo → Supabase: a cada push na main que mexa no andamento das contas, o painel de projetos recebe a versão nova.
+# Fonte única continua sendo o .md; o Supabase é cópia de leitura (40-operacao-rotinas/ferramentas/painel-projetos.py).
+name: projetos-painel
+on:
+  push:
+    branches: [main]
+    paths:
+      - "clientes/**/PAINEL.md"
+      - "clientes/**/STATUS.md"
+      - "clientes/**/01 - contexto/OpenWA/**"
+      - "40-operacao-rotinas/tarefas/**"
+      - "45-financeiro/LANCAMENTOS-EMPRESA.md"
+      - "40-operacao-rotinas/ferramentas/painel-projetos.py"
+      - "40-operacao-rotinas/ferramentas/financas-painel.py"
+  workflow_dispatch:
+  schedule:
+    - cron: "15 3 * * *" # logo após a meia-noite de Brasília (ajuste ao seu fuso): os contadores de dias (prazo, sem toque, defasagem) andam sem push
+
+concurrency:
+  group: projetos-painel
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # Só os .md das contas: os áudios, PDFs e imagens de clientes/ nunca descem. As datas do OpenWA vêm de git ls-tree.
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            clientes/*/PAINEL.md
+            clientes/*/STATUS.md
+            40-operacao-rotinas/tarefas
+            45-financeiro/LANCAMENTOS-EMPRESA.md
+            40-operacao-rotinas/ferramentas/painel-projetos.py
+            40-operacao-rotinas/ferramentas/financas-painel.py
+          sparse-checkout-cone-mode: false
+      - name: Publicar no Supabase
+        env:
+          FINANCAS_SUPABASE_URL: {{SUPABASE_URL}}
+          FINANCAS_SUPABASE_KEY: {{SUPABASE_ANON_KEY}} # publicável, não é segredo
+          FINANCAS_SYNC_TOKEN: ${{ secrets.FINANCAS_SYNC_TOKEN }}
+        run: python3 40-operacao-rotinas/ferramentas/painel-projetos.py --publicar

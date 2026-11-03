@@ -1,0 +1,90 @@
+/* Painel Caixa — o ambiente que o claude.ai dá ao artefato Dashboard, fora do claude.ai.
+   Valores tirados do CSS do tipo Dashboard (versão 1792893573-703f): tema escuro, densidade "comfortable".
+   A página em si (artefato/index.html) entra sem alteração; isto aqui só define o que ela lê. */
+:root {
+  color-scheme: dark;
+  /* fontes: as da Anthropic não são livres; a pilha é a mesma do tipo, com uma serifa livre antes do fallback */
+  --font-anthropic-sans: "Anthropic Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-anthropic-serif: "Anthropic Serif", "Source Serif 4", ui-serif, Georgia, "Times New Roman", serif;
+
+  /* cores (cds dark) */
+  --color-fg: #f0efec;
+  --color-fg-muted: #898781;
+  --color-bg: #0b0b0b;
+  --color-panel: #1a1a19;
+  --color-border-line: rgb(255 255 255 / 10%);
+  --color-ok: #0ca30c;
+  --color-warn: #db9300;
+  --color-bad: #ec7e7e;
+  --cds-border: rgb(255 255 255 / 10%);
+  --cds-chart-axis: #383835;
+  --cds-chart-grid: rgb(255 255 255 / 10%);
+  --cds-chart-muted: #5f5e5a;
+  --cds-chart-reference: #97958d;
+  --cds-chart-status-critical: #d03b3b;
+  --cds-surface-popover: #20201f;
+  --cds-shadow-popover: 0 8px 24px #00000052, 0 2px 6px #0003;
+  --cds-text-secondary: #c3c2b7;
+
+  /* medidas (densidade comfortable) */
+  --cds-font-size-body: .875rem;
+  --cds-font-size-caption: .75rem;
+  --cds-font-size-heading: .9375rem;
+  --cds-font-weight-medium: 500;
+  --cds-gap-xs: .5rem;
+  --cds-gap-sm: .75rem;
+  --cds-gap-md: 1rem;
+  --cds-pad-xs: .375rem;
+  --cds-pad-sm: .5rem;
+  --cds-pad-md: .75rem;
+  --cds-pad-lg: 1rem;
+  --cds-pad-xl: 1.5rem;
+  --cds-radius: .5rem;
+  --cds-dur-slow: .45s;
+  --cds-ease-out: cubic-bezier(.165, .84, .44, 1);
+}
+
+html, body { margin: 0; background: var(--color-bg); }
+body { font-family: var(--font-anthropic-sans); color: var(--color-fg); -webkit-font-smoothing: antialiased; }
+
+/* #dash-root como o tipo o desenha */
+#dash-root { color: var(--color-fg); font-size: 14px; line-height: 1.45; }
+#dash-root:not(:empty) { padding: var(--dash-gutter, clamp(var(--cds-pad-md), 4%, var(--cds-pad-xl))); }
+
+/* esqueleto de carregamento do tipo */
+.dash-skeleton { -webkit-text-fill-color: transparent !important; background-image: linear-gradient(color-mix(in srgb, currentColor 13%, transparent) 0 0) !important; background-clip: text; border-radius: .3em; }
+.dash-skeleton:empty::before { content: ""; width: 3ch; display: inline-block; }
+.dash-skeleton:not(:empty, :has(> :not(span, small, b, strong, em, i, sup, sub))) { background-image: none !important; }
+.dash-skeleton:not(:empty, :has(> :not(span, small, b, strong, em, i, sup, sub)))::before {
+  content: "" !important; display: inline-block !important; vertical-align: -.1em; border-radius: .3em; width: 5ch; height: .9em; margin-inline-end: -1em;
+  background: color-mix(in srgb, currentColor 13%, transparent);
+}
+@media (prefers-reduced-motion: no-preference) { .dash-skeleton { animation: cds-skeleton-breathe 1.6s ease-in-out infinite; } }
+@keyframes cds-skeleton-breathe { 0%, to { opacity: 1; } 50% { opacity: .6; } }
+
+/* entrada e rodapé — só o site tem, o artefato não precisava */
+.porta { min-height: 100dvh; display: grid; place-items: center; padding: 16px; box-sizing: border-box; }
+.porta form { width: min(360px, 100%); display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.porta h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 44px; line-height: 1; letter-spacing: -.02em; margin: 0 0 var(--cds-gap-xs); }
+.porta input, .porta button { font: inherit; font-size: var(--cds-font-size-body); border-radius: 999px; padding: 10px 16px; }
+.porta input { border: 1px solid var(--color-border-line); background: var(--color-panel); color: var(--color-fg); }
+.porta input:focus { outline: none; border-color: var(--color-fg-muted); }
+.porta button { border: 0; background: var(--color-fg); color: var(--color-bg); font-weight: var(--cds-font-weight-medium); cursor: pointer; }
+.porta button:disabled { opacity: .5; cursor: default; }
+.porta p { margin: 0; min-height: 1.45em; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.porta button.link { background: none; color: var(--color-fg-muted); font-weight: 400; font-size: var(--cds-font-size-caption); padding: 4px 0; text-decoration: underline; text-underline-offset: .15em; }
+.porta p.lead { font-size: var(--cds-font-size-body); color: var(--color-fg-muted); min-height: 0; }
+.rodape { text-align: center; margin: 0 0 24px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.sair { border: 0; background: none; color: var(--color-fg-muted); font: inherit; font-size: var(--cds-font-size-caption); cursor: pointer; text-decoration: underline; text-underline-offset: .15em; padding: 0; }
+[hidden] { display: none !important; }
+
+/* largura de celular: no claude.ai o quadro do artefato nunca rola de lado; aqui o mesmo limite */
+#dash-root { overflow-x: clip; }
+#dash-root .cx-top > * { max-width: 100%; }
+
+/* um sistema só (29/10/2026): a mesma faixa de navegação nos dois painéis, Caixa e Projetos */
+.sistema { display: flex; align-items: center; gap: 4px; padding: 10px 0 6px; margin-bottom: 8px; border-bottom: 1px solid var(--color-border-line, var(--line)); font-size: .8125rem; }
+.sistema .marca { font-family: var(--font-anthropic-serif, var(--serif)); color: var(--color-fg-muted, var(--fg-muted)); margin-right: 10px; letter-spacing: -.01em; }
+.sistema a { text-decoration: none; color: var(--color-fg-muted, var(--fg-muted)); padding: 5px 12px; border-radius: 999px; border: 1px solid transparent; }
+.sistema a:hover { color: var(--color-fg, var(--fg)); }
+.sistema a[aria-current="page"] { color: var(--color-fg, var(--fg)); background: var(--color-panel, var(--panel)); border-color: var(--color-border-line, var(--line)); }

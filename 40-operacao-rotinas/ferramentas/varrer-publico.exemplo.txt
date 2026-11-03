@@ -1,0 +1,19 @@
+# Modelo do varrer-publico.txt. Copie para varrer-publico.txt, ao lado do script, e preencha.
+# PRIVADO: o arquivo real tem nome. Nunca vai a repositório público (está no .gitignore do template).
+# O gate já lê sozinho as pastas clientes/, parceiros/ e 30-comercial/assessoria-prospects/. Aqui entra o resto.
+#
+# termo: <nome> | <quem é>     reprova onde aparecer
+# operador: <nome>             reprova em repositório; em página da casa o nome do operador é marca pública
+# permitido: <frase>           não reprova (autor publicado, crédito público)
+# ignorar: <palavra>           palavra comum que veio do nome de uma pasta
+# autor-ok: <e-mail>           único autor aceito em commit de repositório público
+# url: <endereço>              página conferida no --todos
+# sitemap: <endereço>          sitemap conferido no --todos
+# url-ok: <endereço>           peça do cliente, no nome dele, conferida à mão
+
+# termo: Nome de Quem Não Tem Pasta | ex-sócio
+# operador: seu-nome
+# permitido: nome de um autor publicado
+# autor-ok: contato@sua-empresa.com.br
+# url: https://sua-empresa.com.br/
+# sitemap: https://sua-empresa.com.br/sitemap.xml

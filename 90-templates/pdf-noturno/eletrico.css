@@ -1,0 +1,161 @@
+/* =========================================================
+   PDF NOTURNO · variante ELÉTRICA · instituída 16/10/2026, alçada {{OPERADOR}}
+   Carregar DEPOIS de noturno.css (e de noturno-celular.css, se for celular).
+   🔴 MODELO PADRÃO DE PDF DA CASA desde 16/10/2026 ({{OPERADOR}}: "quero fazer desse o nosso novo modelo de PDF").
+   Contraste alto, azul vibrante, título condensado em caixa alta. O noturno puro continua
+   disponível, mas só quando pedido.
+   Fontes: arquivos estáticos em fontes/, ao lado desta folha (copiar a pasta junto).
+   🔴 01/11/2026: nunca pelo <link> do Google Fonts. A fonte variável entra no PDF do
+   Chrome como dezenas de fontes Type3 e o PDF abre quebrado (um documento real, 30/10).
+   Não muda classe nenhuma: só cor, fonte e a capa. Acrescenta .fita e .passo.
+   Gerar SEMPRE por gerar_pdf.py, que imprime e confere fonte, capa e página em branco.
+   ========================================================= */
+
+@font-face { font-family: "Inter"; font-weight: 400; src: url("fontes/inter-400.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 600; src: url("fontes/inter-600.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-weight: 700; src: url("fontes/inter-700.woff2") format("woff2"); }
+/* o noturno.css chama "Lato" no corpo e no rodapé: aponta para a Inter */
+@font-face { font-family: "Lato"; font-weight: 400; src: url("fontes/inter-400.woff2") format("woff2"); }
+@font-face { font-family: "Lato"; font-weight: 600; src: url("fontes/inter-600.woff2") format("woff2"); }
+@font-face { font-family: "Lato"; font-weight: 700; src: url("fontes/inter-700.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-weight: 400; src: url("fontes/montserrat-600.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-weight: 600; src: url("fontes/montserrat-600.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-weight: 700; src: url("fontes/montserrat-700.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-weight: 800; src: url("fontes/montserrat-800.woff2") format("woff2"); }
+@font-face { font-family: "Anton"; font-weight: 400; src: url("fontes/anton-400.woff2") format("woff2"); }
+
+:root {
+  --fundo: #05070F;
+  --painel: #0C1122;
+  --borda: #1B2544;
+  --azul: #2F6BFF;
+  --azul-claro: #5B8CFF;
+  --branco: #FFFFFF;
+  --texto: #E4E8F3;
+  --fraco: #8A93AD;
+}
+
+@page {
+  background: #05070F;
+  @bottom-left  { content: "{{EMPRESA}}"; font-family: "Montserrat"; font-size: 6pt; letter-spacing: 1pt; color: #4A5373; }
+  @bottom-right { content: counter(page); font-family: "Montserrat"; font-size: 6pt; color: #4A5373; }
+}
+@page :first { margin: 0; @bottom-left { content: ""; } @bottom-right { content: ""; } }
+
+html, body { background: var(--fundo); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: "Inter", "Lato", sans-serif; color: var(--texto); font-size: 9.2pt; line-height: 1.5; }
+
+h1, h2 {
+  font-family: "Anton", "Oswald", Impact, sans-serif; font-weight: normal;
+  text-transform: uppercase; color: var(--branco); letter-spacing: 0.2pt; border: none;
+}
+h1 { font-size: 24pt; line-height: 1.02; margin-bottom: 3mm; }
+h2 { font-size: 19pt; line-height: 1.04; margin: 0 0 2.5mm 0; padding: 0; }
+h2 span, h1 span { color: var(--azul-claro); }
+h3 {
+  font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 7pt;
+  letter-spacing: 2.2pt; color: var(--azul-claro); margin: 4mm 0 1.5mm 0;
+}
+strong, b { color: var(--branco); }
+em, i { color: #C9D0E4; }
+a { color: var(--azul-claro); }
+.sub { color: var(--fraco); font-size: 8.6pt; margin-bottom: 4mm; line-height: 1.45; }
+li::marker { color: var(--azul); }
+code { font-family: "DejaVu Sans Mono", monospace; font-size: 7.6pt; color: #BFD0FF; }
+
+/* rótulo espaçado acima do título (o "W O R K S H O P" da referência) */
+.rotulo {
+  font-family: "Montserrat", sans-serif; font-weight: 600; font-size: 6.6pt;
+  letter-spacing: 3.4pt; text-transform: uppercase; color: var(--fraco); margin-bottom: 1.5mm;
+}
+
+/* ---------- capa: página inteira, sem margem, com a fita ----------
+   🔴 01/11/2026: tudo na capa se mede pela PÁGINA, nunca em mm fixo.
+   A altura vem de --pag-a (297mm no noturno.css, 160mm no noturno-celular.css);
+   as posições são % da capa e a largura da fita é % da página. A4 e celular saem
+   certos sem uma linha de CSS no documento: NÃO sobrescrever altura, top nem largura.
+   O defeito que isto fecha: a fita tinha 140mm, medida para a página de 90mm do
+   celular, e no A4 parava no meio da página (três PDFs em 30/10, mais um em 01/11). */
+.capa {
+  position: relative; overflow: hidden; height: var(--pag-a, 297mm); padding: 0 8mm; margin: 0;
+  background: var(--fundo); break-after: page;
+}
+.capa .miolo { position: absolute; left: 8mm; right: 8mm; top: 36.25%; }
+.capa .kicker { font-family: "Montserrat"; font-size: 6.6pt; letter-spacing: 3.4pt; color: var(--fraco); font-weight: 600; margin-bottom: 2mm; }
+.capa h1 { font-size: 36pt; line-height: 0.98; margin: 0 0 4mm 0; }
+.capa .lead { font-size: 9.6pt; color: var(--texto); line-height: 1.45; max-width: none; }
+.capa .botao {
+  display: inline-block; margin-top: 6mm; padding: 2.2mm 5mm; border-radius: 10mm;
+  background: linear-gradient(90deg, var(--azul), var(--azul-claro));
+  font-family: "Montserrat"; font-weight: 700; font-size: 7pt; letter-spacing: 1.2pt; color: var(--branco);
+}
+.capa .rodape { position: absolute; left: 8mm; right: 8mm; bottom: 9mm; margin: 0; padding-top: 2.5mm;
+  border-top: 1px solid var(--borda); font-family: "Montserrat"; font-size: 6.4pt; letter-spacing: 1pt; color: var(--fraco); }
+
+/* fita diagonal: texto repetido numa faixa azul, girada. Duas cruzadas fazem a "fita de isolamento".
+   A faixa tem 150% da largura da página e é centrada nela: cobre as duas bordas em
+   qualquer formato. A frase vai UMA vez no data-texto; a folha a repete doze vezes e
+   corta o que sobra:
+     <div class="fita a" data-texto="guia do produto · mapa da stack · "></div>
+   Texto escrito dentro da div ainda aparece, mas não se repete, e no A4 a frase curta
+   acaba antes da borda. Usar sempre data-texto. */
+.fita {
+  position: absolute; left: -25%; width: 150%; height: 6.4mm; line-height: 6.4mm; white-space: nowrap; overflow: hidden;
+  background: linear-gradient(90deg, var(--azul), var(--azul-claro));
+  font-family: "Montserrat"; font-weight: 800; font-size: 5.6pt; letter-spacing: 1.6pt; color: var(--fundo);
+  text-transform: uppercase;
+}
+.fita::before {
+  content: attr(data-texto) attr(data-texto) attr(data-texto) attr(data-texto) attr(data-texto) attr(data-texto)
+           attr(data-texto) attr(data-texto) attr(data-texto) attr(data-texto) attr(data-texto) attr(data-texto);
+}
+.fita.a { top: 18.75%; transform: rotate(-9deg); }
+.fita.b { top: 20.6%; transform: rotate(7deg); background: var(--branco); }
+
+/* ---------- blocos ---------- */
+.destaque { background: var(--painel); border-left: 2.4pt solid var(--azul); border-radius: 0 1.5mm 1.5mm 0; padding: 3mm 3.5mm; margin: 3.5mm 0; }
+.destaque .lead { font-family: "Anton", sans-serif; text-transform: uppercase; font-size: 12pt; line-height: 1.12; color: var(--branco); }
+.nota { background: transparent; border: 1px solid var(--borda); border-radius: 1.5mm; color: var(--fraco); font-size: 8pt; padding: 2.6mm 3.2mm; }
+.nota strong { color: var(--texto); }
+.ancora { font-family: "Anton", sans-serif; text-transform: uppercase; font-size: 16pt; line-height: 1.08; color: var(--branco); margin: 6mm 0; padding: 0; }
+.ancora span { color: var(--azul-claro); }
+
+table { font-size: 7.8pt; margin: 2.5mm 0; }
+th { font-family: "Montserrat"; font-size: 6pt; letter-spacing: 1.4pt; color: var(--azul-claro); border-bottom: 1px solid var(--borda); padding: 0 2mm 1.5mm 0; }
+td { border-bottom: 1px solid #121A33; padding: 1.8mm 2mm 1.8mm 0; line-height: 1.38; }
+td strong { color: var(--branco); }
+
+.numeros .n { font-family: "Anton", sans-serif; font-size: 22pt; color: var(--azul-claro); }
+.numeros .lbl { color: var(--fraco); font-size: 7pt; }
+
+.fluxo { margin: 2mm 0 2mm 0; }
+.legenda-fluxo { color: #5D6684; font-size: 6.8pt; }
+
+/* passo numerado: número grande em Anton à esquerda, texto à direita */
+.passo { display: table; width: 100%; margin: 0 0 2.6mm 0; break-inside: avoid; }
+.passo .num { display: table-cell; width: 11mm; vertical-align: top; font-family: "Anton", sans-serif; font-size: 20pt; line-height: 0.95; color: var(--azul); }
+.passo .txt { display: table-cell; vertical-align: top; }
+.passo .txt strong { display: block; font-family: "Montserrat"; font-weight: 700; font-size: 8.2pt; margin-bottom: 0.6mm; }
+
+.copiar-rotulo { color: var(--azul-claro); font-family: "Montserrat"; }
+.copiar { background: var(--painel); border-color: var(--borda); color: var(--branco); }
+
+/* coluna de estado numa tabela (01/11/2026): saiu de dois documentos reais, onde
+   era CSS do documento. <td class="estado ok">FEITO</td> · ok azul · pend cinza · dono branco */
+.estado { font-family: "Montserrat"; font-weight: 700; font-size: 6.4pt; letter-spacing: 1pt; white-space: nowrap; }
+.estado.ok { color: var(--azul-claro); }
+.estado.pend { color: var(--fraco); }
+.estado.dono { color: var(--branco); }
+
+/* lista de arquivos: nome em mono, uma linha cada */
+.arquivos { margin: 1mm 0 3mm 0; padding: 0; list-style: none; }
+.arquivos li { font-family: "DejaVu Sans Mono", monospace; font-size: 6.9pt; color: #C7D4FF; margin: 0 0 0.9mm 0; padding-left: 3mm; position: relative; }
+.arquivos li::before { content: ""; position: absolute; left: 0; top: 1.4mm; width: 1.2mm; height: 1.2mm; background: var(--azul); }
+
+/* diagrama que ocupa a página inteira: limita pela altura, não pela largura */
+.fluxo.alto { display: block; width: auto; height: 92mm; margin: 1mm auto 1mm auto; }
+
+/* página de prompt: fonte mínima de propósito. O leitor vê que é um texto para a IA, não para ler */
+.prompt { background: var(--painel); border: 1px solid var(--borda); border-radius: 1.5mm; padding: 2.4mm 2.6mm; margin-top: 1mm; }
+.prompt p { font-family: "Inter", sans-serif; font-size: 4.4pt; line-height: 1.28; color: #C7D4FF; margin: 0 0 1.1mm 0; }
+.prompt p:last-child { margin-bottom: 0; }

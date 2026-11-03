@@ -1,0 +1,22 @@
+{
+  "sobretitulo": "Template Continuum",
+  "titulo": "PDF claro",
+  "titulo_italico": "o modelo do que se assina",
+  "subtitulo": [
+    "Exemplar do modelo &middot; 1 de novembro de 2026",
+    "Markdown e capa em JSON, papel quente, Lora e Poppins"
+  ],
+  "meta": {
+    "Gerador": "build-pdf.py",
+    "Entrada": "um arquivo .md e este JSON de capa",
+    "Formato": "A4 retrato",
+    "Paletas": "ouro-rubi, grafite, vinho-sobrio",
+    "Estado": "em revisão desde 18/09/2026"
+  },
+  "rodape": {
+    "rotulo": "Regra deste modelo",
+    "frase": "Documento que se lê para assinar vai no claro.",
+    "nota": "Documento que se lê para entender vai no elétrico."
+  },
+  "cabecalho": "PDF CLARO · EXEMPLAR DO MODELO · 01/11/2026"
+}

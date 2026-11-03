@@ -1,0 +1,32 @@
+/* tokens.css — o ambiente da marca, em valores neutros de partida.
+   Troque pelos da identidade decidida em ../IDENTIDADE-VISUAL.md. Mudar um valor aqui muda todas as peças. */
+:root {
+  /* cor */
+  --noite:  #101216;
+  --carvao: #1B1E24;
+  --borda:  #2D3139;
+  --pedra:  #8B9099;
+  --osso:   #F1F2F4;
+  --papel:  #F5F5F1;
+  --tinta:  #14161A;
+  --luz:    #3B82F6;
+  --halo:   #93C5FD;
+  --luz-rgb: 59,130,246;
+  --halo-rgb: 147,197,253;
+  --osso-rgb: 241,242,244;
+  --tinta-rgb: 20,22,26;
+  --carvao-rgb: 27,30,36;
+  --noite-rgb: 16,18,22;
+  --papel-rgb: 245,245,241;
+
+  /* tipografia — o render.py sobrescreve por combinação (A, B, C, D) */
+  --f-display: 'Instrument Serif', serif;
+  --f-mono:    'JetBrains Mono', monospace;
+  --f-corpo:   'Instrument Sans', sans-serif;
+  --f-grito:   'Anton', sans-serif;
+  --f-nativa:  'Figtree', sans-serif;
+
+  /* forma */
+  --raio: 4px;
+  --margem: 84px;
+}

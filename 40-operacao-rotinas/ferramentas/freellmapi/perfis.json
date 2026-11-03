@@ -1,0 +1,37 @@
+{
+  "_formato": "NOSSO (o servidor nao tem formato de arquivo para perfis). Cada perfil e criado por API de painel: POST /api/profiles {name, empty:true} e PUT /api/profiles/:id/reorder [{modelDbId, priority, enabled}], com token de sessao do painel. modelDbId vem de GET /api/models. 'ordem' = forte -> fraco; pares (plataforma, model_id) do catalogo local na data da montagem. A cadeia so funciona para plataformas com chave cadastrada. Nome de perfil: ate 20 caracteres, [A-Za-z0-9_-].",
+  "_catalogo": "snapshot mensal v2026.10.19 do FreeLLMAPI; ids mudam, reconferir com GET /v1/models.",
+  "perfis": {
+    "continuum-forte": {
+      "uso": "rascunho de metodo interno, sintese de benchmarking publico, revisao de texto da casa (so dado P ou I)",
+      "ordem": [
+        {"plataforma": "google", "model_id": "gemini-3.8-flash", "nota": "substitui gemini-3.1-pro-preview (ausente do catalogo)"},
+        {"plataforma": "modelscope", "model_id": "deepseek-ai/DeepSeek-V4-Pro", "nota": "no catalogo so ha modelscope/router9"},
+        {"plataforma": "modelscope", "model_id": "Qwen/Qwen3-235B-A22B-Instruct-2507", "nota": "substitui qwen-3-235b (Cerebras ausente)"},
+        {"plataforma": "groq", "model_id": "openai/gpt-oss-120b"},
+        {"plataforma": "google", "model_id": "gemini-3.5-flash"}
+      ],
+      "ausentes_do_catalogo": ["gemini-3.1-pro-preview", "kimi-k2.6", "qwen-3-235b (Cerebras)"]
+    },
+    "continuum-rapido": {
+      "uso": "formatacao, resumo, conferencia de .md, extracao (so dado P ou I)",
+      "ordem": [
+        {"plataforma": "google", "model_id": "gemini-3.5-flash"},
+        {"plataforma": "groq", "model_id": "openai/gpt-oss-120b"},
+        {"plataforma": "cloudflare", "model_id": "@cf/meta/llama-3.3-70b-instruct-fp8-fast", "nota": "substitui llama-3.3-70b no Groq (ausente)"},
+        {"plataforma": "google", "model_id": "gemini-2.5-flash-lite"},
+        {"plataforma": "cloudflare", "model_id": "@cf/meta/llama-3.1-8b-instruct-fp8", "nota": "substitui llama-3.1-8b-instant (ausente)"}
+      ],
+      "ausentes_do_catalogo": ["llama-3.3-70b (Groq)", "llama-3.1-8b-instant"]
+    },
+    "continuum-codigo": {
+      "uso": "scripts N0, paginas internas, ferramentas (so dado P ou I)",
+      "ordem": [
+        {"plataforma": "modelscope", "model_id": "Qwen/Qwen3-Coder-30B-A3B-Instruct", "nota": "substitui qwen-3-coder-480b (ausente)"},
+        {"plataforma": "mistral", "model_id": "mistral-code-latest", "nota": "substitui devstral-latest (ausente em mistral)"},
+        {"plataforma": "groq", "model_id": "openai/gpt-oss-120b"}
+      ],
+      "ausentes_do_catalogo": ["qwen-3-coder-480b", "devstral-latest (plataforma mistral)"]
+    }
+  }
+}

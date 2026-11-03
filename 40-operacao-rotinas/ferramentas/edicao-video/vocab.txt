@@ -1,0 +1,9 @@
+# Termos que o Whisper costuma errar — um por linha. Entra como contexto da transcrição.
+# Troque pelos nomes e termos da sua operação: empresa, quem fala, produtos, jargão da área.
+{{EMPRESA}}
+{{OPERADOR}}
+VSL
+copy
+funil
+tráfego
+ICP

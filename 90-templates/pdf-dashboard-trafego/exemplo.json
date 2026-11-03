@@ -1,0 +1,20 @@
+{
+  "_leia": "Exemplo fictício: todos os números foram inventados, só para mostrar o formato.",
+  "arquivo": "RESULTADO-EXEMPLO",
+  "chips": ["<b>Empresa Exemplo</b> · Produto Exemplo", "Meta Ads · Instagram → WhatsApp", "<b>7 dias de teste</b> · encerrado"],
+  "periodo": "dia 1 ao dia 7",
+  "verba": 500,
+  "campanhas": [
+    {"nome": "Campanha 1", "detalhe": "dias 1 a 3 · pausada no dia 3", "gasto": 120.00, "conversas": 20, "impressoes": 6000, "alcance": 4500, "visitas": 30, "seguidores": null},
+    {"nome": "Campanha 2", "detalhe": "dias 4 a 7 · Feed, Stories e Reels", "gasto": 360.00, "conversas": 72, "impressoes": 24000, "alcance": 16000, "visitas": 90, "seguidores": 15}
+  ],
+  "serie": [
+    {"data": "dia 2", "gasto": 80.00, "conversas": 13},
+    {"data": "dia 3", "gasto": 120.00, "conversas": 20},
+    {"data": "dia 4", "gasto": 210.00, "conversas": 38},
+    {"data": "dia 5", "gasto": 300.00, "conversas": 56},
+    {"data": "dia 6", "gasto": 390.00, "conversas": 74},
+    {"data": "dia 7", "gasto": 480.00, "conversas": 92}
+  ],
+  "nota": "Exemplo fictício: todos os números foram inventados. Numa conta real, esta nota diz a fonte (Gerenciador de Anúncios, painel de resultado), a data da leitura e o que precisa de ressalva. Alcance total = soma das duas campanhas (pode haver pessoa contada nas duas)."
+}

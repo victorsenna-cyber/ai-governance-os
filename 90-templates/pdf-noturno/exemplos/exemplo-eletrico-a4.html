@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- EXEMPLAR do PDF ELÉTRICO em A4 (01/11/2026). Fala só do próprio modelo.
+     Gerar, na pasta do modelo: python3 gerar_pdf.py exemplos/exemplo-eletrico-a4.html exemplos/EXEMPLO-ELETRICO-A4.pdf -->
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>PDF elétrico A4 · exemplar do modelo</title>
+<link rel="stylesheet" href="../noturno.css">
+<link rel="stylesheet" href="../eletrico.css">
+</head>
+<body>
+
+<div class="capa">
+  <div class="fita a" data-texto="pdf elétrico · formato a4 · o modelo padrão · "></div>
+  <div class="fita b" data-texto="o que ele faz · como se gera · o estado de cada peça · "></div>
+  <div class="miolo">
+    <div class="kicker">C O N T I N U U M &nbsp; · &nbsp; E X E M P L A R &nbsp; D O &nbsp; M O D E L O</div>
+    <h1>O PDF elétrico<br>em <span>A4</span></h1>
+    <p class="lead">O modelo padrão da casa desde 16/10/2026: fundo quase preto, azul vibrante, títulos condensados em Anton e corpo em Inter. Tudo nesta peça fala dela mesma.</p>
+    <div class="botao">COMECE PELA PÁGINA 2</div>
+  </div>
+  <div class="rodape">TEMPLATE CONTINUUM · EXEMPLAR DO MODELO · NOVEMBRO DE 2026</div>
+</div>
+
+<div class="rotulo">01 · o que este modelo faz</div>
+<h2>Você pede, o modelo <span>entrega</span></h2>
+<p class="sub">Cada linha é um pedido comum de documento e o bloco do modelo que responde a ele. Nenhum bloco precisa de CSS no documento.</p>
+<table>
+  <tr><th style="width:38%">Você precisa de</th><th>O modelo entrega com</th></tr>
+  <tr><td><strong>Um documento para o leitor entender</strong></td><td>a classe estrutura: o mapa inteiro na página 2 e uma seção por caixa do mapa</td></tr>
+  <tr><td><strong>Uma capa que abre forte</strong></td><td>as duas fitas cruzadas, o título condensado e o botão que diz por onde começar</td></tr>
+  <tr><td><strong>Uma ordem de passos</strong></td><td>o passo numerado, com o número grande à esquerda</td></tr>
+  <tr><td><strong>O estado de cada peça</strong></td><td>a coluna de estado: azul feito, cinza pendente, branco depende de quem lê</td></tr>
+  <tr><td><strong>Um diagrama</strong></td><td>SVG dentro da página, na paleta elétrica, com classe própria por diagrama</td></tr>
+  <tr><td><strong>Uma frase que fica</strong></td><td>o destaque, com a barra azul à esquerda</td></tr>
+  <tr><td><strong>Abrir no celular</strong></td><td>a variante celular, em 90 × 160 mm, com a mesma capa medida pela página</td></tr>
+</table>
+<div class="destaque">
+  <span class="lead">O que muda no modelo muda num lugar só.</span>
+  <p>As três folhas de estilo e as fontes ficam em 90-templates/pdf-noturno. O documento copia as quatro coisas e não escreve CSS de capa. Defeito achado num PDF se corrige ali, no mesmo ato, e o documento é gerado de novo.</p>
+</div>
+
+<div class="page-break"></div>
+<div class="rotulo">02 · como se gera</div>
+<h2>Quatro passos, <span>uma conferência</span></h2>
+<p class="sub">O conferidor imprime pelo Chrome sem interface e reprova o que se mede. O olho confere o resto.</p>
+
+<div class="passo"><div class="num">1</div><div class="txt"><strong>Copiar o modelo</strong>o modelo-estrutura.html, as folhas noturno.css e eletrico.css e a pasta fontes, para a pasta do documento. Nunca o HTML do último cliente.</div></div>
+<div class="passo"><div class="num">2</div><div class="txt"><strong>Trocar o conteúdo</strong>mantendo a sequência: capa, o mapa inteiro, uma seção por caixa, o que falta e o que o documento não faz.</div></div>
+<div class="passo"><div class="num">3</div><div class="txt"><strong>Gerar e conferir</strong>python3 gerar_pdf.py documento.html --png pasta. Reprova fonte Type3, fita que não vai de borda a borda e página em branco.</div></div>
+<div class="passo"><div class="num">4</div><div class="txt"><strong>Olhar a capa e as páginas</strong>no PNG que o conferidor grava. Aprovado no script e feio no olho volta para o passo 2.</div></div>
+
+<svg class="fluxo" viewBox="0 0 700 150" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .e1-bx  { fill:#0B1026; stroke:#223063; stroke-width:1; }
+  .e1-bxa { fill:#0E1A44; stroke:#2F6BFF; stroke-width:1.4; }
+  .e1-bxg { fill:#0B1D2E; stroke:#5B8CFF; stroke-width:1.2; }
+  .e1-t   { font-family:Anton; font-size:12.5px; fill:#FFFFFF; text-anchor:middle; letter-spacing:.6px; }
+  .e1-s   { font-family:Inter; font-size:8.6px; fill:#BFD0FF; text-anchor:middle; }
+  .e1-k   { font-family:Montserrat; font-weight:700; font-size:7px; fill:#5B8CFF; text-anchor:middle; letter-spacing:1.4px; }
+  .e1-ar  { stroke:#3D4C86; stroke-width:1.2; fill:none; }
+  .e1-ard { stroke:#2A3560; stroke-width:1.1; fill:none; stroke-dasharray:4 3; }
+</style>
+  <defs><marker id="e1-seta" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#3D4C86"/></marker></defs>
+  <rect class="e1-bx" x="6" y="30" width="124" height="54" rx="5"/>
+  <text class="e1-k" x="68" y="48">ENTRADA</text><text class="e1-t" x="68" y="66">DOCUMENTO.HTML</text><text class="e1-s" x="68" y="78">o conteúdo</text>
+  <rect class="e1-bx" x="152" y="30" width="124" height="54" rx="5"/>
+  <text class="e1-k" x="214" y="48">MODELO</text><text class="e1-t" x="214" y="66">3 FOLHAS + FONTES</text><text class="e1-s" x="214" y="78">noturno, celular, elétrico</text>
+  <rect class="e1-bx" x="298" y="30" width="124" height="54" rx="5"/>
+  <text class="e1-k" x="360" y="48">IMPRESSÃO</text><text class="e1-t" x="360" y="66">CHROME</text><text class="e1-s" x="360" y="78">sem interface</text>
+  <rect class="e1-bxa" x="444" y="30" width="124" height="54" rx="5"/>
+  <text class="e1-k" x="506" y="48">PORTÃO</text><text class="e1-t" x="506" y="66">GERAR_PDF.PY</text><text class="e1-s" x="506" y="78">Type3, fita, página</text>
+  <rect class="e1-bxg" x="590" y="30" width="104" height="54" rx="5"/>
+  <text class="e1-k" x="642" y="48">SAÍDA</text><text class="e1-t" x="642" y="66">PDF</text><text class="e1-s" x="642" y="78">aprovado</text>
+  <line class="e1-ar" x1="130" y1="57" x2="150" y2="57" marker-end="url(#e1-seta)"/>
+  <line class="e1-ar" x1="276" y1="57" x2="296" y2="57" marker-end="url(#e1-seta)"/>
+  <line class="e1-ar" x1="422" y1="57" x2="442" y2="57" marker-end="url(#e1-seta)"/>
+  <line class="e1-ar" x1="568" y1="57" x2="588" y2="57" marker-end="url(#e1-seta)"/>
+  <path class="e1-ard" d="M506,84 V126 H214 V86" marker-end="url(#e1-seta)"/>
+  <text class="e1-s" x="360" y="120">reprovado: corrige no modelo e gera de novo</text>
+</svg>
+
+<h3>os arquivos do modelo</h3>
+<ul class="arquivos">
+  <li>noturno.css · a folha base, A4, com o tamanho da página em variável</li>
+  <li>noturno-celular.css · troca a página por 90 × 160 mm</li>
+  <li>eletrico.css · cor, fonte, capa, fita, passo, estado</li>
+  <li>fontes/ · Anton, Inter, Montserrat e Lato, estáticas</li>
+  <li>gerar_pdf.py · imprime e confere</li>
+  <li>modelo-estrutura.html · o ponto de partida de todo documento</li>
+  <li>exemplos/ · este PDF, o noturno puro e o celular</li>
+</ul>
+
+<div class="page-break"></div>
+<div class="rotulo">03 · o estado de cada peça</div>
+<h2>O que já está <span>no modelo</span></h2>
+<table>
+  <tr><th style="width:30%">Peça</th><th>O que ela resolve</th><th style="width:14%">Estado</th></tr>
+  <tr><td><strong>Capa medida pela página</strong></td><td>A4 e celular saem certos sem CSS no documento</td><td class="estado ok">FEITO 01/11</td></tr>
+  <tr><td><strong>Fita com data-texto</strong></td><td>a frase vai uma vez e a folha repete até a borda</td><td class="estado ok">FEITO 01/11</td></tr>
+  <tr><td><strong>Fontes estáticas</strong></td><td>o PDF abre sem fonte Type3</td><td class="estado ok">FEITO 01/11</td></tr>
+  <tr><td><strong>Conferência automática</strong></td><td>o gerar_pdf.py reprova antes de alguém entregar</td><td class="estado ok">FEITO 01/11</td></tr>
+  <tr><td><strong>Coluna de estado</strong></td><td>saiu do CSS de dois documentos e entrou no modelo</td><td class="estado ok">FEITO 01/11</td></tr>
+  <tr><td><strong>Exemplar da classe decisão</strong></td><td>mostrar a economia no eixo, no mesmo modelo</td><td class="estado pend">PENDENTE</td></tr>
+  <tr><td><strong>Documento antigo refeito</strong></td><td>quem recebeu a versão com a fita cortada recebe a corrigida</td><td class="estado dono">VOCÊ</td></tr>
+  <tr><td><strong>PDF publicado sem Type3</strong></td><td>o que já saiu com a fonte quebrada é gerado de novo</td><td class="estado dono">VOCÊ</td></tr>
+</table>
+
+<div class="nota"><strong>O que este exemplar não faz:</strong> não usa dado de cliente nem número de resultado. Ele mostra a forma do modelo, e o conteúdo de verdade de cada documento vem da conta.</div>
+
+</body>
+</html>

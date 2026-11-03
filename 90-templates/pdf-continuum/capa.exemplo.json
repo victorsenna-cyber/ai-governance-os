@@ -1,0 +1,22 @@
+{
+  "sobretitulo": "{{EMPRESA}}",
+  "titulo": "T\u00edtulo do documento",
+  "titulo_italico": "Segunda linha em it\u00e1lico",
+  "subtitulo": [
+    "Nome do cliente &middot; data por extenso",
+    "Descri\u00e7\u00e3o curta do que o documento \u00e9"
+  ],
+  "meta": {
+    "Origem": "de onde veio o material",
+    "Volume": "tamanho, contagem, dura\u00e7\u00e3o",
+    "Participantes": "quem estava",
+    "Produzido em": "data",
+    "\u00cdndice de IDs": "faixa de IDs, quando houver"
+  },
+  "rodape": {
+    "rotulo": "Regra deste documento",
+    "frase": "A frase que governa a leitura do arquivo.",
+    "nota": "Uma linha de ressalva, em it\u00e1lico."
+  },
+  "cabecalho": "TEXTO DO CABE\u00c7ALHO CORRIDO \u00b7 SEPARADO POR PONTOS"
+}
