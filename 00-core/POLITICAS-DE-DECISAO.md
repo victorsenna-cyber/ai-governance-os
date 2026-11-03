@@ -299,8 +299,8 @@ Cada elo é insumo do seguinte. **Pular um elo não acelera a entrega: troca a e
 
 🔴 **Nome ou dado de conta em superfície pública não abre decisão: a ordem é esta seção.** A sequência:
 
-1. **Tira do ar primeiro, de modo reversível.** Repositório vira privado. Página sai por bloqueio no servidor, sem apagar.
-2. **Limpa e republica.** Em repositório, **`git push --force` não limpa**: o commit antigo segue aberto por SHA e pela aba de atividade. O antigo fica privado, com outro nome, e o público nasce de novo, no mesmo endereço, com um commit só.
+1. **Repositório público não se bloqueia:** itera-se removendo o dado, e ele fica fora do ar só o tempo da troca. **Página com o dado sai do ar primeiro, de modo reversível:** bloqueio no servidor, sem apagar.
+2. **Limpa e republica.** Em repositório, **`git push --force` não limpa**: o commit antigo segue aberto por SHA e pela aba de atividade. A troca é um ato só: o limpo pronto e conferido primeiro; aí o antigo fica privado, com outro nome, e o público nasce de novo, no mesmo endereço, com um commit só.
 3. **Registra** no `STATUS.md`: o que vazou, desde quando, quem pode ter visto.
 4. **Dado de terceiro aberto é incidente:** registro em `80-juridico/registros/` e advogado no mesmo dia (LGPD, art. 48).
 
