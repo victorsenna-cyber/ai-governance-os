@@ -38,7 +38,7 @@ Entregar com consistência, reduzir gargalos e retrabalho, manter SLA — sem es
 |---|---|---|---|
 | SLA cumprido (sites 72h) | kits de onboarding completos (100%, `RITUAIS §4`) | semanal | handoffs quebrados · kit incompleto trava produção |
 | TTFV (Time To First Value) | onboardings em curso vs. máx. 3 (`POLITICAS §4`) | quinzenal (`RITUAIS §3.4`) | TTFV > 30 dias em 2 clientes seguidos → revisar onboarding (`POLITICAS §7`) |
-| Capacidade consumida | horas comprometidas vs. teto (`POLITICAS` §4) | semanal | > 85% por 2 semanas → 🔴 **aciona contratação** (`POLITICAS` §4-bis · `100-métodos/METODO-GATE-DE-CONTRATACAO.md`). *Redação anterior, revogada em 28/08/2026: "pausa de venda ativa".* **Nunca recusar entrega por falta de hora** |
+| Capacidade consumida | horas comprometidas vs. teto (`POLITICAS` §4) | semanal | > 85% por 2 semanas → 🔴 **aciona contratação** (`POLITICAS` §4-bis · `100-métodos/METODO-GATE-DE-CONTRATACAO.md`). *Redação anterior, revogada: "pausa de venda ativa".* **Nunca recusar entrega por falta de hora** |
 | Retrabalho / backlog | scope creep (horas consumidas vs. orçamento de cada conta, `RITUAIS §3.4`) | quinzenal | dependência de pessoa-chave · atraso crônico |
 
 ## Cadência operacional

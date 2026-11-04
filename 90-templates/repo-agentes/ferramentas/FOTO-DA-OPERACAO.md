@@ -1,7 +1,7 @@
 # FOTO DA OPERAÇÃO — o esquema
 
 > A foto é o único lugar de onde o relatório tira número. Quem a monta é um script (o **leitor** da empresa), sem IA. O agente lê, escreve, e o `verificar_relatorio.py` confere o texto contra ela.
-> Procedência: Continuum, 31/10/2026.
+> Procedência: Continuum (método).
 
 ## Campos
 

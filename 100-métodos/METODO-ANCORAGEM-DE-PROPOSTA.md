@@ -1,12 +1,12 @@
 # MÉTODO CONTINUUM DE ANCORAGEM DE PROPOSTA
 
-> **Tipo:** método · secundário: política (§0-bis, Âncora 7), gate (§2, §3), blueprint (§5) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz (camada 2, política)")* · **Instituído:** 10/08/2026 ({{OPERADOR}}) · **Atualizado:** 10/08/2026
+> **Tipo:** método · secundário: política (§0-bis, Âncora 7), gate (§2, §3), blueprint (§5) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz (camada 2, política)")* · **Origem:** casa de origem do template ({{OPERADOR}}) · **Atualizado:** 10/08/2026
 > **Abrir por momento:** decidir §0 e §0-bis · produzir §1 · conferir §2 e §3 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > **Regra de precedência:** os números que decidem vivem em `00-core/POLITICAS-DE-DECISAO.md`. Este método define **como a proposta se ancora**, não quanto custa.
 > **Depende de:** `METODO-GERACAO-DE-RESULTADOS.md` §3-quater (resultado antes de construção) · `00-core/POLITICAS-DE-DECISAO.md` §§3–5 · `CLAUDE.md` §§8–9
 > **Aplicação:** obrigatória em **toda proposta comercial** — site, Assessoria, tráfego, CORE, projeto pontual, renovação e reajuste.
 >
-> ### ⭐ De onde vêm as âncoras (instituído 12/09/2026)
+> ### ⭐ De onde vêm as âncoras (regra da casa)
 >
 > **As âncoras 1 a 6 são preenchidas pelo `METODO-DIAGNOSTICO-DE-OPERACAO.md` — o Mapa da Ordem.** Este método **consome** o diagnóstico; não o substitui.
 >
@@ -43,7 +43,7 @@ A régua-mãe de `METODO-GERACAO-DE-RESULTADOS.md` §3-quater já pergunta *qual
 
 ## 0-bis. ⭐ NO QUE O PREÇO SE ANCORA — e no que ele nunca se ancora
 
-> **Instituído em 20/08/2026 ({{OPERADOR}}), como correção de rumo.** Estava implícito no método e virou explícito porque a prática começou a escorregar.
+> **Regra da casa ({{OPERADOR}}), como correção de rumo.** Estava implícito no método e virou explícito porque a prática começou a escorregar.
 
 ### A regra
 
@@ -85,10 +85,10 @@ O piso de hora de `POLITICAS-DE-DECISAO.md` §5 (`{{VALOR_HORA_PISO}}`; nos exem
 
 ---
 
-## 0-ter. 🔴 ⭐ AS RÉGUAS ESTRUTURAIS DA PROPOSTA *(instituídas 17/09/2026, alçada {{OPERADOR}} · ampliadas 18 e 19/09)*
+## 0-ter. 🔴 ⭐ AS RÉGUAS ESTRUTURAIS DA PROPOSTA *(regra da casa)*
 
 > **O §0-bis governa em que o preço se ancora. Estas governam como a proposta se escreve.**
-> Nasceram da auditoria da proposta Conta F, onde **três pressuposições passaram pelo gate de números e chegaram ao documento** porque o gate olhava só para cifras.
+> Nasceram da auditoria de uma proposta, onde **três pressuposições passaram pelo gate de números e chegaram ao documento** porque o gate olhava só para cifras.
 >
 > **São cinco hoje:** 1 · conversão · 2 · onboarding vendido · 3 · pressuposição não vira afirmação · **4 · proposta não é carta** *(18/09)* · 🔴 **5 · a proposta é da classe DECISÃO e a economia é o eixo dela** *(19/09 — régua de blindagem: existe para impedir que a classe ESTRUTURA seja aplicada a uma proposta e leve as 7 âncoras embora)*.
 
@@ -138,7 +138,7 @@ O cliente não compra o entregável. Compra **sair do problema**, e o onboarding
 >
 > **Caso que funda a régua:** numa conta, o comprador deixou claro que não queria assumir mais uma frente para gerir. **O que mais pesa na decisão dele é saber que não vai ter trabalho** — e a primeira versão da proposta não dizia isso em lugar nenhum.
 
-#### 🔴 ⭐ RÉGUA 2-bis · O que se escreve nessa linha é o Done For You *(18/09/2026)*
+#### 🔴 ⭐ RÉGUA 2-bis · O que se escreve nessa linha é o Done For You
 
 **A régua acima diz que a pergunta precisa ser respondida. Ela não dizia com o quê.** Desde `METODO-DIRECT-RESPONSE.md` §4, diz:
 
@@ -195,7 +195,7 @@ O **Gate A** (§2) exige procedência de todo **número**. **Insuficiente.** Os 
 
 ---
 
-### 🔴 ⭐ RÉGUA 4 · PROPOSTA NÃO É CARTA. O processo da negociação nunca vira conteúdo do documento. *(instituída 18/09/2026, alçada {{OPERADOR}})*
+### 🔴 ⭐ RÉGUA 4 · PROPOSTA NÃO É CARTA. O processo da negociação nunca vira conteúdo do documento. *(regra da casa)*
 
 > **A proposta é o artefato que circula entre sócios, é lido por quem não participou de nenhuma conversa, e é reaberto meses depois. A negociação é o que acontece no WhatsApp.** Misturar as duas coisas destrói as duas.
 
@@ -240,7 +240,7 @@ Se alguma frase só faz sentido para quem acompanhou a conversa, **ela não pert
 
 **Caso fundador:** uma proposta reprovada nesta régua em revisão, com **cerca de um terço dos blocos** tendo o remetente como assunto. Reescrita sem a errata no corpo; a correção foi isolada numa mensagem separada.
 
-### 🔴 ⭐ RÉGUA 5 · A PROPOSTA É DA CLASSE **DECISÃO**, E A ECONOMIA CONTINUA SENDO O EIXO DELA *(instituída 19/09/2026, alçada {{OPERADOR}})*
+### 🔴 ⭐ RÉGUA 5 · A PROPOSTA É DA CLASSE **DECISÃO**, E A ECONOMIA CONTINUA SENDO O EIXO DELA *(regra da casa)*
 
 > **Esta régua existe para BLINDAR, não para acrescentar.** Em 19/09 instituímos três classes de documento (`90-templates/pdf-noturno/README.md` §3-bis), e uma delas — **ESTRUTURA** — tira a projeção financeira do eixo de propósito. **Aplicada a uma proposta, essa regra a destruiria.**
 
@@ -288,11 +288,11 @@ Breakeven (unidades) = Investimento total ÷ Margem de contribuição unitária
 | **Breakeven do cliente** | quantas vendas até ele empatar | ✅ sim — é o que vende |
 | **Breakeven nosso** | a partir de quantas horas a entrega dá prejuízo | ❌ não — é o que protege |
 
-**Régua de sanidade (instituída 10/08/2026, calibrável):** se o breakeven exige **mais de 30% de aumento sobre o volume atual do cliente**, a proposta está mal dimensionada. Não é impossível — é improvável o suficiente para exigir justificativa escrita. Quando o volume atual é zero, ver §4.
+**Régua de sanidade (instituída, calibrável):** se o breakeven exige **mais de 30% de aumento sobre o volume atual do cliente**, a proposta está mal dimensionada. Não é impossível — é improvável o suficiente para exigir justificativa escrita. Quando o volume atual é zero, ver §4.
 
 ---
 
-### 🔴 ⭐ Âncora 1-bis — O DENOMINADOR É A EMPRESA, NUNCA O PRODUTO LANÇADO *(instituída 18/09/2026, alçada {{OPERADOR}})*
+### 🔴 ⭐ Âncora 1-bis — O DENOMINADOR É A EMPRESA, NUNCA O PRODUTO LANÇADO *(regra da casa)*
 
 > **A Âncora 1 diz que o numerador se calcula sobre margem e não sobre ticket. Esta diz sobre O QUE se divide.** São erros diferentes e o segundo é mais caro, porque sobrevive à correção do primeiro.
 
@@ -327,11 +327,11 @@ Breakeven (unidades) = Investimento total ÷ Margem de contribuição unitária
 
 > **É a mesma coisa que o `CLAUDE.md` §9.1 já mandava — `G0 → âncoras → folha interna → veredito → proposta` — vista pelo avesso.** Propor G1 no documento do G0 não é antecipar trabalho: **é propor um preço cuja base de cálculo só existirá depois.**
 
-> ### 🔴 ⭐ Corolário (23/09/2026): o denominador conservador é GATE INTERNO — nunca argumento de venda
+> ### 🔴 ⭐ Corolário: o denominador conservador é GATE INTERNO — nunca argumento de venda
 >
 > **Testar a proposta contra a margem de um único produto é legítimo como piso** — se passa no pior denominador, passa em qualquer um. **Levar esse teste para a mensagem é o erro.** O cliente lê *"fica abaixo de [X]% do que você lucra"* como **preço relativo** e devolve o percentual como objeção.
 >
-> **Reincidência que instituiu o corolário:** a mesma conta do caso fundador, **dias depois.** A mensagem trouxe de volta a recorrência e comparou o preço da parceria com uma fração do lucro dele num lote do produto. **A resposta dele, horas depois:** que não se sentia confortável com aquela proporção do valor do projeto. **O número da objeção era o nosso.**
+> **Reincidência que instituiu o corolário:** na mesma conta, a mensagem seguinte ancorou o preço numa fração do lucro do cliente, e a objeção que voltou foi exatamente sobre aquela proporção. **O número da objeção era o nosso.**
 >
 > **Régua:** conta que existe para provar que a proposta passa na nossa régua **fica na folha interna.** Na mensagem e na folha do cliente, **o denominador é a empresa ou não aparece.**
 
@@ -347,7 +347,7 @@ Breakeven (unidades) = Investimento total ÷ Margem de contribuição unitária
 Payback (dias) = dias até a receita acumulada atingir o investimento total
 ```
 
-**Faixas de leitura (instituídas 10/08/2026, calibráveis com n≥5 casos):**
+**Faixas de leitura (calibráveis com n≥5 casos):**
 
 | Payback | Leitura | Consequência na proposta |
 |---|---|---|
@@ -433,8 +433,8 @@ Nomear, sempre, com prazo e dono:
 **Cada condição carrega o que acontece se falhar.** Não "precisamos disso": *"sem isto até tal data, a etapa X desloca N dias e a projeção deixa de valer"*.
 
 **Casos que fundam esta âncora:**
-- **Conta A:** poucos dias e uma verba pequena gastos numa campanha que levou pessoas à página e **não gerou uma inscrição**. ⚠️ **Correção de fato posterior:** a leitura original culpava o pixel; a refutação mostrou que o **tracking estava validado** e o furo era de página, não de instrumentação. **A condição de validade não era técnica — era de conversão:** projeção que assume que a página converte, sem uma inscrição para provar, não tem base.
-- **Conta H:** insumo comercial não entregue travou páginas já construídas; a data externa correu enquanto o bloqueio era do lado do cliente.
+- **Caso 1:** poucos dias e uma verba pequena gastos numa campanha que levou pessoas à página e **não gerou uma inscrição**. ⚠️ **Correção de fato posterior:** a leitura original culpava o pixel; a refutação mostrou que o **tracking estava validado** e o furo era de página, não de instrumentação. **A condição de validade não era técnica — era de conversão:** projeção que assume que a página converte, sem uma inscrição para provar, não tem base.
+- **Caso 2:** insumo comercial não entregue travou páginas já construídas; a data externa correu enquanto o bloqueio era do lado do cliente.
 - **Outra conta:** garantia ancorada em condições verificáveis do lado do cliente. O formato estava certo; é o único jeito de uma garantia agressiva não ser suicida.
 
 ---
@@ -449,7 +449,7 @@ Número único é chute com aparência de precisão. **Três cenários, sempre**
 | Provável | | | |
 | Otimista | | | |
 
-**A regra que decide (instituída 10/08/2026):** **o cenário conservador precisa ser aceitável para o cliente.** Se, no pior caso, o investimento o machuca, a proposta não deve ser feita — independentemente de quão bom seja o cenário provável. Isso não é prudência: é a diferença entre vender e criar um inadimplente com ressentimento.
+**A regra que decide (regra da casa):** **o cenário conservador precisa ser aceitável para o cliente.** Se, no pior caso, o investimento o machuca, a proposta não deve ser feita — independentemente de quão bom seja o cenário provável. Isso não é prudência: é a diferença entre vender e criar um inadimplente com ressentimento.
 
 **O conservador não é o provável menos um pouco.** É o cenário em que a hipótese central não se confirma.
 
@@ -457,9 +457,9 @@ Número único é chute com aparência de precisão. **Três cenários, sempre**
 
 ### Âncora 7 — VIABILIDADE NOSSA: o lado de dentro da proposta
 
-> **⭐ Esta âncora NUNCA sai da casa (22/08/2026, `POLITICAS` §5).** Serviço por hora não é mostrado a cliente. As âncoras 1 a 6 decidem o preço olhando para o cliente, pela **capacidade geradora de riqueza** do que se constrói. A âncora 7 apenas **verifica** se esse preço cabe na nossa operação. **Uma decide, a outra freia. Só a primeira viaja.** Antes de qualquer artefato ir a cliente, varrer por "por hora", "R$/h", "valor-hora" e horas de escopo nossas. Horas **do cliente** ficam.
+> **⭐ Esta âncora NUNCA sai da casa (`POLITICAS` §5).** Serviço por hora não é mostrado a cliente. As âncoras 1 a 6 decidem o preço olhando para o cliente, pela **capacidade geradora de riqueza** do que se constrói. A âncora 7 apenas **verifica** se esse preço cabe na nossa operação. **Uma decide, a outra freia. Só a primeira viaja.** Antes de qualquer artefato ir a cliente, varrer por "por hora", "R$/h", "valor-hora" e horas de escopo nossas. Horas **do cliente** ficam.
 
-> ⭐ **Mudança de função (28/08/2026, `METODO-GATE-DE-CONTRATACAO.md` §6): a Âncora 7 deixou de vetar por hora e passou a precificar a hora.** Capacidade vira **linha de custo**, não porta fechada. O único veto que resta nesta âncora é o do §5.2 do método de contratação: entrega que exige estratégia delegada antes do piso.
+> ⭐ **Mudança de função (`METODO-GATE-DE-CONTRATACAO.md` §6): a Âncora 7 deixou de vetar por hora e passou a precificar a hora.** Capacidade vira **linha de custo**, não porta fechada. O único veto que resta nesta âncora é o do §5.2 do método de contratação: entrega que exige estratégia delegada antes do piso.
 
 Validar contra `00-core/POLITICAS-DE-DECISAO.md` **antes** de enviar — nunca contra intuição:
 
@@ -475,7 +475,7 @@ Validar contra `00-core/POLITICAS-DE-DECISAO.md` **antes** de enviar — nunca c
 
 **Anti-padrão fundador:** um mensal baixo por escopo de agência completa ficou abaixo do valor-hora piso e comprou gargalo. **Escopo daquele tamanho é Assessoria Completa ou não é.** Proposta que só fecha se ignorarmos nossa própria régua não é proposta agressiva — é dívida com data marcada.
 
-### 7-bis. ⭐ CURVA DE CARGA — a âncora se verifica por fase, nunca na média (instituído 03/09/2026)
+### 7-bis. ⭐ CURVA DE CARGA — a âncora se verifica por fase, nunca na média (regra da casa)
 
 **Carga de conta não é constante mensal. É curva com duas fases de ordem de grandeza diferente**, e verificar o valor-hora na média das duas esconde as duas.
 
@@ -514,7 +514,7 @@ As horas do repositório foram herdadas por analogia com operação de agência 
 
 Depois das sete âncoras, antes de a proposta sair.
 
-> 🔴 **Gates D, E e F acrescentados em 17/09/2026** pelas réguas estruturais do §0-ter. **São seis, não três.**
+> 🔴 **Gates D, E e F acrescentados** pelas réguas estruturais do §0-ter. **São seis, não três.**
 
 ### Gate A — procedência de todo número
 
@@ -539,7 +539,7 @@ Escrita explicitamente, na proposta. Protege juridicamente e, contraintuitivamen
 
 Declarar em qual via a proposta está (`CLAUDE.md` §9). **Vender construtor de audiência como fonte de caixa é o loop que trava o cliente** — e nos coloca como responsáveis por um resultado que a peça não podia produzir.
 
-> ### ⭐ Exceção instituída em 13/09/2026 — funil de VSL
+> ### ⭐ Exceção instituída — funil de VSL
 >
 > **O funil de VSL pode ser declarado via de CAIXA mesmo sem venda anterior no 1-a-1**, desde que os três gates de `METODO-FUNIL-DE-VSL.md` §2 estejam cumpridos e **escritos na proposta**:
 >
@@ -551,7 +551,7 @@ Declarar em qual via a proposta está (`CLAUDE.md` §9). **Vender construtor de 
 
 ---
 
-### 🔴 Gate D — procedência de toda AFIRMAÇÃO, não só dos números *(17/09/2026)*
+### 🔴 Gate D — procedência de toda AFIRMAÇÃO, não só dos números
 
 **Varredura frase a frase**, nunca por amostragem. Cada afirmação sobre a realidade do cliente responde: **quem disse isso, e onde?**
 
@@ -561,7 +561,7 @@ Declarar em qual via a proposta está (`CLAUDE.md` §9). **Vender construtor de 
 
 **Os quatro padrões de escape** (§0-ter, régua 3): qualificador colado em resposta ambígua · generalização de um caso para a empresa · estado futuro narrado como presente · juízo vestido de constatação.
 
-### 🔴 Gate E — a proposta tem arquitetura de conversão *(17/09/2026)*
+### 🔴 Gate E — a proposta tem arquitetura de conversão
 
 - curva de tensão mapeada, com pico identificado
 - **pivô-mestre apontável por linha, e um só**
@@ -570,11 +570,11 @@ Declarar em qual via a proposta está (`CLAUDE.md` §9). **Vender construtor de 
 - gate anti-slop rodado: zero travessão, sem regra de três forçada, ritmo variado
 - fecho que recoloca a decisão
 
-### 🔴 Gate F — o onboarding está vendido *(17/09/2026)*
+### 🔴 Gate F — o onboarding está vendido
 
 O bloco 5 da folha do cliente existe e responde as cinco perguntas do §0-ter, régua 2. **A quinta, quanto tempo do cliente isso consome, é a que reprova sozinha se faltar.**
 
-🔴 ⭐ **Acrescentado em 18/09/2026 — a quinta se responde com ATIVO, não com estimativa** (§0-ter, régua 2-bis). **Dois itens novos, e os dois reprovam:**
+🔴 ⭐ **Acrescentado — a quinta se responde com ATIVO, não com estimativa** (§0-ter, régua 2-bis). **Dois itens novos, e os dois reprovam:**
 
 - [ ] **Cada linha do bloco nomeia o que chega pronto**, não o que vamos fazer. Verbo no particípio, do lado do cliente: *"você recebe X pronto"*. **Frase que começa em "nós vamos" é atividade, e atividade não responde a pergunta.**
 - [ ] **Todo item prometido como pronto já existe, ou seu custo de construção está na folha interna.** Prometer o degrau 3 e entregar o degrau 1 é o erro que o cliente detecta na primeira semana — e é também como a margem morre sem ninguém ver.
@@ -588,7 +588,7 @@ Cinco condições de recusa. Qualquer uma reprova a proposta na forma em que est
 1. **O breakeven exige mais de 30% de aumento sobre o volume atual** e não há justificativa escrita.
 2. **O custo da inação é menor que o preço.**
 3. **O cenário conservador machuca o cliente.**
-4. 🔴 **REESCRITA EM 28/08/2026 — falta de hora deixou de ser condição de recusa.** Redação revogada: *"não temos capacidade de entrega (POLÍTICAS §4 · CLAUDE.md §8)"*. **Nova redação: a entrega exige delegar pensamento estratégico a quem ainda não pode recebê-lo** (`METODO-GATE-DE-CONTRATACAO.md` §3 e §5.2). Escopo que estoura o teto de horas **aciona contratação**, não recusa — hora é insumo comprável, a forma de pensar não é.
+4. 🔴 **REESCRITA — falta de hora deixou de ser condição de recusa.** Redação revogada: *"não temos capacidade de entrega (POLÍTICAS §4 · CLAUDE.md §8)"*. **Nova redação: a entrega exige delegar pensamento estratégico a quem ainda não pode recebê-lo** (`METODO-GATE-DE-CONTRATACAO.md` §3 e §5.2). Escopo que estoura o teto de horas **aciona contratação**, não recusa — hora é insumo comprável, a forma de pensar não é.
 5. **A proposta só fecha violando nossa própria régua** de hora, margem ou desconto.
 
 **Recusar não é perder a venda.** Em três dos cinco casos o caminho correto é **reduzir escopo e propor a versão que fecha** — a proposta menor que se sustenta vale mais que a maior que quebra no mês 3, porque a primeira renova.
@@ -603,9 +603,9 @@ Quando não há volume atual, ticket validado ou dado de conversão, **o breakev
 
 | Situação | Proposta correta |
 |---|---|
-| Oferta nunca vendida | **G0 + G1 primeiro**: validar no 1-a-1, custo baixo, prazo curto. O ativo vem depois, com dado. ⭐ **Exceção 13/09/2026: funil de VSL com os 3 gates cumpridos** (`METODO-FUNIL-DE-VSL.md` §2) — a congruência passa a ser provada por método, não por venda anterior |
+| Oferta nunca vendida | **G0 + G1 primeiro**: validar no 1-a-1, custo baixo, prazo curto. O ativo vem depois, com dado. ⭐ **Exceção: funil de VSL com os 3 gates cumpridos** (`METODO-FUNIL-DE-VSL.md` §2) — a congruência passa a ser provada por método, não por venda anterior |
 | Ticket não validado | vender a validação, não a escala |
-| Sem base quente | não propor máquina de tráfego — é a ponte antes da travessia (§3-quater). ⭐ **Exceção 13/09/2026: o funil de VSL nasce para público frio e não depende de base quente** — mas depende dos 3 gates, e **o gate de caixa é o que mais reprova aqui**: quem não tem base costuma não ter capital de teste |
+| Sem base quente | não propor máquina de tráfego — é a ponte antes da travessia (§3-quater). ⭐ **Exceção: o funil de VSL nasce para público frio e não depende de base quente** — mas depende dos 3 gates, e **o gate de caixa é o que mais reprova aqui**: quem não tem base costuma não ter capital de teste |
 
 Isto é a régua-mãe aplicada: **caixa agora → prova → construção → escala.** Proposta para n=0 que começa na construção inverte a ordem e produz o loop de verba.
 
@@ -693,8 +693,8 @@ Traduz as âncoras 1 a 6 para a linguagem dele. **Omite a âncora 7 inteira** �
 | **Desconto antes de ser pedido** | sintoma de proposta sem ancoragem, não de generosidade |
 | **Vender audiência como caixa** | cria o loop de verba e nos deixa responsáveis pelo impossível |
 | **Proposta que só fecha violando nossa régua** | dívida com data marcada |
-| **Recusar venda por falta de hora** *(28/08/2026)* | trata insumo comprável como restrição natural — recusa receita para proteger um teto que se remove com dinheiro |
-| **Delegar estratégia para ganhar tempo** *(28/08/2026)* | vende o produto errado: o cliente comprou uma forma de pensar e recebeu outra pessoa pensando |
+| **Recusar venda por falta de hora** | trata insumo comprável como restrição natural — recusa receita para proteger um teto que se remove com dinheiro |
+| **Delegar estratégia para ganhar tempo** | vende o produto errado: o cliente comprou uma forma de pensar e recebeu outra pessoa pensando |
 
 ---
 

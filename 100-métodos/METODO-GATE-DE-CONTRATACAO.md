@@ -1,6 +1,6 @@
 # MÉTODO CONTINUUM DE GATE DE CONTRATAÇÃO
 
-> **Tipo:** política · secundário: gate (§3), registro (§7) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz (camada 2, política)")* · **Instituído:** 28/08/2026 ({{OPERADOR}}) · **Alçada:** {{OPERADOR}}
+> **Tipo:** política · secundário: gate (§3), registro (§7) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz (camada 2, política)")* · **Origem:** casa de origem do template ({{OPERADOR}}) · **Alçada:** {{OPERADOR}}
 > **Revoga:** a leitura de que falta de hora reprova uma proposta. **Nunca mais se recusa venda por teto de horas.**
 > **Depende de:** `00-core/POLITICAS-DE-DECISAO.md` §§1-5 · `100-métodos/METODO-ANCORAGEM-DE-PROPOSTA.md` §Âncora 7 e §3 · `CLAUDE.md` §§8-9
 > **Aplicação:** obrigatória sempre que uma entrega, proposta ou frente exigir mais horas do que existem.
@@ -78,7 +78,7 @@ Seis critérios. **Não é impressão — cada um é observável, e a ausência 
 
 ## 4. Gatilhos de contratação
 
-### 4.1 Gatilho primário — antecipação por cobertura de pipeline *(instituído 28/08/2026)*
+### 4.1 Gatilho primário — antecipação por cobertura de pipeline *(regra da casa)*
 
 > **Cobertura de pipeline qualificado ≥ 3× a meta de venda do mês → contrata, antes de a venda fechar.**
 

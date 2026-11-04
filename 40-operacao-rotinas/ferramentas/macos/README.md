@@ -20,6 +20,7 @@ Depois: `LEIA-ME-TEMPLATE.md` §3 (o dia 1) e o roteiro de entrevista no `README
 | `openwa/capturar.bat` | `openwa/capturar.sh` (abre o Docker Desktop com `open -a Docker`) |
 | Chrome em `C:\Program Files\…` | `navegador.py` acha o Chrome em `/Applications/…`; ou `export CHROME=<caminho>` |
 | `servir.py --atalho` (atalho `.lnk` na área de trabalho) | sem equivalente automático: `python3 servir.py` abre o painel no navegador; para um "app", **Automator → Aplicativo → Executar Shell Script** com a mesma linha |
+| atalhos na área de trabalho (OpenWA, Painel de Resultado, tela offline) | os mesmos `python3 …`; para um ícone, Automator → Aplicativo → Executar Shell Script, ou alias no shell |
 | PowerShell nos READMEs | os mesmos comandos em bash (os READMEs trazem os dois) |
 | `winget install Gyan.FFmpeg` | `brew install ffmpeg` |
 | CRLF | o repo é LF (`.gitattributes`); nada a fazer |

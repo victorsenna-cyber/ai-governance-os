@@ -314,4 +314,4 @@ Se quiser que eu faça com você, o valor deste diagnóstico abate integralmente
 - [ ] folha interna separada do que vai ao cliente
 
 ---
-*Template criado em 12/09/2026.*
+*Template criado.*

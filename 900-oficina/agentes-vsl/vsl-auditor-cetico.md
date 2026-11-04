@@ -11,7 +11,7 @@ model: sonnet
 
 Para cada momento em que você desconfia, se entedia ou sente que estão vendendo cedo demais: a linha, o que passou pela sua cabeça, e se a objeção é respondida mais adiante na peça.
 
-### Segunda leitura — retenção, linha a linha 🟡 *(em teste desde 08/10/2026)*
+### Segunda leitura — retenção, linha a linha 🟡 *(em teste)*
 
 Leia de novo perguntando só uma coisa: **esta linha me pagou para eu ficar na próxima?** Pagar é entregar um pedaço de valor (um "como", um número, uma prova) ou abrir uma pergunta que a peça vai responder. Marque **cada trecho em que você pegaria o celular**: mistério sem conteúdo, repetição, aquecimento, *"o que eu vou te mostrar vai mudar sua vida"* sem mostrar nada (a "cópia arrogante").
 

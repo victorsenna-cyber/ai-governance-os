@@ -1,10 +1,10 @@
 # PDF NOTURNO — segundo gerador de PDF do repositório
 
-> **Instituído em:** 18/09/2026 · **Alçada:** {{OPERADOR}}
+> **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > **Gatilho:** entregar o `.md` puro faz a formatação sair toda diferente quando aberto num bloco de notas. A visualização precisa ser preservada via PDF.
 > **Convive com** `90-templates/pdf-continuum/` — não o substitui. Ver §3.
 >
-> 🔴 ⭐ **Ampliado em 19/09/2026, alçada {{OPERADOR}}** (o modelo de PDF virou canônico, sem eliminar o outro, com uma distinção entre eles). **O que virou canônico não é a folha de estilo — essa já era desde 18/09. É a ARQUITETURA DE CONTEÚDO do PDF de funil (exemplar da classe ESTRUTURA): mapa inteiro primeiro, cada seção detalhando uma caixa do mapa, diagrama abrindo cada seção.** Isso é uma **classe de documento**, e agora são três. **§3-bis é a parte nova deste arquivo.**
+> 🔴 ⭐ **Ampliado, alçada {{OPERADOR}}** (o modelo de PDF virou canônico, sem eliminar o outro, com uma distinção entre eles). **O que virou canônico não é a folha de estilo — essa já era desde 18/09. É a ARQUITETURA DE CONTEÚDO do PDF de funil (exemplar da classe ESTRUTURA): mapa inteiro primeiro, cada seção detalhando uma caixa do mapa, diagrama abrindo cada seção.** Isso é uma **classe de documento**, e agora são três. **§3-bis é a parte nova deste arquivo.**
 
 ---
 
@@ -30,7 +30,7 @@ pasta-do-documento/
 python3 90-templates/pdf-noturno/gerar_pdf.py pasta-do-documento/documento.html --png pasta-do-documento/
 ```
 
-🔴 ⭐ **Todo PDF desta pasta sai pelo `gerar_pdf.py` (01/11/2026).** Ele imprime pelo Chrome e **reprova**, com código 1, o PDF com fonte Type3, com fita da capa que não chega às duas bordas com texto, ou com página em branco. **Reprovado não se entrega.** Para conferir um PDF já pronto: `python3 gerar_pdf.py --conferir arquivo.pdf --html documento.html`. Depois de aprovado, olhar o PNG da capa: o script confere o que se mede, o olho confere o resto.
+🔴 ⭐ **Todo PDF desta pasta sai pelo `gerar_pdf.py`.** Ele imprime pelo Chrome e **reprova**, com código 1, o PDF com fonte Type3, com fita da capa que não chega às duas bordas com texto, ou com página em branco. **Reprovado não se entrega.** Para conferir um PDF já pronto: `python3 gerar_pdf.py --conferir arquivo.pdf --html documento.html`. Depois de aprovado, olhar o PNG da capa: o script confere o que se mede, o olho confere o resto.
 
 **🔴 Não se escreve CSS novo por documento.** Classe nova que sirva a mais de um documento entra aqui; ajuste de um documento só não entra em lugar nenhum — **se precisou, quase sempre o conteúdo é que está errado.**
 
@@ -46,23 +46,23 @@ python3 90-templates/pdf-noturno/gerar_pdf.py pasta-do-documento/documento.html 
 | `.numeros` | três colunas com `.n` (número grande) e `.lbl` |
 | `.fluxo` | SVG de diagrama, largura total · `.legenda-fluxo` abaixo |
 | `.page-break` | quebra de página |
-| `.copiar` + `.copiar-rotulo` *(12/10/2026)* | **bloco de texto que o leitor vai copiar**: roteiro, mensagem pronta, legenda. O rótulo acima diz onde o texto entra. Um bloco por coisa a copiar |
+| `.copiar` + `.copiar-rotulo` | **bloco de texto que o leitor vai copiar**: roteiro, mensagem pronta, legenda. O rótulo acima diz onde o texto entra. Um bloco por coisa a copiar |
 
 ---
 
-### Variante celular *(12/10/2026)*
+### Variante celular
 
 `noturno-celular.css`, carregado **depois** do `noturno.css`. Troca a página A4 por **90 × 160 mm** e ajusta capa e corpo para leitura em tela de telefone. **Usar quando quem recebe só tem o celular**, que é o caso de boa parte das contas. Não muda cor, fonte nem classe.
 
 **Primeira aplicação:** um PDF de roteiros de uma conta (classe ESTRUTURA), com a fonte em HTML ao lado.
 
-### ⭐ Variante elétrica: o MODELO PADRÃO de PDF da casa *(16/10/2026, alçada {{OPERADOR}})*
+### ⭐ Variante elétrica: o MODELO PADRÃO de PDF da casa *(regra da casa)*
 
 `eletrico.css`, carregado **depois** do `noturno.css` (e do `noturno-celular.css`, se for celular). Fundo `#05070F`, azul `#2F6BFF → #5B8CFF`, branco puro; títulos em **Anton** caixa alta, rótulos em **Montserrat** espaçada, corpo em **Inter** (as três de `fontes/`, arquivos estáticos). Acrescenta `.fita` (faixa diagonal da capa), `.rotulo`, `.passo`, `.arquivos` e `.fluxo.alto` (diagrama limitado pela altura da página).
 
-🔴 **Padrão desde 16/10/2026, para todo PDF que sai do gerador noturno** ({{OPERADOR}}). ~~Só para material de marca; documento de conta e de método no noturno puro~~ *(vigente por algumas horas em 16/10, revogado pela mesma alçada)*. **O noturno puro continua disponível, mas só quando o {{OPERADOR}} pedir.** Carga padrão: `noturno.css` → (`noturno-celular.css`, se celular) → `eletrico.css`.
+🔴 **Padrão, para todo PDF que sai do gerador noturno** ({{OPERADOR}}). ~~Só para material de marca; documento de conta e de método no noturno puro~~ *(vigente por algumas horas em 16/10, revogado pela mesma alçada)*. **O noturno puro continua disponível, mas só quando o {{OPERADOR}} pedir.** Carga padrão: `noturno.css` → (`noturno-celular.css`, se celular) → `eletrico.css`.
 
-🔴 ⭐ **A capa se mede pela página, e nada dela se sobrescreve no documento (01/11/2026, alçada {{OPERADOR}}).** A capa elétrica foi desenhada na página de celular, com medidas fixas: fita de 140 mm, capa de 160 mm. Em A4 a fita parava no meio da página. Cada documento A4 remendava altura e posição e esquecia a largura, e o remendo viajava para o documento seguinte, que copiava o HTML do anterior: vários PDFs seguidos. O defeito voltou mais de uma vez em pouco tempo, porque o erro foi corrigido no PDF e o modelo continuou quebrado. **Hoje:**
+🔴 ⭐ **A capa se mede pela página, e nada dela se sobrescreve no documento (regra da casa).** A capa elétrica foi desenhada na página de celular, com medidas fixas: fita de 140 mm, capa de 160 mm. Em A4 a fita parava no meio da página. Cada documento A4 remendava altura e posição e esquecia a largura, e o remendo viajava para o documento seguinte, que copiava o HTML do anterior: vários PDFs seguidos. O defeito voltou mais de uma vez em pouco tempo, porque o erro foi corrigido no PDF e o modelo continuou quebrado. **Hoje:**
 - `noturno.css` e `noturno-celular.css` declaram o tamanho da página em `--pag-l` e `--pag-a`; a capa usa essa altura, as posições são % da capa e a fita tem 150% da largura da página, centrada. **A4 e celular saem certos sem uma linha de CSS no documento.** Quem muda o `@page size` muda as duas variáveis no mesmo ato.
 - **A frase da fita vai uma vez no `data-texto`**, terminando em `" · "`; a folha a repete doze vezes e corta o que sobra. Texto dentro da `div` ainda aparece, mas não se repete.
 - **As fontes são arquivos estáticos em `fontes/`, declarados no `eletrico.css`.** Nunca pelo link do Google Fonts: a fonte variável entra no PDF do Chrome como Type3 e o PDF abre quebrado (caso real).
@@ -74,7 +74,7 @@ python3 90-templates/pdf-noturno/gerar_pdf.py pasta-do-documento/documento.html 
 
 **Primeira aplicação:** um PDF de mapa de um repositório (classe ESTRUTURA, celular).
 
-### Gerar no Windows, sem WeasyPrint *(12/10/2026 · 01/11/2026: pelo `gerar_pdf.py`)*
+### Gerar no Windows, sem WeasyPrint *(pelo `gerar_pdf.py`)*
 
 No Windows, o WeasyPrint costuma não carregar. O `gerar_pdf.py` usa o Chrome sem interface, que gera o mesmo resultado, incluindo o fundo da página e o rodapé numerado, e imprime num caminho temporário sem acento, porque o Chrome falha com caminho acentuado vindo do Git Bash. Precisa de PyMuPDF (`python3 -m pip install pymupdf`). ⚠️ **Texto copiado de PDF leva as quebras de linha da página.** Se o leitor vai colar o texto em outro aplicativo, mandar também o texto puro pela conversa.
 
@@ -89,13 +89,13 @@ No Windows, o WeasyPrint costuma não carregar. O `gerar_pdf.py` usa o Chrome se
 
 > ⭐ **A régua: documento que se lê para ENTENDER vai no noturno. Documento que se lê para ASSINAR vai no continuum.**
 >
-> ⚠️ **O `pdf-continuum` está marcado para revisão** ({{OPERADOR}}, 18/09) — ele é derivado de um PDF de conta específica e nunca foi reescrito como template de casa.
+> ⚠️ **O `pdf-continuum` está marcado para revisão** ({{OPERADOR}}) — ele é derivado de um PDF de conta específica e nunca foi reescrito como template de casa.
 
 ---
 
 ## 3-bis. 🔴 ⭐ AS TRÊS CLASSES DE DOCUMENTO
 
-> **Instituída em 19/09/2026.** A §3 escolhe o **gerador**. Esta escolhe **o que o documento faz** — e é a decisão que vem primeiro, porque duas das três classes rodam no mesmo gerador e saem completamente diferentes.
+> **Regra da casa.** A §3 escolhe o **gerador**. Esta escolhe **o que o documento faz** — e é a decisão que vem primeiro, porque duas das três classes rodam no mesmo gerador e saem completamente diferentes.
 
 ### A régua, em uma pergunta
 
@@ -185,9 +185,9 @@ No Windows, o WeasyPrint costuma não carregar. O `gerar_pdf.py` usa o Chrome se
 
 ### Modelo de partida
 
-`90-templates/pdf-noturno/modelo-estrutura.html` — esqueleto comentado da classe ESTRUTURA, **na linha elétrica desde 01/11/2026**: capa com as duas fitas, fontes locais, os quatro padrões de SVG na paleta elétrica e com classe prefixada por diagrama. **Copiar e trocar o conteúdo; não recomeçar do zero, e não partir do HTML do último cliente.**
+`90-templates/pdf-noturno/modelo-estrutura.html` — esqueleto comentado da classe ESTRUTURA, **na linha elétrica**: capa com as duas fitas, fontes locais, os quatro padrões de SVG na paleta elétrica e com classe prefixada por diagrama. **Copiar e trocar o conteúdo; não recomeçar do zero, e não partir do HTML do último cliente.**
 
-### Exemplares, para VER cada linha antes de escolher *(01/11/2026)*
+### Exemplares, para VER cada linha antes de escolher
 
 Em `exemplos/`, cada um com o HTML ao lado e falando só do próprio modelo, sem dado de cliente:
 
@@ -201,4 +201,4 @@ Gerar de novo, na pasta do modelo: `python3 gerar_pdf.py exemplos/<arquivo>.html
 
 ---
 
-*Instituído em 18/09/2026. Classes de documento instituídas em 19/09/2026, alçada {{OPERADOR}}. Roteado em `CLAUDE.md` §7, com gate em `00-core/COMPLIANCE-DE-OUTPUT.md`.*
+*Regra da casa. Classes de documento: regra da casa. Roteado em `CLAUDE.md` §7, com gate em `00-core/COMPLIANCE-DE-OUTPUT.md`.*

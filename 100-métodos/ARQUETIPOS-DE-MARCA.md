@@ -1,7 +1,7 @@
 # ARQUÉTIPOS DE MARCA · os doze, da fala ao ambiente
 
 > **Tipo:** framework
-> **Instituído em:** 18/10/2026 · **Alçada:** {{OPERADOR}} · 🟡 **provisório até o primeiro kit aprovado por um cliente** (`CLAUDE.md` §7.1, item 4)
+> **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}} · 🟡 **provisório até o primeiro kit aprovado por um cliente** (`CLAUDE.md` §7.1, item 4)
 > **Decisão de alçada:** todo pedido de "fazer os pilares" de uma conta nova envolve também uma análise hipotética arquetípica, para sair um kit de marca completo, com fontes/tipografia, cores e demais elementos, com o arquétipo dominante e os outros.
 > **Base:** os doze arquétipos de Margaret Mark e Carol S. Pearson (*The Hero and the Outlaw*, 2001). 🔴 **A coluna de ambiente (cor, tipografia, arte) é heurística da casa**, tirada da leitura de referências visuais de criativos e de uma conta. **Não é Mark e Pearson.** Vira régua com dado: a coluna `Arquétipo` do registro de peças de cada conta.
 > **Quem usa:** `METODO-KIT-DE-MARCA.md` (etapa da leitura). Sozinho, este arquivo não produz nada.

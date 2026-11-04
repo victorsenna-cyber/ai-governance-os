@@ -1,7 +1,7 @@
 # MÉTODO — Transcrição de Áudio
 
 > **Tipo:** método
-> **Instituído em:** 18/10/2026 (a regra) · **ampliado em 21/10/2026** (ferramentas declaradas, README por pasta, modo incremental) · **Alçada:** {{OPERADOR}} · ✅ vigente
+> **Origem:** casa de origem do template (a regra) · **ampliado** (ferramentas declaradas, README por pasta, modo incremental) · **Alçada:** {{OPERADOR}} · ✅ vigente
 > **Aplica-se a:** todo áudio de WhatsApp (e nota de voz) de cliente, prospect, parceiro ou nosso que entra no repositório. Call gravada com mais de uma voz segue para a destilação depois de transcrita (`METODO-DESTILACAO-DE-CALLS.md`).
 > **Ferramenta:** `40-operacao-rotinas/ferramentas/transcrever-audio.py`
 > **Decisões de alçada:** transcrições de áudios do WhatsApp nunca vão para pasta diferente da do contexto; toda transcrição é feita com o mesmo nome e ao lado do áudio correspondente, ipsis litteris, sempre (18/10) · cada transcrição fica num arquivo paralelo ao áudio, em `.md`; a regra do repositório declara métodos e ferramentas (sempre locais, de preferência) e há um `README` em cada pasta de contexto/WhatsApp com o último áudio transcrito, de onde a próxima transcrição parte (21/10) · não se refazem transcrições já feitas: só se transcreve o que ainda não foi transcrito, quando houver requisição (21/10)
@@ -94,7 +94,7 @@ Reprova sozinho, e está na tabela do `METODO-GATE-DE-CONGRUENCIA.md` §3:
 
 ## 7. Fronteiras
 
-- **Transcrição × captura automática (24/10/2026):** o áudio que chega pela captura do WhatsApp (`40-operacao-rotinas/ferramentas/openwa/`) é transcrito na mesma rodada, sem pedido à parte. **Apertar o botão Capturar WhatsApp é o pedido.** Vale o resto da regra inteira: o áudio fica em `01 - contexto/OpenWA/áudios/`, o `.md` vai ao lado com o mesmo nome, o README é atualizado, nada se refaz e só ferramenta local. O texto também entra embutido na conversa (`OpenWA/texto/`), e a íntegra é sempre o `.md` ao lado do áudio.
+- **Transcrição × captura automática:** o áudio que chega pela captura do WhatsApp (`40-operacao-rotinas/ferramentas/openwa/`) é transcrito na mesma rodada, sem pedido à parte. **Apertar o botão Capturar WhatsApp é o pedido.** Vale o resto da regra inteira: o áudio fica em `01 - contexto/OpenWA/áudios/`, o `.md` vai ao lado com o mesmo nome, o README é atualizado, nada se refaz e só ferramenta local. O texto também entra embutido na conversa (`OpenWA/texto/`), e a íntegra é sempre o `.md` ao lado do áudio.
 
 - **Transcrição × destilação:** este método entrega o `.md` íntegro. Ler, classificar e citar é `METODO-DESTILACAO-DE-CALLS.md`.
 - **Transcrição × legenda de vídeo:** a legenda de vídeo curto tem cadeia própria (`METODO-EDICAO-DE-VIDEO-CURTO.md`, `40-operacao-rotinas/ferramentas/edicao-video/`).

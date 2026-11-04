@@ -1,6 +1,6 @@
 # MÉTODO CONTINUUM — GESTÃO DE TRÁFEGO PAGO
 
-> **Tipo:** método · secundário: política (§2.2, §7.3, §7.5), gate (§1, §3) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz (camada 2 — política)")* · **Criado em:** 2026-07-08 · **Status:** vigente, pendente de calibração com 1º cliente
+> **Tipo:** método · secundário: política (§2.2, §7.3, §7.5), gate (§1, §3) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz (camada 2 — política)")* · **Criado em:** 2026-07-08 · **Status:** vigente, pendente de calibração com 1º cliente
 > **Abrir por momento:** decidir §2.2 · produzir §3–§7 · conferir §1 e §3 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > Fonte única do método de tráfego. Skills que o carregam: `10-skills/gestao-trafego.skill.md` (execução) + `10-skills/heads/head-trafego.skill.md` (persona).
 > Cadeia endurecida: **Projeto → Objetivo → Página → Criativo → Campanha → Tracking → Gestão → Relatório.** Nenhuma fase pula gate.
@@ -70,7 +70,7 @@ Expectativa contratada com o cliente **por estágio** — protege a relação e 
 
 ## 3. FASE 3 — PÁGINA DE VENDAS/CAPTURA (gate estrutural)
 
-- Toda página nova ou reformada segue **`METODO-PAGINA-DE-VENDAS.md`** (via `10-skills/pagina-de-vendas.skill.md`). Copy cruza a árvore de copy do `CLAUDE.md` §6.1.
+- Toda página nova ou reformada segue **o circuito de página** (`00-core/roteador/ARVORE-ESCRITA.md` §6, entrada pelo `10-skills/gerador-web-designer-senior-continuum/`). Copy cruza a árvore de copy do `CLAUDE.md` §6.1.
 - **Checklist de aprovação de página para mídia** (reprova em qualquer item → campanha não sobe):
   1. Promessa da página = promessa do anúncio (coerência de mensagem, message match literal no above the fold);
   2. 1 página = 1 oferta = 1 CTA dominante;
@@ -87,9 +87,9 @@ Expectativa contratada com o cliente **por estágio** — protege a relação e 
 
 ### 4.1 Matriz de criativos (obrigatória antes de produzir)
 
-> ⭐ **Quando o destino é uma VSL (instituído 13/09/2026):** o par a casar **não é anúncio ↔ primeira dobra da página, é anúncio ↔ LEAD da VSL** — a página é só a moldura do player. **A lead é o segundo contato do funil e o ponto de maior variância** (`METODO-FUNIL-DE-VSL.md` §5.1): mesma copy, trocando só a lead, uma versão dá prejuízo e a outra dá lucro.
+> ⭐ **Quando o destino é uma VSL (regra da casa):** o par a casar **não é anúncio ↔ primeira dobra da página, é anúncio ↔ LEAD da VSL** — a página é só a moldura do player. **A lead é o segundo contato do funil e o ponto de maior variância** (`METODO-FUNIL-DE-VSL.md` §5.1): mesma copy, trocando só a lead, uma versão dá prejuízo e a outra dá lucro.
 >
-> ⚠️ **O que se casa é a MENSAGEM, não o rosto** *(08/10/2026)*: o fim do anúncio tem que encaixar no que a lead diz no começo; **quem aparece no anúncio não precisa ser o expert da VSL.** Relato de fonte externa, não medido por nós: criativos narrados por outra pessoa que não o expert foram os melhores de ofertas que escalaram. Trocar quem fala é teste de execução legítimo.
+> ⚠️ **O que se casa é a MENSAGEM, não o rosto**: o fim do anúncio tem que encaixar no que a lead diz no começo; **quem aparece no anúncio não precisa ser o expert da VSL.** Relato de fonte externa, não medido por nós: criativos narrados por outra pessoa que não o expert foram os melhores de ofertas que escalaram. Trocar quem fala é teste de execução legítimo.
 >
 > **Consequência para a matriz abaixo:** cada ângulo de criativo precisa ter **uma lead correspondente**, e o teste é do par, nunca do criativo isolado. **E a ordem de otimização inverte a intuição: mexe-se no topo — anúncio e lead — antes de qualquer ajuste no meio ou no fim da VSL.**
 
@@ -98,11 +98,11 @@ Preencher `matriz-criativos.md` cruzando:
 - **Ângulos** (mín. 4 por oferta): dor · desejo/aspiração · prova/case · objeção invertida · urgência legítima · custo de não agir · comparação com alternativa.
 - **Formatos** (mín. 3): imagem estática · vídeo curto (talking head/UGC-like) · carrossel · vídeo demonstração.
 - **Hooks** (mín. 3 por ângulo): a primeira linha e os primeiros 3s decidem a **captura**; o **gancho completo** sustenta até o corpo e pode passar disso. Medir captura não é fixar duração. Testar hooks é mais barato que testar conceitos. **Abertura composta:** `100-métodos/METODO-EMPILHAMENTO-DE-HOOKS.md` (vale para peça nova, não exige vencedor).
-- ⭐ **Abertura segmentada — a técnica que executa o princípio 1 ("o criativo é a segmentação")** *(08/10/2026)*: o mesmo corpo com aberturas que chamam subpúblicos diferentes (*"se você é X…"* / *"se você é Y…"* — por profissão, momento, região, dor). Com targeting broad, **é o criativo que separa os públicos, e a variação revela o subpúblico de CPA mais barato.** Fonte: relato externo, não medido por nós. Conta como **teste de componente** (abertura), não conceito novo.
+- ⭐ **Abertura segmentada — a técnica que executa o princípio 1 ("o criativo é a segmentação")**: o mesmo corpo com aberturas que chamam subpúblicos diferentes (*"se você é X…"* / *"se você é Y…"* — por profissão, momento, região, dor). Com targeting broad, **é o criativo que separa os públicos, e a variação revela o subpúblico de CPA mais barato.** Fonte: relato externo, não medido por nós. Conta como **teste de componente** (abertura), não conceito novo.
 
 **Volume mínimo de lançamento: 8-12 criativos genuinamente distintos** (ângulo diferente ≠ cor diferente — o sistema fingerprinta o criativo; variação superficial é lida como duplicata e compete consigo mesma).
 
-**Campos obrigatórios por linha da matriz (instituídos 20/09/2026):** `ID` · `ID da base` quando for derivado · `tipo de teste` (conceito · componente · combinação) · `componente alterado` · `hipótese em uma frase`.
+**Campos obrigatórios por linha da matriz (regra da casa):** `ID` · `ID da base` quando for derivado · `tipo de teste` (conceito · componente · combinação) · `componente alterado` · `hipótese em uma frase`.
 
 > **Conceito novo e variação de execução contam em colunas separadas.** Doze variações do mesmo pivô não são doze criativos distintos, e variação com hipótese escrita não é "cor diferente". Derivação de base vencedora roda por `100-métodos/METODO-LATERALIZACAO-DE-CRIATIVOS.md`; redação nova de anúncio DR roda por `100-métodos/METODO-CONSTRUCAO-DE-CRIATIVOS-DR.md`.
 
@@ -114,13 +114,13 @@ Cada rodada de criativos: ~70% iterações de vencedores (novos hooks/formatos s
 
 ### 4.3 Produção e compliance
 
-- Copy de criativo: `10-skills/copywriter-senior-continuum/` (módulos 03, 04 e 06) + `100-métodos/METODO-CONSTRUCAO-DE-CRIATIVOS-DR.md` quando for anúncio de resposta direta + voz do cliente (skill de voz se existir; senão, amostras no briefing) + `clientes/<cliente>/lexico-icp/`. **Nunca** `voz-operador` para cliente. *(Ponteiro corrigido em 20/09/2026: `copywriting-fable5` e `stop-slop` são legado em `10-skills/_legado/`.)*
+- Copy de criativo: `10-skills/copywriter-senior-continuum/` (módulos 03, 04 e 06) + `100-métodos/METODO-CONSTRUCAO-DE-CRIATIVOS-DR.md` quando for anúncio de resposta direta + voz do cliente (skill de voz se existir; senão, amostras no briefing) + `clientes/<cliente>/lexico-icp/`. **Nunca** `voz-operador` para cliente. *(Ponteiro corrigido: `copywriting-fable5` e `stop-slop` são legado em `10-skills/_legado/`.)*
 - Conformidade com políticas de anúncio do canal ANTES de subir (nicho sensível → checar políticas específicas; reprovação em série machuca a conta).
 - **Nomenclatura padrão:** `[cliente]-[ângulo]-[formato]-[hook]-[versão]` (ex.: `contaa-dor-video-h1-v2`). Sem nomenclatura, não há leitura de dados.
 
 ### 4.4 Fadiga e reposição
 
-> 🔴 **Hook rate alto e venda baixa pede diagnóstico de mídia primeiro — não presumir que a causa é o gancho. E nenhuma base se classifica como vencedora sem o critério da conta** (`METODO-LATERALIZACAO-DE-CRIATIVOS.md` §4). *(migrado do roteador em 26/09/2026 — era afirmação ÓRFÃ: existia só no `CLAUDE.md` §6, e se perderia na compactação)*
+> 🔴 **Hook rate alto e venda baixa pede diagnóstico de mídia primeiro — não presumir que a causa é o gancho. E nenhuma base se classifica como vencedora sem o critério da conta** (`METODO-LATERALIZACAO-DE-CRIATIVOS.md` §4).
 
 
 Sinal de fadiga: frequência > 3,5-4,0 **e** CTR caindo ≥ 20% vs. média própria. Ação: pausar criativo e repor da fila. **Fila de reposição: mín. 4 criativos prontos a cada início de mês.** Cadência de refresh: rodada nova a cada 2-4 semanas conforme verba.
@@ -138,16 +138,16 @@ Sinal de fadiga: frequência > 3,5-4,0 **e** CTR caindo ≥ 20% vs. média próp
 ### 5.2 Meta Ads (canal padrão do nosso ICP)
 
 - **Estrutura:** 1 campanha por objetivo · 1-3 conjuntos no máximo · **6-20 criativos ativos por conjunto** · targeting broad ou Advantage+ **de público** (restrições mínimas: idade/região quando o negócio exige, ex.: local). Advantage+ de **posicionamento** é proibido (linha abaixo).
-- 🔴 ⭐ **Posicionamento: personalizado, só Instagram Feed, Stories e Reels, sempre** *(regra da casa, 14/10/2026, corrigida em 22/10/2026, alçada {{OPERADOR}})*. Todo conjunto de anúncios na Meta sobe com **posicionamento manual** e três caixas marcadas: **Instagram Feed**, **Instagram Stories** e **Instagram Reels** (na API: `publisher_platforms ["instagram"]`, `instagram_positions ["stream","story","reels"]`; sufixo `igfsr` no nome do conjunto). Sai todo o resto: Facebook, Messenger, WhatsApp, Threads, Audience Network e, dentro do Instagram, perfil, Explorar e pesquisa. **Posicionamento Advantage+ (automático) é proibido.**
-  - ~~Só Instagram Stories e Reels, feed desmarcado~~ *(vigente de 14/10 a 22/10/2026)*. **Correção de alçada do {{OPERADOR}}, 22/10:** a regra é que entram, sempre, feed, stories e reels, e somente no Instagram; o erro de escrita foi tratar "story/reel" como "uma coisa só". "Story/reel" é **um grupo de arte** (o 9:16), não a lista de posicionamentos.
+- 🔴 ⭐ **Posicionamento: personalizado, só Instagram Feed, Stories e Reels, sempre** *(regra da casa, alçada {{OPERADOR}})*. Todo conjunto de anúncios na Meta sobe com **posicionamento manual** e três caixas marcadas: **Instagram Feed**, **Instagram Stories** e **Instagram Reels** (na API: `publisher_platforms ["instagram"]`, `instagram_positions ["stream","story","reels"]`; sufixo `igfsr` no nome do conjunto). Sai todo o resto: Facebook, Messenger, WhatsApp, Threads, Audience Network e, dentro do Instagram, perfil, Explorar e pesquisa. **Posicionamento Advantage+ (automático) é proibido.**
+  - ~~Só Instagram Stories e Reels, feed desmarcado~~. **Correção de alçada do {{OPERADOR}}:** a regra é que entram, sempre, feed, stories e reels, e somente no Instagram; o erro de escrita foi tratar "story/reel" como "uma coisa só". "Story/reel" é **um grupo de arte** (o 9:16), não a lista de posicionamentos.
   - **Em cada anúncio vão as duas artes, e as duas são veiculadas:** a 4:5 no grupo **Feeds** da personalização por posicionamento (é a que aparece no feed do Instagram) e a 9:16 no grupo **Stories e Reels**. Nenhuma é a outra esticada ou cortada. **Anúncio que só tem a 9:16 não sobe em conjunto com feed:** produz-se a 4:5 antes.
   - **Conferência antes de publicar:** no conjunto, a lista de posicionamentos mostra só os três; no anúncio, a prévia do feed mostra a 4:5 inteira, e a de Stories e a de Reels mostram a 9:16 inteira, sem corte de texto na zona livre do topo e da base (§4.3).
   - **Conjunto já no ar fora da regra:** corrigir reinicia o aprendizado, então é decisão do {{OPERADOR}}, registrada no `LOG-DECISOES.md` do cliente. Conjunto novo não tem exceção.
   - *Por quê:* decisão do {{OPERADOR}}. Leitura nossa, a confirmar: concentra a verba onde o nosso ICP consome e onde a arte 9:16 foi feita para caber, e tira a leitura de resultado da média com posicionamentos que não testamos.
-- 🔴 ⭐ **Objetivo: campanha para WhatsApp sobe em Engajamento, por prioridade** *(regra da casa, 27/10/2026, alçada {{OPERADOR}})*. Decisão de alçada: toda campanha para WhatsApp tem como prioridade o objetivo de engajamento. Vale para toda campanha cujo resultado é a conversa no WhatsApp, chegue ela direto ou passando por uma página.
+- 🔴 ⭐ **Objetivo: campanha para WhatsApp sobe em Engajamento, por prioridade** *(regra da casa, alçada {{OPERADOR}})*. Decisão de alçada: toda campanha para WhatsApp tem como prioridade o objetivo de engajamento. Vale para toda campanha cujo resultado é a conversa no WhatsApp, chegue ela direto ou passando por uma página.
   - **WhatsApp direto (clique para WhatsApp):** Engajamento → local da conversão **Apps de mensagem / WhatsApp** → meta **maximizar conversas**. Na API: `OUTCOME_ENGAGEMENT`, `destination_type WHATSAPP`, `optimization_goal CONVERSATIONS`, `promoted_object {page_id}`. Pede a página do cliente com o WhatsApp Business ligado.
   - **Página que leva ao WhatsApp** (sem WhatsApp Business, ou página como ponte): Engajamento → local da conversão **Site** → meta **conversões** no evento **Contact** do pixel, disparado no clique do botão de WhatsApp. Na API: `OUTCOME_ENGAGEMENT`, `destination_type WEBSITE`, `optimization_goal OFFSITE_CONVERSIONS`, `promoted_object {pixel_id, custom_event_type: CONTACT}`. **Nunca otimizar pelo clique ou pela visualização da página:** isso entrega quem passeia, não quem chama.
-  - **Ordem, por resultado e por custo** *(decisão de {{OPERADOR}}, 27/10: a prioridade de Engajamento em campanhas para o WhatsApp é por resultados e custos)*: **Engajamento > Leads** e **Engajamento > Vendas (conversão)**. Leads ou Vendas só com o motivo escrito no `LOG-DECISOES.md` do cliente. **Tráfego nunca.**
+  - **Ordem, por resultado e por custo** *(decisão de {{OPERADOR}}: a prioridade de Engajamento em campanhas para o WhatsApp é por resultados e custos)*: **Engajamento > Leads** e **Engajamento > Vendas (conversão)**. Leads ou Vendas só com o motivo escrito no `LOG-DECISOES.md` do cliente. **Tráfego nunca.**
   - **O objetivo não se troca depois:** a Meta recusa mudar o objetivo de campanha que já tem conjunto (erro `1885073`). Objetivo errado = campanha nova.
   - *Por quê:* **resultado e custo**. Em Engajamento a conversa sai com mais volume e mais barata do que em Leads ou em Vendas. 🟡 **A medir com dado nosso:** custo por conversa em Engajamento contra Leads e Vendas, na primeira conta que rodar mais de um. O número calibra a regra e não a reabre sem dado. *O erro que a regra evita:* subir em Tráfego ou em Leads por volume e ter de refazer a campanha, porque o objetivo não se troca depois.
 - 🔴 **Conta herdada: inventário de status antes de criar qualquer coisa**. Ler campanha, conjunto **e** anúncio com `status` e `effective_status`, e não só o gasto. O que não é nosso fica **pausado nos três níveis**, e o inventário é registrado no `LOG-DECISOES.md`. Anúncio ativo sob campanha pausada é bomba-relógio: basta alguém ligar a campanha. *Por quê:* gasto zero não prova nada. Um anúncio pode estar ativo e com verba sob uma campanha pausada, e um registro que só lê o gasto não o enxerga.
@@ -172,7 +172,7 @@ Sinal de fadiga: frequência > 3,5-4,0 **e** CTR caindo ≥ 20% vs. média próp
 
 `[cliente]-[canal]-[objetivo]-[funil]-[data]` · conjuntos: `[público/estrutura]` · anúncios: nomenclatura §4.3. Registrada em `estrutura-campanhas.md` do cliente.
 
-**Campos da conta (14/10/2026):** uma conta pode acrescentar campos à convenção (`[produto]` na campanha quando há mais de uma oferta; `[linha]` de arte no anúncio, depois do hook, quando a peça sai em duas linhas visuais), desde que **sempre na mesma posição, sempre preenchidos e declarados no `estrutura-campanhas.md` dela**. Campo opcional quebra a leitura por posição. Valores fixos da casa: funil `topo · meio · fundo`, data `aaaammdd` do início da veiculação, sem hífen dentro de campo. **Nome não muda depois de o anúncio rodar:** mudança de peça é anúncio novo, com versão nova. Exemplo completo: `90-templates/trafego-cliente/estrutura-campanhas.md`.
+**Campos da conta:** uma conta pode acrescentar campos à convenção (`[produto]` na campanha quando há mais de uma oferta; `[linha]` de arte no anúncio, depois do hook, quando a peça sai em duas linhas visuais), desde que **sempre na mesma posição, sempre preenchidos e declarados no `estrutura-campanhas.md` dela**. Campo opcional quebra a leitura por posição. Valores fixos da casa: funil `topo · meio · fundo`, data `aaaammdd` do início da veiculação, sem hífen dentro de campo. **Nome não muda depois de o anúncio rodar:** mudança de peça é anúncio novo, com versão nova. Exemplo completo: `90-templates/trafego-cliente/estrutura-campanhas.md`.
 
 ---
 
@@ -242,7 +242,7 @@ Checklist de subida — **tudo verde antes do primeiro real**:
 - **Estrutura do mensal:** (1) meta vs. realizado (a linha assinada em §2.2.6); (2) funil completo com custo por etapa; (3) o que aprendemos (criativos/ângulos vencedores e mortos); (4) decisões tomadas e por quê (extrato do log); (5) plano do próximo ciclo; (6) o que precisamos do cliente.
 - **Métricas proibidas como manchete:** impressões, alcance, cliques soltos. Manchete é sempre resultado de negócio (leads qualificados, vendas, custo por resultado, receita).
 - Números da plataforma **e** da fonte de verdade, lado a lado, com divergência explicada.
-- Documento interno de governança não cruza stop-slop; **relatório de cliente cruza** (`stop-slop.skill.md` — é peça para humano).
+- Documento interno de governança não cruza o gate anti-slop; **relatório de cliente cruza** (`10-skills/copywriter-senior-continuum/referencias/04-gate-antislop.md` — é peça para humano).
 
 ---
 

@@ -1,6 +1,6 @@
 # Kit de marca · blueprint
 
-> **Tipo:** blueprint · **Método:** `100-métodos/METODO-KIT-DE-MARCA.md` · **Framework:** `100-métodos/ARQUETIPOS-DE-MARCA.md` · **Instituído:** 18/10/2026
+> **Tipo:** blueprint · **Método:** `100-métodos/METODO-KIT-DE-MARCA.md` · **Framework:** `100-métodos/ARQUETIPOS-DE-MARCA.md` · **Origem:** casa de origem do template
 
 | Arquivo | O que é |
 |---|---|

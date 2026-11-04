@@ -1,8 +1,8 @@
 # MÉTODO — Arqueologia de ICP (a língua de quem ouve)
 
-> **Tipo:** método · secundário: framework (§1–§2), gate (§5) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: sem campo)*
+> **Tipo:** método · secundário: framework (§1–§2), gate (§5) *(reclassificado por auditoria independente de leitura integral; antes: sem campo)*
 > **Abrir por momento:** decidir §1–§2 · produzir §3 · conferir §5 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
-> **Instituído em:** 10/09/2026 · **Gatilho:** perda de uma conta (Conta B) · **Dono:** {{OPERADOR}}
+> **Gatilho:** a perda de uma conta por copy escrita antes do diagnóstico · **Dono:** {{OPERADOR}}
 > **Registro do caso:** o encerramento da conta e a auditoria independente do circuito de copy, ambos no histórico da casa.
 > **Irmão simétrico:** `100-métodos/Método de extração de linguagem/` (MEL). **O MEL extrai quem assina. Este extrai quem ouve.**
 
@@ -10,11 +10,11 @@
 
 ## 0. POR QUE ESTE MÉTODO EXISTE
 
-Tínhamos, em 09/09/2026, duas skills de voz completas (`voz-operador` com corpus medido, `voz-<cliente>` com corpus hasheado), um gate anti-slop, um gate de voz com veto, um papel de arqueólogo, e um método de destilação de calls com 13 eixos e IDs estáveis.
+Tínhamos duas skills de voz completas (`voz-operador` com corpus medido, `voz-<cliente>` com corpus hasheado), um gate anti-slop, um gate de voz com veto, um papel de arqueólogo, e um método de destilação de calls com 13 eixos e IDs estáveis.
 
 **E escrevemos uma série de peças para um público que não existia.**
 
-O ICP real estava documentado no próprio repositório, com ID: sinais sobre o poder de compra e a experiência do público, e uma frase vívida de dor, relatada pela equipe da conta. Essa frase foi marcada como a melhor do material colhido. Semanas depois, saiu um roteiro que pressupunha um público com o perfil oposto.
+O ICP real estava documentado no próprio repositório: sinais de poder de compra, experiência do público e uma frase de dor relatada pela equipe da conta, marcada como a melhor do material colhido. O roteiro que saiu depois pressupunha o público oposto.
 
 **Três buracos produziram isso, e nenhum deles era falta de dado:**
 
@@ -96,7 +96,7 @@ Registrar por frase: o texto literal · a fonte (qual canal, qual data) · o gra
 | **Desejo** | como ele descreve o depois | promessa, imagem de resultado |
 | **Objeção** | como ele justifica não agir | coreografia de objeção, quebra |
 | **Cena e rotina** ⭐ | **o que ele faz, com quem convive, que hora acorda, o que já tentou** | **é o balde que não existia, e é onde a invenção mora** |
-| **Conclusão** ⭐ *(18/10/2026)* | **a causa que ele dá ao fracasso, e quem ele culpa**: a vontade da pessoa, o preparo, o engajamento, ele mesmo, o processo | **a crença-alvo do contrarian do lead** — o lead existe para derrubar uma conclusão (§6-quater) |
+| **Conclusão** ⭐ | **a causa que ele dá ao fracasso, e quem ele culpa**: a vontade da pessoa, o preparo, o engajamento, ele mesmo, o processo | **a crença-alvo do contrarian do lead** — o lead existe para derrubar uma conclusão (§6-quater) |
 
 > **O quarto balde é a razão deste método.** Os três primeiros já existiam na arqueologia da skill de copy. **Cena nunca teve balde, nunca teve ID, e por isso era o único material que se fabricava sem acionar nenhum alarme.**
 
@@ -148,7 +148,7 @@ Roda como **passe 11** da skill de copy (`copywriter-senior-continuum` v3.1) e v
 | 3 | Banco com **menos de 3 frases de grau `D`** | peça sai **marcada como rascunho**, e a marca vai na entrega ao cliente, não só no arquivo interno |
 | 4 | **Banco inexistente** | **não se escreve.** A entrega é a lista do que colher |
 | 5 | Lacuna declarada | **não substitui origem.** Declarar que falta não aprova a frase |
-| 6 | 🔴 **Crença-alvo do lead com uma fonte só, ou tirada do fecho de um caso isolado** *(18/10/2026)* | **reprova sozinha.** A crença que o contrarian derruba é a de maior contagem no balde `conclusão` (§6-quater); frase única serve de cor de cena, nunca de alvo |
+| 6 | 🔴 **Crença-alvo do lead com uma fonte só, ou tirada do fecho de um caso isolado** | **reprova sozinha.** A crença que o contrarian derruba é a de maior contagem no balde `conclusão` (§6-quater); frase única serve de cor de cena, nunca de alvo |
 
 > **O teste, e ele é de dez segundos:** apontar **quem disse aquilo e onde**. Se a resposta for *"é plausível"*, a cena sai.
 
@@ -156,7 +156,7 @@ Roda como **passe 11** da skill de copy (`copywriter-senior-continuum` v3.1) e v
 
 ## 6. A REGRA DE ORDEM (a que teria mudado o desfecho)
 
-**Nenhuma regra deste método teria salvado a Conta B.** A copy saiu **antes do diagnóstico**, por pedido urgente aceito, e **gate nenhum opera sobre material que não foi colhido.**
+**Nenhuma regra deste método teria salvado aquela conta.** A copy saiu **antes do diagnóstico**, por pedido urgente aceito, e **gate nenhum opera sobre material que não foi colhido.**
 
 > **Pedido urgente de cliente não altera a ordem de dependência da entrega.** Copy depende de ICP. ICP depende de diagnóstico.
 >
@@ -176,7 +176,7 @@ Roda como **passe 11** da skill de copy (`copywriter-senior-continuum` v3.1) e v
 
 ## 6-bis. ⭐ O MESMO CORPUS TEM GRAUS DIFERENTES CONFORME O BANCO QUE ALIMENTA
 
-**Achado da verificação de 10/09/2026** (replay do circuito de copy v3.1 contra um caso real).
+**Achado de uma verificação do circuito de copy contra um caso real.**
 
 A fala de um cliente sobre a própria dor é:
 
@@ -187,11 +187,11 @@ A fala de um cliente sobre a própria dor é:
 
 **Regra:** ao colher, declarar **para qual banco** a frase vai antes de atribuir o grau. A mesma citação pode entrar duas vezes, em bancos diferentes, com graus diferentes — e isso não é duplicação, é a coisa certa.
 
-## 6-ter. ⭐ O QUE A IA PODE FAZER AQUI — e o que reprova na hora (20/09/2026)
+## 6-ter. ⭐ O QUE A IA PODE FAZER AQUI — e o que reprova na hora
 
 > **Instituído depois de ler um material de terceiro que pede à IA um perfil do público em sete camadas, com instrução de soar específico e visceral e de devolver uma frase de efeito por dor e uma cena de vida.**
 
-🔴 **Um artefato assim é grau `I` por construção — e é exatamente o que custou a Conta B.** Ele não se usa como insumo, por melhor que pareça. **E ele parece muito bom: é essa a armadilha.** Texto gerado com instrução de ser visceral soa mais verdadeiro que fala real, porque fala real é hesitante, repetitiva e sem clímax.
+🔴 **Um artefato assim é grau `I` por construção — e é exatamente o que custou aquela conta.** Ele não se usa como insumo, por melhor que pareça. **E ele parece muito bom: é essa a armadilha.** Texto gerado com instrução de ser visceral soa mais verdadeiro que fala real, porque fala real é hesitante, repetitiva e sem clímax.
 
 ### 6-ter.1 A régua, em uma linha
 
@@ -221,7 +221,7 @@ A fala de um cliente sobre a própria dor é:
 
 ⚠️ **A camada 3 é a que mais atrai invenção, e é onde o dano é maior.** *"O que ela não admite em voz alta"* é um convite explícito a preencher com plausível. **Se não foi dito, fica como lacuna nomeada** (`LACUNAS.md`), com a fonte que a resolveria.
 
-## 6-quater. 🔴 ⭐ A CRENÇA-ALVO DO LEAD — derivar, contar, perguntar (instituído 18/10/2026, alçada {{OPERADOR}})
+## 6-quater. 🔴 ⭐ A CRENÇA-ALVO DO LEAD — derivar, contar, perguntar (regra da casa)
 
 **Caso que instituiu:** uma VSL em produção. O lead derrubava uma crença com fonte `D`, literal, aprovada pelo auditor de procedência. Mas era o **fecho de um caso** de **um** entrevistado, e uma versão mais geral já estava no corpus, destilada em call anterior e nunca levada ao banco. Ao ler o lead em voz alta, quem assina a peça corrigiu na hora: a conclusão real do público era outra, e pouca gente pensava como a frase dizia. **Procedência estava certa; representatividade, não.**
 
@@ -253,4 +253,4 @@ Veto: §5, regra 6.
 
 ---
 
-**Base:** encerramento da Conta B e auditoria do circuito de copy (10/09/2026) · `100-métodos/METODO-DESTILACAO-DE-CALLS.md` Etapa 7 (eixo 4) · `100-métodos/Método de extração de linguagem/` §2.5.3 (fronteira do espelho) · `10-skills/copywriter-senior-continuum/` v3.1 (passe 11) · `CLAUDE.md` §6, §6.1
+**Base:** a perda de uma conta e a auditoria do circuito de copy que a seguiu · `100-métodos/METODO-DESTILACAO-DE-CALLS.md` Etapa 7 (eixo 4) · `100-métodos/Método de extração de linguagem/` §2.5.3 (fronteira do espelho) · `10-skills/copywriter-senior-continuum/` v3.1 (passe 11) · `CLAUDE.md` §6, §6.1

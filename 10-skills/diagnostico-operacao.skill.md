@@ -1,6 +1,6 @@
 # SKILL — Diagnóstico de Operação (Mapa da Ordem)
 
-> **Tipo:** skill de execução · **Criado em:** 12/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** skill de execução · **Alçada:** {{OPERADOR}}
 > **Destino no repo:** `10-skills/diagnostico-operacao.skill.md`
 > **Escrita para ser executada por qualquer modelo** (Claude, Codex, GPT).
 > **Governada por:** `100-métodos/METODO-DIAGNOSTICO-DE-OPERACAO.md`. Em divergência, o método prevalece.
@@ -130,4 +130,4 @@ Dois arquivos:
 - [ ] nenhuma promessa de faturamento, prazo de retorno ou "R$ X em Y dias"
 
 ---
-*Criado em 12/09/2026. Cruza com `stop-slop.skill.md` (gate anti-tells) e `voz-operador.skill.md` quando o texto for assinado pelo {{OPERADOR}}.*
+*Criado. Cruza com `10-skills/copywriter-senior-continuum/referencias/04-gate-antislop.md` (gate anti-tells) e `voz-operador.skill.md` quando o texto for assinado pelo {{OPERADOR}}.*

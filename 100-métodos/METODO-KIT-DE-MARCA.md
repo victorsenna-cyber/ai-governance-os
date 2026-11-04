@@ -1,8 +1,8 @@
 # MÉTODO — Kit de Marca
 
 > **Tipo:** método
-> **Instituído em:** 18/10/2026 · **Alçada:** {{OPERADOR}} · 🟡 **vigência provisória até o primeiro kit aprovado por um cliente** (`CLAUDE.md` §7.1, item 4). Roteado desde o primeiro dia (REGRA Nº 1).
-> **Decisão de alçada ({{OPERADOR}}, 18/10/2026):** o pedido "faça os pilares", para cliente novo ou qualquer outro, envolve também uma análise arquetípica hipotética que entrega um kit completo: fontes/tipografia, cores, arquétipo dominante e os demais, no molde da identidade da casa, em `945-branding/`.
+> **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}} · 🟡 **vigência provisória até o primeiro kit aprovado por um cliente** (`CLAUDE.md` §7.1, item 4). Roteado desde o primeiro dia (REGRA Nº 1).
+> **Decisão de alçada ({{OPERADOR}}):** o pedido "faça os pilares", para cliente novo ou qualquer outro, envolve também uma análise arquetípica hipotética que entrega um kit completo: fontes/tipografia, cores, arquétipo dominante e os demais, no molde da identidade da casa, em `945-branding/`.
 > **Nome:** *kit de marca*, não *mídia kit*. No mercado, mídia kit é o material de audiência para patrocinador (alcance, público, preço de publi), e cliente influenciador entenderia errado.
 > **Carrega:** `100-métodos/ARQUETIPOS-DE-MARCA.md` (framework) · `100-métodos/METODO-PRANCHA-DE-ESCOLHA.md` (a escolha) · `90-templates/kit-de-marca/` (blueprint e gerador) · motor de render da casa em `945-branding/01 - identidade visual/sistema/`.
 > **Caso de origem:** a identidade da casa (pasta `945-branding/`).

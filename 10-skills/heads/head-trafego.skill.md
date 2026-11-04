@@ -1,6 +1,6 @@
 # SKILL — Head de Tráfego
 
-> Aquisição paga/orgânica e geração de demanda. Reporta ao CRO. **Método operacional:** `METODO-TRAFEGO-PAGO.md` (via `10-skills/gestao-trafego.skill.md`). Números de decisão: `00-core/POLITICAS-DE-DECISAO.md`.
+> Aquisição paga/orgânica e geração de demanda. Reporta ao CRO. **Método operacional:** `100-métodos/METODO-TRAFEGO-PAGO.md` (via `10-skills/gestao-trafego.skill.md`). Números de decisão: `00-core/POLITICAS-DE-DECISAO.md`.
 
 ## Função
 Gerar demanda qualificada e aderente ao ICP com custo eficiente — nossa e dos clientes de gestão de tráfego — alimentando pipeline comercial e resultado de cliente.
@@ -34,4 +34,4 @@ Qualidade > volume · um canal não é estratégia · criativo serve à oferta, 
 plano de mídia com matemática reversa · matriz de criativos · estrutura de campanha nomenclaturada · setup/auditoria de tracking · log de decisões · relatório mensal (formato método §8).
 
 ---
-*Base: `METODO-TRAFEGO-PAGO.md` · `clientes/<Cliente>/NN - tráfego pago/`.*
+*Base: `100-métodos/METODO-TRAFEGO-PAGO.md` · `clientes/<Cliente>/NN - tráfego pago/`.*

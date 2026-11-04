@@ -1,6 +1,6 @@
 # MÉTODO — EMPILHAMENTO DE HOOKS
 
-> **Tipo:** método · secundário: gate (§9), blueprint (§8), framework (§1–§3) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método (camada 2)")* · **Elaborado em:** 18/09/2026 · **Promovido em:** 20/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** método · secundário: gate (§9), blueprint (§8), framework (§1–§3) *(reclassificado por auditoria independente de leitura integral; antes: "método (camada 2)")* · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > **Abrir por momento:** decidir §2 e §4 · produzir §6 · conferir §9 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > **Autoria:** ensinamento das transcrições de Felipe Nonino (F1/F2) · sistematização e revisão internas.
 > 🔴 **Status: vigente para uso, com verificação em caso real pendente** (`CLAUDE.md` §7.1, regra 4). Primeira aplicação obrigatória: o primeiro funil DR de uma conta, antes do primeiro real de mídia. **Promover estabelece uso; não converte o relato da fonte em resultado validado por nós.**

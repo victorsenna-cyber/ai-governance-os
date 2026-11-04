@@ -3,7 +3,7 @@
 > **Tipo:** método · secundário: blueprint (§4–§6), gate (§7), política (§3)
 > **Abrir por momento:** decidir §1 e §3 · produzir §2 e §5 · conferir §7 *(mapa proposto — conferir no primeiro uso)*
 > Ativo-mãe de prospecção ativa fria. Estrutura de 7 fases (o processo) + linguagem Fable 5 (a copy).
-> **Régua única de copy: `10-skills/copywriting-fable5.skill.md`.** A voz de quem envia ({{OPERADOR}}, vendedor ou agente) adapta o tom; a régua não muda.
+> **Régua única de copy: `10-skills/copywriter-senior-continuum/referencias/02-regua-da-linguagem.md`.** A voz de quem envia ({{OPERADOR}}, vendedor ou agente) adapta o tom; a régua não muda.
 > Portável: serve para o produto de hoje (sites) e para qualquer produto futuro (SDR AI, Assessoria, {{EMPRESA}} OS). Troca-se o conteúdo, nunca a estrutura.
 > Revisado contra a régua de copy (registro no rodapé).
 
@@ -117,7 +117,7 @@ Faz sentido [a solução, na metáfora condutora]?
 
 ## 8. Relação com o sistema
 
-- Régua de copy: `10-skills/copywriting-fable5.skill.md` (única).
+- Régua de copy: `10-skills/copywriter-senior-continuum/referencias/02-regua-da-linguagem.md` (única).
 - Instância viva (sites): `30-comercial/prospeccao-sites/` (scripts por voz, follow-up, objeções, qualificação, conversão).
 - Fonte do princípio inbound: `METODO-SALESFORCE-INBOUND.md`.
 - Venda consultiva e ancoragem: `30-comercial/oferta.md`.

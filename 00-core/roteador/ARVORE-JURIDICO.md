@@ -1,6 +1,6 @@
 # ÁRVORE — JURÍDICO
 
-> **Tipo:** trilho · **Instituído:** 26/09/2026 (onda 5 da auditoria de roteamento de 26/09/2026) · **Alçada:** {{OPERADOR}}
+> **Tipo:** trilho · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > **Carrega-se quando:** o pedido é **contrato, cláusula, formalização, aditivo, disputa, ameaça, risco jurídico, LGPD, registro de caso, societário ou CNPJ.**
 > **Réguas transversais** (§8 REGRAS Nº 0, 1, 2 · procedência · ordem) **valem aqui e não se repetem.**
 
@@ -26,7 +26,7 @@
 | Sinais | Carga, na ordem do processo | 🔴 Veto |
 |---|---|---|
 | contrato, cláusula, formalização, assinatura, aditivo, LGPD, societário, CNPJ | `80-juridico/POLITICAS-JURIDICAS.md` *(política)* + `10-skills/c-level/CLO.skill.md` → gerar instrumento: `10-skills/juridico/contratos.skill.md` | nada sem instrumento escrito · garantia de resultado sem cláusula de medição verificável |
-| texto de lei, "o que diz a lei", artigo, súmula, norma de agência (ANVISA, ANS, BCB…), conferir legalidade de uma prática ou de uma peça *(instituído 22/10/2026)* | `80-juridico/FONTE-LEGISLACAO.md` *(fonte externa)* → arquivo da norma no acervo (cabeçalho: `revogada`, `versao_texto`, `fonte`) → citação com URN e link | lei citada de memória ou sem link · norma `revogada: true` · contrato ou notificação sem conferência no link oficial |
+| texto de lei, "o que diz a lei", artigo, súmula, norma de agência (ANVISA, ANS, BCB…), conferir legalidade de uma prática ou de uma peça *(regra da casa)* | `80-juridico/FONTE-LEGISLACAO.md` *(fonte externa)* → arquivo da norma no acervo (cabeçalho: `revogada`, `versao_texto`, `fonte`) → citação com URN e link | lei citada de memória ou sem link · norma `revogada: true` · contrato ou notificação sem conferência no link oficial |
 | disputa, ameaça, risco jurídico, registro de caso | `80-juridico/POLITICAS-JURIDICAS.md` + `10-skills/c-level/CLO.skill.md` → `10-skills/juridico/blue-team.skill.md` · registro em `80-juridico/registros/` | caso sem registro de 4 camadas (`CLAUDE.md` §11.1) |
 
 ## 4. Desempate interno

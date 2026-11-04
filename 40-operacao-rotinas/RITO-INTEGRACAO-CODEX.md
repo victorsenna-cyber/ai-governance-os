@@ -1,9 +1,9 @@
 # RITO DE INTEGRAÇÃO — do isolamento do Codex para o canônico
 
 > **Tipo:** rito operacional (camada 3) · **Alçada:** {{OPERADOR}}
-> ⚠️ **Aplica-se só se você usa um segundo agente executor (ex.: Codex) com escrita isolada na antessala `execução Codex/`. Se opera só com o Claude, a fila (§9) fica sempre vazia e o rito não dispara.**
-> **Por que existe:** a §0 do `AGENTS.md` proíbe o executor isolado de escrever nos canônicos — corretamente. **Mas o `CLAUDE.md` §11.3 exige que nada termine sem registro.** As duas regras estão certas e, sem um rito, se anulam: o trabalho é feito, fica na antessala, e a memória da empresa não recebe.
-> **Decisão: quem promove é o Claude, em sessão própria.** Não o executor isolado, não à mão.
+> ⚠️ **Aplica-se só se você usa um segundo agente executor (ex.: Codex) com escrita isolada na antessala `execução Codex/`. Se opera só com o agente principal, a fila (§9) fica sempre vazia e o rito não dispara.**
+> **Por que existe:** a §0 do `AGENTS-EXEC.md` proíbe o executor isolado de escrever nos canônicos — corretamente. **Mas o `CLAUDE.md` §11.3 exige que nada termine sem registro.** As duas regras estão certas e, sem um rito, se anulam: o trabalho é feito, fica na antessala, e a memória da empresa não recebe.
+> **Decisão: quem promove é o agente principal, em sessão própria.** Não o executor isolado, não à mão.
 >
 > 🔴 **Pacote isolado é PROPOSTA, nunca estado — e a promoção é sempre nossa, nunca dele.** ⚠️ **Se o estado de uma conta parece velho, o primeiro lugar a olhar é a fila do `execução Codex/STATUS-CODEX.md` §2.** *(afirmação que antes existia só no `CLAUDE.md` §6 e se perderia na compactação; por isso mora aqui também)*
 
@@ -34,7 +34,7 @@
 
 ## 3. COMO ACHAR O QUE ESTÁ PENDENTE
 
-> ⭐ **Há um índice: `execução Codex/STATUS-CODEX.md` §2.** O executor acrescenta uma linha lá ao fechar cada pacote, **na mesma tarefa** — e esse arquivo entrou na carga obrigatória do `CLAUDE.md` §3.
+> ⭐ **Há um índice: `execução Codex/STATUS-CODEX.md` §2.** O executor acrescenta uma linha lá ao fechar cada pacote, **na mesma tarefa** — e esse arquivo se lê no início de toda sessão em que a antessala tem pendência.
 >
 > **Ler o índice primeiro. A varredura abaixo continua valendo como conferência** — porque índice depende de disciplina, e **pacote que existe e não foi indexado é exatamente o caso que o índice não pega.**
 
@@ -98,32 +98,15 @@ find . -path "*execução Codex*" -name "*.md" -newermt "-7 days" \
 
 ## 7. O QUE ESTE RITO NÃO FAZ
 
-- **Não autoriza o Codex a escrever nos canônicos.** A §0 do `AGENTS.md` permanece inteira.
+- **Não autoriza o executor a escrever nos canônicos.** A §0 do `AGENTS-EXEC.md` permanece inteira.
 - **Não julga a qualidade do trabalho dele.** Pacote mal feito volta como pergunta ao {{OPERADOR}}, não como correção silenciosa.
 - **Não substitui o registro de interação externa.** Se a fonte foi uma call, a destilação continua sendo a destilação — o rito promove, não redestila.
 
 ---
 
-## 8. ⚠️ A DÍVIDA QUE O DESENHO ATUAL CARREGA
+## 8. O DESENHO DOS DOIS KERNELS
 
-**Desenho: o `AGENTS.md` é um clone do `CLAUDE.md` + a §0 de isolamento.** Os dois ficam sincronizados, e a diferença de tamanho é exatamente a §0.
-
-> 🔴 **Consequência que precisa estar escrita: toda alteração no `CLAUDE.md` passa a exigir replicação no `AGENTS.md`, ou os dois divergem em silêncio.**
->
-> **E divergência silenciosa aqui é pior que em outros arquivos**, porque ninguém compara os dois — cada agente lê o seu e nenhum vê o outro.
-
-**Regra que decorre:** ⭐ **quem altera o `CLAUDE.md` replica no `AGENTS.md` na mesma tarefa**, ou declara por escrito que a alteração não vale para o executor. **As duas coisas são aceitáveis; o silêncio não é.**
-
-### 8.1 Dois defeitos herdados da clonagem, ainda não corrigidos
-
-O próprio executor os documenta quando audita a clonagem, sem ser perguntado:
-
-| # | Defeito | Correção proposta |
-|---:|---|---|
-| 1 | §3 do `AGENTS.md` diz **"Fronteira `AGENTS.md` × `AGENTS.md`"** — frase sem sentido, produto da substituição literal | **uma linha na §0**, que já tem precedência declarada: *"a §3 é artefato de clonagem e não se aplica"* |
-| 2 | Referências a `clientes/<cliente>/CLAUDE.md` viraram `clientes/<cliente>/AGENTS.md` no clone. **Os dois arquivos existem nas contas e têm conteúdos diferentes** — o roteamento do executor aponta para o arquivo errado | mesma linha na §0, ou correção pontual das referências |
-
-⚠️ **Se você mantiver o clone como está, nenhum dos dois se corrige sozinho.** Ficam registrados aqui para não se perderem — **defeito conhecido e não corrigido é decisão; defeito esquecido é acidente esperando.**
+**`CLAUDE.md` e `AGENTS.md` são o mesmo kernel, para o agente principal** (o `40-operacao-rotinas/ferramentas/sincronizar.py` regenera o segundo a partir do primeiro a cada sincronia; ninguém replica à mão). **`AGENTS-EXEC.md` é o contrato do executor:** a §0 de isolamento e, abaixo dela, o corpo do kernel sem alçada. Quem altera o `CLAUDE.md` não toca no `AGENTS.md`; quem altera a §0 altera só o `AGENTS-EXEC.md`.
 
 ---
 

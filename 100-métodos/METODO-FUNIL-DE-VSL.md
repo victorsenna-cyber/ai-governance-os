@@ -1,21 +1,21 @@
 # MÉTODO — FUNIL DE VSL PARA PÚBLICO FRIO
 
-> **Tipo:** método · secundário: gate (§2, §4.7, §10), política (§2.2), framework (§1, §6) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Instituído:** 13/09/2026 · **Alçada:** {{OPERADOR}}
-> ⭐ **A escrita do roteiro se executa por agentes desde 02/10/2026: `METODO-PRODUCAO-VSL-POR-AGENTES.md`** — geradores por bloco (esqueleto antes do texto), seis auditores em contexto próprio e juiz.
+> **Tipo:** método · secundário: gate (§2, §4.7, §10), política (§2.2), framework (§1, §6) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
+> ⭐ **A escrita do roteiro se executa por agentes: `METODO-PRODUCAO-VSL-POR-AGENTES.md`** — geradores por bloco (esqueleto antes do texto), seis auditores em contexto próprio e juiz.
 > **Abrir por momento:** decidir §1–§3 · produzir §5 · conferir §4.7 e §10 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > **Origem:** destilação de uma VSL de referência, **reescrita como método nosso** — com gates, condições de recusa e integração ao circuito de página.
-> 🔴 ⭐ **GALHO DE `METODO-DIRECT-RESPONSE.md` (tronco instituído 18/09/2026).** Este método foi escrito ANTES do tronco — os princípios gerais de resposta direta (40/40/20, hierarquia de lista, prova vence promessa, **done for you**) vivem lá e não se repetem aqui. **Em conflito, vence este arquivo: ele conhece a física do formato. Mas formato não revoga princípio — se aplicar este método parece exigir violar a fronteira de margem do DFY ou a régua de prova, o que está errado é a aplicação.**
+> 🔴 ⭐ **GALHO DE `METODO-DIRECT-RESPONSE.md` (tronco).** Este método foi escrito ANTES do tronco — os princípios gerais de resposta direta (40/40/20, hierarquia de lista, prova vence promessa, **done for you**) vivem lá e não se repetem aqui. **Em conflito, vence este arquivo: ele conhece a física do formato. Mas formato não revoga princípio — se aplicar este método parece exigir violar a fronteira de margem do DFY ou a régua de prova, o que está errado é a aplicação.**
 > **Muda a régua-mãe.** Ver §1. Alteração correspondente em `CLAUDE.md` §9.
-> 🟢 **PUBLICADO E VIGENTE em 13/09/2026, por decisão do {{OPERADOR}}.** É a estrutura da casa para VSL: todo circuito de produção passa por aqui.
+> 🟢 **PUBLICADO E VIGENTE, por decisão do {{OPERADOR}}.** É a estrutura da casa para VSL: todo circuito de produção passa por aqui.
 > ⚠️ **Ressalva de método, registrada e não resolvida:** `CLAUDE.md` §7.1 item 4 exige que mudança de gate rode contra um caso real antes de publicar. **A publicação foi antecipada por decisão do dono, para destravar produção.** Consequência assumida: **a primeira conta que passar pelos gates é o teste do método, e o que ela quebrar volta para cá como correção — não como exceção.** Na iteração da skill de copy v3.1, metade dos buracos encontrados tinha sido criada pela própria correção; esperar comportamento parecido aqui é prudência, não pessimismo.
 
 ---
 
-## 1. ⭐ A MUDANÇA DE RÉGUA (13/09/2026)
+## 1. ⭐ A MUDANÇA DE RÉGUA
 
 ### 1.1 O que valia até hoje
 
-> *"A máquina de tráfego é escala do que já funciona no 1-a-1, nunca a ponte para o primeiro dinheiro."* (`CLAUDE.md` §9, instituída 25/07/2026)
+> *"A máquina de tráfego é escala do que já funciona no 1-a-1, nunca a ponte para o primeiro dinheiro."* (`CLAUDE.md` §9)
 
 ### 1.2 O que passa a valer
 
@@ -25,8 +25,8 @@
 
 | Instrumento | Data | O que passou a testar |
 |---|---|---|
-| `METODO-ARQUEOLOGIA-DE-ICP.md` | 10/09/2026 | se a fala do público é colhida ou inventada (grau `D`/`R`/`I`) |
-| `METODO-TESTE-DE-PILARES.md` | 12/09/2026 | se ICP, promessa, narrativa, oferta e produto são coerentes e transmissíveis |
+| `METODO-ARQUEOLOGIA-DE-ICP.md` | — | se a fala do público é colhida ou inventada (grau `D`/`R`/`I`) |
+| `METODO-TESTE-DE-PILARES.md` | — | se ICP, promessa, narrativa, oferta e produto são coerentes e transmissíveis |
 
 > **A venda 1-a-1 era um proxy caro e lento de congruência. Agora temos o teste direto.** Quando se tem o instrumento, manter o proxy é superstição de processo.
 
@@ -86,7 +86,7 @@ A régua de julho protegia duas coisas ao mesmo tempo, e só uma delas foi resol
 
 ## 2-bis. ⭐ A ARQUITETURA DO FUNIL — o que se constrói, e a VSL é uma peça
 
-> **Auditoria de 13/09/2026 contra a fonte: o método descrevia a VSL e não descrevia o funil.** Corrigido aqui.
+> **Auditoria contra a fonte: o método descrevia a VSL e não descrevia o funil.** Corrigido aqui.
 
 ```
 ANÚNCIO  →  PÁGINA (moldura do player)  →  VSL  →  CHECKOUT  →  UPSELL
@@ -166,10 +166,10 @@ ANÚNCIO  →  PÁGINA (moldura do player)  →  VSL  →  CHECKOUT  →  UPSELL
 
 ## 4. FASE 1 — BENCHMARKING (arqueologia de mercado)
 
-> 🔴 **FONTE CANÔNICA MUDOU EM 13/09/2026: `100-métodos/METODO-BENCHMARKING.md`.** O procedimento completo — seleção com gate de evidência, captura, **taxonomia de elementos, contagem em três níveis e métricas derivadas**, 15 dimensões, degrau, espaço vazio e gate de saída — vive lá, porque serve a toda peça de conversão e não só a VSL.
+> 🔴 **FONTE CANÔNICA MUDOU: `100-métodos/METODO-BENCHMARKING.md`.** O procedimento completo — seleção com gate de evidência, captura, **taxonomia de elementos, contagem em três níveis e métricas derivadas**, 15 dimensões, degrau, espaço vazio e gate de saída — vive lá, porque serve a toda peça de conversão e não só a VSL.
 > **Esta seção permanece como o RECORTE DE VSL:** o que é específico deste formato (fonte primária ser VSL do nicho, os cinco blocos, a régua estrutura×cena). **Em divergência, vale o `METODO-BENCHMARKING.md`.**
 >
-> 🔴 ⭐ **REGRA DA ESCALA (22/09/2026, `CLAUDE.md` §8 REGRA Nº 2 · `METODO-DIRECT-RESPONSE.md` §2-bis): as três referências da Fase 1 são VSLs ESCALADAS — não "boas", não "conhecidas", escaladas.** E a pergunta vem antes da própria VSL: **o formato VSL está escalado neste nicho?** Se o que escala no nicho é quiz, desafio ou aula, **a VSL não é a peça de entrada** — é a pesquisa do nicho que revela isso, antes de qualquer produção. **Arquitetura da VSL (blocos, dose, ordem) sai de VSL escalada, nunca de VSL que "parece boa".**
+> 🔴 ⭐ **REGRA DA ESCALA (`CLAUDE.md` §8 REGRA Nº 2 · `METODO-DIRECT-RESPONSE.md` §2-bis): as três referências da Fase 1 são VSLs ESCALADAS — não "boas", não "conhecidas", escaladas.** E a pergunta vem antes da própria VSL: **o formato VSL está escalado neste nicho?** Se o que escala no nicho é quiz, desafio ou aula, **a VSL não é a peça de entrada** — é a pesquisa do nicho que revela isso, antes de qualquer produção. **Arquitetura da VSL (blocos, dose, ordem) sai de VSL escalada, nunca de VSL que "parece boa".**
 
 > ### 4.0 O que benchmark é, e o que ele nunca é
 >
@@ -267,7 +267,7 @@ Analisar uma VSL que vende entrega os dois numa passada — **mas com graus de p
 
 ### 4.2-ter O passo operacional que antecede a extração
 
-> 🔴 ⭐ **PROCEDIMENTO COMPLETO INSTITUÍDO EM 20/09/2026: `100-métodos/METODO-DESTILACAO-DE-VSL.md`.** O parágrafo abaixo descreve o passo; **ele nunca descreveu como executá-lo.** A Fase 1 inteira — as 3 referências, a matriz, a estrutura invisível e o volume — sai de lá. **Sem ele, a matriz é preenchida por intuição e passa este gate sem ter medido nada.**
+> 🔴 ⭐ **PROCEDIMENTO COMPLETO INSTITUÍDO: `100-métodos/METODO-DESTILACAO-DE-VSL.md`.** O parágrafo abaixo descreve o passo; **ele nunca descreveu como executá-lo.** A Fase 1 inteira — as 3 referências, a matriz, a estrutura invisível e o volume — sai de lá. **Sem ele, a matriz é preenchida por intuição e passa este gate sem ter medido nada.**
 
 **Antes de qualquer matriz, a referência precisa virar texto.** Transcrever o vídeo, jogar a transcrição em um documento, e só então categorizar.
 
@@ -275,7 +275,7 @@ Analisar uma VSL que vende entrega os dois numa passada — **mas com graus de p
 
 ### 4.3 Estrutura invisível
 
-> 🔴 **Fonte canônica: `100-métodos/METODO-ESTRUTURA-INVISIVEL.md`** (13/09/2026). O resumo abaixo permanece; **a teoria, a gramática de boa formação e o procedimento completo vivem lá.**
+> 🔴 **Fonte canônica: `100-métodos/METODO-ESTRUTURA-INVISIVEL.md`**. O resumo abaixo permanece; **a teoria, a gramática de boa formação e o procedimento completo vivem lá.**
 
 **Dentro de cada bloco há elementos** (depoimento, promessa, benefício, dor, prova) **numa ordem.** A estrutura invisível é essa sequência.
 
@@ -309,12 +309,12 @@ Analisar uma VSL que vende entrega os dois numa passada — **mas com graus de p
 | Lead | 200–300 (a tendência atual é lead curta) |
 | História | 400–800 |
 | Mecanismo | 1.500–3.000 |
-| ⭐ **Construção** | **400–500** *(bloco instituído em 20/09/2026, §5.3-bis)* |
+| ⭐ **Construção** | **400–500** *(bloco instituído, §5.3-bis)* |
 | Oferta | 3.000+ — ⚠️ **ver a divergência abaixo** |
 
 **Lead = 15–20% do total.**
 
-> 🔴 **SEGUNDA DIVERGÊNCIA DE DOSE DA MESMA FONTE (20/09/2026): a oferta.** O material de ensino dá **1.500–2.000 palavras** para a oferta e 400–500 para a construção; a faixa acima diz **3.000+**. **Somadas, as duas do material dão ~2.000–2.500 — e ainda não fecham com 3.000+.**
+> 🔴 **SEGUNDA DIVERGÊNCIA DE DOSE DA MESMA FONTE: a oferta.** O material de ensino dá **1.500–2.000 palavras** para a oferta e 400–500 para a construção; a faixa acima diz **3.000+**. **Somadas, as duas do material dão ~2.000–2.500 — e ainda não fecham com 3.000+.**
 >
 > **Duas divergências de dose na mesma fonte não são acaso: são sinal de que a dose varia por nicho e por peça, e que nenhuma das faixas é lei.** Régua: **a medição da referência decide**, e as faixas ficam como ponto de partida marcado `[benchmark]`.
 
@@ -355,7 +355,7 @@ Analisar uma VSL que vende entrega os dois numa passada — **mas com graus de p
 
 ## 5. FASE 2 — os CINCO blocos
 
-> 🔴 ⭐ **ALTERAÇÃO DE ESTRUTURA — 20/09/2026, alçada {{OPERADOR}}.** ~~quatro blocos~~ → **cinco.**
+> 🔴 ⭐ **ALTERAÇÃO DE ESTRUTURA, alçada {{OPERADOR}}.** ~~quatro blocos~~ → **cinco.**
 >
 > **Estrutura base: `LEAD → HISTÓRIA → MECANISMO → CONSTRUÇÃO → OFERTA`**
 >
@@ -382,11 +382,11 @@ Analisar uma VSL que vende entrega os dois numa passada — **mas com graus de p
 2. **Com a oferta rodando: 2–3 leads novas por semana.**
 3. ⭐ **Toda alteração de funil começa pelo topo**, o ponto mais distante da oferta. Mexer no meio ou no fim da VSL é quase irrelevante enquanto a boca do funil não estiver otimizada.
 4. **Fonte de lead nova: o tema em alta no orgânico do nicho.** Dois usos válidos: **(a)** a lead inteira construída em torno do tema, quando ele encaixa no mecanismo; **(b)** o tema como gancho e uma **transição explícita** para o mecanismo real (*"X funciona? funciona — mas existe algo mais forte, e ninguém está falando disso"*). 🔴 **Sempre como lead de teste, nunca como a lead de base:** viral prova atenção, não escala (`METODO-BENCHMARKING.md` §3.1 · `METODO-DIRECT-RESPONSE.md` §2-bis). A transição é onde isso quebra: tema que não desemboca no mecanismo traz curioso e desperdiça a lead.
-5. **"Oferta morreu" é diagnóstico que se faz por último** *(08/10/2026)*. Antes de declarar uma oferta morta, conferir se a regra 2 estava rodando: **oferta sem lead nova e sem criativo novo há semanas não morreu, parou de ser testada.** A esteira de leads é a mesma lógica da esteira de criativos (`90-templates/trafego-cliente/matriz-criativos.md`).
+5. **"Oferta morreu" é diagnóstico que se faz por último**. Antes de declarar uma oferta morta, conferir se a regra 2 estava rodando: **oferta sem lead nova e sem criativo novo há semanas não morreu, parou de ser testada.** A esteira de leads é a mesma lógica da esteira de criativos (`90-templates/trafego-cliente/matriz-criativos.md`).
 
 > ⭐ **A aposta de maior densidade, se fosse escolher um único formato de lead: nos primeiros 30 segundos, mecanismo + promessa + elemento de prova.** Nomeia a oportunidade, prova que é real, e promete o resultado — antes de qualquer contexto.
 
-#### 5.1-bis 🔴 ANTI-VENDA — a régua que reprova sozinha (20/09/2026)
+#### 5.1-bis 🔴 ANTI-VENDA — a régua que reprova sozinha
 
 > **A lead NUNCA pode parecer que vai vender algo.** O mecanismo se apresenta como descoberta ou informação, nunca como produto.
 
@@ -423,7 +423,7 @@ Analisar uma VSL que vende entrega os dois numa passada — **mas com graus de p
 
 **Formato:** jornada do herói, altamente templatizada.
 
-#### 5.2-bis Os sete beats (20/09/2026)
+#### 5.2-bis Os sete beats
 
 | # | Beat | O que faz |
 |---:|---|---|
@@ -454,7 +454,7 @@ Analisar uma VSL que vende entrega os dois numa passada — **mas com graus de p
 
 ### 5.3 MECANISMO — a tese
 
-> 🔴 ⭐ **FONTE CANÔNICA DO NOME E DA CRENÇA, DESDE 20/09/2026: `100-métodos/METODO-MECANISMO-E-ONE-BELIEF.md`.**
+> 🔴 ⭐ **FONTE CANÔNICA DO NOME E DA CRENÇA,: `100-métodos/METODO-MECANISMO-E-ONE-BELIEF.md`.**
 >
 > **Três coisas vivem lá e não se repetem aqui:** o **apelido** como **âncora** — o termo que, dito sozinho, elicia o mecanismo inteiro, com as cinco condições de instalação (a mais dura: **repetição exata, sinônimo quebra a âncora**) · os **10 ângulos** e o **NUUPPECC** para escolhê-lo · e o **One Belief**, que é **o destino da cadeia de pontos lógicos** e **não vai escrito na peça**.
 >
@@ -464,7 +464,7 @@ Analisar uma VSL que vende entrega os dois numa passada — **mas com graus de p
 
 #### ⭐ Pontos lógicos
 
-> 🔴 **FONTE CANÔNICA: `100-métodos/METODO-PONTOS-LOGICOS.md`** (13/09/2026). O resumo abaixo permanece; **o teste de encadeamento, os dois padrões de anatomia, os 6 modos de falha e o procedimento de montagem vivem lá.** É o elemento mais difícil da peça e o único que não se traduz de referência — **ler antes de escrever qualquer mecanismo.**
+> 🔴 **FONTE CANÔNICA: `100-métodos/METODO-PONTOS-LOGICOS.md`**. O resumo abaixo permanece; **o teste de encadeamento, os dois padrões de anatomia, os 6 modos de falha e o procedimento de montagem vivem lá.** É o elemento mais difícil da peça e o único que não se traduz de referência — **ler antes de escrever qualquer mecanismo.**
 
 > **Atribuição, e ela importa:** pontos lógicos é método de **João Campos**, não da fonte em que o encontramos. A fonte declara ter aprendido isso com ele, ao analisar as copys de maior venda da operação, e que passou a usar em todas as VSLs desde então. **Registrado assim porque a fonte de um método muda quem procurar quando ele falhar.**
 
@@ -485,7 +485,7 @@ Para quem está montando o primeiro mecanismo, provar **duas coisas**, metade do
 
 > **O complexo é o processo de pensar, nunca o de executar.** Mecanismo bem feito parece simples de ler e foi difícil de montar. Mecanismo que parece complexo de ler foi mal montado.
 
-### 5.3-bis ⭐ CONSTRUÇÃO — a ponte que faltava (instituída 20/09/2026)
+### 5.3-bis ⭐ CONSTRUÇÃO — a ponte que faltava (regra da casa)
 
 > **A objeção que mora exatamente entre acreditar na tese e olhar o preço, e que ninguém verbaliza: *"se esse método é tão bom, por que você está vendendo?"***
 >
@@ -526,7 +526,7 @@ Para quem está montando o primeiro mecanismo, provar **duas coisas**, metade do
 
 **Modelar não impede diferencial.** Bônus melhor, posicionamento melhor e garantia melhor entram — a estrutura é que se preserva.
 
-#### 5.4-bis A sequência longa — 17 beats (20/09/2026)
+#### 5.4-bis A sequência longa — 17 beats
 
 **A sequência canônica acima é a forma curta. Esta é a completa, e as diferenças não são detalhe:**
 
@@ -561,7 +561,7 @@ Para quem está montando o primeiro mecanismo, provar **duas coisas**, metade do
 
 ### 6.1 Elemento done-for-you
 
-> 🔴 ⭐ **FONTE CANÔNICA MUDOU EM 18/09/2026: `METODO-DIRECT-RESPONSE.md` §4.** O que está aqui continua correto e permanece — **mas é o recorte de VSL.** O tronco acrescenta o que faltava e este arquivo nunca teve: a **escada de 5 degraus** (instrução → template → modelo → ativo funcional → feito por nós), 🔴 **a fronteira que protege a margem** (construído uma vez e entregue muitas = ativo; refeito por cliente = serviço com preço de produto) e **os 3 riscos** que a fonte não menciona.
+> 🔴 ⭐ **FONTE CANÔNICA MUDOU: `METODO-DIRECT-RESPONSE.md` §4.** O que está aqui continua correto e permanece — **mas é o recorte de VSL.** O tronco acrescenta o que faltava e este arquivo nunca teve: a **escada de 5 degraus** (instrução → template → modelo → ativo funcional → feito por nós), 🔴 **a fronteira que protege a margem** (construído uma vez e entregue muitas = ativo; refeito por cliente = serviço com preço de produto) e **os 3 riscos** que a fonte não menciona.
 >
 > ⚠️ **A frase abaixo — *"vale para toda proposta da casa"* — era verdadeira e estava no arquivo errado.** Foi o sinal de que faltava tronco: um princípio geral de resposta direta morando dentro de um método de formato.
 
@@ -598,7 +598,7 @@ Para quem está montando o primeiro mecanismo, provar **duas coisas**, metade do
 | **Naturalidade vence produção** | estúdio bem montado não é a melhor alternativa. Ambiente real do expert costuma converter mais |
 | **Contexto visual com significado** | gravar onde o assunto acontece ajuda retenção |
 | **Não perseguir o bonito** | caso registrado na fonte: versão simples vendia; versões mais bem produzidas do mesmo conteúdo não |
-| ⭐ **Slide + voz é o piso que quase não converte mais** *(08/10/2026)* | hoje é raro uma VSL só com slide e voz funcionar — a melhor decisão costuma ser **gravar com o expert**. O público compara com o que vê o dia inteiro em vídeo curto |
+| ⭐ **Slide + voz é o piso que quase não converte mais** | hoje é raro uma VSL só com slide e voz funcionar — a melhor decisão costuma ser **gravar com o expert**. O público compara com o que vê o dia inteiro em vídeo curto |
 | **Webinar tolera menos produção que VSL** | o formato é menos sofisticado e o público, menos acostumado; produção a mais converte mais, mas pode não pagar o esforço (João Campos) |
 
 > ⚠️ **As duas fontes não se contradizem, e a leitura que concilia é esta:** o que perde é a **ausência de pessoa** (slide e voz) e o **estúdio sem contexto**; o que ganha é o **expert real, no ambiente onde o assunto acontece, com edição que segura atenção.** Uma diz que a naturalidade vence a produção; a outra, que o erro estava no jeito de produzir, não na produção. **Produzir é investir em contexto e ritmo, não em polimento.**
@@ -694,7 +694,7 @@ Três formulações da fonte, e as três apontam para o mesmo lugar:
 
 ## 10-bis. 🔴 LACUNAS DECLARADAS — o que a fonte não cobre
 
-> **Auditoria de 13/09/2026, método × transcript.** Estas são áreas que uma VSL excepcional exige e **que a fonte não trata**. Ficam declaradas como faltantes — **nenhuma foi preenchida por inferência.** Preencher qualquer uma exige fonte nova ou dado nosso, e a data do preenchimento entra aqui.
+> **Auditoria, método × transcript.** Estas são áreas que uma VSL excepcional exige e **que a fonte não trata**. Ficam declaradas como faltantes — **nenhuma foi preenchida por inferência.** Preencher qualquer uma exige fonte nova ou dado nosso, e a data do preenchimento entra aqui.
 
 | # | Lacuna | Gravidade | Onde há resposta parcial |
 |---:|---|---|---|
@@ -730,4 +730,4 @@ Três formulações da fonte, e as três apontam para o mesmo lugar:
 | Princípios de terceiros citados: multidão faminta e RFM (Halbert) · copy montada (Schwartz) · escrita de trás para frente (McKee) · 41% lista (Kurtz) · fascinations (Makepeace) | — |
 
 ---
-*Método instituído em 13/09/2026, alçada {{OPERADOR}}. Origem: destilação de uma VSL de referência. **Nenhum número deste arquivo é `[dado nosso]` até a primeira VSL rodar** — na primeira, substituir os benchmarks pelos medidos e registrar a divergência.*
+*Regra da casa. Origem: destilação de uma VSL de referência. **Nenhum número deste arquivo é `[dado nosso]` até a primeira VSL rodar** — na primeira, substituir os benchmarks pelos medidos e registrar a divergência.*

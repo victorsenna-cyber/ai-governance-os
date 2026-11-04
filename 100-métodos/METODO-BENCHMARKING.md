@@ -1,8 +1,8 @@
 # MÉTODO CONTINUUM DE BENCHMARKING
 
-> **Tipo:** método · secundário: gate (§3.2, §9), blueprint (§6, Fase D) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Instituído:** 13/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** método · secundário: gate (§3.2, §9), blueprint (§6, Fase D) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > **Escopo:** toda peça de conversão — VSL, página de vendas, anúncio, e-mail, mensagem fria, roteiro, proposta. **Não é exclusivo de VSL.**
-> 🔴 ⭐ **GALHO DE `METODO-DIRECT-RESPONSE.md` (tronco instituído 18/09/2026).** Este método foi escrito ANTES do tronco — os princípios gerais de resposta direta (40/40/20, hierarquia de lista, prova vence promessa, **done for you**) vivem lá e não se repetem aqui. **Em conflito, vence este arquivo: ele conhece a física do formato. Mas formato não revoga princípio — se aplicar este método parece exigir violar a fronteira de margem do DFY ou a régua de prova, o que está errado é a aplicação.**
+> 🔴 ⭐ **GALHO DE `METODO-DIRECT-RESPONSE.md` (tronco).** Este método foi escrito ANTES do tronco — os princípios gerais de resposta direta (40/40/20, hierarquia de lista, prova vence promessa, **done for you**) vivem lá e não se repetem aqui. **Em conflito, vence este arquivo: ele conhece a física do formato. Mas formato não revoga princípio — se aplicar este método parece exigir violar a fronteira de margem do DFY ou a régua de prova, o que está errado é a aplicação.**
 > **Fonte canônica de benchmarking.** `METODO-FUNIL-DE-VSL.md` §4 passa a ser o recorte de VSL deste método, não a fonte.
 > **Alimenta:** `30-comercial/swipe-file/` (`CLAUDE.md` §11.5) · `clientes/<cliente>/benchmark-<peça>/`
 
@@ -51,16 +51,16 @@
 | **Ferramentas de espionagem** | achar oferta escalando | conferir sempre contra a biblioteca |
 | **Busca direta no nicho** | achar player conhecido | ⚠️ conhecido ≠ vendendo |
 | **Conteúdo viral** | secundária, quando não há peça do formato | views reais, não seguidores |
-| ⭐ **Orgânico em alta no nicho** *(08/10/2026)* — vídeos mais vistos do YouTube, Reels/TikTok viralizados, **Google Trends 30–90 dias**, Ubersuggest, **top 10 da Amazon na categoria** | **hipótese de ângulo, gancho, tema de lead e formato** — não referência de peça | views sem mídia; termo subindo na janela; livro do mecanismo no top 10 |
+| ⭐ **Orgânico em alta no nicho** — vídeos mais vistos do YouTube, Reels/TikTok viralizados, **Google Trends 30–90 dias**, Ubersuggest, **top 10 da Amazon na categoria** | **hipótese de ângulo, gancho, tema de lead e formato** — não referência de peça | views sem mídia; termo subindo na janela; livro do mecanismo no top 10 |
 | **Página com tráfego** | secundária | SimilarWeb / SEMrush |
 
-> ⚠️ **A régua da linha do orgânico** *(08/10/2026, fonte: estudo de criativos de mercado)*: **viral prova atenção, não prova que paga mídia.** Tema que viralizou entra como **exploração** — nos 30% do portfólio (`METODO-TRAFEGO-PAGO.md` §4.2), declarado como teste — e **nunca como base de promessa** (`METODO-DIRECT-RESPONSE.md` §2-bis). Os dois casos da fonte só viraram evidência quando uma VSL **escalou** com o tema. **Dois usos válidos:** construir o mecanismo em torno do tema, ou usá-lo como gancho e **transicionar** para o mecanismo real ("X funciona? sim, mas existe algo mais forte"). 🔴 **E comentário viral não é fala do nosso público:** do orgânico sai tema e formato, **nunca léxico de grau `D`.**
+> ⚠️ **A régua da linha do orgânico** *(fonte: estudo de criativos de mercado)*: **viral prova atenção, não prova que paga mídia.** Tema que viralizou entra como **exploração** — nos 30% do portfólio (`METODO-TRAFEGO-PAGO.md` §4.2), declarado como teste — e **nunca como base de promessa** (`METODO-DIRECT-RESPONSE.md` §2-bis). Os dois casos da fonte só viraram evidência quando uma VSL **escalou** com o tema. **Dois usos válidos:** construir o mecanismo em torno do tema, ou usá-lo como gancho e **transicionar** para o mecanismo real ("X funciona? sim, mas existe algo mais forte"). 🔴 **E comentário viral não é fala do nosso público:** do orgânico sai tema e formato, **nunca léxico de grau `D`.**
 
 ### 3.2 🔴 O gate de evidência
 
 ~~**Referência entra por prova de que vende, nunca por impressão de qualidade.**~~ *(13/09 a 22/09)*
 
-> 🔴 ⭐ **Desde 22/09/2026 (alçada {{OPERADOR}}, `CLAUDE.md` §8 REGRA Nº 2): referência entra por prova de ESCALA.** Vender uma vez não é o critério; **sustentar volume é.** Os três estados — **escalado / em escala / testando** —, a ordem das quatro fontes e a limitação da Biblioteca de Anúncios no Brasil estão em `METODO-DIRECT-RESPONSE.md` §2-bis. **Só o estado ESCALADO serve de base para promessa, oferta, lead e arquitetura; EM ESCALA entra como segunda referência; TESTANDO não entra.** ⚠️ **(25/09) A biblioteca é régua, não regra absoluta:** referência validada por fonte de confiança da casa conta como evidência de escala mesmo sem aparecer nela — **declarando a fonte** (`METODO-DIRECT-RESPONSE.md` §2-bis).
+> 🔴 ⭐ **Regra (`CLAUDE.md` §8 REGRA Nº 2): referência entra por prova de ESCALA.** Vender uma vez não é o critério; **sustentar volume é.** Os três estados — **escalado / em escala / testando** —, a ordem das quatro fontes e a limitação da Biblioteca de Anúncios no Brasil estão em `METODO-DIRECT-RESPONSE.md` §2-bis. **Só o estado ESCALADO serve de base para promessa, oferta, lead e arquitetura; EM ESCALA entra como segunda referência; TESTANDO não entra.** ⚠️ **(25/09) A biblioteca é régua, não regra absoluta:** referência validada por fonte de confiança da casa conta como evidência de escala mesmo sem aparecer nela — **declarando a fonte** (`METODO-DIRECT-RESPONSE.md` §2-bis).
 >
 > **E toda referência leva, registrado, o estado e o sinal que o prova** — número de ativos da mesma oferta, idade do ativo mais antigo, histórico quando visível. **Sem isso, a referência não passa.**
 
@@ -92,7 +92,7 @@
 
 ## 4. FASE B — CAPTURA
 
-> 🔴 ⭐ **MOTOR EXECUTÁVEL INSTITUÍDO EM 20/09/2026: `100-métodos/METODO-DESTILACAO-DE-VSL.md`.** As três linhas abaixo descrevem **o que** a Fase B faz; elas nunca descreveram **como**, e entre *"transcreva a peça"* e a Fase C preenchida estava o trabalho inteiro. **Para VSL, as Fases B e C rodam por lá** — ficha de coleta, regras de fidelidade de ASR, os quatro pontos de virada, a regra da função dominante, convenção de ID, ritmo de fala medido e trilha de tela.
+> 🔴 ⭐ **MOTOR EXECUTÁVEL INSTITUÍDO: `100-métodos/METODO-DESTILACAO-DE-VSL.md`.** As três linhas abaixo descrevem **o que** a Fase B faz; elas nunca descreveram **como**, e entre *"transcreva a peça"* e a Fase C preenchida estava o trabalho inteiro. **Para VSL, as Fases B e C rodam por lá** — ficha de coleta, regras de fidelidade de ASR, os quatro pontos de virada, a regra da função dominante, convenção de ID, ritmo de fala medido e trilha de tela.
 > **Este arquivo continua sendo a fonte do QUE se mede** (taxonomia §5.2, contagem §5.3, dimensões §6). **Para os outros formatos, §10 — e o motor equivalente ainda não existe.**
 
 1. **Transcrever** a peça (vídeo → texto; página → texto corrido; anúncio → texto + descrição do visual).
@@ -111,7 +111,7 @@
 
 ### 5.1 Os CINCO blocos
 
-> 🔴 **Alterado em 20/09/2026: eram quatro.** O bloco novo é a **CONSTRUÇÃO** (`METODO-FUNIL-DE-VSL.md` §5.3-bis) — a ponte entre o mecanismo e a oferta, que responde a objeção *"se é tão bom, por que você está vendendo?"*.
+> 🔴 **Alterado: eram quatro.** O bloco novo é a **CONSTRUÇÃO** (`METODO-FUNIL-DE-VSL.md` §5.3-bis) — a ponte entre o mecanismo e a oferta, que responde a objeção *"se é tão bom, por que você está vendendo?"*.
 
 | Bloco | Onde começa | Onde termina |
 |---|---|---|
@@ -129,7 +129,7 @@
 
 **Dentro de cada bloco, cada trecho recebe UM rótulo desta lista. Vocabulário fechado, porque rótulo livre impede comparação entre referências.**
 
-> 🔴 **35 rótulos desde 20/09/2026** (eram 34). O novo é ⭐ `apelido`, e ele entrou porque **a posição e a repetição do apelido são fato estrutural medível** — onde aparece pela primeira vez, quantas vezes repete, e **se repete idêntico** (`METODO-MECANISMO-E-ONE-BELIEF.md` §3.4).
+> 🔴 **35 rótulos** (eram 34). O novo é ⭐ `apelido`, e ele entrou porque **a posição e a repetição do apelido são fato estrutural medível** — onde aparece pela primeira vez, quantas vezes repete, e **se repete idêntico** (`METODO-MECANISMO-E-ONE-BELIEF.md` §3.4).
 
 | Família | Elemento | O que é |
 |---|---|---|
@@ -196,7 +196,7 @@
 
 ⚠️ **As faixas são ponto de partida, nunca alvo.** O alvo é a referência medida do nicho.
 
-> 🔴 ⭐ **DIVERGÊNCIA DECLARADA E NÃO RESOLVIDA (registrada em 20/09/2026).** As duas medidas de lead desta tabela **não fecham entre si, e as duas vieram da mesma fonte.** Numa VSL de 5.000 palavras, 200–300 palavras são **4–6%**; 15–20% são **750–1.000 palavras**.
+> 🔴 ⭐ **DIVERGÊNCIA DECLARADA E NÃO RESOLVIDA (regra da casa).** As duas medidas de lead desta tabela **não fecham entre si, e as duas vieram da mesma fonte.** Numa VSL de 5.000 palavras, 200–300 palavras são **4–6%**; 15–20% são **750–1.000 palavras**.
 >
 > **A régua operacional enquanto o canônico não se resolve: medir as DUAS — absoluta e proporcional — e anotar de qual delas a referência se aproxima.** `METODO-DESTILACAO-DE-VSL.md` §6.2 obriga isso no gate. 🔴 **Escolher uma sem medir é exatamente o comportamento que este método existe para impedir.**
 >
@@ -360,7 +360,7 @@ OFERTA:    oferta → benefício → exclusão → descrição → ancoragem →
 
 ## 9. 🔴 GATE DE SAÍDA
 
-**Nada avança para produção sem as oito** *(corrigido em 20/09/2026: o texto dizia "sete" e a lista sempre teve oito itens — `CLAUDE.md` §6 carregava o mesmo erro)*:
+**Nada avança para produção sem as oito** *(corrigido: o texto dizia "sete" e a lista sempre teve oito itens — `CLAUDE.md` §6 carregava o mesmo erro)*:
 
 - [ ] **3 referências** com **evidência de veiculação** registrada
 - [ ] **Contagem de nível 1 e 2** feita para a referência-base
@@ -402,4 +402,4 @@ OFERTA:    oferta → benefício → exclusão → descrição → ancoragem →
 > **E é o que constrói o repertório:** reconhecer que uma peça está fora do padrão do que vende **não é intuição, é estatística acumulada.** Só acumula em quem contou.
 
 ---
-*Método instituído em 13/09/2026, alçada {{OPERADOR}}. Origem: a §4 do `METODO-FUNIL-DE-VSL.md`, promovida a método-raiz autônomo por servir a toda peça de conversão. **Nenhuma faixa de contagem deste arquivo é `[dado nosso]` — todas são `[benchmark]` do infoproduto brasileiro e se substituem pela medição do nicho real na primeira aplicação.***
+*Regra da casa. Origem: a §4 do `METODO-FUNIL-DE-VSL.md`, promovida a método-raiz autônomo por servir a toda peça de conversão. **Nenhuma faixa de contagem deste arquivo é `[dado nosso]` — todas são `[benchmark]` do infoproduto brasileiro e se substituem pela medição do nicho real na primeira aplicação.***

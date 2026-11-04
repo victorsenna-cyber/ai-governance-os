@@ -1,6 +1,6 @@
 # MÉTODO — GATE DE CONGRUÊNCIA
 
-> **Tipo:** gate · secundário: índice (§3), framework (§1) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Instituído:** 20/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** gate · secundário: índice (§3), framework (§1) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > 🟡 **VIGENTE PARA EXECUTAR, VERIFICAÇÃO EM CASO REAL PENDENTE.** Roteado desde o primeiro dia (REGRA Nº 1).
 > **O que é:** o auditor que checa o output **contra os métodos que a requisição carregou**, ponto a ponto.
 > **Por que existe:** temos 20+ métodos, cada um com gate próprio, **e nenhum deles audita o conjunto.** Um pedido simples carrega cinco métodos e **nada verifica que a resposta honrou os cinco.**
@@ -93,7 +93,7 @@ Desvio declarado: nenhum  /  __
 | `METODO-KIT-DE-MARCA` *(18/10 · 🟡)* | dominante **sem três falas literais** da expert e o kit não marcado hipótese fraca · cor ou tipografia **sem porquê no arquétipo** · Inter · kit **sem veto ou sem teste da peça** · peça do kit sem procedência · tokens definitivos **sem escolha literal** no `DECISOES.md` · **pilares entregues sem kit** quando o pedido foi "faça os pilares" |
 | `ARQUETIPOS-DE-MARCA` *(18/10 · 🟡)* | **arquétipo do público ou do nicho** lido como o da expert · **estética atual** lida como identidade · aspiração ("quero ser vista como") lida como fato · coluna de ambiente citada como Mark e Pearson (é heurística da casa) |
 | `METODO-PRANCHA-DE-ESCOLHA` *(18/10 · 🟡)* | opção na prancha **que não passou no gate visual** (que não assinaríamos) · **mais de uma variável** mudando entre as opções de uma linha · texto **sem procedência** · escolha do cliente **não registrada literal** no `DECISOES.md` antes de virar token |
-| `METODO-TRAFEGO-PAGO` | criativo **sem hipótese escrita** · linha de matriz sem os campos obrigatórios · *(14/10)* **conjunto Meta com posicionamento automático ou fora de Instagram Feed + Stories + Reels** *(22/10: feed entra)* · **anúncio sem as duas artes** (4:5 no feed, 9:16 em Stories e Reels) · *(27/10)* **campanha para WhatsApp fora do objetivo Engajamento (Leads, Vendas) sem motivo escrito no `LOG-DECISOES.md`** · **campanha para WhatsApp em Tráfego** · **campanha para WhatsApp otimizada por clique ou visualização de página** · **conta herdada sem inventário de status nos três níveis** |
+| `METODO-TRAFEGO-PAGO` | criativo **sem hipótese escrita** · linha de matriz sem os campos obrigatórios · *(14/10)* **conjunto Meta com posicionamento automático ou fora de Instagram Feed + Stories + Reels** *(feed entra)* · **anúncio sem as duas artes** (4:5 no feed, 9:16 em Stories e Reels) · *(27/10)* **campanha para WhatsApp fora do objetivo Engajamento (Leads, Vendas) sem motivo escrito no `LOG-DECISOES.md`** · **campanha para WhatsApp em Tráfego** · **campanha para WhatsApp otimizada por clique ou visualização de página** · **conta herdada sem inventário de status nos três níveis** |
 | `METODO-TRILHO-DE-CONTA-NOVA` | etapa com **duas entradas** · pendência **sem "o que destrava"** · pedido ao cliente contendo lacuna de estrutura |
 | `copywriter-senior-continuum` | os **11 passes**; piso que vale sempre: **1 (diagnóstico) · 3 (pivô) · 10 (proibições) · 11 (procedência do espelho)** · *(28/10, v3.2)* **no passe 10, abertura em contexto reprova sozinha em qualquer formato** (módulo 10, teste "e daí?") · *(12/10)* no passe 7, **informação cortada junto com o enchimento** reprova (módulo 04) |
 | — módulo 06 | **sentimento não declarado antes do assunto** (§11.1-bis) |
@@ -240,4 +240,4 @@ Desvio declarado: nenhum  /  __
 > **E método que não decidiu nada no output não deveria ter sido carregado.**
 
 ---
-*Instituído em 20/09/2026, alçada {{OPERADOR}}, a partir da pergunta de se todo output era auditado ponto a ponto — **e a resposta honesta era não.** Gate de saída de output: `00-core/COMPLIANCE-DE-OUTPUT.md`. Precedência em conflito: `CLAUDE.md` §3. 🟡 Verificação em caso real pendente.*
+*Regra da casa, a partir da pergunta de se todo output era auditado ponto a ponto — **e a resposta honesta era não.** Gate de saída de output: `00-core/COMPLIANCE-DE-OUTPUT.md`. Precedência em conflito: `CLAUDE.md` §3. 🟡 Verificação em caso real pendente.*

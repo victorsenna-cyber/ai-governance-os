@@ -5,7 +5,7 @@
 
 ## Como nasce uma conta
 
-Pelo trilho `100-métodos/METODO-TRILHO-DE-CONTA-NOVA.md`, copiando o kit `90-templates/conta-nova/` (`PAINEL.md`, `PEDIDO-UNICO.md`, `DECISOES.md` e `STATUS.md` vazios, `01 - contexto/`), no **dia 0**. O `_modelo/` desta pasta é o esqueleto completo, com a numeração.
+Pelo trilho `100-métodos/METODO-TRILHO-DE-CONTA-NOVA.md`, copiando o kit `90-templates/conta-nova/` (`PAINEL.md`, `PEDIDO-UNICO.md`) e criando `DECISOES.md`, `STATUS.md` e `01 - contexto/` vazios conforme o esqueleto abaixo, no **dia 0**. O `_modelo/` desta pasta é o esqueleto completo, com a numeração.
 
 ## O esqueleto
 

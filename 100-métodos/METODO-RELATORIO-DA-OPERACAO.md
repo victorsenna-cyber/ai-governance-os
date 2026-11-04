@@ -1,7 +1,7 @@
 # MÉTODO — RELATÓRIO DA OPERAÇÃO (foto → redação → verificador)
 
 > **Tipo:** método · secundário: gate (§4)
-> **Instituído:** 31/10/2026 · **Alçada:** {{OPERADOR}} · **Estado:** 🟡 **provisório, `n=1`.** Gradua com 5 dias úteis de relatório da operação sem reprovação do verificador na versão entregue e sem correção do {{OPERADOR}}.
+> **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}} · **Estado:** 🟡 **provisório, `n=1`.** Gradua com 5 dias úteis de relatório da operação sem reprovação do verificador na versão entregue e sem correção do {{OPERADOR}}.
 > **Roda dentro de:** operação por tasks (`40-operacao-rotinas/tarefas/README.md`).
 > **Fonte operacional única do texto que o agente segue:** `90-templates/repo-agentes/skills/relatorio-da-operacao/SKILL.md`. Este arquivo é o porquê e o gate; a skill é o como, e é ela que vai para o cliente.
 

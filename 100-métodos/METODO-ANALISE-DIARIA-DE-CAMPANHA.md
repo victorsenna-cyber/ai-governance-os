@@ -1,7 +1,7 @@
 # MÉTODO — ANÁLISE DIÁRIA DE CAMPANHA (coleta → análise → implementação)
 
 > **Tipo:** método · secundário: trilho (três tasks encadeadas) e gate (§8)
-> **Instituído:** 29/10/2026 · **Alçada:** {{OPERADOR}} · o estágio 2 é N5, não N4 · **Estado:** 🟡 **provisório** — gradua com 1 conta × 10 dias úteis rodando os três estágios sem retrabalho do {{OPERADOR}}
+> **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}} · o estágio 2 é N5, não N4 · **Estado:** 🟡 **provisório** — gradua com 1 conta × 10 dias úteis rodando os três estágios sem retrabalho do {{OPERADOR}}
 > **Roda dentro de:** `METODO-TRAFEGO-PAGO.md` §7 (cadência, disciplina, regras de decisão, ordem de diagnóstico) · `METODO-ITERACAO-DE-CPA.md` (equação, amostra mínima, CPA como juiz) · operação por tasks (`40-operacao-rotinas/tarefas/README.md`, níveis N0–N5) · escada de autonomia (`ferramentas/autonomia.py`)
 > **Onde mora o que produz:** `clientes/<Cliente>/NN - tráfego pago/diario/` (molde em `90-templates/trafego-cliente/diario/`)
 
@@ -160,4 +160,4 @@ Em `40-operacao-rotinas/tarefas/modelos/`: `analise-campanha-1-coleta.md` (N2, d
 - O `coletar-campanha.py` (N0) é a próxima peça; nasce em `40-operacao-rotinas/ferramentas/`, reutiliza o token e o `insights` do `painel-resultado/servir.py`, e grava o mesmo `diario/AAAA-MM-DD.md`.
 
 ---
-*Instituído em 29/10/2026 (três modelos, três estágios, arquivo no repo do cliente). A análise passou do Opus para o Fable, e a saída do estágio 2 virou dois arquivos: o Sonnet lê só o briefing.*
+*Regra da casa (três modelos, três estágios, arquivo no repo do cliente). A análise passou do Opus para o Fable, e a saída do estágio 2 virou dois arquivos: o Sonnet lê só o briefing.*

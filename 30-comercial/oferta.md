@@ -60,41 +60,19 @@ Três níveis. O score do ICP (`ICP.md` §5) define o ponto de entrada.
 
 **Ver `ICP.md` §4-bis.** Não confundir trilhos: Mapa da Ordem é para quem já fatura; Alicerce para quem ainda não.
 
-### Linha CORE
+### Linhas adicionais (modelo)
+
+> ⚠️ A casa de origem tinha aqui linhas próprias de produto (sistema, agente de atendimento, pacote setorial). **Elas não vêm.** O que fica é a forma de uma linha: cada degrau com setup, MRR e o que inclui, verificado contra `POLITICAS` §5.
 
 | Oferta | Setup (ref.) | MRR (ref.) | O que inclui |
 |---|---|---|---|
-| **CORE Essencial** | {{PRECO_CORE_ESSENCIAL_SETUP}} | {{PRECO_CORE_ESSENCIAL_MRR}} | Scraping de leads + **SDR AI no WhatsApp** + follow-up estruturado. Ativa pipeline sobre base existente. |
-| **CORE Avançado** | {{PRECO_CORE_AVANCADO_SETUP}} | {{PRECO_CORE_AVANCADO_MRR}} | Tudo do Essencial + **pipeline/forecast**, rituais comerciais, dashboard de leads/MRR. |
-| **CORE Full / Padrão** | {{PRECO_CORE_FULL_SETUP}} | {{PRECO_CORE_FULL_MRR}} | Tudo do Avançado + **WhatsApp integrado**, estruturação comercial completa, scraping ampliado, onboarding orquestrado. |
+| `<degrau 1>` | `a calibrar` | `a calibrar` | `<o que entra · o que não entra>` |
+| `<degrau 2>` | `a calibrar` | `a calibrar` | tudo do degrau 1 + `<…>` |
 
-**Ofertas de porta de entrada (score 40–59 ou caixa imediato):**
-
-- **Estruturação Comercial avulsa:** setup ~**{{PRECO_ESTRUTURACAO_AVULSA}}** (+ {{PRECO_SDR_AI}} SDR AI). Monta o Sistema Comercial Mínimo Viável em ~4 semanas.
-- **Dashboard de Leads (HTML):** entregável rápido de valor, abre conversa para CORE.
-
-**Faixa de referência consolidada:** Agente IA + estruturação comercial = **{{FAIXA_MENSAL_AGENTE_IA}}/mês**; pacotes setoriais ("<Setor> que Vende") **a partir de {{PRECO_PACOTE_SETORIAL_MENSAL}}/mês**.
-
-### ⭐ Pacote setorial — modelo: **OPERAÇÃO COM VÁRIAS UNIDADES** (`n=0`)
-
-Exemplo de como se instancia um pacote setorial a partir da escada, sem inventar preço novo. **Não é preço novo — é o CORE Essencial e o CORE Full instanciados para operação com várias unidades.** Substitua o setor, o mecanismo e os nós pelos do seu pacote.
-
-**Mecanismo nomeado: `<nome do mecanismo>`** — três nós, um por vazamento da operação (ex.: primeiro contato · recontato · reativação da base). Nomear o mecanismo, e não a categoria, é o que tira a oferta da prateleira de "agente de IA para WhatsApp", onde a comparação só tem preço.
-
-| | Etapa 1 · por unidade | Etapa 2 · rede |
-|---|---|---|
-| Instancia | CORE Essencial | CORE Full |
-| Unidade 1 | {{PRECO_LOJA1_SETUP}} setup + {{PRECO_LOJA1_MRR}}/mês | rede até `<N>` unidades: {{PRECO_REDE_SETUP}} + {{PRECO_REDE_MRR}}/mês |
-| Unidade adicional | {{PRECO_LOJA_ADICIONAL_SETUP}} + {{PRECO_LOJA_ADICIONAL_MRR}}/mês | + {{PRECO_LOJA_ADICIONAL_REDE_MRR}}/mês |
-
-> ⚠️ Os valores seguem **`POLITICAS` §5**, não a tabela do §3 deste arquivo: se os dois divergirem, **vale POLITICAS**. Alinhe a tabela do §3 a ela assim que preencher os preços.
-
-**Três regras que este pacote institui e que valem para qualquer conta multi-unidade:**
-1. **Unidade adicional é incremento de configuração, nunca projeto novo** (custa uma fração do setup e do mensal da primeira). É o que prova que construímos sistema e não serviço — e é o que faz a terceira unidade caber.
-2. **O preço da Etapa 2 vai publicado dentro da proposta da Etapa 1**, com gate medido e crédito de migração sobre parte do setup. Escada com preço guardado vira negociação do zero na segunda venda.
-3. 🔴 **Teto de volume obrigatório.** Esta família de oferta tem **custo variável por unidade de uso** (mensageria + inferência): MRR liso e ilimitado corrói a margem exatamente quando o cliente cresce. Faixa incluída + excedente por conversa, revistos periodicamente sobre o realizado.
-
-**Setores adjacentes onde o mesmo pacote se aplica sem redesenho:** franquias de varejo com tráfego pago para WhatsApp, clínicas com várias unidades, escolas e academias com matrícula por unidade.
+**Três regras para qualquer linha com custo variável por uso** (mensageria, inferência, mídia):
+1. **Unidade adicional é incremento de configuração, nunca projeto novo** (custa uma fração do setup e do mensal da primeira). É o que prova que construímos sistema e não serviço.
+2. **O preço do degrau seguinte vai publicado dentro da proposta do degrau atual**, com gate medido. Escada com preço guardado vira negociação do zero na segunda venda.
+3. 🔴 **Teto de volume obrigatório.** MRR liso e ilimitado corrói a margem exatamente quando o cliente cresce. Faixa inclusa + excedente, ou degrau de preço por volume.
 
 ---
 

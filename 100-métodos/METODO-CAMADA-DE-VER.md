@@ -1,8 +1,8 @@
 # MÉTODO — Camada de Ver
 
-> **Tipo:** framework · secundário: blueprint (§3, §7-bis), gate (§5, §7) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: sem campo)*
+> **Tipo:** framework · secundário: blueprint (§3, §7-bis), gate (§5, §7) *(reclassificado por auditoria independente de leitura integral; antes: sem campo)*
 > **Abrir por momento:** decidir §0–§1 · produzir §3 e §7-bis · conferir §7 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
-> **Instituído em:** 18/09/2026 · **Alçada:** {{OPERADOR}} · **Aplica-se a:** todo artefato que pede decisão — proposta, plano, funil, cronograma, pauta, entrega de cliente
+> **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}} · **Aplica-se a:** todo artefato que pede decisão — proposta, plano, funil, cronograma, pauta, entrega de cliente
 > **Gatilho:** um documento de decisão pode estar correto e, ainda assim, nem o próprio autor conseguir enxergá-lo. **Um fluxograma resolve em uma tela.**
 > **Gate:** `00-core/COMPLIANCE-DE-OUTPUT.md` §Camada de ver.
 
@@ -165,7 +165,7 @@ flowchart LR
 
 ---
 
-## 7-bis. 🔴 ⭐ O DOCUMENTO INTEIRO COMO SEQUÊNCIA DE DIAGRAMAS (19/09/2026)
+## 7-bis. 🔴 ⭐ O DOCUMENTO INTEIRO COMO SEQUÊNCIA DE DIAGRAMAS
 
 > **Instituído um dia depois do método, ao aplicá-lo pela primeira vez numa entrega de cliente.** A §2 diz que **o diagrama abre a seção**. Esta diz o que acontece quando um documento tem muitas seções — e **a resposta não é "um diagrama por seção e pronto".**
 
@@ -223,4 +223,4 @@ flowchart LR
 
 ---
 
-*Instituído em 18/09/2026, alçada {{OPERADOR}}. Roteado em `CLAUDE.md` §6 e §7, com o gate em `00-core/COMPLIANCE-DE-OUTPUT.md`. Primeira aplicação real na mesma tarefa: o documento de estrutura do funil da conta, cuja matriz de raias foi substituída por grafo.*
+*Regra da casa. Roteado em `CLAUDE.md` §6 e §7, com o gate em `00-core/COMPLIANCE-DE-OUTPUT.md`. Primeira aplicação real na mesma tarefa: o documento de estrutura do funil da conta, cuja matriz de raias foi substituída por grafo.*

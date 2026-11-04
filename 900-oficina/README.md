@@ -8,4 +8,4 @@
 | `<skill>/` (criar ao editar) | a oficina de uma skill portátil: `SKILL.md`, `agentes/`, `referencias/`, `INSTALL.md` | `10-skills/<skill>/` |
 | `referencias-externas/` (opcional) | material de terceiros usado como fonte de um método: transcrições, destilações de referência escalada | nunca publicado; é proveniência |
 
-Procedimento de substituição de uma skill (`CLAUDE.md` §7.1, item 3): conteúdo íntegro da versão anterior para `10-skills/_legado/`, caminho antigo vira ponteiro, linha nova no `_legado/README.md`, roteamento atualizado no kernel. As quatro coisas na mesma tarefa.
+Procedimento de substituição de uma skill (`CLAUDE.md` §7.1, item 3): a versão anterior sai do caminho, toda referência a ela é reescrita (`git grep` pelo nome) e o roteamento é atualizado no kernel, na mesma tarefa. O histórico fica no git.

@@ -1,7 +1,7 @@
 ---
 name: relatorio-da-operacao
 description: "Use quando o dono perguntar como está a operação (hoje, ontem, a semana, uma área: 'e o caixa?', 'o que está parado?', 'o que precisa de mim?') e na rotina do relatório. Lê a foto da operação, escreve por partes e só entrega depois do verificador passar."
-procedencia: "Continuum, 31/10/2026. Texto nosso; padrão de interação estudado no mercado, nenhum trecho copiado."
+procedencia: "Continuum. Texto nosso; padrão de interação estudado no mercado, nenhum trecho copiado."
 ---
 
 # Relatório da operação

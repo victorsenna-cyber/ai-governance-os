@@ -1,7 +1,7 @@
 # MÉTODO — Alçada de Estrutura
 
-> **Tipo:** política · secundário: framework (§0, §3–§4), gate (§5–§6) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: sem campo)*
-> **Instituído em:** 15/09/2026 · **Alçada:** {{OPERADOR}} · **Aplica-se a:** toda conta, toda peça, sempre
+> **Tipo:** política · secundário: framework (§0, §3–§4), gate (§5–§6) *(reclassificado por auditoria independente de leitura integral; antes: sem campo)*
+> **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}} · **Aplica-se a:** toda conta, toda peça, sempre
 > **Gatilho:** um entregável nosso pedia que o cliente escolhesse a headline entre versões escritas por nós.
 > **Precedência:** esta regra é de alçada. Em conflito com qualquer skill, método ou artefato de conta, **ela prevalece.**
 
@@ -155,4 +155,4 @@ Antes de qualquer artefato sair para o cliente, **três perguntas:**
 
 ---
 
-*Instituído em 15/09/2026, alçada {{OPERADOR}}. Roteado em `CLAUDE.md` §6, §7 e §8. Primeira aplicação na mesma tarefa, em conta real.*
+*Regra da casa. Roteado em `CLAUDE.md` §6, §7 e §8. Primeira aplicação na mesma tarefa, em conta real.*

@@ -1,9 +1,9 @@
 # MÉTODO — ESTRUTURA INVISÍVEL
 
-> **Tipo:** framework · secundário: método (§7), gate (§7.3) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Instituído:** 13/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** framework · secundário: método (§7), gate (§7.3) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > **Origem:** destilação de uma VSL de referência (achados F-31/F-32/F-33), destrinchada e estendida.
-> ⚠️ **Autoria do procedimento — hipótese (08/10/2026):** o procedimento de rotular a intenção de cada frase para *bater um controle* é atribuído, em fonte oral, **provavelmente a Alen Sultanic**; nome e grafia não conferidos. Trocar a linha só depois de conferir a grafia.
-> 🔴 ⭐ **GALHO DE `METODO-DIRECT-RESPONSE.md` (tronco instituído 18/09/2026).** Este método foi escrito ANTES do tronco — os princípios gerais de resposta direta (40/40/20, hierarquia de lista, prova vence promessa, **done for you**) vivem lá e não se repetem aqui. **Em conflito, vence este arquivo: ele conhece a física do formato. Mas formato não revoga princípio — se aplicar este método parece exigir violar a fronteira de margem do DFY ou a régua de prova, o que está errado é a aplicação.**
+> ⚠️ **Autoria do procedimento — hipótese:** o procedimento de rotular a intenção de cada frase para *bater um controle* é atribuído, em fonte oral, **provavelmente a Alen Sultanic**; nome e grafia não conferidos. Trocar a linha só depois de conferir a grafia.
+> 🔴 ⭐ **GALHO DE `METODO-DIRECT-RESPONSE.md` (tronco).** Este método foi escrito ANTES do tronco — os princípios gerais de resposta direta (40/40/20, hierarquia de lista, prova vence promessa, **done for you**) vivem lá e não se repetem aqui. **Em conflito, vence este arquivo: ele conhece a física do formato. Mas formato não revoga princípio — se aplicar este método parece exigir violar a fronteira de margem do DFY ou a régua de prova, o que está errado é a aplicação.**
 > **Transversal:** governa copy, benchmarking, VSL, página, anúncio, e-mail e mensagem. **Não pertence a nenhum formato.**
 > **Consome:** `METODO-BENCHMARKING.md` (a captura) · **Alimenta:** `10-skills/copywriter-senior-continuum/` (a escrita)
 
@@ -165,10 +165,10 @@ Duas limitações que precisam estar à vista:
 
 ### 7.1 EXTRAIR (de uma referência validada)
 
-> 🔴 ⭐ **Os cinco passos abaixo ganharam procedimento em 20/09/2026: `100-métodos/METODO-DESTILACAO-DE-VSL.md`.** Enquanto existiram só como lista, cada um escondia o trabalho inteiro — **segmentar sem regra de ambiguidade, marcar sem convenção de ID e contar sem regra de função dominante produz uma sequência que parece extraída e foi inventada.** Para VSL, executar por lá. Para outros formatos, a lista abaixo continua sendo tudo o que temos, **e isso é lacuna declarada.**
+> 🔴 ⭐ **Os cinco passos abaixo ganharam procedimento: `100-métodos/METODO-DESTILACAO-DE-VSL.md`.** Enquanto existiram só como lista, cada um escondia o trabalho inteiro — **segmentar sem regra de ambiguidade, marcar sem convenção de ID e contar sem regra de função dominante produz uma sequência que parece extraída e foi inventada.** Para VSL, executar por lá. Para outros formatos, a lista abaixo continua sendo tudo o que temos, **e isso é lacuna declarada.**
 
 1. Transcrever e normalizar
-2. Segmentar em **blocos** (nível 1) pelos **cinco** pontos de virada: *promete → se apresenta → ensina → conta como nasceu → oferece* — o quinto foi instituído em 20/09/2026 (`METODO-FUNIL-DE-VSL.md` §5.3-bis)
+2. Segmentar em **blocos** (nível 1) pelos **cinco** pontos de virada: *promete → se apresenta → ensina → conta como nasceu → oferece* — o quinto foi instituído (`METODO-FUNIL-DE-VSL.md` §5.3-bis)
 3. Dentro de cada bloco, marcar **cada trecho com UM elemento** do vocabulário controlado (`METODO-BENCHMARKING.md` §5.2)
 4. Registrar **a sequência** e **a contagem** por elemento
 5. Calcular as **métricas derivadas**
@@ -226,14 +226,14 @@ Duas limitações que precisam estar à vista:
 | # | Destino | O que entra | Prioridade |
 |---:|---|---|---|
 | **1** | ⭐ `10-skills/copywriter-senior-continuum/` — **módulo novo** (oficina em `900-…/`) | §2, §3, §5, §7, §8. **É o destino principal: muda a unidade de trabalho da skill** | 🔴 **alta · ABERTO** |
-| **2** | `METODO-BENCHMARKING.md` §5 | ponteiro para cá na abertura da Fase C — a taxonomia lá é o vocabulário, a teoria é aqui | 🔴 alta |
-| **3** | `METODO-FUNIL-DE-VSL.md` §4.3 | vira ponteiro; o conteúdo canônico é este arquivo | média |
+| **2** | `METODO-BENCHMARKING.md` §5 | remete para cá na abertura da Fase C — a taxonomia lá é o vocabulário, a teoria é aqui | 🔴 alta |
+| **3** | `METODO-FUNIL-DE-VSL.md` §4.3 | remete para cá; o conteúdo canônico é este arquivo | média |
 | **4** | `CLAUDE.md` §6 e §6.1 | linha no roteador + na árvore de copy | 🔴 alta |
 | **5** | `10-skills/gerador-web-designer-senior-continuum/` | a física de página também tem sequência de elementos por dobra | média |
 | **6** | `METODO-ABORDAGEM-FRIA.md` | mensagem fria tem sequência própria — **e é onde mais se inventa** | média |
 | **7** | `30-comercial/swipe-file/mercado/` | o que se registra de peça de terceiro **é exatamente a estrutura invisível** — já compatível | ✅ feito |
 
-> 🔴 ⭐ **AUDITORIA DE PROPAGAÇÃO — 20/09/2026.** Sete dias depois de esta tabela ser escrita, **o destino nº 1, o de prioridade mais alta e declarado como "o destino principal", estava aberto.** A `copywriter-senior-continuum` citava VSL duas vezes em 1.217 linhas e tratava o formato numa frase (*"VSL com os picos nas transições de bloco"*, módulo 03). **Ela não conhecia os blocos, não conhecia o vocabulário controlado e não conhecia a dose.**
+> 🔴 ⭐ **AUDITORIA DE PROPAGAÇÃO.** Sete dias depois de esta tabela ser escrita, **o destino nº 1, o de prioridade mais alta e declarado como "o destino principal", estava aberto.** A `copywriter-senior-continuum` citava VSL duas vezes em 1.217 linhas e tratava o formato numa frase (*"VSL com os picos nas transições de bloco"*, módulo 03). **Ela não conhecia os blocos, não conhecia o vocabulário controlado e não conhecia a dose.**
 
 > ✅ **FECHADO NO MESMO DIA: módulo 09 escrito, publicado e roteado.** E o caso virou regra permanente — **`CLAUDE.md` §8, REGRA Nº 1: método criado é método roteado, na mesma tarefa. Nunca se ativa método na mão.**
 >
@@ -246,7 +246,7 @@ Duas limitações que precisam estar à vista:
 - **Não vira gate isolado.** É camada de análise e de construção; o gate continua sendo o do formato.
 - **Não substitui a régua de linguagem.** Sequência correta com frase morta continua morta — o gate anti-slop é ortogonal a este método.
 - **Não se aplica a documento interno.** Governança não persuade.
-- 🔴 **Não é a "modelagem preguiçosa"** *(08/10/2026)*. A fonte #046 descreve três formas de modelar anúncio (destilação de criativos, §4-C): **preguiçosa** — mantém a mensagem do anúncio alheio e troca só gancho e formato — **é cópia de texto com roupa nova e está vetada** (REGRA Nº 2: texto nunca se copia); **estudiosa** — rotular a intenção de cada frase, tirar o esqueleto e escrever com as próprias palavras — **é este método**; **de outro nicho** — permitida como fonte "adjacente" do `METODO-DIRECT-RESPONSE.md` §2-bis, **declarada, e só se o que atravessa é estrutura**: IA reescrevendo o texto alheio para outro nicho não satisfaz isso.
+- 🔴 **Não é a "modelagem preguiçosa"**. A fonte #046 descreve três formas de modelar anúncio (destilação de criativos, §4-C): **preguiçosa** — mantém a mensagem do anúncio alheio e troca só gancho e formato — **é cópia de texto com roupa nova e está vetada** (REGRA Nº 2: texto nunca se copia); **estudiosa** — rotular a intenção de cada frase, tirar o esqueleto e escrever com as próprias palavras — **é este método**; **de outro nicho** — permitida como fonte "adjacente" do `METODO-DIRECT-RESPONSE.md` §2-bis, **declarada, e só se o que atravessa é estrutura**: IA reescrevendo o texto alheio para outro nicho não satisfaz isso.
 
 ---
 
@@ -259,4 +259,4 @@ Duas limitações que precisam estar à vista:
 > **E no degrau 3, a sequência se quebra de propósito — porque lá a quebra é o argumento.**
 
 ---
-*Instituído em 13/09/2026, alçada {{OPERADOR}}. §1 a §4 destrincham a fonte; §3 (três níveis), §5 (gramática), §6 (nuances), §7.3, §8 e §9 são extensão nossa. **Nenhuma faixa numérica aqui é `[dado nosso]`** — os ±15% de §7.2 são calibração de partida, a substituir pela medição da primeira peça que rodarmos.*
+*Regra da casa. §1 a §4 destrincham a fonte; §3 (três níveis), §5 (gramática), §6 (nuances), §7.3, §8 e §9 são extensão nossa. **Nenhuma faixa numérica aqui é `[dado nosso]`** — os ±15% de §7.2 são calibração de partida, a substituir pela medição da primeira peça que rodarmos.*

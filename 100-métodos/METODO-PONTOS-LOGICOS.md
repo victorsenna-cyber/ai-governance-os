@@ -1,9 +1,9 @@
 # MÉTODO — PONTOS LÓGICOS
 
-> **Tipo:** framework · secundário: método (§8), gate (§2, §6), política (§5) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Instituído:** 13/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** framework · secundário: método (§8), gate (§2, §6), política (§5) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > **Abrir por momento:** decidir §3 e §5 · produzir §8.1 · conferir §2 e §8.2 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > 🔴 **AUTORIA: JOÃO CAMPOS.** Não é da fonte em que o encontramos; o crédito vai para quem criou, não para quem repassou. Registrado assim porque **a fonte de um método muda quem procurar quando ele falha.**
-> 🔴 ⭐ **GALHO DE `METODO-DIRECT-RESPONSE.md` (tronco instituído 18/09/2026).** Este método foi escrito ANTES do tronco — os princípios gerais de resposta direta (40/40/20, hierarquia de lista, prova vence promessa, **done for you**) vivem lá e não se repetem aqui. **Em conflito, vence este arquivo: ele conhece a física do formato. Mas formato não revoga princípio — se aplicar este método parece exigir violar a fronteira de margem do DFY ou a régua de prova, o que está errado é a aplicação.**
+> 🔴 ⭐ **GALHO DE `METODO-DIRECT-RESPONSE.md` (tronco).** Este método foi escrito ANTES do tronco — os princípios gerais de resposta direta (40/40/20, hierarquia de lista, prova vence promessa, **done for you**) vivem lá e não se repetem aqui. **Em conflito, vence este arquivo: ele conhece a física do formato. Mas formato não revoga princípio — se aplicar este método parece exigir violar a fronteira de margem do DFY ou a régua de prova, o que está errado é a aplicação.**
 > **Transversal:** VSL · página · proposta · e-mail · call de venda · mensagem fria. **Não é técnica de VSL — é de argumentação.**
 > **É o elemento mais difícil de toda peça, e o único que não se traduz de uma referência.**
 
@@ -51,7 +51,7 @@ elo 4  →  responde  →  a conclusão se forma sozinha
 
 ---
 
-## 2-BIS. ⭐ O DESTINO — e o teste que o encadeamento sozinho não faz (20/09/2026)
+## 2-BIS. ⭐ O DESTINO — e o teste que o encadeamento sozinho não faz
 
 **Até hoje este método sabia montar a cadeia e nunca nomeava O QUE o leitor precisa concluir.** A régua de que *a conclusão não se escreve* continua inteira — **mas não escrever a conclusão não é o mesmo que não ter uma.**
 
@@ -113,7 +113,7 @@ o último elo NÃO o enuncia — o leitor chega nele sozinho
 
 > ⚠️ **É simplificação declarada, não o método completo.** Serve para destravar quem trava — e quem só usa isso fica preso ao que ele entrega. **A cadeia real tem mais nuance que duas metades.**
 
-### 3.2-bis ⭐ Padrão C · CADEIA DE CAUSA RAIZ (acrescentado em 20/09/2026)
+### 3.2-bis ⭐ Padrão C · CADEIA DE CAUSA RAIZ (acrescentado)
 
 **Quando a tese é "o fracasso anterior tem uma causa que ninguém te mostrou".** É o padrão mais forte quando o público já tentou e falhou — porque ele **tira a culpa da pessoa e põe na causa**, que é o que permite a ela tentar de novo.
 
@@ -170,7 +170,7 @@ o último elo NÃO o enuncia — o leitor chega nele sozinho
 
 ---
 
-## 4-BIS. ⭐ A ANATOMIA DE UM ELO — o que ele carrega por dentro (20/09/2026)
+## 4-BIS. ⭐ A ANATOMIA DE UM ELO — o que ele carrega por dentro
 
 **Até aqui o método descrevia a cadeia e não descrevia o elo.** Cada elo carrega **quatro coisas**, e a quarta é a que costura:
 
@@ -221,7 +221,7 @@ Formas que funcionam: *"e é aí que [algo acontece]…"* · *"mas o que vem dep
 
 **Calibração:** o número de elos da nossa peça vem da referência do nicho, medido no benchmarking. Referência com 6 elos não se responde com 12.
 
-> 🔴 **Divergência de faixa declarada (20/09/2026).** O material de ensino da mesma fonte dá **4 a 9 elos**; a fala original dá **5 a 6, chegando a 8**, que é a faixa deste método. **São duas faixas para a mesma coisa, e vieram do mesmo autor.**
+> 🔴 **Divergência de faixa declarada.** O material de ensino da mesma fonte dá **4 a 9 elos**; a fala original dá **5 a 6, chegando a 8**, que é a faixa deste método. **São duas faixas para a mesma coisa, e vieram do mesmo autor.**
 >
 > **Fica valendo 5 a 8, e a razão não é antiguidade — é que esta é a única das duas com justificativa declarada:** acima de 8 o leitor perde o fio e passa a ler como lista. **A faixa larga não explica por que 9 ainda seria cadeia.**
 >
@@ -319,4 +319,4 @@ Um exemplo de salto: *dado novo entra e o plano não se move*, seja o dado desfa
 > **Elo falso transforma argumento em manipulação — e a diferença não está na forma, está na verdade de cada elo.**
 
 ---
-*Instituído em 13/09/2026, alçada {{OPERADOR}}. **Autoria do método: João Campos**, via conteúdo público do autor. §2 (teste de encadeamento), §2.1, §3.3, §4 (o mecanismo e o limite ético), §6 (modos de falha), §7 (as duas conexões) e §8 (procedimento) são extensão nossa. **A faixa de 5 a 8 elos é `[benchmark]`** — substitui-se pela medição do nicho na primeira aplicação.*
+*Regra da casa. **Autoria do método: João Campos**, via conteúdo público do autor. §2 (teste de encadeamento), §2.1, §3.3, §4 (o mecanismo e o limite ético), §6 (modos de falha), §7 (as duas conexões) e §8 (procedimento) são extensão nossa. **A faixa de 5 a 8 elos é `[benchmark]`** — substitui-se pela medição do nicho na primeira aplicação.*

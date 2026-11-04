@@ -1,6 +1,6 @@
 # MATRIZ DE LEITURA DE CONTEÚDO
 
-> **Tipo:** framework · secundário: método (§6), trilho (§7), blueprint (§3) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "ferramenta de leitura (camada 2)")* · **Alçada:** {{OPERADOR}}
+> **Tipo:** framework · secundário: método (§6), trilho (§7), blueprint (§3) *(reclassificado por auditoria independente de leitura integral; antes: "ferramenta de leitura (camada 2)")* · **Alçada:** {{OPERADOR}}
 > **Abrir por momento:** decidir §1 · produzir §6 · ordenar a correção §7 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > **Destino no repo:** `100-métodos/MATRIZ-LEITURA-CONTEUDO.md`
 > **Para que serve:** bater o olho num conteúdo — seu ou de cliente — e saber **onde está o gargalo**, sem achismo.

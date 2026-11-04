@@ -2,7 +2,7 @@
 
 > **Tipo:** índice · camada 3 · **Alçada:** {{OPERADOR}}
 > **Método aplicado:** `100-métodos/METODO-CAMADA-DE-VER.md` — arquitetura do §7-bis (o mapa inteiro primeiro, uma seção por caixa depois), gramática do §2, formato Mermaid do §4.
-> **Versão visual:** gera-se a partir deste `.md` (diagramas Mermaid renderizados num HTML). **Este `.md` é a fonte; o HTML é saída.**
+> **Este `.md` é a fonte.** Uma versão visual (Mermaid em HTML) pode ser gerada dele; não vem no template.
 > **Complementa o `README.md`**, que é índice de arquivos. Este é o grafo de funcionamento: o README diz *o que existe*, este diz *o que acontece depois*.
 
 ---
@@ -55,7 +55,7 @@ flowchart TD
 | 🔴 `execução Codex/STATUS-CODEX.md` | **Estado** | o que está **na antessala** (só se você usa um executor isolado) |
 | 1 skill dominante | — | escolhida no roteador (§2 abaixo) |
 
-> 🔴 **Estado = os dois arquivos, sempre.** Ler o canônico sem a antessala dá retrato incompleto **e sem aviso** — o trabalho existe, está pronto, e o estado não o menciona. Sintoma típico: entrega pronta na antessala, estado da conta sem registrá-la.
+> 🔴 **Estado = os dois arquivos, sempre que a operação usa um executor.** Ler o canônico sem a antessala dá retrato incompleto **e sem aviso** — o trabalho existe, está pronto, e o estado não o menciona. Sintoma típico: entrega pronta na antessala, estado da conta sem registrá-la.
 
 🔴 ⭐ **Ordem de carga por tipo — o PROCESSO** (`00-core/TAXONOMIA-DE-ARTEFATOS.md` §4.2): `framework → trilho → método → blueprint → política → gate`. **Pular etapa é o erro clássico:** um gate de forma pode aprovar uma peça sem que a etapa anterior — por exemplo, o ICP — tenha rodado. **Gate não substitui etapa anterior.**
 
@@ -157,7 +157,7 @@ flowchart TD
     T([Tarefa]) --> Q{Decide ou executa?}
 
     Q -- "decide" --> CL[Claude · papel de CEO<br/>lê CLAUDE.md]
-    Q -- "executa<br/>frontend, varredura, volume" --> CX[Executor isolado (Codex, opcional)<br/>lê AGENTS.md]
+    Q -- "executa<br/>frontend, varredura, volume" --> CX[Executor isolado (opcional)<br/>lê AGENTS-EXEC.md]
 
     CL --> CAN[(CANÔNICOS<br/>escrita direta)]
 
@@ -173,12 +173,12 @@ flowchart TD
 
 | Regra | Por que existe |
 |---|---|
-| 🔴 **O executor isolado só escreve em `execução Codex/`** | §0 do `AGENTS.md`. Sem isso, proposta vira estado sem ninguém decidir |
+| 🔴 **O executor isolado só escreve em `execução Codex/`** | §0 do `AGENTS-EXEC.md`. Sem isso, proposta vira estado sem ninguém decidir |
 | 🔴 **Pacote isolado é PROPOSTA, nunca estado** | e **a promoção é sempre nossa** — divergência entre antessala e canônico é sinal de promoção pendente, não de canônico desatualizado |
 
 > ⚠️ **O buraco que o rito existe para fechar, e ele é real:** a §0 proíbe o Codex de escrever nos canônicos e o §11.3 exige que nada termine sem registro. **Sem rito, as duas regras se anulam** — o trabalho é feito, fica na antessala, e a memória não recebe.
 >
-> 🔴 **E o `AGENTS.md` é um CLONE do `CLAUDE.md` + a §0**, por decisão de desenho. **A fronteira "quem decide × quem executa" existe como desenho e não como estado.** A contenção real vem da §0 e da `REGRA Nº 0`. **Quem altera o `CLAUDE.md` regenera o `AGENTS.md` na mesma tarefa** — replicar à mão foi tentado duas vezes e falhou as duas.
+> 🔴 **E o `AGENTS-EXEC.md` é a §0 + o corpo do `CLAUDE.md`**, por decisão de desenho. **A fronteira "quem decide × quem executa" existe como desenho e não como estado.** A contenção real vem da §0 e da `REGRA Nº 0`. **Quem altera o `CLAUDE.md` regenera o `AGENTS.md` na mesma tarefa** — replicar à mão foi tentado duas vezes e falhou as duas.
 
 ---
 

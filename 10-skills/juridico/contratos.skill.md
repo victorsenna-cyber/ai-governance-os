@@ -20,7 +20,6 @@
 | Site ({{TICKET_SITE}}) | `TEMPLATE-CONTRATO-SITE.md` | proposta + aceite escrito | 50/50 · prazo conta do material completo · direito de portfólio |
 | Assessoria ({{TICKET_ASSESSORIA}}/mês) | `TEMPLATE-CONTRATO-ASSESSORIA.md` | contrato assinado | escopo em anexo · mês antecipado · aviso 30 dias |
 | Gestão de tráfego | adaptar template Assessoria | contrato assinado | verba de mídia é do cliente, na conta do cliente — nunca transita por nós |
-| Formação Repositório {{EMPRESA}} ({{TICKET_FORMACAO}}) | `TEMPLATE-TERMO-FORMACAO-REPOSITORIO.md` | contrato assinado | formação + licença num termo só · modalidade no Anexo I · CDC 7 dias · acesso ao template só no 1º encontro · ⚖️ advogado antes do 1º Implementador padrão |
 | SaaS (futuro, gate MRR ≥ {{MRR_GATE_SAAS}}) | construir ToS + privacidade + DPA | aceite eletrônico | **antes** da 1ª venda (`POLITICAS` §6) |
 | Infoproduto (futuro, gate MRR ≥ {{MRR_GATE_INFOPRODUTO}}) | termos de compra + reembolso | aceite no checkout | CDC 7 dias obrigatório |
 

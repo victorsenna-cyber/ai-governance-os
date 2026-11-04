@@ -1,13 +1,13 @@
 # MÉTODO — LATERALIZAÇÃO DE CRIATIVOS VALIDADOS
 
-> **Tipo:** método · secundário: gate (§4, §10), blueprint (§9) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método (camada 2)")* · **Elaborado em:** 18/09/2026 · **Promovido em:** 20/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** método · secundário: gate (§4, §10), blueprint (§9) *(reclassificado por auditoria independente de leitura integral; antes: "método (camada 2)")* · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > **Abrir por momento:** entrada §4 · produzir §5 · conferir §10 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > **Autoria:** ensinamento das transcrições de Felipe Nonino (F1/F2) · sistematização e revisão internas.
 > 🔴 **Status: vigente para uso, com verificação em caso real pendente** (`CLAUDE.md` §7.1, regra 4). Primeira aplicação obrigatória: o primeiro funil DR de uma conta, antes do primeiro real de mídia. **Promover estabelece uso; não converte o relato da fonte em resultado validado por nós.**
 > **Autoridade deste método:** parentesco, hipótese e classificação da variação sobre uma base com resultado documentado. **Sem base vencedora, o trabalho é exploração e se chama assim.**
 > **Consome:** `METODO-EMPILHAMENTO-DE-HOOKS.md` (quando a variação é de abertura) · `METODO-CONSTRUCAO-DE-CRIATIVOS-DR.md` (quando há redação nova) · `METODO-TRAFEGO-PAGO.md` §4.2 e §7.3 + plano da conta (proporção 70/30, critério de vencedor, verba, janela).
 > **Não decide:** verba, limiar de CPA, janela, volume e critério de vencedor. Isso é do `100-métodos/METODO-TRAFEGO-PAGO.md` e do plano da conta.
-> 🔴 ⭐ **REGRA DA ESCALA (22/09/2026, `CLAUDE.md` §8 REGRA Nº 2):** **lateralizar é exatamente o que um anunciante escalado faz** — várias variações da mesma promessa renovadas continuamente. É esse o sinal que se lê na Biblioteca de Anúncios para reconhecer uma referência escalada (`METODO-DIRECT-RESPONSE.md` §2-bis). **Antes de haver vencedor próprio, a base pode ser um anúncio escalado de referência** — modelando estrutura, nunca texto.
+> 🔴 ⭐ **REGRA DA ESCALA (`CLAUDE.md` §8 REGRA Nº 2):** **lateralizar é exatamente o que um anunciante escalado faz** — várias variações da mesma promessa renovadas continuamente. É esse o sinal que se lê na Biblioteca de Anúncios para reconhecer uma referência escalada (`METODO-DIRECT-RESPONSE.md` §2-bis). **Antes de haver vencedor próprio, a base pode ser um anúncio escalado de referência** — modelando estrutura, nunca texto.
 > **Oficina:** a cópia de elaboração (antessala do Codex) existe na oficina; não carregar.
 
 ---

@@ -1,6 +1,6 @@
 # PDF dashboard de tráfego: resultado fixo de campanha em uma página
 
-> **Tipo:** blueprint · 🟡 provisório desde 27/10/2026 · criado a pedido do {{OPERADOR}}: um PDF no estilo do dashboard, com os resultados fixos das campanhas de uma conta, mais dados e menos headline, salvo como modelo.
+> **Tipo:** blueprint · 🟡 provisório · criado a pedido do {{OPERADOR}}: um PDF no estilo do dashboard, com os resultados fixos das campanhas de uma conta, mais dados e menos headline, salvo como modelo.
 > **Exemplar:** um relatório de resultado de teste de campanha (a estrutura dos dados em `exemplo.json`).
 
 ## O que é
@@ -35,7 +35,7 @@ O visual mora em `estilo.css`. Mudou o estilo, muda aqui, nunca no HTML de um cl
 
 🔴 **Veto:** número sem fonte declarada na nota · venda ou faturamento sem confirmação · título, headline ou frase de venda no lugar de dado · eixo duplo · CSS próprio por cliente.
 
-## Modo genérico, fontes e conferência *(01/11/2026)*
+## Modo genérico, fontes e conferência
 
 - **Dois modos no mesmo gerador.** Com `campanhas` e `serie` no JSON, é o modo de campanha de sempre, com os números calculados. Com `kpis`, `graficos` e `tabela`, é o **modo genérico**: seis números, dois gráficos (`barras` ou `linha`) e uma tabela, com rótulos e valores prontos no JSON. O visual é o mesmo.
 - **Exemplar do modo genérico:** `exemplo/EXEMPLO-DASHBOARD.json` e o PDF ao lado, com dados dos próprios PDFs da casa.

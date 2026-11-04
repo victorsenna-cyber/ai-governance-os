@@ -1,6 +1,6 @@
 # MÉTODO — MECANISMO, APELIDO E ONE BELIEF
 
-> **Tipo:** método · secundário: framework (§3), gate (§10), política (§11) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Instituído:** 20/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** método · secundário: framework (§3), gate (§10), política (§11) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > **Abrir por momento:** decidir §11 · produzir §9 · conferir §10 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > 🟡 **VIGENTE PARA EXECUTAR, VERIFICAÇÃO EM CASO REAL PENDENTE** (`CLAUDE.md` §7.1, item 4). Roteado desde o primeiro dia, como manda a REGRA Nº 1.
 > 🔴 ⭐ **GALHO DE `METODO-DIRECT-RESPONSE.md`.** Os princípios gerais de resposta direta vivem no tronco e não se repetem aqui.
@@ -62,7 +62,7 @@ flowchart TD
 
 ---
 
-## 2. 🔴 O VOCABULÁRIO — decidido em 20/09/2026, alçada {{OPERADOR}}
+## 2. 🔴 O VOCABULÁRIO — alçada {{OPERADOR}}
 
 **As quatro coisas, e confundi-las é o erro mais comum do assunto:**
 
@@ -330,4 +330,4 @@ cada elo aproxima o leitor de aceitá-lo
 | A fórmula do One Belief e as três peças · o erro nº 1 · as quatro validações · os 10 ângulos de apelido · o checklist NUUPPECC · *"nomear o método não demonstra que funciona"* · apelido na lead é isca · o apelido não aparece na história | ⭐ **§3 inteira — a tese da ancoragem, as cinco condições e as regras que elas impõem** (a fonte descrevia o efeito e não a causa) · **§2** (o vocabulário decidido: mecanismo é bloco, apelido é parte dele) · **§2.2** (tabela de tradução) · **§3.3** (ancoragem sem estado) · **§3.4** (apelido como rótulo da taxonomia) · **§8** (o One Belief como destino da cadeia **e o teste de destino**) · **§10** e **§11** (gate e recusas) · a amarração com REGRA Nº 0 e com a régua de procedência |
 
 ---
-*Instituído em 20/09/2026, alçada {{OPERADOR}}. **A decisão de vocabulário do §2 é dele, registrada em 20/09**, e é o que destrava o uso da fonte no nosso repositório. Fonte de PNL da casa: `METODO-GERACAO-DE-RESULTADOS.md` (O'Connor); primárias no acervo de livros da casa. **Nenhum número deste arquivo é `[dado nosso]`.** 🟡 Verificação em caso real pendente.*
+*Regra da casa. **A decisão de vocabulário do §2 é dele, registrada**, e é o que destrava o uso da fonte no nosso repositório. Fonte de PNL da casa: `METODO-GERACAO-DE-RESULTADOS.md` (O'Connor); primárias no acervo de livros da casa. **Nenhum número deste arquivo é `[dado nosso]`.** 🟡 Verificação em caso real pendente.*

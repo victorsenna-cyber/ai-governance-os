@@ -1,6 +1,6 @@
 """Esqueleto da COMPOSICAO-VSL.md a partir de um roteiro do G6.
 
-Uso:  py -I -X utf8 composicao-vsl.py <roteiro G6.md> <saida COMPOSICAO-VSL.md> [<TEMPO-funil-B.md>]
+Uso:  python3 -I -X utf8 composicao-vsl.py <roteiro G6.md> <saida COMPOSICAO-VSL.md> [<TEMPO-funil-B.md>]
 
 Com a linha do tempo (de tempo-vsl.py), acrescenta a página 3 em esqueleto: "o que cada
 elemento faz, e quando", com o tempo de entrada de cada elemento.

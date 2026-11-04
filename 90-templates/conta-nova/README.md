@@ -51,4 +51,4 @@ clientes/<cliente>/
 - **Não autoriza começar pela peça.** É o pedido mais comum e o mais caro de aceitar.
 
 ---
-*Instituído em 20/09/2026, junto com `METODO-TRILHO-DE-CONTA-NOVA.md`. 🟡 Verificação em caso real pendente.*
+*Regra da casa, junto com `METODO-TRILHO-DE-CONTA-NOVA.md`. 🟡 Verificação em caso real pendente.*

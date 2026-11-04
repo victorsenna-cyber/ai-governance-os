@@ -15,7 +15,7 @@ Nicho se define por desejo comum. Desejo comum produz **as mesmas objeções, na
 
 **Notação:** um elemento por linha, na ordem em que aparece, **com o ID da destilação** (`R1-E07`).
 
-🔴 **O vocabulário é FECHADO e tem 35 rótulos — fonte única: `METODO-BENCHMARKING.md` §5.2.** *(Corrigido em 20/09/2026: este template listava 11 categorias soltas, o que reabria exatamente o rótulo livre que o vocabulário controlado existe para fechar — e rótulo livre impede comparação entre referências, que é a única coisa que a matriz serve para fazer.)*
+🔴 **O vocabulário é FECHADO e tem 35 rótulos — fonte única: `METODO-BENCHMARKING.md` §5.2.** *(Corrigido: este template listava 11 categorias soltas, o que reabria exatamente o rótulo livre que o vocabulário controlado existe para fechar — e rótulo livre impede comparação entre referências, que é a única coisa que a matriz serve para fazer.)*
 
 **As seis famílias:** ATENÇÃO (`gancho` `curiosidade` `novidade` `contrarian`) · RELEVÂNCIA (`segmentação` `exclusão` `dor` `cena` `custo-inação`) · DESEJO (`promessa` `benefício` `futuro`) · CREDIBILIDADE (`credencial` `autoridade` `história` `depoimento` `demonstração` `número` `mídia`) · LÓGICA (`mecanismo` ⭐`apelido` `ponto-lógico` `reason-why` `objeção`) · AÇÃO (`oferta` `descrição` `ancoragem` `preço` `cta` `garantia` `bônus` `escassez` `recapitulação` `dois-caminhos`) · ESTRUTURA (`transição`).
 

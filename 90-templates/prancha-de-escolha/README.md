@@ -1,6 +1,6 @@
 # prancha-de-escolha/ — o gerador da prancha que o cliente usa para escolher
 
-> **Tipo:** blueprint · **Instituído:** 18/10/2026 · **Método:** `100-métodos/METODO-PRANCHA-DE-ESCOLHA.md` (ler antes).
+> **Tipo:** blueprint · **Origem:** casa de origem do template · **Método:** `100-métodos/METODO-PRANCHA-DE-ESCOLHA.md` (ler antes).
 > **Caso de origem:** a identidade visual da própria {{EMPRESA}}.
 
 ## Como usar numa conta de cliente

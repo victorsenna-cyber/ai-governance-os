@@ -1,20 +1,20 @@
 # MÉTODO — CONSTRUÇÃO DE CRIATIVOS DE RESPOSTA DIRETA
 
-> **Tipo:** método · secundário: gate (§7), blueprint (§4, §6), framework (§1–§2) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método (camada 2)")* · **Elaborado em:** 18/09/2026 · **Promovido em:** 20/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** método · secundário: gate (§7), blueprint (§4, §6), framework (§1–§2) *(reclassificado por auditoria independente de leitura integral; antes: "método (camada 2)")* · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > **Abrir por momento:** decidir §3 · produzir §5 · conferir §7 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > **Autoria:** ensinamento das transcrições de vídeos de Felipe Nonino (F1/F2) · sistematização e revisão pela casa.
 > 🔴 **Status: vigente para uso, com verificação em caso real pendente** (`CLAUDE.md` §7.1, regra 4). Primeira aplicação obrigatória: o funil DR de uma conta, antes do primeiro real de mídia. **Promover estabelece uso; não converte o relato da fonte em resultado validado por nós.**
 > **Autoridade deste método:** estrutura do anúncio de resposta direta deste modelo: funções, ordem de recepção, CTA com valor e correspondência com o destino.
 > **Consome:** `METODO-DIRECT-RESPONSE.md` (princípios) · `METODO-EMPILHAMENTO-DE-HOOKS.md` (abertura composta) · `METODO-PONTOS-LOGICOS.md` (mecanismo) · `METODO-ESTRUTURA-INVISIVEL.md` (funções) · `10-skills/copywriter-senior-continuum/` + voz e `lexico-icp/` do cliente (escrita e procedência).
 > **Não decide:** verba, limiar de CPA, janela, volume e critério de vencedor. Isso é do `100-métodos/METODO-TRAFEGO-PAGO.md` e do plano da conta.
-> 🔴 ⭐ **REGRA DA ESCALA (22/09/2026, `CLAUDE.md` §8 REGRA Nº 2):** antes da primeira linha, **o anúncio tem uma referência ESCALADA registrada** — a promessa que ele carrega e o tipo de abertura vêm de anúncio que sustenta volume no mesmo nicho ou em nicho adjacente (`METODO-DIRECT-RESPONSE.md` §2-bis). **O que este método constrói por cima é a diferenciação: mecanismo, prova, voz e cena.** Anúncio sem referência escalada é exploração, e se declara assim.
+> 🔴 ⭐ **REGRA DA ESCALA (`CLAUDE.md` §8 REGRA Nº 2):** antes da primeira linha, **o anúncio tem uma referência ESCALADA registrada** — a promessa que ele carrega e o tipo de abertura vêm de anúncio que sustenta volume no mesmo nicho ou em nicho adjacente (`METODO-DIRECT-RESPONSE.md` §2-bis). **O que este método constrói por cima é a diferenciação: mecanismo, prova, voz e cena.** Anúncio sem referência escalada é exploração, e se declara assim.
 > **Oficina:** a cópia de elaboração do método mora na oficina e não se carrega.
-> **Atualizado em 12/10/2026 (alçada {{OPERADOR}}):** §4.2-bis, o corpo desenvolvido em texto (cadeia de seis elos, lógica no lugar de resultado, régua de deleção), e três itens no gate do §7. Origem: uma conta. 🟡 Aprovado por alçada, `n=0` de mídia.
+> **Atualizado (alçada {{OPERADOR}}):** §4.2-bis, o corpo desenvolvido em texto (cadeia de seis elos, lógica no lugar de resultado, régua de deleção), e três itens no gate do §7. Origem: uma conta. 🟡 Aprovado por alçada, `n=0` de mídia.
 
 ---
 ## 1. Função e limites
 
-> 🔴 **Anúncio não abre o circuito de página (`CLAUDE.md` §6.3).** Só abre quando o destino — página, VSL, quiz — precisa ser criado ou refeito. *(migrado do roteador em 26/09/2026 — era afirmação ÓRFÃ: existia só no `CLAUDE.md` §6, e se perderia na compactação)*
+> 🔴 **Anúncio não abre o circuito de página (`CLAUDE.md` §6.3).** Só abre quando o destino — página, VSL, quiz — precisa ser criado ou refeito.
 
 
 Construir um anúncio que conduza um público identificado a uma ação específica, explicando o problema, a lógica da solução e o valor do próximo passo.
@@ -29,7 +29,7 @@ Fontes primárias:
 
 - **F1:** transcrição automática de vídeo de Felipe Nonino. Âncoras de localização: “Primeiro o hook”; “Agora você precisa de um corpo”; “Depois, você vai colocar um depoimento”.
 - **F2:** outra transcrição de vídeo do mesmo autor. Complemento sobre recombinação de ganchos.
-- **F3 (08/10/2026):** destilação de um podcast de mercado. **Fonte independente de F1/F2.** Converge com F1 em: anúncio vende a próxima etapa, CTA com valor, prova antes do CTA e segundo CTA. **Onde convergem, a confiança na hipótese sobe; continua sendo relato de terceiro, não resultado nosso.** Entrou aqui só o §3.1 (escolha de ângulo); o que toca o gate (§7) aguarda o caso real, conforme `CLAUDE.md` §7.1 item 4 — fila na destilação.
+- **F3:** destilação de um podcast de mercado. **Fonte independente de F1/F2.** Converge com F1 em: anúncio vende a próxima etapa, CTA com valor, prova antes do CTA e segundo CTA. **Onde convergem, a confiança na hipótese sobe; continua sendo relato de terceiro, não resultado nosso.** Entrou aqui só o §3.1 (escolha de ângulo); o que toca o gate (§7) aguarda o caso real, conforme `CLAUDE.md` §7.1 item 4 — fila na destilação.
 
 | Conteúdo | Procedência | Tratamento |
 |---|---|---|
@@ -59,7 +59,7 @@ Público e oferta precisam ser coerentes com o diagnóstico e os pilares aplicá
 
 Aplicar o passe de procedência da skill: cena de grau I não entra em bloco de espelho; banco com menos de três falas D mantém a peça como rascunho, conforme a regra vigente. Não deduzir a experiência do público a partir da transcrição de um vendedor.
 
-### 3.1 Escolha do ângulo — classes e ordem de ataque *(F3, 08/10/2026)*
+### 3.1 Escolha do ângulo — classes e ordem de ataque *(F3)*
 
 **Ângulo é o tema central do anúncio — sobre o que ele fala. O gancho é a expansão desse ângulo nos primeiros segundos, não uma busca separada por algo curioso** (F3). Ângulo fraco não se salva com gancho forte.
 
@@ -110,7 +110,7 @@ Explicitar: problema observado → causa sustentada → atuação da solução �
 
 Não aplicar esse teste causal ao roteiro inteiro como se um CTA tivesse de provar o depoimento seguinte. Há funções persuasivas diferentes na sequência. Também não impor ao anúncio a quantidade de elos usada em uma VSL.
 
-### 4.2-bis Corpo desenvolvido em texto: a cadeia entre a cena e a oferta *(12/10/2026)*
+### 4.2-bis Corpo desenvolvido em texto: a cadeia entre a cena e a oferta
 
 > **Origem:** uma conta, em teste de criativos. Versões sucessivas; a última foi aprovada por alçada, e o padrão de copy foi propagado ao repositório. As peças ficam no registro de criativos da conta.
 > 🟡 **Grau de evidência: aprovação de alçada, `n=0` de mídia.** As peças ainda não rodaram. O padrão vale para escrever; só vira padrão que vende com dado, e só então entra no swipe file (`CLAUDE.md` §11.5).

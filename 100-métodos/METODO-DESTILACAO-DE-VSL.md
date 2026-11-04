@@ -1,6 +1,6 @@
 # MÉTODO — DESTILAÇÃO DE VSL
 
-> **Tipo:** método · secundário: gate (§10, §12), trilho (§11) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Instituído:** 20/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** método · secundário: gate (§10, §12), trilho (§11) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > 🟡 **VIGENTE PARA EXECUTAR, SEM VIGÊNCIA DEFINITIVA.** `CLAUDE.md` §7.1 item 4 exige que gate novo rode contra um caso real antes de virar definitivo. **A primeira referência destilada é o teste deste método, e o que ela quebrar volta para cá como correção — não como exceção.**
 > 🔴 ⭐ **GALHO DE `METODO-DIRECT-RESPONSE.md`.** Os princípios gerais (40/40/20, prova vence promessa, hierarquia de lista, done for you) vivem no tronco e não se repetem aqui.
 > **O que este método é, em uma linha:** o **motor executável das Fases B e C do `METODO-BENCHMARKING.md`**, aplicado a VSL, e a metade **EXTRAIR** do `METODO-ESTRUTURA-INVISIVEL.md` §7.1.
@@ -183,7 +183,7 @@ Transcript grande: ler em blocos sequenciais, **na ordem**, sem pular para a ofe
 | ⭐ **CONSTRUÇÃO** | o relato de quem aplicou primeiro | **quando o produto é nomeado** |
 | **OFERTA** | o produto nomeado | fim |
 
-> 🔴 **Eram quatro até 20/09/2026.** A CONSTRUÇÃO foi instituída como bloco próprio (`METODO-FUNIL-DE-VSL.md` §5.3-bis): expert aplicou → resultado → cascata → foi obrigado a criar. **Peça sem ela existe e é comum — registra-se `ausente`, porque ausência é dado.**
+> 🔴 **Eram quatro.** A CONSTRUÇÃO foi instituída como bloco próprio (`METODO-FUNIL-DE-VSL.md` §5.3-bis): expert aplicou → resultado → cascata → foi obrigado a criar. **Peça sem ela existe e é comum — registra-se `ausente`, porque ausência é dado.**
 
 🔴 **A regra que resolve a ambiguidade, e é onde a marcação automática erra:** citar o próprio nome na lead **não abre a história**; citar o mecanismo de passagem na lead **não abre o mecanismo**; citar o produto dentro de uma prova **não abre a oferta**. **A virada é de FUNÇÃO DOMINANTE do trecho, não de aparição de palavra.**
 
@@ -191,7 +191,7 @@ Transcript grande: ler em blocos sequenciais, **na ordem**, sem pular para a ofe
 
 ### Etapa 5 — Marcar elemento a elemento, com ID estável
 
-**Cada trecho recebe UM rótulo do vocabulário controlado de 35** (`METODO-BENCHMARKING.md` §5.2 — **eram 34 até 20/09/2026; o rótulo novo é `apelido`**). **Vocabulário fechado, porque rótulo livre impede comparação entre referências** — que é a única coisa que a matriz serve para fazer.
+**Cada trecho recebe UM rótulo do vocabulário controlado de 35** (`METODO-BENCHMARKING.md` §5.2 — **eram 34; o rótulo novo é `apelido`**). **Vocabulário fechado, porque rótulo livre impede comparação entre referências** — que é a única coisa que a matriz serve para fazer.
 
 **Convenção de ID, e ela é o que torna o artefato citável:**
 
@@ -208,8 +208,8 @@ Transcript grande: ler em blocos sequenciais, **na ordem**, sem pular para a ofe
 | **Bloco** | lead · história · mecanismo · oferta |
 | **Rótulo** | um dos 34. **Um só** |
 | **Palavras** | a contagem do trecho |
-| 🔴 **Função** *(16/10/2026)* | **o que o ouvinte passa a saber, sentir ou decidir** neste elemento, com verbo e do ponto de vista dele: *"descobre que a aula é sobre X"*, *"se reconhece na cena"*, *"entende por que o que tentou não funcionou"*. **Não é o rótulo reescrito.** O rótulo diz a forma; a função diz o trabalho |
-| 🔴 **Tempo** *(16/10/2026)* | início em mm:ss **da transcrição com tempo** e % da duração total |
+| 🔴 **Função** | **o que o ouvinte passa a saber, sentir ou decidir** neste elemento, com verbo e do ponto de vista dele: *"descobre que a aula é sobre X"*, *"se reconhece na cena"*, *"entende por que o que tentou não funcionou"*. **Não é o rótulo reescrito.** O rótulo diz a forma; a função diz o trabalho |
+| 🔴 **Tempo** | início em mm:ss **da transcrição com tempo** e % da duração total |
 
 **E dois campos quando houver:** `âncora` (trecho literal curto entre aspas, só quando a forma for o achado) e `tela` (o que aparece em imagem enquanto aquilo é dito).
 
@@ -228,7 +228,7 @@ Os três níveis, na ordem: **bloco → elemento → métricas derivadas.** Proc
 1. **A cadeia lógica** do mecanismo, elo a elo, com o teste de encadeamento (§7)
 2. **A anatomia da oferta**, nas onze posições canônicas, com presença e ordem real
 3. **A anatomia da lead**: ângulo · os quatro elementos essenciais · o que cabe nos primeiros 30 segundos
-4. 🔴 ⭐ **A linha do tempo de compreensão** *(instituída 16/10/2026, alçada {{OPERADOR}}: modelar não só blocos e elementos, mas o que cada um faz e em que momento)*: **em que segundo o ouvinte da referência passa a saber cada coisa.** Marcos obrigatórios, cada um com tempo, % da duração e a frase literal que o entrega: **problema** (a cena ou a dor) · **promessa** · **quem fala e por que ouvir** · **o veículo** (que método, ferramenta ou abordagem a aula usa) · **para quem é, e para quem não é** · **o mecanismo em uma frase** (por que o problema acontece) · **o produto** (nome e formato) · **o preço** · **o primeiro CTA**. Marco que a referência não entrega se registra como **ausente**, nunca se infere.
+4. 🔴 ⭐ **A linha do tempo de compreensão** *(instituída: modelar não só blocos e elementos, mas o que cada um faz e em que momento)*: **em que segundo o ouvinte da referência passa a saber cada coisa.** Marcos obrigatórios, cada um com tempo, % da duração e a frase literal que o entrega: **problema** (a cena ou a dor) · **promessa** · **quem fala e por que ouvir** · **o veículo** (que método, ferramenta ou abordagem a aula usa) · **para quem é, e para quem não é** · **o mecanismo em uma frase** (por que o problema acontece) · **o produto** (nome e formato) · **o preço** · **o primeiro CTA**. Marco que a referência não entrega se registra como **ausente**, nunca se infere.
    **Para que serve:** é a régua do auditor A7 (`METODO-PRODUCAO-VSL-POR-AGENTES.md` §2). A peça nossa é medida contra **o momento** em que a referência escalada entrega cada coisa, e não contra um limite inventado. **E é o que impede o erro de modelagem:** copiar o rótulo de um elemento (*contrarian*) sem perguntar que trabalho ele fazia para aquele ouvinte, naquele segundo.
 
 ### Etapa 8 — Ler o negativo

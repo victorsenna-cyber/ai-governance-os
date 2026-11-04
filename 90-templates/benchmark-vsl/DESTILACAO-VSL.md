@@ -140,7 +140,7 @@ OFERTA:     {{oferta → benefício → exclusão → descrição → ancoragem 
 ---
 
 
-## Linha do tempo de compreensão (Etapa 7, camada 4 · 16/10/2026)
+## Linha do tempo de compreensão (Etapa 7, camada 4)
 
 > Em que segundo o ouvinte desta referência passa a saber cada coisa. **Marco ausente se escreve "ausente", nunca se infere.** É a régua do auditor A7.
 

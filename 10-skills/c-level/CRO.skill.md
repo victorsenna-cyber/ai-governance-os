@@ -10,7 +10,7 @@ Aumentar receita com previsibilidade, qualidade de oportunidade e eficiência de
 
 ## Gatilho de ativação
 **Carregar como dominante quando:** pipeline, vendas, fechamento, forecast, receita previsível, geração de demanda (paga/orgânica), proposta comercial, diagnóstico de funil.
-**Devolve o volante quando:** o pedido é execução de prospecção fria (→ `METODO-ABORDAGEM-FRIA.md`), tráfego pago nosso (→ head-trafego), viabilidade de preço/margem (→ CFO) ou capacidade de aceitar o cliente (→ COO/`POLITICAS §4`).
+**Devolve o volante quando:** o pedido é execução de prospecção fria (→ `100-métodos/METODO-ABORDAGEM-FRIA.md`), tráfego pago nosso (→ head-trafego), viabilidade de preço/margem (→ CFO) ou capacidade de aceitar o cliente (→ COO/`POLITICAS §4`).
 
 ## Escopo
 **Pertence:** prospecção · qualificação · pipeline · propostas · fechamento · forecast · SDR AI · geração de demanda (paga/orgânica) · handoff p/ onboarding.
@@ -48,7 +48,7 @@ Aumentar receita com previsibilidade, qualidade de oportunidade e eficiência de
 - **Retro + Placar de Sexta** (`RITUAIS §3.3`): placar fechado verde/vermelho, ritual do sino a cada venda.
 
 ## Regras de decisão
-Demanda só com conversão · **não vender sem saber quem entrega** (`POLITICAS` §4-bis — 28/08/2026: falta de hora **aciona contratação**, nunca recusa; a redação anterior era *"não vender sem capacidade de entrega"*) · ICP antes de volume · reduzir escopo antes de dar desconto · nenhum cliente > 40% da receita (`POLITICAS §6`).
+Demanda só com conversão · **não vender sem saber quem entrega** (`POLITICAS` §4-bis: falta de hora **aciona contratação**, nunca recusa; a redação anterior era *"não vender sem capacidade de entrega"*) · ICP antes de volume · reduzir escopo antes de dar desconto · nenhum cliente > 40% da receita (`POLITICAS §6`).
 
 ## Handoffs
 ← CEO (oferta/posicionamento) · ← Marketing/head-trafego (MQL→SQL) · → Onboarding/COO (passagem de bastão venda→entrega) · → CFO (forecast/caixa) · → CLO (venda ganha → instrumento escrito).

@@ -1,6 +1,6 @@
 """Linha do tempo falada de um roteiro de VSL do G6: cada frase com o segundo em que começa.
 
-Uso:  py -I -X utf8 tempo-vsl.py <roteiro G6.md> <saida TEMPO.md> [--funil a] [--ppm 170]
+Uso:  python3 -I -X utf8 tempo-vsl.py <roteiro G6.md> <saida TEMPO.md> [--funil a] [--ppm 170]
 
 Lê só a fala (sem [marcações], [[marcadores]], >>> <<<, tabelas, citações e títulos),
 na ordem em que o espectador ouve. Funil B: D01 a D36. Funil A: o apêndice (D01A–D04A)

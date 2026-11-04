@@ -1,6 +1,6 @@
 # BRIEFING — <cliente>
 
-> Preenchido em: <data> · Gate de entrada (`METODO-TRAFEGO-PAGO.md` §1): G1 ☐ G2 ☐ G3 ☐ G4 ☐ G5 ☐ → decisão: <aceito/recusado/condicionado + motivo>
+> Preenchido em: <data> · Gate de entrada (`100-métodos/METODO-TRAFEGO-PAGO.md` §1): G1 ☐ G2 ☐ G3 ☐ G4 ☐ G5 ☐ → decisão: <aceito/recusado/condicionado + motivo>
 
 ## Negócio e oferta
 - O que vende / para quem / região: <!-- preencher -->

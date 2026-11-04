@@ -1,9 +1,9 @@
 # MÉTODO — PIVÔ DE CONVERSÃO
 
-> **Tipo:** framework · secundário: gate (§8), método (§6) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método canônico (camada 2)")* · **Criado em:** 12/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** framework · secundário: gate (§8), método (§6) *(reclassificado por auditoria independente de leitura integral; antes: "método canônico (camada 2)")* · **Alçada:** {{OPERADOR}}
 > **Destino no repo:** `100-métodos/METODO-PIVO-DE-CONVERSAO.md`
-> **Origem:** conceito cunhado pelo {{OPERADOR}} em 12/09/2026. **É termo autoral da casa** — usar com o nome, sempre.
-> **Amarrações:** `METODO-QUATRO-PILARES` · `METODO-DIAGNOSTICO-DE-OPERACAO` (dimensão 5) · `MATRIZ-LEITURA-CONTEUDO` · `METODO-PAGINA-DE-VENDAS`
+> **Origem:** conceito cunhado pelo {{OPERADOR}}. **É termo autoral da casa** — usar com o nome, sempre.
+> **Amarrações:** `METODO-TESTE-DE-PILARES` · `METODO-DIAGNOSTICO-DE-OPERACAO` (dimensão 5) · `MATRIZ-LEITURA-CONTEUDO` · circuito de página (`00-core/roteador/ARVORE-ESCRITA.md` §6)
 
 ---
 
@@ -13,7 +13,7 @@
 >
 > É a virada que transforma conteúdo, página, call, VSL — ou seja lá o que for — em venda.
 
-**Como isso se diz em público, e é a pergunta que abre a conversa** *(registrado 26/09/2026)*:
+**Como isso se diz em público, e é a pergunta que abre a conversa** *(regra da casa)*:
 
 > **O seu conteúdo começa um assunto e tem um pivô onde ele converge para o seu negócio, de modo que gere venda?**
 
@@ -153,4 +153,4 @@ Rubrica completa: `MATRIZ-LEITURA-CONTEUDO.md`.
 - [ ] a frase-teste da §3 fecha com a palavra da oferta.
 
 ---
-*Criado em 12/09/2026. Conceito e nome: {{OPERADOR}}. Use o nome em material interno e em call — é mecanismo nomeado da casa, e mecanismo se nomeia.*
+*Criado. Conceito e nome: {{OPERADOR}}. Use o nome em material interno e em call — é mecanismo nomeado da casa, e mecanismo se nomeia.*

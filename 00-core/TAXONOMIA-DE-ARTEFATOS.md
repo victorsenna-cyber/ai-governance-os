@@ -1,6 +1,6 @@
 # TAXONOMIA DE ARTEFATOS — framework, método, política, gate, trilho, blueprint
 
-> **Tipo:** framework · secundário: política (§7) *(antes: "vocabulário" — um tipo fora do próprio vocabulário; corrigido 26/09/2026)* · camada 1, identidade · **Instituído:** 26/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** framework · secundário: política (§7) *(antes: "vocabulário" — um tipo fora do próprio vocabulário; corrigido)* · camada 1, identidade · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > **Por que vive em `00-core/` e não em `100-métodos/`:** um arquivo que define nomes não é um método. **Colocá-lo em `100-métodos/` seria o primeiro erro que ele existe para corrigir.**
 > **Gatilho:** a necessidade de diferenciar o que é framework, o que é método, o que são blueprints, o que estava confundido e como aprimorar.
 
@@ -47,7 +47,6 @@
 | `ANCORAGEM-DE-PROPOSTA` | política | método (§1 → §2 → veredito) | ✅ **método** |
 | `ESTIMATIVA-DE-CARGA` | política | framework (~60% é reenquadre) | ✅ **framework** |
 | `FUNIL-DE-VSL` | trilho | método (Fases 0–4, saída nomeada) | ✅ **método** |
-| `ABORDAGEM-FRIA` · `SALESFORCE-INBOUND` · `TRAFEGO-PAGO` | 🔴 **"ponteiro"** | método · framework · método | 🔴 **erro meu:** contei os ponteiros da RAIZ como se fossem os arquivos de `100-métodos/`, que são as **fontes ativas** |
 | `DIAGNOSTICO-DE-OPERACAO` | 🔴 omitido | método | erro meu — ficou fora da lista |
 | `MATRIZ-LEITURA-CONTEUDO` | "a classificar" | framework | ✅ fechado |
 
@@ -123,9 +122,9 @@ Tudo em `90-templates/`: `repo-cliente/` · `conta-nova/` · `benchmark-vsl/` ·
 
 > ⭐ **A pasta de blueprints é a parte mais bem organizada do repositório, e por um motivo que vale roubar: o nome da pasta declara a natureza, não o assunto.** É exatamente o que `100-métodos/` não faz.
 
-### 2.7 PONTEIRO — 4 · e **REGISTRO no lugar errado — 3**
+### 2.7 PONTEIRO — 0 · e **REGISTRO no lugar errado — 3**
 
-**Ponteiros (corretos):** `ABORDAGEM-FRIA` · `PAGINA-DE-VENDAS` · `SALESFORCE-INBOUND` · `TRAFEGO-PAGO` na raiz.
+**Ponteiros:** nenhum. O template nasce sem caminho antigo; a raiz não tem método (`CLAUDE.md` §7).
 
 🔴 **Registros morando em `100-métodos/`** (auditorias de circuito, verificações de versão, promoções de peça — datados e nomeados pelo ato). **Não são método, framework nem gate — são o registro de que algo foi verificado.** Pertencem a um `registros/`, e estão ali porque a pasta virou "onde se guarda o que é importante".
 
@@ -200,7 +199,7 @@ GATE        → roda por ÚLTIMO, e devolve
 
 ---
 
-### 4.2 🔴 ⭐ O PROCESSO — a ordem que liga os tipos, e por que ela é o que teria evitado o erro de uma conta *(26/09/2026)*
+### 4.2 🔴 ⭐ O PROCESSO — a ordem que liga os tipos, e por que ela é o que teria evitado o erro de uma conta
 
 > **Os seis tipos são os substantivos. O PROCESSO é a sintaxe.** Não é um sétimo tipo: é **a ordem em que os tipos entram em qualquer tarefa** — `framework → trilho → método → blueprint → política → gate`.
 
@@ -215,7 +214,7 @@ GATE        → roda por ÚLTIMO, e devolve
 
 #### O caso que o processo explica
 
-**Uma conta:** um lote de peças com estrutura aprovada em todos os gates e cenas de ICP inventadas, porque o ICP nunca tinha rodado.
+**O caso típico:** um lote de peças com estrutura aprovada em todos os gates e cenas de ICP inventadas, porque a arqueologia de ICP nunca tinha rodado.
 
 **Lido pelo processo:** rodou-se **método** (a skill de copy) e **gate** (os passes dela). **Pulou-se o trilho** — ICP antes de copy — e o framework que diz de onde a cena vem. E **o gate aprovou**, porque conferia a forma da própria etapa.
 
@@ -227,7 +226,7 @@ GATE        → roda por ÚLTIMO, e devolve
 
 #### O que o processo exige do roteador
 
-**Rotear para um arquivo solto não aplica o processo — rotear para uma ÁRVORE aplica.** Uma árvore declara, para uma família de pedidos, **qual framework, qual trilho, qual método, qual blueprint, qual política e qual gate** — na ordem. É o objeto da auditoria de roteamento de 26/09/2026.
+**Rotear para um arquivo solto não aplica o processo — rotear para uma ÁRVORE aplica.** Uma árvore declara, para uma família de pedidos, **qual framework, qual trilho, qual método, qual blueprint, qual política e qual gate** — na ordem. É o objeto da auditoria de roteamento.
 
 ---
 
@@ -242,7 +241,7 @@ GATE        → roda por ÚLTIMO, e devolve
 | `FUNIL-DE-VSL` (725) | **trilho** (a ordem das fases) + **framework** (por que o formato funciona) + **gate** (as 6 condições de recusa) | as três partes carregam em **momentos opostos** do trabalho: o framework antes de decidir se há VSL, o trilho ao produzir, o gate no fim |
 | `ANCORAGEM-DE-PROPOSTA` (702) | **política** (as 7 âncoras e os números) + **blueprint** (a folha interna) + **gate** (os 6 de saída) | hoje quem precisa só da folha carrega 702 linhas, **e quem precisa do gate também** |
 
-⚠️ **Nenhum dos dois se parte nesta tarefa.** Cada um é o procedimento de quatro passos do `§7.1` item 3 — conteúdo íntegro para `_legado/`, ponteiro no caminho antigo, linha no índice, roteamento atualizado. **Duas tarefas próprias, e a fila já tem dívida aberta.**
+⚠️ **Nenhum dos dois se parte nesta tarefa.** Cada um é o procedimento de quatro passos do `§7.1` item 3 — o antigo sai do caminho, toda referência é reescrita e o roteamento é atualizado. **Duas tarefas próprias, e a fila já tem dívida aberta.**
 
 ---
 
@@ -270,4 +269,4 @@ GATE        → roda por ÚLTIMO, e devolve
 - 🔴 **Não resolve a lacuna do §3.5.** O framework da casa continua faltando, **e agora está escrito que falta.**
 
 ---
-*Instituído em 26/09/2026, alçada {{OPERADOR}}. Diagnóstico medido por varredura do acervo (28 arquivos), não por leitura de títulos. **A evidência de que a confusão era real e antiga: o §0 do `METODO-DIRECT-RESPONSE.md` nomeou quatro naturezas corretamente em 18/09 e chamou as quatro de método.** 🟡 Vigência provisória: o vocabulário vale desde já; a aplicação do campo `Tipo:` nos 28 arquivos é tarefa própria, e é ela que testa a taxonomia em caso real.*
+*Regra da casa. Diagnóstico medido por varredura do acervo (28 arquivos), não por leitura de títulos. **A evidência de que a confusão era real e antiga: o §0 do `METODO-DIRECT-RESPONSE.md` nomeou quatro naturezas corretamente em 18/09 e chamou as quatro de método.** 🟡 Vigência provisória: o vocabulário vale desde já; a aplicação do campo `Tipo:` nos 28 arquivos é tarefa própria, e é ela que testa a taxonomia em caso real.*

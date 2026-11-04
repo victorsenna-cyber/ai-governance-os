@@ -1,7 +1,7 @@
 # MÉTODO — Edição de Vídeo Curto
 
 > **Tipo:** método
-> **Instituído em:** 15/10/2026 · **Alçada:** {{OPERADOR}} · 🟡 **vigência provisória até o primeiro vídeo real editado** (`CLAUDE.md` §7.1, item 4)
+> **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}} · 🟡 **vigência provisória até o primeiro vídeo real editado** (`CLAUDE.md` §7.1, item 4)
 > **Aplica-se a:** vídeo gravado de fala (talking head) que vira peça de 15 a 90 s em 9:16 — perfil do {{OPERADOR}} primeiro; conta de cliente depois do primeiro caso real.
 > **Ferramenta:** `40-operacao-rotinas/ferramentas/edicao-video/` (README com instalação, formato do roteiro e cadeia aplicada) · **área de trabalho:** `950-marketing/conteudo-perfil/`
 > **Gatilho:** a pergunta de como se gera uma edição fina (motion design, legenda, efeitos, cortes, melhoria de vídeo e áudio).
@@ -54,7 +54,7 @@ Gravar deixou de ser o gargalo. **O próximo gargalo é o intervalo entre o brut
 | o que dizer, gancho de fala, linha editorial, "não sei o que postar" | `ARVORE-ESCRITA` — skill de copy, módulo 06 |
 | anúncio pago em vídeo (texto e estrutura) | `ARVORE-ESCRITA` — `METODO-CONSTRUCAO-DE-CRIATIVOS-DR` |
 | vídeo de anúncio editado para mídia | **este método** para a edição + `METODO-TRAFEGO-PAGO` para a hipótese |
-| motion elaborado (b-roll, ícones, setas animadas), música | ~~fora desta versão — construir quando houver demanda real, não antes (`CLAUDE.md` §9)~~ *(20/10: a demanda real chegou — imagens ilustrativas de VSL)* → `40-operacao-rotinas/ferramentas/video-por-codigo/README.md` (motor HyperFrames + biblioteca de prompts) |
+| motion elaborado (b-roll, ícones, setas animadas), música | ~~fora desta versão — construir quando houver demanda real, não antes (`CLAUDE.md` §9)~~ *(a demanda real chegou — imagens ilustrativas de VSL)* → `40-operacao-rotinas/ferramentas/video-por-codigo/README.md` (motor HyperFrames + biblioteca de prompts) |
 | VSL | `METODO-PRODUCAO-VSL-POR-AGENTES` — este método pode editar o bruto gravado dela |
 
 ## 6. Validação financeira (`CLAUDE.md` §9)

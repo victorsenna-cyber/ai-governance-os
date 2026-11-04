@@ -1,6 +1,6 @@
 # Diário de campanha — <cliente>
 
-> **Tipo:** blueprint · molde de `100-métodos/METODO-ANALISE-DIARIA-DE-CAMPANHA.md` (29/10/2026, 🟡 provisório). Copiado para `clientes/<Cliente>/NN - tráfego pago/diario/` ao pôr a conta no protocolo.
+> **Tipo:** blueprint · molde de `100-métodos/METODO-ANALISE-DIARIA-DE-CAMPANHA.md` (🟡 provisório). Copiado para `clientes/<Cliente>/NN - tráfego pago/diario/` ao pôr a conta no protocolo.
 
 **Três arquivos por dia, três estágios:**
 

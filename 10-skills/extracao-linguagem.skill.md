@@ -2,7 +2,7 @@
 
 > **Fonte completa:** `100-métodos/Método de extração de linguagem/METODOLOGIA CONTINUUM DE EXTRAÇÃO DE LINGUAGEM.md`
 > **Quando carregar:** todo pedido de perfil linguístico, skill de voz, mapa de comunicação, "extrai a voz de X", ou auditoria de copy contra voz.
-> **v3 (22/07/2026):** adiciona a **Camada 2.5 — Padrões de Linguagem** (metamodelo/Milton, critérios+valores+equivalência complexa, atos de fala+pressuposições, submodalidades+prosódia-transe). Representacional, raciocínio, ensino, método e taxonomia **já eram v2** — rodar sempre, não pular.
+> **v3:** adiciona a **Camada 2.5 — Padrões de Linguagem** (metamodelo/Milton, critérios+valores+equivalência complexa, atos de fala+pressuposições, submodalidades+prosódia-transe). Representacional, raciocínio, ensino, método e taxonomia **já eram v2** — rodar sempre, não pular.
 
 ## Sequência obrigatória
 
@@ -33,7 +33,7 @@
 - Sistema (2.1) ≠ submodalidade (2.5): canal vs. volume — não confundir.
 - Milton/atos de fala: usar os **da pessoa**, nunca os de copywriter genérico.
 - Não contrariar equivalência-núcleo (2.5.4) nem cosmologia (3.1) para "vender melhor".
-- Skill de voz resultante entra na árvore de copy do CLAUDE.md §6.1 (+ `stop-slop` sempre).
+- Skill de voz resultante entra na árvore de copy do CLAUDE.md §6.1 (+ o gate anti-slop, `10-skills/copywriter-senior-continuum/referencias/04-gate-antislop.md`, sempre).
 
 ## Auditoria de copy contra o perfil (gate de saída)
 

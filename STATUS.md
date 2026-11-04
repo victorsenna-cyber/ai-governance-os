@@ -4,7 +4,7 @@
 > **Como se escreve aqui:** as entradas novas entram **no topo**, acima desta linha, como citação de uma linha de abertura em negrito (`> **🟢/🟡/🔴 Área — DD/MM/AAAA · O QUE ACONTECEU, EM UMA FRASE.** detalhe…`). Emoji: 🟢 fechado/positivo · 🟡 em andamento · 🔴 risco ou decisão pendente · ⭐ regra nova. Toda entrada diz **o fato, a decisão, o descartado e o próximo passo com dono** (`CLAUDE.md` §11). O que só existe na conversa não existe.
 > **Como se lê:** pelo topo — as entradas dos últimos 30 dias e as §1–§5. O §6 e os registros antigos por `grep`, nunca o arquivo inteiro. Bloco cuja data mais recente tem mais de 60 dias vai para `40-operacao-rotinas/rotinas/STATUS-HISTORICO-<ano>.md`, com ponteiro de uma linha.
 
-> **⭐ Casa — {{DATA_INSTANCIACAO}} · REPOSITÓRIO INSTANCIADO A PARTIR DO TEMPLATE CONTINUUM.** Placeholders preenchidos conforme `LEIA-ME-TEMPLATE.md`. Pendências de calibração do dia 1 listadas no §6. Próximo passo: `{{OPERADOR}}` roda o primeiro pedido real pelo roteador (`CLAUDE.md` §6) e registra aqui o que o repositório não soube responder.
+> **⭐ Casa — {{DATA_INSTANCIACAO}} · REPOSITÓRIO INSTANCIADO A PARTIR DO TEMPLATE CONTINUUM.** Placeholders: `python3 40-operacao-rotinas/ferramentas/instanciar-template.py --listar` mostra o que ainda falta. Pendências de calibração do dia 1 listadas no §6. Próximo passo: `{{OPERADOR}}` roda o primeiro pedido real pelo roteador (`CLAUDE.md` §6) e registra aqui o que o repositório não soube responder.
 
 ---
 
@@ -20,7 +20,7 @@
 | Passivo total conhecido | `a calibrar` | |
 | **Obrigação dura mais próxima** | `a calibrar` | data e valor; a origem do recurso se escreve ao lado |
 | Clientes recorrentes ativos | 0 | com termo |
-| Estágio da trajetória | **A — Caixa** | `00-core/POLITICAS-DE-DECISAO.md` §2 |
+| Estágio da trajetória | **A — Caixa** *(default do template; confirme)* | `00-core/POLITICAS-DE-DECISAO.md` §2 |
 | Janela de blitzscaling | **Fechada** | previsibilidade §3 não atendida |
 
 ## 2. Metas vigentes ({{MES_ANO}})
@@ -59,11 +59,11 @@ Pipeline coverage alvo: ≥ 3× a meta do mês (`POLITICAS` §3). Hoje: **sem co
 
 | Frente | Status | Dono |
 |---|---|---|
-| Motor de caixa (`{{MOTOR_DE_CAIXA}}`) | **ativa — prioridade 1** | {{OPERADOR}} |
-| Prospecção | a abrir: canal, lista, script e critério de score (`30-comercial/ICP.md` §2.1, `METODO-ABORDAGEM-FRIA.md`) | {{OPERADOR}} |
+| Motor de caixa (`{{MOTOR_DE_CAIXA}}`) | `a calibrar` (prioridade 1 no Estágio A) | {{OPERADOR}} |
+| Prospecção | a abrir: canal, lista, script e critério de score (`30-comercial/ICP.md` §2.1, `100-métodos/METODO-ABORDAGEM-FRIA.md`) | {{OPERADOR}} |
 | Conversão carteira → recorrência | inicia a cada entrega | {{OPERADOR}} |
-| Jurídico (contratos + registros) | `80-juridico/` instalado; templates de contrato a revisar por advogado (gate de caixa) | {{OPERADOR}} |
-| Casa (o próprio repositório) | instanciado; `verificar-propagacao.py` em ✅ | {{OPERADOR}} |
+| Jurídico (contratos + registros) | templates de contrato vêm do template; revisão por advogado antes do primeiro uso (gate de caixa) | {{OPERADOR}} |
+| Casa (o próprio repositório) | instanciado em {{DATA_INSTANCIACAO}}; `verificar-propagacao.py` a rodar no dia 1 | {{OPERADOR}} |
 
 ## 6. Pendências de calibração
 
@@ -80,7 +80,7 @@ Pipeline coverage alvo: ≥ 3× a meta do mês (`POLITICAS` §3). Hoje: **sem co
 
 > O `40-operacao-rotinas/ferramentas/verificar-propagacao.py` confere que todo artefato de `100-métodos/` tem registro neste arquivo. **Método novo entra nesta tabela na mesma tarefa em que nasce** (`CLAUDE.md` §8, REGRA Nº 1, ato 4).
 
-| Artefato | Tipo | Estado no template |
+| Artefato | Tipo | Estado no template *(✅ = chegou íntegro e roteado; quem o confirma é o primeiro uso real na sua operação, `CLAUDE.md` §7.1 item 4)* |
 |---|---|---|
 | `ARQUETIPOS-DE-MARCA` | framework | 🟡 provisório até o primeiro kit aprovado por um cliente |
 | `MATRIZ-LEITURA-CONTEUDO` | framework | ✅ vigente |
@@ -110,7 +110,6 @@ Pipeline coverage alvo: ≥ 3× a meta do mês (`POLITICAS` §3). Hoje: **sem co
 | `METODO-KIT-DE-MARCA` | método | 🟡 provisório até o primeiro kit aprovado |
 | `METODO-LATERALIZACAO-DE-CRIATIVOS` | método | ✅ vigente |
 | `METODO-MECANISMO-E-ONE-BELIEF` | método | 🟡 vigente para executar, verificação em caso real pendente |
-| `METODO-PAGINA-DE-VENDAS` | ponteiro | → skills de página |
 | `METODO-PIVO-DE-CONVERSAO` | framework | ✅ vigente |
 | `METODO-PONTOS-LOGICOS` | framework | ✅ vigente |
 | `METODO-PRANCHA-DE-ESCOLHA` | método | 🟡 provisório até a primeira prancha apresentada |

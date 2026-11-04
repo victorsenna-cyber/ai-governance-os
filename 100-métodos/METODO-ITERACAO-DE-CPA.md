@@ -1,7 +1,7 @@
 # MÉTODO — ITERAÇÃO DE CPA
 
 > **Tipo:** método · secundário: gate (§9)
-> **Instituído:** 19/10/2026 · **Alçada:** {{OPERADOR}} · **Estado:** 🟡 **provisório, `n=0`** — gradua com 3 contas e 3 ciclos completos
+> **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}} · **Estado:** 🟡 **provisório, `n=0`** — gradua com 3 contas e 3 ciclos completos
 > **É o método de entrega da Assessoria de Marketing Local** (`METODO-PROSPECCAO-PRESENCIAL-LOCAL.md` §1) e vale para toda conta nossa que vende por conversa no WhatsApp.
 > **Roda dentro de:** `METODO-TRAFEGO-PAGO.md` (cadência §7.1, disciplina §7.2, regras de decisão §7.3, relatório §8) · **criativo:** `METODO-LATERALIZACAO-DE-CRIATIVOS.md` · **nó 3:** roteiro de resposta do Raio de Venda
 

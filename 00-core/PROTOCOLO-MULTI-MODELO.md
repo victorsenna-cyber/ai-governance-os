@@ -7,17 +7,17 @@
 
 | Ferramenta | Usar para | Nunca usar para |
 |---|---|---|
-| **Claude Opus 5 (Cowork)** | decisões novas · métodos e skills · estrutura e arquitetura de peça · **copy** · auditoria de peça-mestra · registro no repo (`CLAUDE.md` §11) · desbloqueio quando executor travar | builds longos de front, edição mecânica, ler pastas grandes |
-| **Claude Code (Sonnet/plugins)** | build de código e scripts · iteração com preview · automações | decidir oferta/preço/copy de venda (vem do plano) |
-| **Codex** | ⭐ **execução visual — etapa 4 do circuito de página** (`CLAUDE.md` §6.3): HTML/CSS/JS, responsivo, estados, animação, performance, Lighthouse · refino de código já aprovado · **revisão cruzada técnica** · paralelismo com o Claude | decidir ordem de dobras · **tocar em uma palavra de copy** · qualquer coisa canônica · registro no repo |
+| **Agente principal (modelo forte)** | decisões novas · métodos e skills · estrutura e arquitetura de peça · **copy** · auditoria de peça-mestra · registro no repo (`CLAUDE.md` §11) · desbloqueio quando executor travar | builds longos de front, edição mecânica, ler pastas grandes |
+| **Agente de build (modelo médio, com ferramentas)** | build de código e scripts · iteração com preview · automações | decidir oferta/preço/copy de venda (vem do plano) |
+| **Executor externo (segundo agente, se houver)** | ⭐ **execução visual — etapa 4 do circuito de página** (`CLAUDE.md` §6.3): HTML/CSS/JS, responsivo, estados, animação, performance, Lighthouse · refino de código já aprovado · **revisão cruzada técnica** · paralelismo com o Claude | decidir ordem de dobras · **tocar em uma palavra de copy** · qualquer coisa canônica · registro no repo |
 | **Ferramenta de imagem** | geração/edição de imagem (criativos estáticos a partir da copy pronta + direção de design) · variações de volume sobre matriz travada | qualquer coisa canônica (métodos, decisões, oferta) |
 | **Assistente de código gratuito** | edição mecânica: propagar data/preço, renomear, formatar, mover arquivo, checklist | qualquer escolha com 2 opções válidas |
 
-> 🔴 **O Codex opera em ISOLAMENTO DE ESCRITA.** Por decisão do {{OPERADOR}}, ele só escreve em pastas `execução Codex/`; todo o resto da Governança é leitura. **Consequência: a saída dele nunca é estado — é proposta**, e precisa do `40-operacao-rotinas/RITO-INTEGRACAO-CODEX.md` para virar canônico. ⚠️ **Isso muda a economia da delegação: cada tarefa dada a ele gera uma tarefa de integração.** Vale a pena em trabalho volumoso e verificável; **não vale em ajuste pequeno, onde o custo de integrar supera o de fazer.**
+> 🔴 **O executor externo, se houver, opera em ISOLAMENTO DE ESCRITA.** Ele só escreve em pastas `execução Codex/`; todo o resto da Governança é leitura. **Consequência: a saída dele nunca é estado — é proposta**, e precisa do `40-operacao-rotinas/RITO-INTEGRACAO-CODEX.md` para virar canônico. ⚠️ **Isso muda a economia da delegação: cada tarefa dada a ele gera uma tarefa de integração.** Vale a pena em trabalho volumoso e verificável; **não vale em ajuste pequeno, onde o custo de integrar supera o de fazer.**
 
 **Revisão cruzada barata:** o que um agente cria, outro audita contra o contrato. **Quem julga não reescreve** — o auditor aponta defeito localizado por linha e devolve ao dono do artefato. (Mesma regra do esquadrão de copy; autoauditoria não pega o que revisão cruzada pega.)
 
-### 1-bis. ⭐ DONO POR ETAPA DO CIRCUITO DE PÁGINA (instituído 12/09/2026)
+### 1-bis. ⭐ DONO POR ETAPA DO CIRCUITO DE PÁGINA (regra da casa)
 
 O circuito de `CLAUDE.md` §6.3 já tem cinco etapas. **A divisão de ferramenta é por etapa, não por "quem é melhor".**
 
@@ -31,20 +31,20 @@ O circuito de `CLAUDE.md` §6.3 já tem cinco etapas. **A divisão de ferramenta
 
 > **A etapa 4 é a única que muda de dono, e é onde o Codex é melhor que nós.** As três primeiras produzem o briefing de que ele precisa: **a qualidade da etapa 4 é função direta da 1, 2 e 3.** Codex mal briefado não é Codex ruim — é contrato ausente.
 
-### 1-ter. 🔴 Por que o Codex "não segue o repo com maestria" — e não é falha dele
+### 1-ter. 🔴 Por que um executor "não segue o repo com maestria" — e não é falha dele
 
-**Diagnóstico de 12/09/2026.** Três causas estruturais, todas nossas:
+**Diagnóstico.** Três causas estruturais, todas nossas:
 
-1. **`CLAUDE.md` declara "você opera como CEO" e concede autoridade de decisão** — o oposto exato do que o §Princípio deste protocolo exige de um executor. Mandar o Codex ler o `CLAUDE.md` **autoriza** o improviso que se queria proibir.
+1. **`CLAUDE.md` declara "você opera como CEO" e concede autoridade de decisão** — o oposto exato do que o §Princípio deste protocolo exige de um executor. Mandar o executor ler o kernel inteiro **autoriza** o improviso que se queria proibir.
 2. **`CLAUDE.md` §6 é um roteador denso de intenção→skill.** Numa tarefa de front, ~95% é irrelevante. Ruído de contexto em executor produz exatamente o sintoma observado.
-3. **O §2 deste protocolo já dizia a resposta e ninguém aplicou:** *"se o executor precisa de mais de 5 arquivos, o contrato está mal feito"*. O `AGENTS.md` antigo mandava ler 6 antes de começar, e o `CLAUDE.md` sozinho aponta para dezenas.
+3. **O §2 deste protocolo já dizia a resposta e ninguém aplicou:** *"se o executor precisa de mais de 5 arquivos, o contrato está mal feito"*. Um contrato de executor que manda ler 6 arquivos antes de começar, e o `CLAUDE.md` sozinho aponta para dezenas.
 
-**A correção, instituída em 12/09/2026: `CLAUDE.md` e `AGENTS.md` deixam de ser redundantes e passam a ser complementares.**
+**A correção: o kernel do principal (`CLAUDE.md`, replicado em `AGENTS.md`) e o contrato do executor (`AGENTS-EXEC.md`) são complementares, não redundantes.**
 
 | Arquivo | Governa | Contém |
 |---|---|---|
 | **`CLAUDE.md`** | o agente que **decide** | autoridade, roteador, método, registro |
-| **`AGENTS.md`** | o agente que **executa** | contrato, fronteiras, lista do proibido, gate de fecho. **Diz explicitamente para NÃO ler o `CLAUDE.md`** |
+| **`AGENTS-EXEC.md`** | o agente que **executa** | contrato, fronteiras, lista do proibido, gate de fecho. **Diz explicitamente para NÃO ler o `CLAUDE.md`** |
 
 **É a divisão que as duas ferramentas já fazem por convenção de nome** — só não estava sendo usada. Template de contrato por tarefa: `90-templates/CONTRATO-EXECUTOR.md`.
 

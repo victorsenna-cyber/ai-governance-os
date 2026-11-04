@@ -1,7 +1,7 @@
 # Follow-up — Cadência de Reativação (Fable 5)
 
 > A maioria das vendas fecha no follow-up. Quem não respondeu não disse "não": ainda não respondeu.
-> **Régua única: `10-skills/copywriting-fable5.skill.md`.**
+> **Régua única: `10-skills/copywriter-senior-continuum/referencias/02-regua-da-linguagem.md`.**
 > Regra de ouro da cadência: **cada toque traz algo novo** (uma pergunta honesta, uma prova, uma posição). Toque que só cutuca ("conseguiu ver?") treina o lead a ignorar. Cinco toques, cinco ângulos, e cada um fecharia a conversa com dignidade se fosse o último.
 
 ---
@@ -64,7 +64,7 @@ Fica valendo o que eu vi no primeiro dia: quem pesquisa [empresa] hoje ainda enc
 ## Quando parar
 
 - Pediu pra não mandar mais: parar na hora, registrar, nunca reativar.
-- 5 toques sem resposta: frio, reciclar em 30 dias com hook de outra família (`METODO-ABORDAGEM-FRIA.md` §4).
+- 5 toques sem resposta: frio, reciclar em 30 dias com hook de outra família (`100-métodos/METODO-ABORDAGEM-FRIA.md` §4).
 - Destratou: encerrar com educação, não reativar.
 
 ---
@@ -74,4 +74,4 @@ Fica valendo o que eu vi no primeiro dia: quem pesquisa [empresa] hoje ainda enc
 Cada lead com status vivo: `novo → abordado → respondeu → qualificado → proposta → fechado → entregue → expansão` (ou `frio` / `perdido`). Sem registro, o follow-up vira ruído e a cadência quebra. Planilha ou CRM Twenty.
 
 ---
-*Régua: `copywriting-fable5.skill.md`. Base de cadência: Receita Previsível (Ross), 100M Leads (Hormozi). Desenho: cada toque com ângulo próprio, escassez condicionada à verdade do dia, prova só quando real, encerramento que ecoa a cena de abertura.*
+*Régua: `10-skills/copywriter-senior-continuum/referencias/02-regua-da-linguagem.md`. Base de cadência: Receita Previsível (Ross), 100M Leads (Hormozi). Desenho: cada toque com ângulo próprio, escassez condicionada à verdade do dia, prova só quando real, encerramento que ecoa a cena de abertura.*

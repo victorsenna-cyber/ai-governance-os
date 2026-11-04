@@ -4,7 +4,7 @@
 
 O gerador de PDF claro da casa. Recebe um `.md` e um JSON de capa e devolve um PDF A4 em papel quente, com títulos em Lora e corpo em Poppins. **Não muda uma vírgula do conteúdo: só diagrama.**
 
-Nasceu em 12/08/2026, extraído do PDF da destilação de uma call, e foi generalizado para a casa.
+Nasceu, extraído do PDF da destilação de uma call, e foi generalizado para a casa.
 
 ## Quando usar
 
@@ -48,6 +48,6 @@ No Windows, o `build-pdf.py` não roda sozinho. Ele depende do WeasyPrint e de f
 
 ## O estado deste modelo
 
-**Em revisão desde 18/09/2026.** Ele nasceu de um PDF de conta e nunca foi reescrito como modelo da casa. Também não tem conferência automática: nada reprova uma fonte quebrada antes da entrega.
+**Em revisão.** Ele nasceu de um PDF de conta e nunca foi reescrito como modelo da casa. Também não tem conferência automática: nada reprova uma fonte quebrada antes da entrega.
 
 > A regra deste modelo: não se escreve CSS por documento.

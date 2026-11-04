@@ -1,7 +1,7 @@
 # MÉTODO — Desenho de Produto: do porquê à tela testada
 
 > **Tipo:** método
-> **Instituído em:** 01/11/2026 · **Alçada:** {{OPERADOR}} · 🟡 **vigência provisória até o primeiro produto chegar ao degrau 7** (`CLAUDE.md` §7.1, item 4). Roteado desde o primeiro dia (REGRA Nº 1). O primeiro uso real nunca é um cliente: comece por um produto próprio.
+> **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}} · 🟡 **vigência provisória até o primeiro produto chegar ao degrau 7** (`CLAUDE.md` §7.1, item 4). Roteado desde o primeiro dia (REGRA Nº 1). O primeiro uso real nunca é um cliente: comece por um produto próprio.
 > **Vale para:** todo produto digital que a casa cria, **nosso ou de cliente**: site de produto, app, PWA, painel, guia, SaaS, marketplace, ferramenta interna com usuário. **Não vale para:** página de vendas (circuito da `ARVORE-ESCRITA.md` §6), peça de conteúdo, repositório de governança (tem trilho próprio).
 > **Carrega:** `METODO-TESTE-DE-PILARES.md` (o ICP já lido, quando há conta) · `ARQUETIPOS-DE-MARCA.md` + `METODO-KIT-DE-MARCA.md` + `METODO-PRANCHA-DE-ESCOLHA.md` (degrau 5) · `10-skills/ui-ux-designer-senior-continuum/` (degraus 5 e 6) · `METODO-GERACAO-DE-RESULTADOS.md` §3-quater (a régua-mãe, antes do degrau 6) · `90-templates/desenho-de-produto/` (os moldes dos entregáveis).
 

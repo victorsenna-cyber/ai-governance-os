@@ -1,7 +1,7 @@
 # Template — pasta de tráfego pago do cliente
 
-> **Tipo:** blueprint · movido em 25/10/2026 de `30-comercial/trafego-clientes/_template/` por decisão do {{OPERADOR}}: cada cliente tem um repo próprio e tudo relacionado a ele mora nele; a pasta `30-comercial/` é só dos processos comerciais da {{EMPRESA}}.
-> O método que governa tudo: `METODO-TRAFEGO-PAGO.md` (fonte em `100-métodos/`).
+> **Tipo:** blueprint · regra: cada cliente tem um repo próprio e tudo relacionado a ele mora nele; a pasta `30-comercial/` é só dos processos comerciais da {{EMPRESA}}.
+> O método que governa tudo: `100-métodos/METODO-TRAFEGO-PAGO.md` (fonte em `100-métodos/`).
 
 ## Onde isto mora
 
@@ -15,16 +15,16 @@
 
 ## O que o template traz
 
-`BRIEFING.md` · `PLANO-DE-MIDIA.md` · `estrutura-campanhas.md` · `matriz-criativos.md` · `LOG-DECISOES.md` · `relatorios/README.md` · **`diario/`** (29/10/2026: o diário de campanha do `METODO-ANALISE-DIARIA-DE-CAMPANHA.md` — `AAAA-MM-DD.md` da coleta e `AAAA-MM-DD-ANALISE.md` da análise e implementação). Só markdown leve: é o que se carrega para operar o cliente.
+`BRIEFING.md` · `PLANO-DE-MIDIA.md` · `estrutura-campanhas.md` · `matriz-criativos.md` · `LOG-DECISOES.md` · `relatorios/README.md` · **`diario/`** (o diário de campanha do `METODO-ANALISE-DIARIA-DE-CAMPANHA.md` — `AAAA-MM-DD.md` da coleta e `AAAA-MM-DD-ANALISE.md` da análise e implementação). Só markdown leve: é o que se carrega para operar o cliente.
 
 ## Como abrir um cliente novo
 
-1. Passou no **gate de entrada** (`METODO-TRAFEGO-PAGO.md` §1)? Senão, não abre pasta.
+1. Passou no **gate de entrada** (`100-métodos/METODO-TRAFEGO-PAGO.md` §1)? Senão, não abre pasta.
 2. Copiar o conteúdo deste template para `clientes/<Cliente>/NN - tráfego pago/` e preencher `BRIEFING.md`.
 3. Preencher `PLANO-DE-MIDIA.md` (matemática reversa §2.2 assinada pelo cliente).
 4. Seguir a cadeia do método: página (`NN - web design/`) → criativos → estrutura → tracking → gestão.
 
-## Mudança de canal ou de estrutura *(instituído 30/10/2026)*
+## Mudança de canal ou de estrutura *(regra da casa)*
 
 Quando o canal muda (Google → Meta, por exemplo) ou a estrutura muda (objetivo, destino, verba), **a mudança não está feita até os arquivos de parâmetro dizerem a mesma coisa:** `PLANO-DE-MIDIA.md` (o plano antigo vai para `PLANO-DE-MIDIA-<CANAL>-<AAAA-MM>.md` com cabeçalho de arquivamento e o porquê), `estrutura-campanhas.md` (mapa vivo), `BRIEFING.md`, `LOG-DECISOES.md`, e o `PAINEL.md` + `STATUS.md` §1 do cliente. A análise diária (`METODO-ANALISE-DIARIA-DE-CAMPANHA.md` §3.1) carrega o plano e **para** se ele não for do canal que roda.
 

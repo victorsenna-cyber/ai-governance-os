@@ -1,7 +1,7 @@
 # BENCHMARK VSL — MATRIZ · {{cliente}}
 
 > **Template.** Copiar para `clientes/<cliente>/benchmark-vsl/`.
-> **Fonte canônica: `100-métodos/METODO-BENCHMARKING.md`** (desde 13/09/2026) · **procedimento de extração: `METODO-DESTILACAO-DE-VSL.md`** · recorte de VSL: `METODO-FUNIL-DE-VSL.md` §4.
+> **Fonte canônica: `100-métodos/METODO-BENCHMARKING.md`** · **procedimento de extração: `METODO-DESTILACAO-DE-VSL.md`** · recorte de VSL: `METODO-FUNIL-DE-VSL.md` §4.
 > **Regra:** dimensão não apurada entra como `não identificado`. **Nunca suposição.**
 > **Trava permanente: não se cola copy alheia aqui.** Registra-se padrão, dose e categoria de argumento.
 
@@ -64,7 +64,7 @@
 
 ### 🔴 Gate de saída — as OITO, ou não avança
 
-> *Alinhado em 20/09/2026 ao `METODO-BENCHMARKING.md` §9, que é a fonte canônica desde 13/09. Este template listava seis e apontava para o recorte de VSL como se fosse a fonte.*
+> *Alinhado ao `METODO-BENCHMARKING.md` §9, que é a fonte canônica desde 13/09. Este template listava seis e apontava para o recorte de VSL como se fosse a fonte.*
 
 - [ ] **3 referências** com evidência de veiculação registrada
 - [ ] **Contagem de nível 1 e 2** feita para a referência-base

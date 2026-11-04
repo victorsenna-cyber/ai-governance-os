@@ -1,16 +1,16 @@
 # MÉTODO — PRODUÇÃO DE VSL POR AGENTES
 
 > **Tipo:** método · secundário: gate (§5), trilho (§3)
-> **Instituído:** 02/10/2026 · alçada {{OPERADOR}} · ✅ **VIGENTE** — ~~🟡 vigência provisória~~ retirada pelo {{OPERADOR}} no mesmo dia, por decisão de alçada. **Exceção declarada ao `CLAUDE.md` §7.1, item 4, por alçada do dono:** a primeira VSL produzida pelo método deixa de ser condição de vigência e passa a ser **a primeira revisão** — o que ela mostrar entra como versão nova deste arquivo (`CLAUDE.md` §8, REGRA Nº 1).
+> **Origem:** casa de origem do template · ✅ **VIGENTE** — ~~🟡 vigência provisória~~ retirada pelo {{OPERADOR}} no mesmo dia, por decisão de alçada. **Exceção declarada ao `CLAUDE.md` §7.1, item 4, por alçada do dono:** a primeira VSL produzida pelo método deixa de ser condição de vigência e passa a ser **a primeira revisão** — o que ela mostrar entra como versão nova deste arquivo (`CLAUDE.md` §8, REGRA Nº 1).
 > **Galho de:** `METODO-FUNIL-DE-VSL.md` (é a forma de executar a escrita do roteiro) · usa `METODO-MECANISMO-E-ONE-BELIEF.md`, `METODO-PONTOS-LOGICOS.md`, `METODO-DESTILACAO-DE-VSL.md` e a skill de copy
-> ⟲ **Revisão 1 (16/10/2026, alçada {{OPERADOR}}), pelo primeiro uso (a primeira VSL): §5 e §6 reescritos, §8 novo.** Gate de fato antes do G1 · estrutura-base com função e tempo · A7 também sobre a estrutura · orçamento por rodada · auditoria proporcional · juiz não reabre decisão do dono.
+> ⟲ **Revisão 1 (regra da casa), pelo primeiro uso (a primeira VSL): §5 e §6 reescritos, §8 novo.** Gate de fato antes do G1 · estrutura-base com função e tempo · A7 também sobre a estrutura · orçamento por rodada · auditoria proporcional · juiz não reabre decisão do dono.
 > **Os agentes:** fonte na oficina do operador (`900-…/agentes-vsl/`, fora do template, que já traz os agentes publicados) · publicados em `.claude/agents/` (`vsl-*.md`, 13 arquivos). **Edita-se na oficina e copia-se para a publicação, nunca o inverso.**
 
 ---
 
 ## 1. POR QUE EXISTE
 
-**Três fatos, de 02/10/2026:**
+**Três fatos,:**
 
 1. **A skill de copy previa o "modo delegado" e ninguém o disparava.** Os 9 papéis estavam escritos; o roteador não obrigava, e na prática a VSL era escrita e auditada **no mesmo contexto** — exatamente o que a skill diz que falha: *"auditoria colada na escrita vira justificativa."*
 2. **Os 9 papéis são genéricos de copy.** Uma VSL modelada exige verificações que nenhum deles fazia: **dose e sequência contra a referência medida**, **cadeia de causa e efeito elo a elo com a fronteira promessa × efeito**, e **gravabilidade** pelo expert.
@@ -22,7 +22,7 @@
 
 ---
 
-## 2. OS 14 AGENTES *(13 até 16/10/2026; + A7)*
+## 2. OS 14 AGENTES *(13; + A7)*
 
 | # | Agente | Faz | Equivale no pacote |
 |---|---|---|---|
@@ -37,7 +37,7 @@
 | A3 | `vsl-auditor-procedencia` | origem de toda fala, cena, número e depoimento | — |
 | A4 | `vsl-auditor-voz` | voz do expert, léxico da conta, gravabilidade | — |
 | A5 | `vsl-auditor-antislop` | gate anti-slop da skill de copy | — |
-| A7 | `vsl-auditor-compreensao` | 🔴 **a VSL inteira, como o ouvinte frio, com a linha do tempo falada:** em que segundo fica claro o que é (o método/veículo), para quem é, por que ouvir, o que se compra · e a coerência da peça (eixo, nível de consciência, prova, verdade operacional, congruência com o produto da expert). **Instituído 16/10/2026** | — |
+| A7 | `vsl-auditor-compreensao` | 🔴 **a VSL inteira, como o ouvinte frio, com a linha do tempo falada:** em que segundo fica claro o que é (o método/veículo), para quem é, por que ouvir, o que se compra · e a coerência da peça (eixo, nível de consciência, prova, verdade operacional, congruência com o produto da expert). **Instituído** | — |
 | A6 | `vsl-auditor-cetico` | o público desconfiado — relata, não veta · 🟡 **+ leitura de retenção linha a linha** (em teste) | — |
 | J | `vsl-juiz` | consolida, devolve, decide · passada global no fim | — |
 
@@ -67,7 +67,7 @@ flowchart TD
 4. **o juiz** consolida e devolve; **teto de duas devoluções**
 5. bloco aprovado → próximo gerador
 
-**Depois do G6, e em toda revisão de lead ou de oferta:** o orquestrador gera a linha do tempo falada de cada funil (`py -I -X utf8 40-operacao-rotinas/ferramentas/tempo-vsl.py <roteiro> <pasta>/TEMPO-<versão>-FUNIL-B.md` e `--funil a`) e dispara o **A7** sobre a peça inteira. O laudo dele vai ao juiz na passada global. *(Instituído 16/10/2026: em uso real, o veículo só ficava claro tarde demais na peça, e nenhum auditor de bloco tinha como ver isso.)*
+**Depois do G6, e em toda revisão de lead ou de oferta:** o orquestrador gera a linha do tempo falada de cada funil (`python3 -I -X utf8 40-operacao-rotinas/ferramentas/tempo-vsl.py <roteiro> <pasta>/TEMPO-<versão>-FUNIL-B.md` e `--funil a`) e dispara o **A7** sobre a peça inteira. O laudo dele vai ao juiz na passada global. *(Instituído: em uso real, o veículo só ficava claro tarde demais na peça, e nenhum auditor de bloco tinha como ver isso.)*
 
 **Ordem de trás para frente** (`METODO-FUNIL-DE-VSL.md`): mecanismo → tese → história → oferta → abertura. **A abertura por último**, porque só então o mapa existe.
 
@@ -121,16 +121,16 @@ Não leia o raciocínio de outro agente. Não leia este pedido como permissão p
 
 **Sem subagentes no ambiente:** modo sequencial da skill de copy — um papel por resposta, declarado, e **nunca escrever e auditar na mesma resposta.** É o modo degradado, e se declara assim no relatório final.
 
-### 4.4 🔴 A COMPOSIÇÃO DA VSL — saída obrigatória de toda rodada fechada (instituída 16/10/2026, alçada {{OPERADOR}})
+### 4.4 🔴 A COMPOSIÇÃO DA VSL — saída obrigatória de toda rodada fechada (regra da casa)
 
-> Decisão de alçada de {{OPERADOR}}, 16/10, ao ver a primeira composição: ela faz parte do método.
+> Decisão de alçada de {{OPERADOR}}, ao ver a primeira composição: ela faz parte do método.
 
 **Toda rodada que fecha um roteiro gera `COMPOSICAO-VSL.md` + `COMPOSICAO-VSL.pdf` na pasta da VSL da conta** (`clientes/<cliente>/12 - Direct Response/vsl/`, um nível acima da rodada), **com três páginas: duas de estrutura e ⟲ uma de função** *(16/10, decisão de {{OPERADOR}}: a composição passa a ter uma página a mais, explicando o que cada coisa FAZ)*: **cada elemento, o segundo em que entra (pela linha do tempo) e o que o ouvinte passa a saber, sentir ou decidir ali**, e uma linha comparando os marcos com a referência. Versão nova do roteiro, composição nova, sobrescrevendo a anterior (a trilha fica no LOG).
 
 **O que ela tem, nesta ordem:** cabeçalho (versão do roteiro, data, estrutura-base, palavras e minutos por funil, formato) · promessa, mecanismo e apelido, e o pivô **E · Mas · Por isso**, uma frase cada, com o elemento da virada · **tabela bloco → sequência de elementos → o que cada um faz, em uma linha → palavras** · a abertura alternativa (funil A) em uma linha · o que ficou fora da versão, os desvios de dose declarados e o estado (grava? mídia? escala?).
 
 **Como se faz, e por quem:**
-1. **Script** (mecânico): `py -I -X utf8 40-operacao-rotinas/ferramentas/composicao-vsl.py <roteiro G6> <pasta-da-vsl>/COMPOSICAO-VSL.md <TEMPO-funil-B.md>` — com a linha do tempo, ele já monta a página 3 com o tempo de cada elemento — blocos, elementos e contagem, calibrada contra o roteiro (contagem batida com o rodapé em duas versões da primeira VSL).
+1. **Script** (mecânico): `python3 -I -X utf8 40-operacao-rotinas/ferramentas/composicao-vsl.py <roteiro G6> <pasta-da-vsl>/COMPOSICAO-VSL.md <TEMPO-funil-B.md>` — com a linha do tempo, ele já monta a página 3 com o tempo de cada elemento — blocos, elementos e contagem, calibrada contra o roteiro (contagem batida com o rodapé em duas versões da primeira VSL).
 2. **Orquestrador** preenche os `{{…}}`: a função de cada elemento em uma linha e as frases de promessa, mecanismo e pivô — **tiradas do roteiro e do juízo global, nunca inventadas.**
 3. **PDF** pelo template da casa (`90-templates/pdf-continuum/`, sem capa; no Windows, o contorno por Chrome headless). **Conferir que coube em duas páginas**, abrindo a página renderizada.
 
@@ -161,7 +161,7 @@ Não leia o raciocínio de outro agente. Não leia este pedido como permissão p
 
 ---
 
-## 6. CUSTO E ORÇAMENTO *(reescrito 16/10/2026, revisão 1)*
+## 6. CUSTO E ORÇAMENTO *(revisão 1)*
 
 ~~Seis gerações em duas etapas + seis auditorias por bloco nos quatro blocos centrais + passada global ≈ 35–40 execuções de agente.~~ **Medido no primeiro uso: centenas de disparos em várias rodadas, e capacidade adicional para terminar.** O desenho estava certo no isolamento e errado na proporção. Cada agente custa de dezenas a centenas de milhares de tokens só para ler o contexto.
 
@@ -186,7 +186,7 @@ Não escolhe a referência (isso é a `METODO-DESTILACAO-DE-VSL.md`), não decid
 
 ---
 
-## 8. REVISÃO 1 — o que a primeira VSL ensinou (16/10/2026)
+## 8. REVISÃO 1 — o que a primeira VSL ensinou
 
 > O §7 manda ler o `LOG.md` da primeira VSL no fim: *"devolução recorrente, auditor que nunca reprova ou etapa pulada viram versão nova deste método"*. Trilha: os `LOG.md` das rodadas e o registro da sessão de revisão.
 

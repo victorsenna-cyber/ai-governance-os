@@ -49,7 +49,7 @@ Centro de comando da {{EMPRESA}}. Esta pasta governa cultura, estratégia, táti
 - `STATUS.md` — estado vivo, fonte única de fato atual.
 - `PROJECT.md` — tudo sobre a {{EMPRESA}} · `SCOPE.md` — escopo de atuação.
 - `MAPA-DO-REPO.md` — o grafo de funcionamento (o README diz o que existe; o mapa, o que acontece depois).
-- `METODO-*.md` — ponteiros para a fonte em `100-métodos/`.
+- Nenhum método mora na raiz: todos vivem em `100-métodos/`.
 
 ---
 
@@ -140,7 +140,7 @@ Para cada cliente ativo: criar a pasta pelo molde (`clientes/README.md`), rodar 
 
 | Item | Status |
 |---|---|
-| Arquitetura e métodos | ✅ instanciados do template Continuum |
+| Arquitetura e métodos | ✅ vêm prontos do template |
 | Placeholders `{{…}}` | 🟡 a preencher (`LEIA-ME-TEMPLATE.md` §2) |
 | Políticas e ICP | 🟡 a calibrar com evidência |
 | Primeiro pedido real roteado | ⏳ pendente |

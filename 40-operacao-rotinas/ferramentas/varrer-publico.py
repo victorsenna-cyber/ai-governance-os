@@ -316,6 +316,9 @@ def main():
     d = Dicionario(permite_operador=a.permite_operador)
     laudo = Laudo()
     print(f"dicionário: {len(d.termos)} termos, das pastas de conta e de {os.path.basename(CONFIG)}")
+    if not d.termos:
+        print(f"🔴 dicionário vazio: crie {os.path.basename(CONFIG)} a partir de varrer-publico.exemplo.txt (ao lado deste script) antes de publicar. Gate recusado.")
+        return 2
     for r in a.repo:
         c, b = varrer_repo(d, r, laudo)
         print(f"repositório {os.path.basename(os.path.abspath(r))}: {c} commit(s), {b} arquivo(s) distinto(s) no histórico")

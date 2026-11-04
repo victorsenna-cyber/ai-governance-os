@@ -1,6 +1,6 @@
 # TEMPLATE — REPO DE CLIENTE ("o cérebro da operação")
 
-> **Tipo:** blueprint *(antes: "template de entrega"; 26/09/2026)* · camada 3 · **Instituído:** 23/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** blueprint *(antes: "template de entrega")* · camada 3 · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > **Origem:** insight do {{OPERADOR}} — entregamos também um repo exclusivo, criado para aquela empresa, para quem quer que opere dentro de um repo preparado, com toda a ficha técnica que direcionamos; a ideia é entregar um cérebro para tomada de decisões e criação, assim como este repo já faz.
 > **O que ele é no nosso sistema:** `METODO-DIRECT-RESPONSE.md` §4.2 — **degrau 3 do Done For You, o ativo funcional.** É o primeiro item real do inventário do `30-comercial/oferta.md` §7-bis, que estava vazio desde 18/09.
 
@@ -64,13 +64,13 @@
 
 > ⭐ **Regra de lugar:** tudo o que é do cliente mora no repo dele, e as duas pastas de execução entram no esqueleto com a numeração do próprio cliente (`NN` = o número que a pasta tem na sequência dele; se não existe, cria-se com o próximo livre). Páginas de cliente ficam em `NN - web design/`; scripts de campanha e plano de mídia ficam em `NN - tráfego pago/`. Nada de cliente em `30-comercial/`.
 
-🔴 **Nove itens de kernel mais as duas pastas de execução (25/10/2026), e o esqueleto não cresce por pedido.** Repo é fácil de prometer e cresce sozinho — **e repo que cresce vira o PDF de 40 páginas que ninguém abre, com passos a mais.** Item novo entra por decisão registrada, não por conveniência de uma tarefa.
+🔴 **Nove itens de kernel mais as duas pastas de execução, e o esqueleto não cresce por pedido.** Repo é fácil de prometer e cresce sozinho — **e repo que cresce vira o PDF de 40 páginas que ninguém abre, com passos a mais.** Item novo entra por decisão registrada, não por conveniência de uma tarefa.
 
 **O `CLAUDE.md` do cliente é a peça central**, e o modelo está em `CLAUDE-modelo.md`, nesta pasta. Os oito arquivos restantes **são a entrega que já vendemos** — ICP, promessa, mecanismo, oferta, voz — apenas escritos dentro do continente em vez de soltos como documento. **Isso é o que torna o repo barato para nós: ele não adiciona entrega, adiciona forma.**
 
 ---
 
-## 3-bis. 🔴 O REPO VIVO — onde mora e como sincroniza *(instituído 30/10/2026, alçada {{OPERADOR}}; `CLAUDE.md` §11.6)*
+## 3-bis. 🔴 O REPO VIVO — onde mora e como sincroniza *(instituído, alçada {{OPERADOR}}; `CLAUDE.md` §11.6)*
 
 Repo entregue não é pasta entregue. **Ele mora na pasta do cliente, em `clientes/<Cliente>/entregaveis/<pasta>/`, como clone git com GitHub próprio, e só ali se edita** — como a Governança.
 
@@ -136,4 +136,4 @@ Repo entregue não é pasta entregue. **Ele mora na pasta do cliente, em `client
 - 🔴 **Não transfere método.** Ver `§2`. Se um dia transferirmos, é outro contrato.
 
 ---
-*Instituído em 23/09/2026, alçada {{OPERADOR}}. Primeiro item real do inventário DFY (`30-comercial/oferta.md` §7-bis). Aplicação de `METODO-DIRECT-RESPONSE.md` §4.2 (escada), §4.3 (fronteira de margem) e §4.6 (o bloco de onboarding). **Verificação em caso real pendente — 🟡 vigência provisória.***
+*Regra da casa. Primeiro item real do inventário DFY (`30-comercial/oferta.md` §7-bis). Aplicação de `METODO-DIRECT-RESPONSE.md` §4.2 (escada), §4.3 (fronteira de margem) e §4.6 (o bloco de onboarding). **Verificação em caso real pendente — 🟡 vigência provisória.***

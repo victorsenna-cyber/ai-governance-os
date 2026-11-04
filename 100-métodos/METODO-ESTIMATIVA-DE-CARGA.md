@@ -1,8 +1,8 @@
 # MÉTODO — Estimativa de Carga
 
-> **Tipo:** framework · secundário: método (§4), política (§5), registro (§6) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: sem campo)*
+> **Tipo:** framework · secundário: método (§4), política (§5), registro (§6) *(reclassificado por auditoria independente de leitura integral; antes: sem campo)*
 > **Abrir por momento:** decidir §1–§2 · produzir §4, com o registro do §6 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
-> **Instituído em:** 18/09/2026 · **Alçada:** {{OPERADOR}} · **Aplica-se a:** toda proposta, todo cronograma, todo gate de contratação
+> **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}} · **Aplica-se a:** toda proposta, todo cronograma, todo gate de contratação
 > **Gatilho:** a constatação de {{OPERADOR}} de que a estimativa vigente era feita sobre construção manual, que demanda mais tempo, enquanto o modo de trabalho com IA cria muito mais em menos tempo.
 > **Dono do número:** `METODO-ANCORAGEM-DE-PROPOSTA.md` Âncora 7 (nossa viabilidade) passa a ler este arquivo.
 
@@ -144,4 +144,4 @@
 
 ---
 
-*Instituído em 18/09/2026. Roteado em `CLAUDE.md` §6 e §7. Primeira calibragem: uma conta, poucos dias, `n=1`, com a coluna de horas reais declarada em aberto.*
+*Regra da casa. Roteado em `CLAUDE.md` §6 e §7. Primeira calibragem: uma conta, poucos dias, `n=1`, com a coluna de horas reais declarada em aberto.*

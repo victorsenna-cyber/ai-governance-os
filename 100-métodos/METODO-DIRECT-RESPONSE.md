@@ -1,6 +1,6 @@
 # MÉTODO — DIRECT RESPONSE (marketing de resposta direta)
 
-> **Tipo:** framework · secundário: política (§2-bis), gate (§4.3), índice (§6) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Instituído:** 18/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** framework · secundário: política (§2-bis), gate (§4.3), índice (§6) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > **Abrir por momento:** decidir §2-bis · conferir §4.3 · mapa dos galhos §6 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > **Origem:** a destilação de uma VSL de referência, extraída e estendida.
 > 🔴 **É o TRONCO.** VSL, benchmarking, estrutura invisível e pontos lógicos são galhos dele — **foram criados antes, entre 13 e 17/09, e este arquivo corrige a ordem.**
@@ -60,7 +60,7 @@
 
 ---
 
-## 2-bis. 🔴 ⭐ REGRA DA ESCALA — só se constrói sobre o que já está escalado *(instituída 22/09/2026, alçada {{OPERADOR}} · `CLAUDE.md` §8, REGRA Nº 2)*
+## 2-bis. 🔴 ⭐ REGRA DA ESCALA — só se constrói sobre o que já está escalado *(regra da casa)*
 
 > **Tudo o que se constrói em resposta direta parte de algo que já está ESCALADO — vendendo muito, na internet, de preferência no mesmo nicho.** Nada nasce hipotético. **Quatro perguntas antes de qualquer peça, e todas precisam de resposta com referência:**
 >
@@ -105,21 +105,21 @@
 - **O espaço vazio** (`METODO-BENCHMARKING.md` §7.3) **nunca vira estrutura principal.** Vira, no máximo, um ângulo lateral de teste — e se declara assim.
 - **O gate de evidência do benchmarking sobe de "prova de que vende" para "prova de escala".** Vender uma vez não é o critério; sustentar volume é.
 - **Quando não há referência escalada em nenhuma das quatro fontes**, o que se constrói **é teste, com verba limitada e declarado como teste** — nunca a estrutura principal de uma conta.
-- ⚠️ **Viral no orgânico não é "escalado"** *(08/10/2026)*. Milhões de views provam atenção, não que a combinação paga mídia. Serve de **hipótese de ângulo e gancho** (exploração, declarada), nunca de base de promessa. Régua e fontes: `METODO-BENCHMARKING.md` §3.1.
+- ⚠️ **Viral no orgânico não é "escalado"**. Milhões de views provam atenção, não que a combinação paga mídia. Serve de **hipótese de ângulo e gancho** (exploração, declarada), nunca de base de promessa. Régua e fontes: `METODO-BENCHMARKING.md` §3.1.
 
 ### A limitação do instrumento, para não ler o que ele não mostra
 
 **A Biblioteca de Anúncios da Meta, no Brasil, mostra só anúncios comerciais ATIVOS** — o histórico só aparece para quem também veicula na União Europeia. **Longevidade se lê pelo anúncio ativo mais antigo; volume, pelo número de ativos da mesma oferta.** A busca por palavra mistura resultados: **o dado confiável sai por ID da página.**
 
-> 🔴 ⭐ **A biblioteca é RÉGUA, não regra absoluta** *(25/09/2026, alçada {{OPERADOR}})*. Oferta escalada pode não aparecer nela por vários motivos — página ou perfil de terceiro veiculando, contingência de conta, camuflagem de criativo, tráfego fora da Meta, filtros de "segurança" que escondem a oferta de quem a procura. **Não aparecer na biblioteca NÃO rebaixa uma referência; aparecer é um sinal a mais.**
+> 🔴 ⭐ **A biblioteca é RÉGUA, não regra absoluta** *(regra da casa)*. Oferta escalada pode não aparecer nela por vários motivos — página ou perfil de terceiro veiculando, contingência de conta, camuflagem de criativo, tráfego fora da Meta, filtros de "segurança" que escondem a oferta de quem a procura. **Não aparecer na biblioteca NÃO rebaixa uma referência; aparecer é um sinal a mais.**
 >
 > **São evidências de escala, com o mesmo peso da biblioteca:** referência **validada por fonte de confiança da casa** que opera ou acompanha a oferta (primeiro caso: VSLs compartilhadas por uma fonte assim, 25/09) · faturamento, ranking ou volume públicos · longevidade verificável da página ou da oferta. **Declara-se sempre qual evidência sustenta a referência** — *"escalada · fonte: <quem validou>"* é declaração válida; *"escalada"* sem fonte não é.
 
 **Onde a régua continua dura:** referência **sem nenhuma** evidência — nem biblioteca, nem fonte de confiança, nem número público — é impressão, e impressão não entra.
 
-### O caso que instituiu a regra
+### O caso que ilustra a regra
 
-**Uma conta.** Uma oferta e uma tese de "vantagem do espaço vazio" **foram construídas sem nenhuma referência escalada.** Verificada a biblioteca, **não havia oferta daquele tipo escalada no Brasil** — e a única arquitetura escalada do nicho era **de outro formato, vinda de fora do país, com volume alto de anúncios no histórico.** A estrutura escalada foi então registrada no material de direct response da conta.
+**Uma conta.** Uma oferta e uma tese de espaço vazio ("ninguém faz isto") **foram construídas sem nenhuma referência escalada.** Verificada a biblioteca, não havia oferta daquele tipo escalada no país, e a única arquitetura escalada do nicho era de outro formato e de fora do país. A estrutura escalada foi então registrada no material de direct response da conta.
 
 ---
 
@@ -258,9 +258,9 @@ O `METODO-ANCORAGEM-DE-PROPOSTA.md` §0-ter exige, desde 17/09, um **bloco de on
 | Formato: funil de VSL | `METODO-FUNIL-DE-VSL.md` |
 | Formato: página | circuito `CLAUDE.md` §6.3 |
 | Formato: anúncio e criativo | `METODO-TRAFEGO-PAGO.md` §4 |
-| Construir o anúncio de resposta direta | `METODO-CONSTRUCAO-DE-CRIATIVOS-DR.md` *(20/09/2026)* |
-| Montar a abertura composta | `METODO-EMPILHAMENTO-DE-HOOKS.md` *(20/09/2026)* |
-| Iterar sobre criativo com resultado | `METODO-LATERALIZACAO-DE-CRIATIVOS.md` *(20/09/2026)* |
+| Construir o anúncio de resposta direta | `METODO-CONSTRUCAO-DE-CRIATIVOS-DR.md` |
+| Montar a abertura composta | `METODO-EMPILHAMENTO-DE-HOOKS.md` |
+| Iterar sobre criativo com resultado | `METODO-LATERALIZACAO-DE-CRIATIVOS.md` |
 | Formato: mensagem fria | `METODO-ABORDAGEM-FRIA.md` |
 | Formato: proposta | `METODO-ANCORAGEM-DE-PROPOSTA.md` §0-ter |
 | Escrever a frase | `10-skills/copywriter-senior-continuum/` |
@@ -290,4 +290,4 @@ O `METODO-ANCORAGEM-DE-PROPOSTA.md` §0-ter exige, desde 17/09, um **bloco de on
 > ⭐ **E o Done For You ataca a única objeção que promessa nenhuma alcança — a descrença da pessoa em si mesma.** Construído uma vez e entregue muitas, é a alavanca mais barata que existe; **refeito a cada cliente, é serviço com preço de produto.**
 
 ---
-*Instituído em 18/09/2026, alçada {{OPERADOR}}. §1, §2, §3, §5 extraídos da fonte com procedência marcada. **§0, §4.2 (a escada), §4.3 (a fronteira de margem), §4.5 (os três riscos), §4.6, §6 e §7 são extensão nossa.** Nenhum número aqui é `[dado nosso]`.*
+*Regra da casa. §1, §2, §3, §5 extraídos da fonte com procedência marcada. **§0, §4.2 (a escada), §4.3 (a fronteira de margem), §4.5 (os três riscos), §4.6, §6 e §7 são extensão nossa.** Nenhum número aqui é `[dado nosso]`.*

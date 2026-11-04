@@ -1,6 +1,6 @@
 # MÉTODO — ALICERCE
 
-> **Tipo:** método · secundário: blueprint (§2), gate (§4, §6, §7), política (§5) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método canônico (camada 2)")* · **Criado em:** 12/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** método · secundário: blueprint (§2), gate (§4, §6, §7), política (§5) *(reclassificado por auditoria independente de leitura integral; antes: "método canônico (camada 2)")* · **Alçada:** {{OPERADOR}}
 > **Abrir por momento:** decidir §5 · produzir §3 · conferir §4, §6 e §7 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > **Destino no repo:** `100-métodos/METODO-ALICERCE.md`
 > **O que governa:** `Assessoria Estratégica · Alicerce` — a construção dos 4 pilares para o **ICP B**, quem ainda não vende.
@@ -111,7 +111,7 @@ Oferta e narrativa montadas sobre a hipótese. **Nada é tratado como verdade ai
 
 ## 5. AS TRÊS TRAVAS DE RISCO
 
-**O ICP B é onde a operação mais pode se enterrar.** Ele deixou de ser anti-ICP em 12/09/2026, e a porta abre com as travas postas.
+**O ICP B é onde a operação mais pode se enterrar.** Ele deixou de ser anti-ICP, e a porta abre com as travas postas.
 
 ### Trava 1 · contra deriva de escopo
 Escopo escrito, com critério de pronto por entrega e o que fica fora nomeado **com preço**. Pedido novo vira orçamento, nunca cortesia.
@@ -150,4 +150,4 @@ Escopo escrito, com critério de pronto por entrega e o que fica fora nomeado **
 - [ ] **nenhuma promessa de faturamento em nenhum artefato.**
 
 ---
-*Criado em 12/09/2026. Horas são estimativa de referência: recalibrar com a carga medida na operação que adota o método.*
+*Criado. Horas são estimativa de referência: recalibrar com a carga medida na operação que adota o método.*

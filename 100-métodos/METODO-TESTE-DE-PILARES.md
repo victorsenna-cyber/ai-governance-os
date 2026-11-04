@@ -1,7 +1,7 @@
 # MÉTODO — Teste de Pilares
 
-> **Tipo:** gate · secundário: método (§4), framework (§0) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: sem campo)*
-> **Instituído em:** 12/09/2026 · **Gatilho:** auditoria de coerência de uma conta de assessoria · **Dono:** {{OPERADOR}}
+> **Tipo:** gate · secundário: método (§4), framework (§0) *(reclassificado por auditoria independente de leitura integral; antes: sem campo)*
+> **Origem:** casa de origem do template · **Gatilho:** auditoria de coerência de uma conta de assessoria · **Dono:** {{OPERADOR}}
 > **Aplica-se a:** toda conta de assessoria, e à própria {{EMPRESA}}
 > **Primeira aplicação real:** o `PILARES.md` da conta que originou o método
 
@@ -33,7 +33,7 @@ Isso não aparece como problema. Aparece como sintoma: a peça demora a sair, a 
 
 **A ordem não é arbitrária.** Cada um depende do anterior: promessa sem ICP é genérica, narrativa sem promessa não tem para onde ir, oferta sem narrativa vira lista de features, e produto sem oferta é acervo.
 
-### 1-bis. ⭐ OS CINCO PILARES × AS QUATRO PEÇAS DA VSL (integrado 13/09/2026)
+### 1-bis. ⭐ OS CINCO PILARES × AS QUATRO PEÇAS DA VSL
 
 **A fonte de resposta direta descreve quatro peças de VSL: OFERTA · MECANISMO · HISTÓRIA · LEAD.** Elas **não competem** com os cinco pilares — operam em camada diferente, e a relação é de alimentação.
 
@@ -167,7 +167,7 @@ Se alguém que já comprou, ou um parceiro, consegue explicar a oferta a outra p
 1. **Levantar cada pilar de onde ele vive hoje**, e anotar todas as versões encontradas, com data e fonte. **Não harmonizar ainda.**
 2. **Confrontar as versões.** Divergência não é erro de escrita: é decisão pendente.
 3. **Responder as cinco perguntas**, sem generosidade.
-4. **Separar o que é decisão do que é trabalho** — e, dentro de decisão, separar de quem ela é. 🔴 **Corrigido em 15/09/2026:** ~~Decisão vai para o dono da oferta com número proposto~~ pressupunha que toda decisão fosse dele, e não é.
+4. **Separar o que é decisão do que é trabalho** — e, dentro de decisão, separar de quem ela é. 🔴 **Corrigido:** ~~Decisão vai para o dono da oferta com número proposto~~ pressupunha que toda decisão fosse dele, e não é.
 
    | Tipo de decisão | Exemplos | Quem decide |
    |---|---|---|
@@ -205,4 +205,4 @@ Se alguém que já comprou, ou um parceiro, consegue explicar a oferta a outra p
 
 ---
 
-*Instituído em 12/09/2026. Roteado em `CLAUDE.md` §6 e §7. Primeira aplicação: a conta do gatilho.*
+*Regra da casa. Roteado em `CLAUDE.md` §6 e §7. Primeira aplicação: a conta do gatilho.*

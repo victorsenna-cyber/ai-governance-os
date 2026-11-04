@@ -33,8 +33,8 @@
 | Dimensão | O que entregamos | Onde está o método |
 |---|---|---|
 | Estratégia | `{{…}}` | `100-métodos/METODO-DIAGNOSTICO-DE-OPERACAO.md`, `METODO-ALICERCE.md` |
-| Comercial | `{{…}}` | `30-comercial/`, `METODO-ABORDAGEM-FRIA.md`, `METODO-ANCORAGEM-DE-PROPOSTA.md` |
-| Marketing | `{{…}}` | `METODO-DIRECT-RESPONSE.md` e galhos, `METODO-TRAFEGO-PAGO.md` |
+| Comercial | `{{…}}` | `30-comercial/`, `100-métodos/METODO-ABORDAGEM-FRIA.md`, `METODO-ANCORAGEM-DE-PROPOSTA.md` |
+| Marketing | `{{…}}` | `METODO-DIRECT-RESPONSE.md` e galhos, `100-métodos/METODO-TRAFEGO-PAGO.md` |
 | Onboarding / CS | `{{…}}` | `30-comercial/onboarding.md` |
 | Financeiro | `{{…}}` | `00-core/POLITICAS-DE-DECISAO.md`, `45-financeiro/` |
 | Operação | `{{…}}` | `40-operacao-rotinas/` |

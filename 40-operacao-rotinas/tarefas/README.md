@@ -14,7 +14,7 @@
 | `entregue/` | pronta e conferida | despachante (N0/N2 mecânica com verificação) ou Opus |
 | `falhou/` | gate reprovou ou o worker quebrou; o motivo está no `## Log` | despachante |
 | `log/` | uma linha por execução em `GASTO.jsonl` (tokens, nível, modelo, resultado) e um `RODADA-*.md` por rodada | despachante |
-| `modelos/` | tasks-modelo com `<Cliente>`/`NN`/`AAAA-MM-DD` por preencher; **o despachante não lê esta pasta** — copiar para `fila/` e preencher (29/10: `analise-campanha-1-coleta`, `-2-analise`, `-3-implementacao`) | o Opus |
+| `modelos/` | tasks-modelo com `<Cliente>`/`NN`/`AAAA-MM-DD` por preencher; **o despachante não lê esta pasta** — copiar para `fila/` e preencher (`analise-campanha-1-coleta`, `-2-analise`, `-3-implementacao`) | o Opus |
 
 Arquivo `PAUSA` em `tarefas/` para tudo. Três falhas seguidas numa rodada param a rodada.
 

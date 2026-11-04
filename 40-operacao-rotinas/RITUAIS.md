@@ -125,4 +125,4 @@ SEQUÊNCIA DE SEMANAS VERDES: __
 ---
 *Base: 4DX (placar, cadência de prestação de contas, medidas de direção); `iteracao.md` §2 (esqueleto de cadência); realidade de operação de uma pessoa em fase de caixa.*
 
-> 🔴 **Operação de uma pessoa — {{OPERADOR}} detém 100% da empresa.** Sem segunda pessoa, não há a quem prestar contas: **o substituto da prestação de contas mútua é o registro escrito com data**, e o brief diário por task recorrente (`CHECK-DIARIO.md`, `tarefas/README.md`) é a primeira peça disso. Ao ler cada ritual, pergunte *"o que aqui dependeria de haver outra pessoa?"* e troque por registro escrito.
+> 🔴 **Operação de uma pessoa — {{OPERADOR}} detém 100% da empresa.** Sem segunda pessoa, não há a quem prestar contas: **o substituto da prestação de contas mútua é o registro escrito com data**, e o brief diário por task recorrente (`tarefas/README.md`) é a primeira peça disso. Ao ler cada ritual, pergunte *"o que aqui dependeria de haver outra pessoa?"* e troque por registro escrito.

@@ -60,7 +60,7 @@ O roteiro de entrevista para popular o repositório com o contexto da empresa es
 6. **`80-juridico/DADOS-DO-CONTRATADO.md`** — sua qualificação; os contratos puxam daqui.
 7. **`10-skills/voz-operador.skill.md`** — fica esqueleto até a primeira call destilada (eixo 13 de `METODO-DESTILACAO-DE-CALLS.md`). Não invente a própria voz.
 8. **`945-branding/01 - identidade visual/IDENTIDADE-VISUAL.md`** — quando houver marca decidida; antes disso, `ARQUETIPOS-DE-MARCA.md` + `METODO-KIT-DE-MARCA.md`.
-9. **Git:** `git init`, remoto **privado** (repositório público só depois de ler `POLITICAS` §8, com `varrer-publico.py --instalar-hook`), e `.claude/settings.json` já chama `sincronizar.py` ao abrir e ao fechar a sessão (`CLAUDE.md` §11.6). Sem remoto, rode `sincronizar.py --sem-push`.
+9. **Git:** `git init`, remoto **privado** (repositório público só depois de ler `POLITICAS` §8: copie `ferramentas/varrer-publico.exemplo.txt` para `varrer-publico.txt`, preencha, e rode `varrer-publico.py --instalar-hook`; sem dicionário o gate recusa), e `.claude/settings.json` já chama `sincronizar.py` ao abrir e ao fechar a sessão (`CLAUDE.md` §11.6). Sem remoto, rode `sincronizar.py --sem-push`.
 10. **Feche:** `python3 40-operacao-rotinas/ferramentas/verificar-propagacao.py` em ✅. Depois, **o primeiro pedido real pelo roteador** — e registre no `STATUS.md` o que o repositório não soube responder. É assim que ele passa a ser seu.
 
 ## 4. O que ficou de fora, de propósito
@@ -70,7 +70,7 @@ O roteiro de entrevista para popular o repositório com o contexto da empresa es
 - A "tela" de apresentação da prospecção presencial e o treino (carregam a marca de origem): o método descreve as telas; você constrói as suas.
 - Os registros de auditoria e verificação que instituíram regras (a lição de cada um está no método que ela mudou).
 - As referências internas da casa de origem: caminhos de pasta e procedência de material não público. **Autoria pública fica creditada** (livros, autores, vídeos abertos).
-- O histórico de regras (`_legado/`): as pastas existem vazias, porque o procedimento de substituição (`CLAUDE.md` §7.1, item 3) precisa delas.
+- O histórico de regras (`_legado/`) e os ponteiros de caminho antigo: o template nasce sem nenhum. O histórico é o `git log`; `_legado/` só nasce quando uma substituição precisar do porquê legível (`CLAUDE.md` §7.1, item 3).
 
 ## 5. O que nunca mudar sem registrar
 

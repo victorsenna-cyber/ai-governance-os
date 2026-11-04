@@ -1,8 +1,8 @@
 # MÉTODO — Prancha de Escolha
 
 > **Tipo:** método
-> **Instituído em:** 18/10/2026 · **Alçada:** {{OPERADOR}} · 🟡 **vigência provisória até a primeira prancha apresentada a um cliente** (`CLAUDE.md` §7.1, item 4). Roteado desde o primeiro dia (REGRA Nº 1).
-> **Gatilho:** decisão de alçada de {{OPERADOR}} (18/10/2026), a partir da prancha de teste da própria identidade: esse tipo de prancha passa a ser o padrão para criarmos para clientes e apresentarmos para escolha.
+> **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}} · 🟡 **vigência provisória até a primeira prancha apresentada a um cliente** (`CLAUDE.md` §7.1, item 4). Roteado desde o primeiro dia (REGRA Nº 1).
+> **Gatilho:** decisão de alçada de {{OPERADOR}}, a partir da prancha de teste da própria identidade: esse tipo de prancha passa a ser o padrão para criarmos para clientes e apresentarmos para escolha.
 > **Aplica-se a:** toda decisão visual em que alguém escolhe entre opções: identidade de marca, tipografia, paleta, linha de criativo, direção de página. Cliente primeiro; vale também para o {{OPERADOR}}.
 > **Ferramentas:** gerador da prancha em `90-templates/prancha-de-escolha/` · renderizador das opções, o motor em `945-branding/01 - identidade visual/sistema/` (`render.py`, aceita tokens de cliente).
 > **Caso que originou:** a identidade visual da própria casa (prancha de referências, prancha de teste, escolha do {{OPERADOR}} registrada em `IDENTIDADE-VISUAL.md`, na `945-branding/`).

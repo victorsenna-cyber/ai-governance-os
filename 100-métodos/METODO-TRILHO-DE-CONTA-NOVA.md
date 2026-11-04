@@ -1,6 +1,6 @@
 # MÉTODO — TRILHO DE CONTA NOVA
 
-> **Tipo:** trilho · secundário: gate (§4), política (§7), framework (§1) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Instituído:** 20/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** trilho · secundário: gate (§4), política (§7), framework (§1) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz (camada 2)")* · **Origem:** casa de origem do template · **Alçada:** {{OPERADOR}}
 > **Abrir por momento:** decidir §7 · ordenar §3 · conferir §4 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > 🟡 **VIGENTE PARA EXECUTAR, VERIFICAÇÃO EM CASO REAL PENDENTE.** Roteado desde o primeiro dia (REGRA Nº 1).
 > **O que é:** a **ordem única** de construir uma conta do zero. Não é método novo de nada — **é o trilho que os métodos existentes percorrem, com uma entrada, uma saída e um gate por etapa.**
@@ -101,7 +101,7 @@ flowchart TD
 
 | # | Etapa | Entrada | Saída | Gate |
 |---:|---|---|---|---|
-| **3** | **Pilares** | o diagnóstico | `PILARES.md` **+ kit de marca** (`branding/`) | 🔴 **`METODO-TESTE-DE-PILARES.md`** — 5 binárias. **P1 (ICP em uma frase) ou P4 (mesma lista em todo lugar) reprovando BLOQUEIA produção de copy** · o kit (**`METODO-KIT-DE-MARCA.md`**, 18/10/2026) sai na mesma entrega e lê os pilares; ele não bloqueia copy, **bloqueia o primeiro criativo visual** |
+| **3** | **Pilares** | o diagnóstico | `PILARES.md` **+ kit de marca** (`branding/`) | 🔴 **`METODO-TESTE-DE-PILARES.md`** — 5 binárias. **P1 (ICP em uma frase) ou P4 (mesma lista em todo lugar) reprovando BLOQUEIA produção de copy** · o kit (**`METODO-KIT-DE-MARCA.md`**) sai na mesma entrega e lê os pilares; ele não bloqueia copy, **bloqueia o primeiro criativo visual** |
 | **4** | **Léxico do ICP** | as fontes de fala do público | `lexico-icp/BANCO.md` | 🔴 **`METODO-ARQUEOLOGIA-DE-ICP.md`** — grau `D`. **Banco vazio PARA a produção.** Hipótese de IA entra como pauta de pergunta, nunca como fala (§6-ter de lá) |
 | **5** | **Mecanismo, apelido e One Belief** | pilares + léxico | o mecanismo explicado, o apelido escolhido, o One Belief escrito | 🔴 **`METODO-MECANISMO-E-ONE-BELIEF.md`** — gate de 10. **Sem mecanismo construído não há o que ancorar** |
 
@@ -195,4 +195,4 @@ flowchart TD
 > **E a pendência ou nasce declarada, ou vira limbo.**
 
 ---
-*Instituído em 20/09/2026, alçada {{OPERADOR}}. **Não cria método: ordena os que existem.** Template da conta: `90-templates/conta-nova/`. Ordem obrigatória de conta nova herdada de `CLAUDE.md` §9.1. Camadas de carga: `METODO-ESTIMATIVA-DE-CARGA.md`. 🟡 Verificação em caso real pendente — **a primeira conta que percorrer o trilho é o teste dele.***
+*Regra da casa. **Não cria método: ordena os que existem.** Template da conta: `90-templates/conta-nova/`. Ordem obrigatória de conta nova herdada de `CLAUDE.md` §9.1. Camadas de carga: `METODO-ESTIMATIVA-DE-CARGA.md`. 🟡 Verificação em caso real pendente — **a primeira conta que percorrer o trilho é o teste dele.***

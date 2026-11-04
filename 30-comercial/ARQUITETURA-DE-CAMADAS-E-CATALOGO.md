@@ -74,204 +74,81 @@ O **Mapa da Ordem** mapeia a operação **inteira** e devolve a ordem. Uma **Con
 
 ---
 
-# PARTE 2 · O CATÁLOGO {{EMPRESA}}
+# PARTE 2 · O CATÁLOGO {{EMPRESA}} — modelo a preencher
 
-> Todos os preços verificados contra o piso de `{{VALOR_HORA_PISO}}`/h (`POLITICAS` §5), como checagem interna — nunca argumento de venda.
+> ⚠️ **MODELO.** A casa de origem tinha aqui a escada dela; ela não vem. O que fica é a forma: **um produto por camada ocupada, preço de referência, gatilho de subida escrito, teto de capacidade.** Todo preço se verifica contra o piso de `{{VALOR_HORA_PISO}}`/h (`POLITICAS` §5), como checagem interna — nunca argumento de venda. Os produtos que os métodos já nomeiam (G0 pago: Mapa da Ordem; ICP B: Alicerce; recorrência: Assessoria) entram aqui com o preço de `POLITICAS` §5; o resto é seu.
 
 ## 4. O MAPA GERAL
 
 ```
-CAMADA 5 · SISTEMA      {{EMPRESA}} OS ................. {{FAIXA_SISTEMA_SETUP}} + MRR
-                        Repo de Governança ........... setup {{PRECO_REPO_SETUP}} + {{PRECO_REPO_MRR}}/mês   ⭐
-
-CAMADA 4 · ASSESSORIA   Assessoria Estratégica ....... setup + mensalidade
-                        · Alicerce (ICP B) ........... {{TICKET_ALICERCE}}, escopo fechado
-
-CAMADA 3 · CONSULTORIA  Mapa da Ordem · Núcleo ....... {{TICKET_MAPA_NUCLEO}}
-                        Mapa da Ordem · Operação ..... {{TICKET_MAPA_OPERACAO}}+
-                        Consultorias de escopo único . {{FAIXA_CONSULTORIA_ESCOPO_UNICO}}   ⭐
-
-CAMADA 2 · MENTORIA     Formação Repositório {{EMPRESA}} . {{TICKET_FORMACAO}} · 6 semanas, turma
-                        Mentoria de Operador ......... {{PRECO_MENTORIA_OPERADOR}}/mês, 6 meses   ⭐
-                        Mentoria em grupo ............ {{PRECO_MENTORIA_GRUPO}}/mês, turma       ⭐
-
-CAMADA 1 · PRODUTO      → decisão de arquitetura (abaixo)
+CAMADA 5 · SISTEMA      <produto, se houver>.......... <setup> + <MRR>
+CAMADA 4 · ASSESSORIA   Assessoria Estratégica......... setup + {{TICKET_ASSESSORIA}}/mês
+                        · Alicerce (ICP B)............. {{TICKET_ALICERCE}}, escopo fechado
+CAMADA 3 · CONSULTORIA  Mapa da Ordem · Núcleo......... {{TICKET_MAPA_NUCLEO}}
+                        Mapa da Ordem · Operação....... a partir de {{TICKET_MAPA_OPERACAO}}
+                        <consultoria de escopo único>.. <preço>
+CAMADA 2 · MENTORIA     <produto, se houver>.......... <preço>/mês
+CAMADA 1 · PRODUTO      <decisão: vende ou não>
 ```
 
-> ⭐ **Decisão de arquitetura do modelo (altere se decidir diferente):** **a {{EMPRESA}} não vende produto digital.** Low ticket é território da marca pessoal do {{OPERADOR}}, fora desta arquitetura. Isso mantém a {{EMPRESA}} com uma promessa só — estrutura comercial para quem já opera — e impede que ela vire loja.
+> **Camada sem produto fica escrita como "não ocupada", com o motivo.** Camada vazia sem motivo vira produto improvisado na primeira conversa em que o cliente pede.
 
 ---
 
-## 5. ⭐ CONSULTORIAS DE ESCOPO ÚNICO
+## 5. FICHA POR PRODUTO — uma por linha do mapa
 
-**O que são:** uma pergunta nomeada, resolvida em profundidade, com escopo e prazo fechados. **O cliente executa.**
-
-### A trava contra canibalização do Mapa
-
-> **Consultoria de escopo único só se vende a quem chega com o problema já nomeado E com a fundação de pé.**
->
-> **O teste, na primeira conversa:** *"como você sabe que é isso?"*
-> Se a resposta trouxer evidência — número, padrão observado, teste que ele fez — é Consultoria.
-> Se a resposta for palpite, **é Mapa da Ordem**, e dizer isso em voz alta é o serviço.
-
-**Por que a trava importa:** vender consultoria de funil a quem tem a camada 1 aberta entrega um funil ótimo para o cliente errado. **O cliente paga, recebe trabalho bom, e não vende.** É o pior desfecho possível, porque parece culpa nossa e é ordem errada.
-
-### As quatro consultorias
-
-| Consultoria | A pergunta que resolve | Entregável | Horas | Preço |
-|---|---|---|---:|---:|
-| ⭐ **Funil de Vendas** | *por qual caminho o meu lead chega até o pagamento?* | o percurso desenhado passo a passo · o **Pivô de Conversão** de cada ativo · roteiro da conversa de venda · pontos de medição | ~14h | **{{PRECO_CONSULTORIA_FUNIL}}** |
-| **Arquitetura de Oferta e Preço** | *o que eu vendo, por quanto, em quais degraus?* | escada com preço por degrau · gatilhos de subida · o que sai do catálogo · fronteira escrita | ~12h | **{{PRECO_CONSULTORIA_OFERTA}}** |
-| **Narrativa e Mecanismo** | *por que comprar de mim?* | inimigo · mecanismo nomeado · promessa e fronteira · as 3 provas que sustentam | ~10h | **{{PRECO_CONSULTORIA_NARRATIVA}}** |
-| **Conteúdo que Converte** | *por que o meu conteúdo não vira venda?* | matriz de leitura aplicada · hook, pivô e CTA diagnosticados · 10 roteiros na voz dele · linha editorial de 30 dias | ~18h | **{{PRECO_CONSULTORIA_CONTEUDO}}** |
-
-**Formato padrão de todas:** 1 call de extração (90 min) → produção → entrega do documento → 1 call de devolutiva (60 min) → **1 call de revisão 30 dias depois**, para corrigir sobre o que a execução mostrou.
-
-> **A call dos 30 dias é o que separa consultoria de PDF.** Ela custa 1h e é o que faz o cliente executar — porque existe uma data em que alguém vai perguntar.
-
-**O que fica fora, sempre:** execução, produção de peça final, gestão de campanha. **Consultoria entrega o quê.**
+| Campo | Preencher |
+|---|---|
+| **Camada** | 1 a 5 (§1) |
+| **Objeto** — o que muda quando é bem entregue | |
+| **Quem executa** | o cliente · o cliente com direção · nós e o cliente · o sistema |
+| **A pergunta do cliente que ele responde** (régua 1 do §3) | uma só; se outro produto responde à mesma, um dos dois sai |
+| **Escopo fechado** — o que entra · o que não entra | |
+| **Preço de referência** e hora prevista | verificado contra `{{VALOR_HORA_PISO}}`/h |
+| **Gatilho de subida** (régua 3 do §3) | para qual produto e com que sinal medido |
+| **Teto simultâneo** | número e razão |
+| **Caso que prova** | `n=0` até existir; escreve-se assim |
 
 ---
 
-## 6. ⭐ MENTORIAS
-
-**O objeto é a pessoa.** Não o negócio dela.
-
-### 6.1 Mentoria de Operador — individual
-
-| | |
-|---|---|
-| **Para quem** | fundador ou o braço direito dele, que vai **executar a estratégia** e precisa aprender a decidir sozinho |
-| **Formato** | 2 calls de 60 min por mês + canal assíncrono de dúvidas |
-| **Pauta** | **dele.** Ele traz a decisão da semana; a gente decide junto e nomeia a régua |
-| **O que se entrega** | não é material: é **critério**. Ao fim, ele tem um conjunto de réguas próprias, escritas |
-| **Duração** | 6 meses, mínimo |
-| **Horas** | ~4h/mês |
-| **Preço** | **{{PRECO_MENTORIA_OPERADOR}}/mês** (~4h/mês: confira o valor-hora; acima do piso é assim que mentoria se paga) |
-| **Gate de saída** | ele toma três decisões seguidas sem consultar, e as três seguem as réguas que ele escreveu |
-
-> **Por que mentoria vale mais por hora que assessoria:** na assessoria você compra trabalho. Na mentoria você compra critério, e critério não se consome — **ele fica com a pessoa depois que o contrato acaba.**
-
-### 6.2 Mentoria em Grupo — turma
-
-| | |
-|---|---|
-| **Para quem** | operadores em estágio parecido, de negócios que não competem entre si |
-| **Formato** | 1 encontro de 90 min por semana, turma de 8 a 12 · grupo permanente |
-| **Estrutura** | 12 semanas, uma camada da **Ordem da Receita** por bloco |
-| **Horas** | ~8h/mês para a turma inteira |
-| **Preço** | **{{PRECO_MENTORIA_GRUPO}}/mês** por pessoa · 3 meses |
-| **Economia** | 8 pessoas × preço mensal, por ~8h de trabalho. Calcule o valor-hora: é, em geral, o produto de maior valor-hora da casa |
-| **Gate de entrada** | 🔴 **só abre com 6 inscritos confirmados.** Turma com 3 vira consultoria coletiva mal paga |
-
-> ⚠️ **A régua que protege a turma:** ninguém entra sem ter operação rodando. **Mistura de estágios mata turma** — quem já vende acha raso, quem não vende acha inaplicável, e os dois saem.
-
----
-
-## 7. ⭐ REPO CONTINUUM DE GOVERNANÇA EMPRESARIAL
-
-> **É o produto mais diferenciado da casa, e o único que nasce de um ativo que já existe e já está em uso.**
-
-### O que é
-
-**O sistema de governança que a {{EMPRESA}} roda internamente, instanciado para a empresa do cliente:** um repositório vivo onde decisão, método, política e estado da operação moram em arquivos — e onde IA opera **sobre** a governança, não ao lado dela.
-
-**A estrutura que se instancia:**
-
-| Camada | O que vive nela |
-|---|---|
-| **Kernel** | princípio, prioridade, regras permanentes, modos de resposta |
-| **Políticas** | os números que decidem: pisos, tetos, alçadas, gates |
-| **Métodos** | o *como* de cada frente recorrente, versionado |
-| **Skills** | procedimentos executáveis por qualquer modelo de IA |
-| **Contas / áreas** | estado vivo, log de decisões com o descartado e o porquê |
-| **Rituais** | o que se olha, quando, e o que dispara ação |
-
-### O problema que ele resolve, e é maior que "organização"
-
-> **Empresa sem governança escrita repete decisão.** A mesma discussão volta a cada três meses porque ninguém registrou o que foi descartado e por quê. **Decisão sem descarte registrado é meia decisão: alguém refaz o caminho já andado.**
->
-> **E com IA isso piora, não melhora.** Modelo sem governança dá resposta plausível sobre um contexto que ele não conhece. **Quem coloca IA numa operação sem regra escrita não automatizou a decisão: automatizou a improvisação.**
-
-### O que se entrega
-
-| Fase | O quê | Prazo |
-|---|---|---|
-| **1 · Extração** | as regras que já existem na cabeça do dono viram texto | semanas 1–3 |
-| **2 · Estrutura** | kernel, políticas, métodos e taxonomia instanciados para o negócio dele | semanas 4–6 |
-| **3 · Operação com IA** | skills executáveis, protocolo multi-modelo, roteador | semanas 7–9 |
-| **4 · Ritual** | cadência de atualização, gate de registro, quem escreve o quê | semanas 10–12 |
-
-| | |
-|---|---|
-| **Preço** | **setup {{PRECO_REPO_SETUP}}** (~48h) **+ {{PRECO_REPO_MRR}}/mês** de curadoria e atualização |
-| **Recorrência — por que existe** | 🔴 **repositório sem curadoria apodrece em três meses.** A mensalidade não é suporte: é o que impede o ativo de virar arquivo morto |
-| **ICP** | operação com 5+ pessoas, ou fundador que já delega e vê decisão se repetir. **Não é para operação de uma pessoa só** |
-| **Gate de entrada** | ⚠️ **o dono precisa escrever.** Se ele não aceitar registrar decisão, o repo não sobrevive ao mês 2 — e é recusa, não desconto |
-
-> **A prova que este produto pode ter e nenhum outro da casa tem:** rodar dentro da própria empresa que o vende, com log de decisões, correções de fato registradas e métodos versionados. **É o único produto que se demonstra ao vivo, abrindo a tela.**
-
----
-
-## 8. A ESCADA COMPLETA E OS GATILHOS DE SUBIDA
+## 6. A ESCADA E OS GATILHOS DE SUBIDA
 
 ```
-Mentoria em grupo ──── vende mais e quer individual ──→ Mentoria de Operador
-                                                              │
-Mapa da Ordem ──── quer que alguém execute ──→ Assessoria Estratégica
-     │                                                │
-     └── sabe onde é o problema ──→ Consultoria      │
-                                                      ├──→ {{EMPRESA}} OS
-                                                      └──→ Repo de Governança
+<produto de entrada> ──── <gatilho medido> ──→ <produto seguinte>
 Alicerce ──── começou a vender ──→ vira ICP A e entra pelo Mapa
+Mapa da Ordem ──── pede execução na devolutiva ──→ Assessoria
 ```
 
 | De | Para | Gatilho escrito |
 |---|---|---|
-| Mapa | Assessoria | o cliente pede execução na devolutiva · abate em 15 dias |
-| Mapa Núcleo | Mapa Operação | quer as camadas de aquisição e medição · abate em 60 dias |
-| Consultoria | Assessoria | a decisão foi tomada e ele não executou em 30 dias. **A régua da call dos 30 dias existe para revelar isso** |
-| Mentoria grupo | Mentoria individual | ele traz decisão que não cabe no grupo |
-| Assessoria | {{EMPRESA}} OS | volume de atendimento vira gargalo, com número |
-| Assessoria | Repo de Governança | a equipe cresceu e a decisão começou a se repetir |
+| Mapa da Ordem | Assessoria | o cliente pede execução na devolutiva · abate em `<N>` dias |
+| Mapa Núcleo | Mapa Operação | quer as camadas de aquisição e medição · abate em `<N>` dias |
+| `<…>` | `<…>` | `<sinal medido>` |
+
+**Escada sem gatilho é lista de preços** (régua 3). O gatilho é um número ou um pedido literal do cliente, nunca "quando fizer sentido".
 
 ---
 
-## 9. GATE DE CAPACIDADE — o que este catálogo obriga
-
-**Sete produtos é muita superfície para uma pessoa.** As travas:
+## 7. GATE DE CAPACIDADE — o que este catálogo obriga
 
 | Produto | Teto simultâneo | Razão |
 |---|---:|---|
-| Alicerce | **1** | construção pura, ~40h/mês |
-| Repo de Governança | **1** | setup de 48h concentrado |
-| Assessoria | 3 | já registrado |
-| Consultoria | 2 | escopo fechado, mas concentra hora |
-| Mapa da Ordem | sem teto rígido | 8h a 20h, previsível |
-| Mentoria individual | 4 | 4h/mês cada |
-| Mentoria em grupo | 1 turma | 8h/mês |
+| Alicerce | **1** | construção pura; `ICP.md` §4-bis |
+| Assessoria | `a calibrar` | horas de entrega por semana (`POLITICAS` §4) |
+| Mapa da Ordem | sem teto rígido | hora previsível por diagnóstico |
+| `<…>` | | |
 
-> 🔴 **A régua que decide a ordem de lançamento:** **não abrir dois produtos novos no mesmo mês.** Produto novo sem caso consome o dobro de hora prevista, e dois ao mesmo tempo param a aquisição.
+> 🔴 **Não abrir dois produtos novos no mesmo mês.** Produto novo sem caso consome o dobro da hora prevista, e dois ao mesmo tempo param a aquisição.
 
-**Ordem de lançamento recomendada:**
-
-| # | Produto | Por quê primeiro |
-|---:|---|---|
-| **1** | **Consultoria de Funil de Vendas** | usa método que já existe, escopo fechado, e responde ao pedido que mais chega |
-| **2** | **Mentoria de Operador** | maior valor-hora, carga baixa, e cabe junto de qualquer outra coisa |
-| **3** | **Repo de Governança** | maior diferencial e maior ticket — mas exige um caso do próprio repo documentado como demonstração |
-| **4** | Mentoria em grupo | depende de 6 inscritos, que dependem de audiência |
+**Ordem de lançamento:** primeiro o que usa método que já existe e responde ao pedido que mais chega; por último o que depende de audiência.
 
 ---
 
-## 10. DECISÕES ABERTAS
+## 8. DECISÕES ABERTAS
 
 | # | Decisão | Trava |
 |---:|---|---|
-| **1** | Os 4 nomes de consultoria são descritivos. **Nomear como produto** (ex.: "Consultoria <nome do mecanismo>") ou manter descritivo? | material de venda |
-| **2** | Repo de Governança: o preço de setup é estimativa de 48h. **Validar com o primeiro escopo real** | `POLITICAS` §5 |
-| **3** | A mentoria individual conflita com o gate de delegação de estratégia (`continuum-operacao`)? **Não — mentoria é o {{OPERADOR}} ensinando, não delegando** | registrar |
-| **4** | Ordem de lançamento: confirmar Consultoria de Funil como primeira | calendário |
+| 1 | | |
 
 ---
-*Preços verificados contra `POLITICAS` §5. Marca pessoal e produtos low/mid ticket vivem fora desta arquitetura.*
+*Preços verificados contra `POLITICAS` §5. O que não tem dado fica `n=0`, escrito assim.*

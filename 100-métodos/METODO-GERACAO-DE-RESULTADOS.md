@@ -1,6 +1,6 @@
 # MÉTODO CONTINUUM DE GERAÇÃO DE RESULTADOS
 
-> **Tipo:** framework · secundário: gate (§5), trilho (§4) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz (camada de método)")* · **Criado:** 2026-07-22 · **Dono:** {{OPERADOR}} (CEO)
+> **Tipo:** framework · secundário: gate (§5), trilho (§4) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz (camada de método)")* · **Criado:** 2026-07-22 · **Dono:** {{OPERADOR}} (CEO)
 > **Função:** dar estrutura de PNL + cocriação a todo output nosso que depende de definir e alcançar um resultado — nosso ou de cliente. É a gramática por trás de página de vendas, oferta, plano estratégico, diagnóstica, mentoria, kickoff de cliente e das nossas próprias metas.
 > **Fontes primárias (acervo de livros da casa):**
 > - Joseph O'Connor, *Manual de PNL* — "Pensando em Resultados" e as **9 condições bem formuladas** (págs 15–19).
@@ -171,7 +171,7 @@ Aplicação: em toda negociação, decisão ou conversa, o impulso de "vamos pre
 
 > ~~A máquina de tráfego não é a PONTE para o primeiro dinheiro. É a ESCALA de algo que já funciona no 1-a-1. Construir a ponte antes de existir a travessia é o que trava o resultado.~~ *(régua anterior, superada pela alteração abaixo)*
 
-### 🔴 3-quater-bis. ALTERAÇÃO DE RÉGUA (13/09/2026, alçada {{OPERADOR}})
+### 🔴 3-quater-bis. ALTERAÇÃO DE RÉGUA (regra da casa)
 
 > **O funil de VSL é via de caixa desde o início, sem exigir validação prévia no 1-a-1 — desde que a congruência esteja provada antes do primeiro real de mídia.**
 
@@ -198,7 +198,7 @@ Aplicação: em toda negociação, decisão ou conversa, o impulso de "vamos pre
 |---|---|
 | **Diagnóstica / call de cliente** | Conduzir do problema para o resultado (§1.1). Rodar as 9 condições (§2) como roteiro de descoberta. Devolver ao cliente a meta bem formulada, não o diagnóstico do problema. |
 | **Plano estratégico de conta** | O plano É as 9 condições preenchidas + plano de ação (§2.9). Positivo, com evidência/métrica, específico, recursos mapeados, ecológico, alinhado à identidade da marca. |
-| **Página de vendas / oferta** | Estruturar a promessa no positivo (cond. 1), com prova (cond. 2 = evidência = depoimento/mecanismo), específica (cond. 3), falando à identidade do público (cond. 7). Cruza com `METODO-PAGINA-DE-VENDAS.md` e a árvore de copy. |
+| **Página de vendas / oferta** | Estruturar a promessa no positivo (cond. 1), com prova (cond. 2 = evidência = depoimento/mecanismo), específica (cond. 3), falando à identidade do público (cond. 7). Cruza com o circuito de página (`00-core/roteador/ARVORE-ESCRITA.md` §6) e a árvore de copy. |
 | **Copy do público holístico/espiritual** | Usar a linguagem de cocriação (§3) como ponte nativa. "Você é responsável pelo que vê / você decide a meta" ressoa e é verdadeiro. Nunca como manipulação — como convite à autoria. **⭐ Porta de entrada: espiritualidade se vende pela necessidade que a pessoa já sente — dinheiro (cocriação, prosperidade) ou relacionamento —, nunca pela espiritualidade em si.** Autoconhecimento e espiritualidade são o que ela recebe depois de entrar, não o motivo da compra. *Fundamento:* a hierarquia de Maslow (necessidade de base pesa mais que realização) e o que escala em resposta direta (dinheiro, relacionamento e saúde são os mercados de massa). ⚠️ Na formulação de Maslow, segurança financeira é o 2º nível e relacionamento o 3º (pertencimento); a conclusão não depende da numeração. **Limite:** promessa de dinheiro segue a cond. 1 em autoria (*"você cocria"*), nunca em garantia de ganho, que também é política de anúncio da Meta. |
 | **Nossas metas internas (STATUS/PLANO)** | Toda meta no `PLANO-90-DIAS` e no `STATUS` passa pelo gabarito: positiva, com evidência mensurável, quebrada em pedaço operável (cond. 8). Fim da meta vaga; começo do número exato. |
 | **Negociação (ex.: fornecedor, parceiro)** | Reenquadre (§3.1.2): dar à situação o significado que abre resultado ("uma janela útil para as duas partes", "um encerramento organizado"), sem mentir sobre o real. |
@@ -216,7 +216,7 @@ Qualquer peça de Geração de Resultados só sai se:
 - [ ] Passou pela **ecologia** (o que se perde, quem é afetado, o que preservar).
 - [ ] Bate com a **identidade** de quem vai usar (nossa ou do cliente).
 - [ ] Está **quebrada em pedaço operável** e tem **primeira ação** clara.
-- [ ] Se for copy voltada a humano: cruzou `stop-slop.skill.md`; se voz do {{OPERADOR}}, cruzou a skill de voz do operador.
+- [ ] Se for copy voltada a humano: cruzou `10-skills/copywriter-senior-continuum/referencias/04-gate-antislop.md`; se voz do {{OPERADOR}}, cruzou a skill de voz do operador.
 
 > Amarra com `00-core/COMPLIANCE-DE-OUTPUT.md`: este gate é a extensão temática dele para toda peça que gera resultado.
 

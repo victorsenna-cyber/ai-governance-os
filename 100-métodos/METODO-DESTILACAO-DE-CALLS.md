@@ -1,15 +1,15 @@
 # MÉTODO CONTINUUM DE DESTILAÇÃO DE CALLS
 
-> **Tipo:** método · secundário: gate (§9), política (§2), blueprint (§6) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método-raiz autoral")* · **Instituído em:** 12/08/2026 · **Status:** VIGENTE
+> **Tipo:** método · secundário: gate (§9), política (§2), blueprint (§6) *(reclassificado por auditoria independente de leitura integral; antes: "método-raiz autoral")* · **Origem:** casa de origem do template · **Status:** VIGENTE
 > **Abrir por momento:** decidir §2 · produzir §3 · conferir §9 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > **Origem:** primeira execução completa, sobre uma call longa, que passou a ser o exemplar de referência (§10).
 > **Vale para:** toda call gravada com cliente, prospect, parceiro, fornecedor ou sócio (se houver).
-> **Atualizado em 25/08/2026:** treze eixos. O eixo 13 (§5-bis) audita **a nossa própria língua na call** e alimenta a skill de voz.
-> **Atualizado em 29/10/2026:** **catorze eixos.** O eixo 14 (§5-ter) registra **o que a outra parte já ouviu de nós** (produto, fase, preço, promessa) e a divergência com o canônico; caminhos alinhados à convenção `01 - contexto/` do repo; glossário de grafia da máquina (Etapa 4); linha de prospect na propagação (Etapa 7); pergunta 8 no gate (§9).
+> **Atualizado:** treze eixos. O eixo 13 (§5-bis) audita **a nossa própria língua na call** e alimenta a skill de voz.
+> **Atualizado:** **catorze eixos.** O eixo 14 (§5-ter) registra **o que a outra parte já ouviu de nós** (produto, fase, preço, promessa) e a divergência com o canônico; caminhos alinhados à convenção `01 - contexto/` do repo; glossário de grafia da máquina (Etapa 4); linha de prospect na propagação (Etapa 7); pergunta 8 no gate (§9).
 
 ---
 
-> 🔴 ⭐ **FRONTEIRA — o que NÃO cai aqui.** Call é **conversa nossa** e produz **FATO**, de grau `D`. VSL, página, anúncio ou podcast de terceiro é **artefato publicado** e produz **ESTRUTURA**, de grau `R`/`[B]` → `METODO-DESTILACAO-DE-VSL.md`. **Confundir os dois é colher cena de concorrente como se fosse fala do nosso público — o erro que custou a Conta B.** *(migrado do roteador em 26/09/2026 — era afirmação ÓRFÃ: existia só no `CLAUDE.md` §6, e se perderia na compactação)*
+> 🔴 ⭐ **FRONTEIRA — o que NÃO cai aqui.** Call é **conversa nossa** e produz **FATO**, de grau `D`. VSL, página, anúncio ou podcast de terceiro é **artefato publicado** e produz **ESTRUTURA**, de grau `R`/`[B]` → `METODO-DESTILACAO-DE-VSL.md`. **Confundir os dois é colher cena de concorrente como se fosse fala do nosso público — o erro que custou a Conta B.**
 
 ## 1. POR QUE ESTE MÉTODO EXISTE
 
@@ -35,7 +35,7 @@ O padrão que este método corta: **a call vira "resumo da reunião" com cinco b
 | Negociação com fornecedor, parceiro ou contraparte jurídica | **sim** |
 | Call interna entre sócios (se houver) com decisão material | sim, versão curta (§7) |
 | Call operacional de 15 min sem decisão | não |
-| **Call de venda curta, conduzida como pitch (< 45 min)** | **sim, inteira.** Os eixos 2, 3, 6 e 7 costumam sair vazios; **os eixos 9, 13 e 14 pesam mais**, porque o que decide a proposta é o que ele já ouviu de nós e o que não perguntamos *(29/10/2026)* |
+| **Call de venda curta, conduzida como pitch (< 45 min)** | **sim, inteira.** Os eixos 2, 3, 6 e 7 costumam sair vazios; **os eixos 9, 13 e 14 pesam mais**, porque o que decide a proposta é o que ele já ouviu de nós e o que não perguntamos |
 
 **Prazo:** a destilação é feita **na mesma janela de trabalho em que a call é lida**, nunca agendada para depois. Call lida e não destilada é pior que call não lida — cria a sensação de que o material foi aproveitado.
 
@@ -47,9 +47,9 @@ O padrão que este método corta: **a call vira "resumo da reunião" com cinco b
 
 ### Etapa 1 — Preservar a fonte bruta, intacta
 
-O arquivo original (`.vtt`, `.srt`, `.txt` do Zoom/Meet/TurboScribe) vai para **`01 - contexto/_transcripts/`** da conta (ou do prospect, em `30-comercial/assessoria-prospects/<nome>/`) e **nunca é editado**. É a única prova de que a citação é literal. *(29/10/2026: o Zoom grava em `clientes/.transcripts/`, que é caixa de entrada; de lá o arquivo se **copia**, nunca se move nem se edita.)*
+O arquivo original (`.vtt`, `.srt`, `.txt` do Zoom/Meet/TurboScribe) vai para **`01 - contexto/_transcripts/`** da conta (ou do prospect, em `30-comercial/assessoria-prospects/<nome>/`) e **nunca é editado**. É a única prova de que a citação é literal. *(o Zoom grava em `clientes/.transcripts/`, que é caixa de entrada; de lá o arquivo se **copia**, nunca se move nem se edita.)*
 
-> 🔴 ⭐ **REGRA DE TRANSCRIÇÃO (instituída 18/10/2026, alçada {{OPERADOR}}).** Decisão de alçada: transcrições de áudios do WhatsApp nunca vão para pasta diferente da do contexto; todas são feitas com o mesmo nome e ao lado do áudio correspondente, ipsis litteris, sempre.
+> 🔴 ⭐ **REGRA DE TRANSCRIÇÃO (regra da casa).** Decisão de alçada: transcrições de áudios do WhatsApp nunca vão para pasta diferente da do contexto; todas são feitas com o mesmo nome e ao lado do áudio correspondente, ipsis litteris, sempre.
 > **Um áudio, um `.md`, mesmo nome, mesma pasta:** `WhatsApp Ptt AAAA-MM-DD at HH.MM.SS.ogg` → `WhatsApp Ptt AAAA-MM-DD at HH.MM.SS.md`, ao lado. **Corpo = a íntegra da máquina, sem limpeza, sem pontuação acrescentada, sem corte.** Leitura, destilação e citação vivem em outro arquivo e **apontam** para o `.md` do áudio; nunca levam a transcrição para dentro de si. **Ferramenta, nunca à mão:** `40-operacao-rotinas/ferramentas/transcrever-audio.py --pasta <pasta>`, que lê o `README.md` da pasta e transcreve só o que chegou depois do último áudio transcrito (ou `<áudio>` nomeado). **Regra completa, ferramentas locais, README por pasta e veto: `100-métodos/METODO-TRANSCRICAO-DE-AUDIO.md`.** Vale para áudio de WhatsApp de qualquer conta, prospect ou parceiro.
 > *Por que existe: transcrição que vai parar, limpa, dentro de outro documento deixa o áudio sem par, e a fala passa a existir só na versão editada.*
 
@@ -87,7 +87,7 @@ O ID é o que torna o artefato citável. Depois dele, `STATUS.md`, `DECISOES.md`
 
 1. **Citação literal, sempre.** Paráfrase perde exatamente a palavra que a pessoa escolheu — que é o insumo de voz.
 2. **Fato ≠ leitura nossa.** Leitura vai em bloco próprio, rotulado.
-3. **Transcrição automática erra.** Trecho duvidoso vai marcado `[transcrição incerta]`, com a grafia provável ao lado. Nunca "corrigir" silenciosamente o que a pessoa disse. **Erro que se repete ("Cloud" por Claude, "Ia" por IA) entra uma vez num glossário de grafia da máquina no cabeçalho**, e nas citações a palavra vai como a máquina escreveu, com a provável entre colchetes: a correção fica declarada, a citação fica literal *(29/10/2026)*.
+3. **Transcrição automática erra.** Trecho duvidoso vai marcado `[transcrição incerta]`, com a grafia provável ao lado. Nunca "corrigir" silenciosamente o que a pessoa disse. **Erro que se repete ("Cloud" por Claude, "Ia" por IA) entra uma vez num glossário de grafia da máquina no cabeçalho**, e nas citações a palavra vai como a máquina escreveu, com a provável entre colchetes: a correção fica declarada, a citação fica literal.
 4. **Registrar o descartado e o porquê.** "Considerou X e descartou porque Y" vale mais que o resultado.
 5. **Registrar o que a pessoa não disse.** Ver §5 — é a etapa que mais gente pula.
 
@@ -112,7 +112,7 @@ A classificação certa é por **natureza da informação**, porque cada naturez
 | 11 | **Riscos e lacunas** | inclusive o que não foi dito | corrente |
 | 12 | **Leitura executiva** | o que a call resolveu, revelou e custou | decisória |
 | 13 | **⭐ Nossa língua na call** | violação de metamodelo, salto de lógica, muleta e hedge **do nosso lado**, com citação literal | **permanente → skill de voz** |
-| 14 | **⭐ O que ele já ouviu de nós** *(29/10/2026)* | produto, fase, preço, condição e promessa **ditos por nós**, com timestamp, e a **divergência com a oferta canônica** marcada | **até a proposta escrita; depois, camada 4 do registro** |
+| 14 | **⭐ O que ele já ouviu de nós** | produto, fase, preço, condição e promessa **ditos por nós**, com timestamp, e a **divergência com a oferta canônica** marcada | **até a proposta escrita; depois, camada 4 do registro** |
 
 Nem toda call tem os treze. **Eixo vazio some; eixo não se inventa para preencher tabela.**
 
@@ -133,12 +133,12 @@ Destilação que não sai do próprio arquivo não mudou o estado da empresa. **
 | `DIARIO-DE-BORDO.md` | o que a call destravou, revelou e custou |
 | `STATUS.md` da Governança | se houver impacto na carteira ou no caixa |
 | skill de voz do cliente | eixo 5 |
-| **`clientes/<cliente>/lexico-icp/` — banco de frases do público** | **eixo 4** 🔴 **instituído 10/09/2026, após a perda da Conta B.** Até esta data o eixo 4 era **o único eixo de vida útil longa sem destino de propagação**: ele era extraído, marcado, e morria na destilação. **Consequência medida:** uma frase de dor foi colhida, marcada como a melhor da call, e semanas depois a copy da mesma conta descreveu um público oposto ao que ela documentava. **Toda frase entra com grau de procedência: `D` direta (o próprio ICP), `R` relatada (a cliente ou a equipe citando o público), `I` inferida (nossa). Grau `I` nunca entra em peça.** Auditoria completa do circuito de copy: registrada no histórico da casa. |
+| **`clientes/<cliente>/lexico-icp/` — banco de frases do público** | **eixo 4** 🔴 **instituído após a perda de uma conta.** Até então o eixo 4 era **o único eixo de vida útil longa sem destino de propagação**: ele era extraído, marcado, e morria na destilação. **Consequência medida:** uma frase de dor foi colhida, marcada como a melhor da call, e semanas depois a copy da mesma conta descreveu um público oposto ao que ela documentava. **Toda frase entra com grau de procedência: `D` direta (o próprio ICP), `R` relatada (a cliente ou a equipe citando o público), `I` inferida (nossa). Grau `I` nunca entra em peça.** Auditoria completa do circuito de copy: registrada no histórico da casa. |
 | **skill de voz de quem falou do nosso lado** (`10-skills/voz-operador.skill.md`) | **eixo 13** |
 | `CONTEXTO.md` da conta | eixos 2 e 3 |
 | `100-métodos/` ou skill | eixo 8, quando o que ensinamos for reaproveitável |
-| **proposta escrita** (ESCRITA) e `REGISTRO.md` camada 4 | **eixo 14**: a proposta usa o que ele já ouviu ou declara que está corrigindo; nunca contradiz em silêncio *(29/10/2026)* |
-| **prospect** (`30-comercial/assessoria-prospects/<nome>/`) | `REGISTRO.md` camadas 1 a 4 · `FOLHA-INTERNA` com as células `[dado dele]` preenchidas e o **veredito** (`CLAUDE.md` §9.1) · `STATUS.md` da Governança. Não há `DECISOES.md` nem diário antes de virar conta *(29/10/2026)* |
+| **proposta escrita** (ESCRITA) e `REGISTRO.md` camada 4 | **eixo 14**: a proposta usa o que ele já ouviu ou declara que está corrigindo; nunca contradiz em silêncio |
+| **prospect** (`30-comercial/assessoria-prospects/<nome>/`) | `REGISTRO.md` camadas 1 a 4 · `FOLHA-INTERNA` com as células `[dado dele]` preenchidas e o **veredito** (`CLAUDE.md` §9.1) · `STATUS.md` da Governança. Não há `DECISOES.md` nem diário antes de virar conta |
 
 **Gate:** enquanto a propagação não estiver feita, a destilação está **incompleta**, não "pronta para depois".
 
@@ -170,9 +170,9 @@ Formato: uma seção curta, com a pergunta que a ausência abre e o dono da resp
 
 ---
 
-## 5-BIS. EIXO 13 — NOSSA LÍNGUA NA CALL (instituído 25/08/2026)
+## 5-BIS. EIXO 13 — NOSSA LÍNGUA NA CALL (regra da casa)
 
-**Por que este eixo existe.** Até 25/08/2026 o método capturava a voz do cliente (eixo 5) e o método que nós ensinamos (eixo 8). **O nosso próprio jeito de falar não era capturado por eixo nenhum.** Ele aparecia só no eixo 11, e sempre travestido de falha comercial: *"não marcou data"*, *"ofereceu escopo de graça"*, *"ouviu o número e não explorou"*.
+**Por que este eixo existe.** Antes, o método capturava a voz do cliente (eixo 5) e o método que nós ensinamos (eixo 8). **O nosso próprio jeito de falar não era capturado por eixo nenhum.** Ele aparecia só no eixo 11, e sempre travestido de falha comercial: *"não marcou data"*, *"ofereceu escopo de graça"*, *"ouviu o número e não explorou"*.
 
 A diferença não é semântica:
 
@@ -216,7 +216,7 @@ Propagação **obrigatória** para a skill de voz de quem falou:
 
 ---
 
-## 5-TER. EIXO 14 — O QUE ELE JÁ OUVIU DE NÓS (instituído 29/10/2026)
+## 5-TER. EIXO 14 — O QUE ELE JÁ OUVIU DE NÓS (regra da casa)
 
 **Por que este eixo existe.** O que se diz numa call de venda pode divergir do canônico: um produto descrito com as fases de outro, uma promessa na fala que a oferta vigente já retirou, um número que a transcrição não deixa claro qual a outra parte ouviu. Nada disso cabia nos treze eixos: não é fato dele (eixo 1), não é compromisso (eixo 9) e não é padrão de língua (eixo 13). **É o que a outra parte já ouviu, e a proposta escrita que o contradiz em silêncio quebra a camada 4 do `CLAUDE.md` §11.1** (*"sem isso não se sabe o que a outra parte já ouviu"*).
 
@@ -303,7 +303,7 @@ Uma destilação só está pronta quando as oito respostas forem sim:
 5. **O que não foi dito está registrado?**
 6. **A propagação para `STATUS`, `DECISOES` e diário foi feita nesta mesma tarefa?**
 7. **A nossa própria fala foi auditada (eixo 13) e propagada para a skill de voz?**
-8. **O que ele já ouviu de nós está registrado (eixo 14), com a divergência marcada, e a proposta escrita a respeita ou a corrige por escrito?** *(29/10/2026)*
+8. **O que ele já ouviu de nós está registrado (eixo 14), com a divergência marcada, e a proposta escrita a respeita ou a corrige por escrito?**
 
 E o teste final, o mesmo do §11.4 do kernel:
 

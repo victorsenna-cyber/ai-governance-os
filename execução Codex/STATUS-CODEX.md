@@ -2,7 +2,7 @@
 
 > **Tipo:** estado (camada 3) · **Escrito pelo:** executor externo · **Lido pelo:** agente principal e operador.
 > 🔴 **Este arquivo é a ÚNICA porta de entrada do trabalho do executor externo para o resto da casa.** Pacote que não aparece aqui não existe para quem integra.
-> **Não é o `STATUS.md` da empresa.** Aquele é canônico e o executor não escreve nele (§0 do `AGENTS.md`). Este é o espelho do que está na antessala.
+> **Não é o `STATUS.md` da empresa.** Aquele é canônico e o executor não escreve nele (§0 do `AGENTS-EXEC.md`). Este é o espelho do que está na antessala.
 
 ---
 

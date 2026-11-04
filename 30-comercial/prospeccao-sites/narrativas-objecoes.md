@@ -1,6 +1,6 @@
 # Narrativas & Objeções — Venda de Site (Fable 5)
 
-> **Régua única: `10-skills/copywriting-fable5.skill.md`.**
+> **Régua única: `10-skills/copywriter-senior-continuum/referencias/02-regua-da-linguagem.md`.**
 > Princípio: objeção não é "não", é pedido de mais segurança. Cada resposta aqui segue a mesma anatomia: **validar de verdade, responder com o porquê à vista, desarmar o risco, terminar com uma pergunta.** Curto sempre: objeção não se responde com textão.
 > Formato: citação (>) é instrução, texto normal copia. Metáfora da instância: a vitrine; se um vendedor entrar com outra metáfora (ex.: a recepção), as respostas abaixo funcionam nas duas.
 
@@ -108,4 +108,4 @@ Fica só uma coisa guardada: quando alguém te indicar e você quiser que a pess
 > Os 5 primeiros a {{TICKET_SITE}} existem pra gerar a prova que vende os seguintes a {{TICKET_SITE}}. A escassez é o mecanismo, dito com todas as letras. É por isso que ela convence.
 
 ---
-*Régua: `copywriting-fable5.skill.md` (única). Estrutura: `METODO-ABORDAGEM-FRIA.md`. Desenho: anatomia fixa de resposta (validar, porquê, desarme, pergunta), qualificação negativa no "vou pensar", risco estruturado no lugar de juramento, fim do número inventado.*
+*Régua: `10-skills/copywriter-senior-continuum/referencias/02-regua-da-linguagem.md` (única). Estrutura: `100-métodos/METODO-ABORDAGEM-FRIA.md`. Desenho: anatomia fixa de resposta (validar, porquê, desarme, pergunta), qualificação negativa no "vou pensar", risco estruturado no lugar de juramento, fim do número inventado.*

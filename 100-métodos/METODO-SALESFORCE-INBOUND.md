@@ -1,6 +1,6 @@
 # Método Salesforce — Lógica de Inbound (Receita Previsível na fonte)
 
-> **Tipo:** framework · secundário: blueprint (§5) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: sem campo)*
+> **Tipo:** framework · secundário: blueprint (§5) *(reclassificado por auditoria independente de leitura integral; antes: sem campo)*
 > Ativo de referência. Destila a lógica de prospecção da Salesforce (onde Aaron Ross escreveu o *Receita Previsível*), para quando implementarmos **inbound / SDR estruturado** na {{EMPRESA}}.
 > Não é para copiar mensagem, é para internalizar o **princípio**. Base: Aaron Ross, *Receita Previsível* (2ª ed.).
 

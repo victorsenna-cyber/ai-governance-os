@@ -1,6 +1,6 @@
 # PDF CONTINUUM — template padrão
 
-> **Tipo:** template de artefato · **Instituído em:** 12/08/2026 · **Status:** VIGENTE
+> **Tipo:** template de artefato · **Origem:** casa de origem do template · **Status:** VIGENTE
 > **Origem:** extraído do PDF de uma destilação de call, generalizado.
 > **Regra de ouro:** **não se escreve CSS novo por documento.** Todo PDF nosso sai daqui, com a mesma assinatura visual.
 
@@ -129,7 +129,7 @@ O rodapé da capa existe para uma coisa: **declarar a regra de leitura do arquiv
 
 Uma destilação de call em PDF, na paleta `ouro-rubi`, capa completa. O `capa.exemplo.json` desta pasta serve de modelo preenchido.
 
-## 9. Exemplar para ver o modelo e o estado no Windows *(01/11/2026)*
+## 9. Exemplar para ver o modelo e o estado no Windows
 
 `exemplo/EXEMPLO-PDF-CLARO.pdf`, com o `.md` e o JSON de capa ao lado, fala só do próprio modelo.
 

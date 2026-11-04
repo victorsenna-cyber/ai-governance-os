@@ -1,7 +1,7 @@
 # Scripts WhatsApp — modelo na voz do {{OPERADOR}} (Fable 5 · metáfora: a vitrine apagada)
 
 > **MODELO — troque `[empresa]`, `[dia]`, `[SUA CHAVE]` e `[link do site]` na hora, e reescreva a voz para a sua.**
-> **Régua única: `10-skills/copywriting-fable5.skill.md`.** (Registro de método no `METODO-ABORDAGEM-FRIA.md`.)
+> **Régua única: `10-skills/copywriter-senior-continuum/referencias/02-regua-da-linguagem.md`.** (Registro de método no `100-métodos/METODO-ABORDAGEM-FRIA.md`.)
 > Formato: **citação (>) é instrução**, **texto normal é o que você copia**. Slot único obrigatório: `[empresa]` (10 segundos pra preencher; o sistema de massa injeta).
 > Metáfora condutora da instância: **a vitrine apagada.** O trabalho existe, mas quem passa em frente à noite não vê. Ela abre a conversa, sustenta a implicação e fecha a entrega.
 

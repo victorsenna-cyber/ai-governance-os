@@ -1,6 +1,6 @@
 # MÉTODO — DIAGNÓSTICO DE OPERAÇÃO
 
-> **Tipo:** método · secundário: blueprint (§4, §5-bis), política (§3.2), gate (§11) *(reclassificado 26/09/2026 por auditoria independente de leitura integral; antes: "método canônico (camada 2)")* · **Criado em:** 12/09/2026 · **Alçada:** {{OPERADOR}}
+> **Tipo:** método · secundário: blueprint (§4, §5-bis), política (§3.2), gate (§11) *(reclassificado por auditoria independente de leitura integral; antes: "método canônico (camada 2)")* · **Alçada:** {{OPERADOR}}
 > **Abrir por momento:** decidir §3.2 e §4-bis · produzir §6 · conferir §11 *(mapa proposto pela auditoria de 26/09 — conferir no primeiro uso)*
 > **Destino no repo:** `100-métodos/METODO-DIAGNOSTICO-DE-OPERACAO.md`
 > **O que governa:** o **Mapa da Ordem** — o mapeamento das dimensões de uma operação que já vende, em duas amplitudes.
@@ -29,7 +29,7 @@
 
 ---
 
-## 2. O NOME — **MAPA DA ORDEM** *(fechado em 12/09/2026)*
+## 2. O NOME — **MAPA DA ORDEM** *(fechado)*
 
 **"Mapa do Vazamento" foi descartado, e a razão do descarte fica como régua permanente da casa:**
 
@@ -110,7 +110,7 @@ BLOCO A · NÚCLEO                 1 · ICP        2 · Promessa
 
 ---
 
-## 4-bis. ⭐ AS QUATRO PERGUNTAS DE CORTE — a versão em linguagem de dono *(instituída 26/09/2026, alçada {{OPERADOR}})*
+## 4-bis. ⭐ AS QUATRO PERGUNTAS DE CORTE — a versão em linguagem de dono *(regra da casa)*
 
 As dez dimensões são o instrumento. **Estas quatro são como elas se perguntam em voz alta**, na call, no conteúdo e na DM. Não são uma lista nova: cada uma abre uma dimensão, e a resposta diz se há Mapa a fazer.
 
@@ -319,7 +319,7 @@ As dez dimensões são o instrumento. **Estas quatro são como elas se perguntam
 
 ### 5.4 ⭐ A MATRIZ DE LEITURA CRUZADA
 
-> 🔴 **FONTE ÚNICA DESDE 27/09/2026: `100-métodos/MATRIZ-LEITURA-CONTEUDO.md` §3.** Lá a matriz tem **8 linhas**; esta tem 6 — as linhas 7 (*nicho certo, audiência pequena*) e 8 (*audiência fiel, hook fraco*) só existem lá. **Não há contradição entre as duas, há cópia parcial.** A tabela abaixo fica preservada como registro e **não se atualiza aqui**; toda alteração vai na fonte.
+> 🔴 **FONTE ÚNICA: `100-métodos/MATRIZ-LEITURA-CONTEUDO.md` §3.** Lá a matriz tem **8 linhas**; esta tem 6 — as linhas 7 (*nicho certo, audiência pequena*) e 8 (*audiência fiel, hook fraco*) só existem lá. **Não há contradição entre as duas, há cópia parcial.** A tabela abaixo fica preservada como registro e **não se atualiza aqui**; toda alteração vai na fonte.
 
 **É esta tabela que transforma três análises soltas em diagnóstico.** Nenhum número isolado diz onde está o problema; o cruzamento diz.
 
@@ -450,4 +450,4 @@ Elogio genérico soa como cortesia antes da facada. *"Você tem prova social mel
 - [ ] o que fica fora do escopo nomeado **com o preço do degrau**.
 
 ---
-*Criado em 12/09/2026. Rubricas derivadas de contas reais. Template instanciável em `90-templates/diagnostico-operacao/`.*
+*Criado. Rubricas derivadas de contas reais. Template instanciável em `90-templates/diagnostico-operacao/`.*

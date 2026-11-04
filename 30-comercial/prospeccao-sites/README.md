@@ -74,7 +74,7 @@ No SPIN, **não montamos preview no escuro para todos.** Abrimos com diagnóstic
 
 - Aprovação humana antes de qualquer disparo em volume (regra da casa).
 - WhatsApp: espaçar envios (45–75s), ~10–15 primeiras mensagens/dia por número, horário comercial.
-- Tom humano, nunca robótico. Toda mensagem passa pela régua `10-skills/stop-slop.skill.md` (sem cara de IA, sem travessão, calibrada ao WhatsApp — emoji 1–2 OK). Áudio curto converte mais que texto longo (ótimo para as perguntas SPIN).
+- Tom humano, nunca robótico. Toda mensagem passa pela régua `10-skills/copywriter-senior-continuum/referencias/04-gate-antislop.md` (sem cara de IA, sem travessão, calibrada ao WhatsApp — emoji 1–2 OK). Áudio curto converte mais que texto longo (ótimo para as perguntas SPIN).
 - Registrar cada lead e status (planilha ou CRM Twenty): novo → em diagnóstico → qualificado → preview enviado → fechado → entregue → expansão.
 - **Nunca** prometer prazo que não cumprimos. Entrega em 7 dias úteis é compromisso.
 

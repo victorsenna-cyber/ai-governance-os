@@ -27,7 +27,7 @@ Todo pedido de vídeo **que não seja só cortar fala gravada**:
 Ela é **repertório de forma**: ritmo, transição, linguagem visual e a maneira de pedir. Achar o prompt-modelo pelo tipo de peça:
 
 ```powershell
-py -I -c "import json,sys; d=json.load(open(sys.argv[1],encoding='utf-8')); [print(x['slug'],'|',x['category'],'|',x['prompt'][:140].replace(chr(10),' ')) for x in d if x['category']==sys.argv[2] and not x['prompt_partial']]" "<pasta do repositório>\awesome-opus5-5-videos-main\data\videos.json" explainer
+python3 -I -c "import json,sys; d=json.load(open(sys.argv[1],encoding='utf-8')); [print(x['slug'],'|',x['category'],'|',x['prompt'][:140].replace(chr(10),' ')) for x in d if x['category']==sys.argv[2] and not x['prompt_partial']]" "<pasta do repositório>\awesome-opus5-5-videos-main\data\videos.json" explainer
 ```
 
 Pontos de partida já lidos: `alex-prompter-997524` (explainer de 30 s em 5 cenas: dor → o que faço → 3 passos → prova → nome) · `redpersongpt-284430` (anúncio de app: "base tudo no produto real, não invente feature") · `verbove-268381` e `twoclipping-000267` (pedem os insumos antes de começar: telas reais, cores, música) · `felipemoller-936736` (9:16 com Playwright e FFmpeg, em português).

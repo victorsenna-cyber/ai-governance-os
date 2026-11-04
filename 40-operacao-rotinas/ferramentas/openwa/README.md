@@ -12,9 +12,9 @@ Intenção: o motor roda e o Claude capta os dados das conversas do {{OPERADOR}}
 |---|---|
 | **pôr uma conversa na captura** | no WhatsApp Business, aplica-se a etiqueta **Cliente**, **Parceiro** ou **Prospect** na conversa (privada ou grupo). A próxima rodada abre a pasta e começa a capturar |
 | tirar uma conversa | tira-se a etiqueta. A captura para, e o que já foi capturado fica |
-| capturar tudo | botão **Capturar WhatsApp**, na área de trabalho |
-| capturar uma conversa só | dois cliques no script dela, na pasta **WhatsApp por conversa** (atalho na área de trabalho → `por-conversa/`) |
-| escanear o QR, ver sessões e conversas | app **OpenWA**, na área de trabalho |
+| capturar tudo | `python3 rodada.py` (pelo agendador ou por um atalho seu) |
+| capturar uma conversa só | `python3 capturar.py --chat <chatId>` |
+| escanear o QR, ver sessões e conversas | o painel do motor OpenWA (`http://127.0.0.1:2785`), instalado fora do repositório |
 
 🔴 As três etiquetas precisam existir no WhatsApp Business, com esses nomes. O motor `whatsapp-web.js` não cria etiqueta, então quem cria é o {{OPERADOR}}, no celular. As outras etiquetas que você usar (lead, follow-up…) **não** entram na captura.
 
@@ -84,7 +84,7 @@ Campos de cada conversa: `chatId` · `relacao` (cliente, parceiro ou prospect) �
 - **OpenWA** instalado fora da Governança, em pasta isolada à sua escolha (nunca dentro do repo): Docker, `whatsapp-web.js`, porta só em `127.0.0.1:2785`. No `.env` local:
   - `CHAT_HISTORY_MEDIA_BUDGET_BYTES` em 100 MiB;
   - limites de requisição altos, porque só a máquina local chega lá. Com os limites padrão, a 1ª carga esbarrava no 429.
-- **App OpenWA (opcional):** um atalho de área de trabalho que liga o Docker e o container e abre o painel já logado, na pasta de instalação do motor. Ao fechar, o OpenWA continua rodando, para a sessão do WhatsApp ficar conectada.
+- 🔴 **O motor não vem com o repositório.** Sem ele instalado e ligado, `capturar.py` só devolve erro de conexão. **App OpenWA (opcional):** um atalho que liga o Docker e o container e abre o painel já logado, na pasta de instalação do motor. Ao fechar, o OpenWA continua rodando, para a sessão do WhatsApp ficar conectada.
 - **Chave do script:** `OPENWA_KEY` no ambiente, ou `data/.api-key` (admin). O script só lê as conversas do mapa. A chave limitada por conversa não abre a rota de mídia, por isso não serve aqui.
 - **Chave do Claude (MCP):** viewer, limitada às conversas ativas do mapa (`allowedChats`), em `data/.mcp-key.json`. O script cria e atualiza essa chave a cada rodada.
 - Todas as chaves ficam fora do repositório.
