@@ -51,7 +51,7 @@ CATEGORIAS = [  # palavra no texto → categoria, para linhas antigas sem catego
     (r"mercado|comida|farm[aá]cia|restaurante", "alimentação"),
     (r"uber|99|[ôo]nibus|transporte", "transporte"),
     (r"meta|facebook|instagram|google ads", "mídia"),
-    (r"anthropic|claude|openai|vercel|hostinger|supabase|github|canva|zapsign", "ferramenta"),
+    (r"{{FERRAMENTA_1}}|{{FERRAMENTA_2}}|{{FERRAMENTA_3}}", "ferramenta"),  # troque pelos nomes das suas ferramentas como aparecem no extrato
     (r"parcelamento|renegocia[cç][aã]o", "dívida"),
 ]
 
@@ -309,7 +309,8 @@ def ler_dividas(texto, lista):
             n = int(n0.group(1)) if n0 else 1
             d = ds[0]
             while d <= fim:
-                out.append(dict(base, id=ident("m", nome, d), descricao=f"{re.sub(r',?\s*parcelas?\s+\d+\s+a\s+\d+', '', desc).strip() or 'parcela'} · parcela {n}",
+                sem_parc = re.sub(r",?\s*parcelas?\s+\d+\s+a\s+\d+", "", desc).strip() or "parcela"
+                out.append(dict(base, id=ident("m", nome, d), descricao=f"{sem_parc} · parcela {n}",
                                 valor=valor, vencimento=d.isoformat(), recorrencia="mensal", limite=None))
                 n += 1
                 d = (d.replace(day=1) + dt.timedelta(days=32)).replace(day=d.day)

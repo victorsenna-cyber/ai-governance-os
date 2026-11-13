@@ -9,6 +9,6 @@
 | Padrão | Contraparte | Categoria | Conta |
 |---|---|---|---|
 | `{{NOME DO CLIENTE NO EXTRATO}}` | `{{cliente}}` | receita de cliente | empresa |
-| ANTHROPIC\|OPENAI\|HOSTINGER | — | ferramenta | empresa |
+| `{{FERRAMENTA_1}}\|{{FERRAMENTA_2}}` | — | ferramenta | empresa |
 | `{{nome do operador em outra conta}}` | transferência própria | transferência própria | pessoal |
 | . | — | a classificar | pessoal |
