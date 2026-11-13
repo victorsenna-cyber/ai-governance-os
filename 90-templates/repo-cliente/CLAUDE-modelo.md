@@ -116,4 +116,18 @@ Estado vivo em `STATUS.md`. Decisões e o porquê de cada uma em `DECISOES.md`.
 Nunca entregar só análise. Sempre: **a peça pronta · a decisão que ela assume · o que fazer com ela.**
 
 ---
+
+<!-- MECANISMO-DA-CASA:INICIO · bloco mantido por {{EMPRESA}}: o porte o reescreve inteiro, entre os dois marcadores, sem tocar no resto deste kernel. Não editar aqui dentro: o que este repositório exige diferente se escreve em EXCECOES-DA-CASA.md, na raiz, e prevalece. -->
+## 9. MECANISMO — como este repositório se mantém
+
+1. **Sincronia.** `ferramentas/sincronizar.py` ao abrir a sessão e ao fechar toda tarefa: commita, mescla com o GitHub e publica. Nunca commit e push à mão, nunca edição direto no GitHub. Conflito: ficam as duas versões e se resolve na hora; em arquivo de registro, as entradas da outra ponta entram em ordem de data.
+2. **Cópia de segurança.** Toda sincronia guarda uma cópia do repositório fora desta pasta (`ferramentas/backup.py`), só acrescentando. Nada se apaga de vez sem a palavra de `<nome do dono>`.
+3. **Fecho.** `ferramentas/verificar.py` em ✅ antes de sincronizar. Ele recusa publicar dado sensível.
+4. **Senha não entra aqui, nem de passagem.** Senha, código de recuperação, chave e token não se escrevem em nenhum arquivo, nem "só por enquanto". Senha colada na conversa não é usada nem guardada: avisa-se que vazou e pede-se a troca. Senha não vai por WhatsApp, áudio, e-mail nem call: acesso de outra pessoa é convite com login próprio. Uma senha por serviço, verificação em duas etapas ligada, e a senha mora num gerenciador. Segredo que a máquina precisa fica no `.env`, fora do repositório.
+5. **O que se faz sem perguntar.** Ato que o git desfaz, dentro deste repositório, se faz e se avisa no fim. Pedem a palavra de `<nome do dono>`: dinheiro · contrato · mensagem a terceiro e publicação · apagar de vez · o que roda sozinho ou é compartilhado (servidor, domínio, chave) · mudar regra deste kernel.
+6. **Rastro.** O que só existe na conversa não existe. Fato novo entra, no mesmo ato, em todo arquivo que ele muda (`STATUS.md`, `DECISOES.md` e o arquivo de área), não só no arquivo do pedido.
+7. **O que sai para alguém** grava em `entregaveis/<AAAA-MM-DD - nome>/`, com uma linha no `entregaveis/README.md`.
+<!-- MECANISMO-DA-CASA:FIM -->
+
+---
 *Kernel estruturado pela {{EMPRESA}}. As decisões aqui são da <EMPRESA>; a estrutura que as organiza é da {{EMPRESA}}. Alterar as regras do §3 e a fronteira do §5 é decisão de estratégia, registrada em `DECISOES.md`.*

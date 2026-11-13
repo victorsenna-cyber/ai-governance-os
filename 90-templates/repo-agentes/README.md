@@ -17,4 +17,6 @@ A peça que responde *"como está a operação hoje?"* em texto, por área: um *
 
 ## Como entra num cliente
 
+> 🔴 **Antes de ligar na VPS do cliente**, a lista de aceite de operação: o laço publica na mesma passada em que lê, há alarme de clone preso, nenhum log de ruído vai para o repo, o fuso é o da conta, o reinício acontece no deploy, e a conversa de teste fica fora do mapa de contas.
+
 **A fonte é esta pasta.** O que vai para o repo vivo do cliente (`clientes/<Cliente>/entregaveis/<pasta>/`) se copia daqui, e **não se edita a cópia no cliente.** O leitor (a foto) é sempre do cliente, porque as fontes dele são dele.

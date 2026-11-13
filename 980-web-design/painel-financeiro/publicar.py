@@ -18,7 +18,7 @@ SITE = json.loads((AQUI / ".hostinger" / "site.json").read_text(encoding="utf-8"
 API = "https://developers.hostinger.com/api/hosting/v1/files/upload-urls"
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Continuum-painel-caixa"
 TOKEN_ARQ = Path.home() / ".continuum" / "hostinger-token.txt"
-ARQUIVOS = ("index.html", "runtime.css", "runtime.js", "config.js", ".htaccess")
+ARQUIVOS = ("index.html", "sistema.css", "sistema.js", "simbolo.png", "favicon.ico", "favicon-32.png", "apple-touch-icon.png", "runtime.css", "runtime.js", "config.js", ".htaccess")  # sistema.* também serve o /projetos/
 
 
 def token():

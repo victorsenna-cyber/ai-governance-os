@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  MODELO — PACOTE DE COLAGEM, ELÉTRICO CLARO, A4
+  Responde: "o que eu colo, onde, e quando?"  ·  Eixo: o texto pronto, campo a campo
+  ============================================================
+
+  O QUE É
+    O documento que o cliente recebe quando a peça é dele para colar: perfil de rede
+    social, mensagens prontas, posts da semana. Nenhuma decisão para o leitor: ele lê,
+    cola e publica. O que ele não diria, marca, e a casa muda ou explica por escrito.
+
+  COMO USAR
+    1. copiar ESTE arquivo, noturno.css, eletrico.css, eletrico-claro.css e a pasta
+       fontes/ para a pasta da entrega (clientes/<Cliente>/entregaveis/<AAAA-MM-DD - nome>/).
+       Partir daqui, nunca do HTML do último cliente.
+    2. data-paleta no <html>: a paleta da conta, nomeada em eletrico-claro.css
+       (cores do site ou do kit de marca dela). Sem paleta registrada: tirar o atributo
+       e sai papel e grafite; paleta nova entra na folha, nunca aqui.
+    3. trocar o conteúdo. Um bloco .copiar por coisa a colar, com o .copiar-rotulo
+       dizendo onde entra. Texto que depende de a plataforma ter o campo vai com
+       rótulo "se tiver campo" e uma alternativa.
+    4. A4 (leitor no computador): sem noturno-celular.css. Quebra de página só onde
+       o leitor muda de tarefa (perfil → mensagens → cada post), nunca a cada bloco.
+    5. python3 gerar_pdf.py documento.html --png pasta/   e OLHAR as páginas: no A4 o
+       bloco curto deixa a página vazia; juntar as seções curtas.
+    6. a capa é limpa: sem .fita. O miolo fica a 36% da página, por desenho.
+
+  SEQUÊNCIA
+    capa → o que fazer (tabela o quê × quando) + como o canal vende (a pergunta
+    do cliente, respondida em três linhas) → os campos do perfil, na ordem da tela,
+    com a imagem da capa do perfil se houver → mensagens prontas → um post por página
+
+  RESTRIÇÕES
+    - sem emoji; sem travessão em texto que sai no nome do cliente
+    - nenhum texto do cliente aqui: isto é modelo, e o repo-modelo é público
+-->
+<html lang="pt-BR" data-paleta="papel-musgo">
+<head><meta charset="utf-8"><title>CANAL · pacote de colagem · NOME DO CLIENTE</title>
+<link rel="stylesheet" href="noturno.css">
+<link rel="stylesheet" href="eletrico.css">
+<link rel="stylesheet" href="eletrico-claro.css">
+</head>
+<body>
+
+<!-- ========== CAPA (limpa, sem fita) ========== -->
+<div class="capa">
+  <div class="miolo">
+    <div class="kicker">N O M E &nbsp; D O &nbsp; C L I E N T E</div>
+    <h1>Seu CANAL,<br><span>pronto para colar</span></h1>
+    <p class="lead">O perfil, as mensagens e os posts da primeira semana.</p>
+    <div class="botao">COMECE PELA PÁGINA 2</div>
+  </div>
+  <div class="rodape">CONTINUUM AI SYSTEMS · MÊS DE ANO</div>
+</div>
+<div class="page-break"></div>
+
+<!-- ========== O QUE FAZER + COMO O CANAL VENDE (uma página) ========== -->
+<h1>O que fazer</h1>
+<p class="sub">Tudo pronto. É ler, colar e postar.</p>
+<table>
+<tr><th>O quê</th><th style="width:32%">Quando</th></tr>
+<tr><td>colar o perfil</td><td>até DIA</td></tr>
+<tr><td>publicar os posts</td><td>DIAS</td></tr>
+<tr><td>a rotina diária (comentário, resposta)</td><td>de DIA em diante</td></tr>
+<tr><td>o print do painel, no grupo</td><td>toda SEXTA</td></tr>
+</table>
+<div class="destaque"><span class="lead">Cerca de N h por semana.</span><p>O que você não diria, marque, e a gente muda ou te explica por escrito. O que só existe na sua conta (cargos, datas, cidade) fica como você já tem.</p></div>
+<h1 style="margin-top:10mm">Como o CANAL vende</h1>
+<p class="sub">A resposta à sua pergunta da call.</p>
+<p><strong>Uma frase que diz o que a peça faz e o que ela não faz.</strong> E quem faz o resto.</p>
+<div class="destaque"><span class="lead">Etapa → etapa → etapa → o ato de conversão → a oferta.</span></div>
+<p>O teste vai de DIA a DIA, verba R$ N. Sucesso: o critério, em número.</p>
+<div class="page-break"></div>
+
+<!-- ========== O PERFIL, NA ORDEM DA TELA ========== -->
+<h1>O perfil</h1>
+<p class="sub">Na ordem da tela.</p>
+<!-- se houver imagem de capa do perfil: <img src="capa.png" style="width:100%;margin-bottom:4mm" alt="Capa do perfil"> -->
+<div class="copiar-rotulo">Título (headline)</div>
+<div class="copiar"><p>O texto do título, pronto.</p></div>
+<div class="copiar-rotulo">Sobre</div>
+<div class="copiar"><p>Primeiro parágrafo.</p><p>Segundo parágrafo.</p><p>Último parágrafo, com o único ato de conversão.</p></div>
+<div class="copiar-rotulo">Campo seguinte, com o nome que a tela usa</div>
+<div class="copiar"><p>Texto do campo.</p></div>
+<div class="copiar-rotulo">Só se a opção X não aparecer: alternativa</div>
+<div class="copiar"><p>O texto alternativo.</p></div>
+<div class="nota"><strong>Na tela:</strong> o que marcar, o que não marcar, e o clique sem volta que ela não deve dar sem decidir.</div>
+<div class="page-break"></div>
+
+<!-- ========== MENSAGENS PRONTAS ========== -->
+<h1>Mensagens</h1>
+<div class="copiar-rotulo">Resposta a quem pede proposta, em até N h</div>
+<div class="copiar"><p>Oi, [nome]. O texto, com os campos entre colchetes.</p></div>
+<div class="copiar-rotulo">Nota de conexão</div>
+<div class="copiar"><p>Oi, [nome], o texto.</p></div>
+<div class="copiar-rotulo">Convite, só depois de uma troca real</div>
+<div class="copiar"><p>O texto.</p></div>
+<div class="page-break"></div>
+
+<!-- ========== UM POST POR PÁGINA ========== -->
+<h1>Post · DIA DA SEMANA DD/MM</h1>
+<div class="copiar-rotulo">Texto do post</div>
+<div class="copiar"><p>"A primeira linha, entre aspas, se for fala de alguém."</p><p>A cena.</p><p>A pergunta final.</p></div>
+<div class="page-break"></div>
+<h1>Post · DIA DA SEMANA DD/MM</h1>
+<div class="copiar-rotulo">Texto do post</div>
+<div class="copiar"><p>O texto.</p></div>
+
+</body>
+</html>

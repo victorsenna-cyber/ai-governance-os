@@ -452,11 +452,31 @@ def baixar(sessao, conversa, m, quando, raiz, aovivo):
     tirar_gitkeep(pasta)
     return os.path.join(pasta, nome), None
 
+# 🔴 limpeza na entrada (10/11/2026: senha numa mensagem CITADA passou, porque este script não limpava nada;
+# a limpeza vale para o corpo E para o texto citado). Mesmos padrões do evolution/puxar.py.
+MARCA_SENHA = "[senha removida da captura]"
+RE_SENHA = re.compile(r"(?i)\b(senha|password|passwd|pwd)\b\s*[:=.]?\s*[\"']?[^\s\"']{4,}")
+RE_SENSIVEL = [
+    re.compile(r"(?<![\d.])\d{3}\.\d{3}\.\d{3}-\d{2}(?!\d)"),
+    re.compile(r"(?i)\bcpf\b\D{0,6}\d{11}(?!\d)"),
+    re.compile(r"\b(ghp|gho|ghu|ghs|github_pat)_[A-Za-z0-9_]{20,}"),
+    re.compile(r"\bsk-(ant-)?[A-Za-z0-9_-]{20,}"),
+    re.compile(r"\bAIza[0-9A-Za-z_-]{35}"),
+    re.compile(r"\bAKIA[0-9A-Z]{16}\b"),
+    re.compile(r"\b\d{8,10}:AA[A-Za-z0-9_-]{30,}"),
+]
+
+def limpar(texto):
+    if not texto: return texto
+    texto = RE_SENHA.sub(MARCA_SENHA, texto)
+    for rx in RE_SENSIVEL: texto = rx.sub("[dado sensível removido]", texto)
+    return texto
+
 def linha(sessao, conversa, m, raiz, aovivo):
     quando = datetime.fromtimestamp(m["timestamp"], BRT)
-    tipo, corpo = m.get("type") or "unknown", (m.get("body") or "").strip()
+    tipo, corpo = m.get("type") or "unknown", limpar((m.get("body") or "").strip())
     cab = f"**{quando:%H:%M:%S} · {autor(m, conversa)}:**"
-    cit = (m.get("quotedMessage") or {}).get("body")
+    cit = limpar((m.get("quotedMessage") or {}).get("body"))
     pre = f"> ↪ _{cit.strip()[:200]}_\n\n" if cit else ""
     if tipo == "text":
         return pre + f"{cab} {corpo}"

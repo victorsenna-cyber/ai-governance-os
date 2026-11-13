@@ -13,6 +13,7 @@
 | **`PEDIDO-UNICO.md`** | daqui | **sempre, no dia 0** — e enviado no mesmo dia | 0 |
 | `DECISOES.md` · `STATUS.md` da conta | criar vazios, no padrão de 4 camadas (`CLAUDE.md` §11.1) | sempre | 0 |
 | `contexto/` | criar vazia | sempre — recebe gravação e transcrição brutas | 0 |
+| 🔴 **`entregaveis/README.md`** | daqui (`entregaveis/`) | **sempre, no dia 0** — todo entregável grava em `entregaveis/<AAAA-MM-DD - nome>/` | 0 |
 | **`lexico-icp/`** | `90-templates/lexico-icp/` | 🔴 **no onboarding, nunca na primeira peça** — na primeira peça já é tarde | 4 |
 | `PILARES.md` | gerado pelo `METODO-TESTE-DE-PILARES.md` | ato II | 3 |
 | **`benchmark-vsl/`** | `90-templates/benchmark-vsl/` (4 arquivos) | quando a peça for VSL | 6 |
@@ -29,6 +30,7 @@ clientes/<cliente>/
 ├── DECISOES.md            uma DEC por decisão, com o que foi descartado e por quê
 ├── STATUS.md              estado da conta
 ├── contexto/              fonte bruta: gravação, transcrição, material recebido
+├── entregaveis/           🔴 tudo o que sai para o cliente: README.md (índice) + AAAA-MM-DD - nome/
 ├── lexico-icp/            BANCO · FONTES · LACUNAS — grau D
 ├── PILARES.md             as 5 binárias
 └── benchmark-<peça>/      matriz · estrutura invisível · espaço vazio · destilações

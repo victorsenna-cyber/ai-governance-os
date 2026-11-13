@@ -159,6 +159,8 @@ flowchart TD
 
 > 🔴 **Estado `🔴` sem a coluna "o que destrava" preenchida é proibido.** Bloqueio sem saída escrita é o que transforma conta em limbo — e limbo não aparece em relatório nenhum.
 
+🔴 **Proposta aceita = `onb_d0:` no frontmatter, no mesmo dia.** É o D0 da régua do `METODO-ONBOARDING-ORQUESTRADO.md`: passagem com o cliente até D+10, kickoff, primeiro valor até D+30, revisão de valor. Este trilho cuida da entrega técnica; aquele, da jornada do cliente pelos mesmos dias.
+
 **O painel não é relatório de cliente.** É o nosso instrumento. O que vai para o cliente é outra coisa, e passa pelas regras de peça que sai da casa (`COMPLIANCE-DE-OUTPUT.md`).
 
 ---

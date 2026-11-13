@@ -14,4 +14,6 @@ Options -Indexes
   RewriteEngine On
   RewriteCond %{HTTPS} off
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # o domínio abre no Projetos; o Caixa fica em /index.html
+  RewriteRule ^$ /projetos/ [L,R=302]
 </IfModule>

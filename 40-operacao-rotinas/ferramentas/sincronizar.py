@@ -11,10 +11,11 @@ Uma operação, igual no local (Windows) e na nuvem (sessão web, branch claude/
 
 Conflitos:
   AGENTS.md           → resolvido sozinho (é gerado: regenera do CLAUDE.md mesclado)
+  logs append-only    → união de linhas (LOGS_APPEND_ONLY: GASTO.jsonl e *.jsonl de tarefas/log/ e tokens/)
   qualquer outro      → a mescla é desfeita, nada se perde, e o conflito é reportado
 
-  5. (30/10/2026) repositórios vivos de cliente: para cada um listado em
-     clientes/<Cliente>/[<pasta>/]repositorios.json → clona se faltar, acerta o remoto,
+  5. repositórios vivos de cliente: para cada um listado em
+     clientes/<Conta>/[<pasta>/]repositorios.json → clona se faltar, acerta o remoto,
      copia as ferramentas de 90-templates/repo-cliente/ferramentas/ e roda o sincronizar.py dele
      (vetos de dado sensível, commit, mescla, publicação). Falha num deles não para a Governança.
 
@@ -26,12 +27,19 @@ Rodado pelos hooks do .claude/settings.json (SessionStart e Stop) e à mão:
 """
 import io, json, os, subprocess, sys, time, socket
 
-# console do Windows em cp1252 quebrava no "✅" do print final, depois do push feito (29/10/2026; mesmo conserto do verificar-propagacao.py)
+# console do Windows em cp1252 quebrava no "✅" do print final, depois do push feito (mesmo conserto do verificar-propagacao.py)
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 AUTO = {"AGENTS.md"}
+# Logs append-only, escritos por mais de uma máquina (PC, VPS, nuvem): conflito se resolve por união de linhas.
+# Lista explícita aqui; nunca merge=union no .gitattributes (duplica o STATUS.md, CRLF x LF).
+LOGS_APPEND_ONLY = ("40-operacao-rotinas/tarefas/log/GASTO.jsonl",)
+LOGS_APPEND_PREFIXOS = (("40-operacao-rotinas/tarefas/log/", ".jsonl"), ("40-operacao-rotinas/tokens/", ".jsonl"))
+# Estado de uma máquina só. O .gitignore impede a entrada; isto tira o que já entrou (o .lock publicado
+# travaria o despachante da outra máquina). O arquivo local fica: só sai do índice.
+NUNCA_NO_GIT = ("40-operacao-rotinas/tarefas/.lock",)
 
 
 def git(*args, ok=False):
@@ -62,10 +70,37 @@ def regenerar_agents():
 
 def commitar(msg):
     git("add", "-A")
+    git("rm", "-q", "--cached", "--ignore-unmatch", *NUNCA_NO_GIT)
     if git("diff", "--cached", "--quiet", ok=True).returncode != 0:
         git("commit", "-q", "-m", msg)
         return True
     return False
+
+
+def eh_log_append_only(f):
+    if f in LOGS_APPEND_ONLY:
+        return True
+    return any(f.startswith(pre) and f.endswith(suf) for pre, suf in LOGS_APPEND_PREFIXOS)
+
+
+def unir_log(f):
+    """Resolve conflito de log append-only: linhas de ours + as de theirs que não estão em ours. Preserva o fim de linha."""
+    def estagio(n):
+        r = subprocess.run(["git", "show", f":{n}:{f}"], cwd=RAIZ, capture_output=True)
+        return r.stdout if r.returncode == 0 else b""
+    ours, theirs = estagio(2), estagio(3)
+    eol = b"\r\n" if b"\r\n" in (ours or theirs) else b"\n"
+    lo = [l for l in ours.replace(b"\r\n", b"\n").split(b"\n") if l.strip()]
+    lt = [l for l in theirs.replace(b"\r\n", b"\n").split(b"\n") if l.strip()]
+    vistos = set(lo)
+    saida = list(lo)
+    for l in lt:
+        if l not in vistos:
+            vistos.add(l)
+            saida.append(l)
+    with open(os.path.join(RAIZ, f), "wb") as fh:
+        fh.write(eol.join(saida) + eol if saida else b"")
+    git("add", "--", f)
 
 
 def mesclar_main():
@@ -77,7 +112,9 @@ def mesclar_main():
     if r.returncode == 0:
         return []
     conflitos = [l for l in git("-c", "core.quotepath=false", "diff", "--name-only", "--diff-filter=U").stdout.splitlines() if l]
-    duros = [f for f in conflitos if f not in AUTO]
+    for f in [f for f in conflitos if eh_log_append_only(f)]:
+        unir_log(f)
+    duros = [f for f in conflitos if f not in AUTO and not eh_log_append_only(f)]
     if duros:
         git("merge", "--abort", ok=True)
         return duros
@@ -101,10 +138,12 @@ def _copiar_se_mudou(origem, destino):
 
 
 def repos_de_cliente():
-    """Os repositórios vivos de cliente (§11.6): clientes/<Cliente>/[<pasta>/]repositorios.json."""
+    """Os repositórios vivos (§11.6): clientes/<Conta>/[<pasta>/]repositorios.json e parceiros/<Parceiro>/[<pasta>/]repositorios.json."""
     import glob
     achados = []
-    for padrao in ("clientes/*/repositorios.json", "clientes/*/*/repositorios.json"):
+    # também os de parceiro (parceiros/<Parceiro>/repositorios.json)
+    for padrao in ("clientes/*/repositorios.json", "clientes/*/*/repositorios.json",
+                   "parceiros/*/repositorios.json", "parceiros/*/*/repositorios.json"):
         for j in sorted(glob.glob(os.path.join(RAIZ, padrao))):
             try:
                 dados = json.load(io.open(j, encoding="utf-8"))
@@ -144,7 +183,7 @@ def sincronizar_repos_cliente(carimbo, onde, sem_push=False):
                 else:
                     linhas.append(f"   ↳ {nome}: remoto novo ainda sem acesso (transferência ou convite pendente); seguindo em {atual}")
             ferr = os.path.join(pasta, r.get("ferramentas", "ferramentas"))
-            for arq in ("sincronizar.py", "verificar.py", "README.md"):
+            for arq in ("sincronizar.py", "verificar.py", "backup.py", "README.md"):
                 _copiar_se_mudou(os.path.join(FERRAMENTAS_CLIENTE, arq), os.path.join(ferr, arq))
             cfg = os.path.join(pasta, ".claude", "settings.json")
             if not os.path.exists(cfg):
@@ -166,6 +205,10 @@ def sincronizar_repos_cliente(carimbo, onde, sem_push=False):
 
 def main():
     hook = "--hook" in sys.argv
+    # worker do despachante com --sem-sync: quem sincroniza é quem o chamou. O hook publicava a trava e a task no meio da execução.
+    if hook and os.environ.get("SINCRONIZAR_PULAR"):
+        print("sincronia a cargo de quem chamou o worker (SINCRONIZAR_PULAR)")
+        return
     sem_push = "--sem-push" in sys.argv
     msg = None
     if "-m" in sys.argv:
@@ -217,6 +260,8 @@ def main():
         sys.exit(0 if hook else 1)
     finally:
         try:
+            if os.environ.get("SINCRONIZAR_SEM_CLIENTES"):   # numa máquina sem credencial para os repos de cliente
+                raise RuntimeError("pulados nesta máquina (SINCRONIZAR_SEM_CLIENTES)")
             for linha in sincronizar_repos_cliente(carimbo, onde, sem_push):
                 print(linha)
         except Exception as e:   # repo de cliente nunca derruba a sincronia da Governança

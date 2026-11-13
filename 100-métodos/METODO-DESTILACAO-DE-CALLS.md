@@ -6,6 +6,7 @@
 > **Vale para:** toda call gravada com cliente, prospect, parceiro, fornecedor ou sócio (se houver).
 > **Atualizado:** treze eixos. O eixo 13 (§5-bis) audita **a nossa própria língua na call** e alimenta a skill de voz.
 > **Atualizado:** **catorze eixos.** O eixo 14 (§5-ter) registra **o que a outra parte já ouviu de nós** (produto, fase, preço, promessa) e a divergência com o canônico; caminhos alinhados à convenção `01 - contexto/` do repo; glossário de grafia da máquina (Etapa 4); linha de prospect na propagação (Etapa 7); pergunta 8 no gate (§9).
+> **Atualizado:** **quinze eixos.** O eixo 15 (§5-quater) registra **o que prometemos entregar** e manda cada promessa à fila de produção (`entregaveis.py --nova`), no mesmo ato; linha na Etapa 7; pergunta 10 no gate (§9).
 
 ---
 
@@ -136,8 +137,10 @@ Destilação que não sai do próprio arquivo não mudou o estado da empresa. **
 | **`clientes/<cliente>/lexico-icp/` — banco de frases do público** | **eixo 4** 🔴 **instituído após a perda de uma conta.** Até então o eixo 4 era **o único eixo de vida útil longa sem destino de propagação**: ele era extraído, marcado, e morria na destilação. **Consequência medida:** uma frase de dor foi colhida, marcada como a melhor da call, e semanas depois a copy da mesma conta descreveu um público oposto ao que ela documentava. **Toda frase entra com grau de procedência: `D` direta (o próprio ICP), `R` relatada (a cliente ou a equipe citando o público), `I` inferida (nossa). Grau `I` nunca entra em peça.** Auditoria completa do circuito de copy: registrada no histórico da casa. |
 | **skill de voz de quem falou do nosso lado** (`10-skills/voz-operador.skill.md`) | **eixo 13** |
 | `CONTEXTO.md` da conta | eixos 2 e 3 |
+| **agenda do {{OPERADOR}}** (calendário da sessão, por conector) | **eixo 9, compromissos com data e hora** 🔴: evento criado no mesmo ato, no fuso do operador, com o relógio da contraparte, o timestamp da fala e a pauta na descrição; hipótese até confirmação por escrito. O marco segue no `PAINEL.md` |
 | `100-métodos/` ou skill | eixo 8, quando o que ensinamos for reaproveitável |
 | **proposta escrita** (ESCRITA) e `REGISTRO.md` camada 4 | **eixo 14**: a proposta usa o que ele já ouviu ou declara que está corrigindo; nunca contradiz em silêncio |
+| **fila de produção** (`40-operacao-rotinas/tarefas/fila/`, `tipo: entregavel`) | **eixo 15**: uma task por promessa, no mesmo ato, pelo `entregaveis.py --nova`, com fonte = arquivo + ID do ponto; marco do `PAINEL.md` só com `task:` apontando |
 | **prospect** (`30-comercial/assessoria-prospects/<nome>/`) | `REGISTRO.md` camadas 1 a 4 · `FOLHA-INTERNA` com as células `[dado dele]` preenchidas e o **veredito** (`CLAUDE.md` §9.1) · `STATUS.md` da Governança. Não há `DECISOES.md` nem diário antes de virar conta |
 
 **Gate:** enquanto a propagação não estiver feita, a destilação está **incompleta**, não "pronta para depois".
@@ -239,6 +242,21 @@ Propagação **obrigatória** para a skill de voz de quem falou:
 
 ---
 
+## 5-QUATER. EIXO 15 — O QUE PROMETEMOS
+
+**Por que este eixo existe.** Promessa nossa feita em call vira marco no painel e ninguém a produz: o marco aparece, vence, e o cliente espera. O eixo 14 guarda a expectativa que ele levou; **este guarda o que nos comprometemos a entregar**, e o destino dele é a fila de produção, não o `PAINEL.md`.
+
+**O que entra:** toda fala nossa que compromete uma entrega, com citação literal e timestamp. Frases-sinal: *"te mando"*, *"vou te enviar"*, *"fica pronto até"*, *"amanhã eu passo"*, *"vou montar"*, *"deixa comigo"*, *"segue depois"*. Entra também a promessa **implícita por pergunta aceita** (ele: *"você manda o PDF?"*; nós: *"mando"*).
+
+**Convenção de ID:** `P-<conta>-<n>`, numeração por call, **dentro desta seção** (o leitor só procura o ID aqui).
+
+| ID | O quê | A quem | Forma (documento · mensagem · artefato · pacote) | Prazo dito | Citação + timestamp |
+|---|---|---|---|---|---|
+
+**Destino, no mesmo ato:** uma task `tipo: entregavel` por promessa, pelo `python3 -X utf8 40-operacao-rotinas/ferramentas/entregaveis.py --nova --conta "<C>" --o-que "…" --destinatario … --forma … --prometido-em … --prometido-para … --fonte "<arquivo da destilação> <ID> [timestamp]"`. A ferramenta calcula o prazo nosso pela régua do plano de produção de entregáveis e recusa promessa sem fonte. Marco no `PAINEL.md` só quando o próximo ato for do cliente; se ele depende do nosso entregável, a linha leva `task: T-…`. **Veto:** V-ENT-1 (`METODO-GATE-DE-CONGRUENCIA.md` §3).
+
+---
+
 ## 6. FERRAMENTA — limpeza do VTT
 
 Script padrão. Roda no sandbox, sobre o arquivo bruto:
@@ -294,7 +312,7 @@ Gerador e instruções: **`90-templates/pdf-continuum/`**. Não escrever CSS nov
 
 ## 9. GATE DE SAÍDA
 
-Uma destilação só está pronta quando as oito respostas forem sim:
+Uma destilação só está pronta quando as dez respostas forem sim:
 
 1. **Toda citação tem timestamp?**
 2. **Fato e leitura estão visivelmente separados?**
@@ -304,6 +322,8 @@ Uma destilação só está pronta quando as oito respostas forem sim:
 6. **A propagação para `STATUS`, `DECISOES` e diário foi feita nesta mesma tarefa?**
 7. **A nossa própria fala foi auditada (eixo 13) e propagada para a skill de voz?**
 8. **O que ele já ouviu de nós está registrado (eixo 14), com a divergência marcada, e a proposta escrita a respeita ou a corrige por escrito?**
+9. **Todo compromisso com data e hora está na agenda do {{OPERADOR}}, com o relógio da contraparte na descrição?**
+10. **Toda promessa nossa de entregável (eixo 15) tem task `tipo: entregavel` na fila, com fonte apontável?** (`entregaveis.py --verificar`)
 
 E o teste final, o mesmo do §11.4 do kernel:
 

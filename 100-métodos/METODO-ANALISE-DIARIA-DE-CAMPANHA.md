@@ -77,7 +77,7 @@ Moldes em `90-templates/trafego-cliente/diario/`. A análise guarda o porquê; o
 
 ### 4.1 Pré-condição
 
-`BRIEFING.md` do dia existe, tem o §1 (ordens) preenchido, e **cada ordem está `aprovada`** segundo a classe de alçada do §5 (automática ou pelo {{OPERADOR}}). Sem isto a task vai para `decisao/` e vira cartão em `DECISOES-PENDENTES.md`, não para a plataforma.
+`BRIEFING.md` do dia existe, tem o §1 (ordens) preenchido, e **cada ordem está `aprovada`** segundo a classe de alçada do §5 (automática ou pelo {{OPERADOR}}). Sem isto a task vai para `decisao/` e vira cartão em `DECISOES-PENDENTES.md` (no molde `tarefas/modelos/cartao-decisao.md`, conferido com `decisoes_cartao.py --lint --id <id>` antes de fechar), não para a plataforma.
 
 ### 4.2 Execução
 
@@ -107,7 +107,7 @@ A escada `autonomia.py` (A0–A3) vale por **tipo de decisão**, e este método 
 | `verba_fora_do_plano` | mudança > 30% do plano mensal | **nunca sozinho**: aprovação do cliente por escrito (§7.5) | contrato |
 | `criativo_novo`, `publico_novo`, `oferta` | hipótese nova | **não é deste método**: a análise abre task em ESCRITA / NEGÓCIO | REGRA Nº 0 e Nº 2 |
 
-**Na fase manual (hoje):** o {{OPERADOR}} é a aprovação de tudo que está em A1; ele lê o `BRIEFING.md` §1 e diz *"implementa"* (todas) ou nomeia as ordens. **Na fase automática:** a análise grava `aprovada: sim` nas ordens A2+, e as A1 esperam no cartão de decisão; o despachante só lança a implementação com ordem aprovada.
+**Na fase manual (hoje):** o {{OPERADOR}} é a aprovação de tudo que está em A1; ele lê o `BRIEFING.md` §1 e diz *"implementa"* (todas) ou nomeia as ordens. **Na fase automática:** a análise grava `aprovada: sim` nas ordens A2+, e as A1 esperam no cartão de decisão (molde `40-operacao-rotinas/tarefas/modelos/cartao-decisao.md`, um cartão por ordem, com os números que a diferenciam); o despachante só lança a implementação com ordem aprovada.
 
 ---
 
@@ -119,7 +119,7 @@ A escada `autonomia.py` (A0–A3) vale por **tipo de decisão**, e este método 
 
 > Leia `clientes/<Cliente>/NN - tráfego pago/diario/README.md` e o molde `90-templates/trafego-cliente/diario/AAAA-MM-DD.md`. Com os dados abaixo [ou: com `ads_get_ad_entities` da conta `act_<id>`, insights de hoje e acumulados, níveis campanha, conjunto e anúncio], escreva `diario/<hoje>.md` preenchendo todas as colunas. Fonte e hora em todo número. Campo sem dado é `—`. **Não interprete, não compare, não sugira, não use adjetivo nem seta.** Leia `LOG-DECISOES.md` e copie, no rodapé, as entradas dos últimos 3 dias, literais. Saída: só o arquivo.
 
-### 6.2 Análise (fable · `claude-fable-5-1`)
+### 6.2 Análise (fable · `claude-fable-5-2`)
 
 > Carregue, nesta ordem: `diario/<hoje>.md` e os 7 diários anteriores · `PLANO-DE-MIDIA.md` (CPA alvo, thresholds) · `LOG-DECISOES.md` · `painel.json` · `estrutura-campanhas.md` · `matriz-criativos.md` · `100-métodos/METODO-TRAFEGO-PAGO.md` §7 · `100-métodos/METODO-ITERACAO-DE-CPA.md` §6–§7. Escreva dois arquivos, pelos moldes: `diario/<hoje>-ANALISE.md` (estado de cada item com o número que disparou a regra; anomalia da conta; degrau do diagnóstico §7.4 quando o CPA está alto; decisões em resumo; o que NÃO se faz hoje e por quê; aprendizado para o log) e `diario/<hoje>-BRIEFING.md`, o briefing de otimização que o Sonnet executa sem abrir mais nada: ordens na ordem de execução, cada uma com `id`, nível, ação exata, de → para, regra + número, resultado esperado em número e data, `tipo_decisao`, alçada e `aprovada`; a via de execução e a prova de cada ordem; a lista explícita do que não tocar. Máximo uma mudança estrutural na conta. Nenhum número que não esteja num diário. Não execute nada. Se precisar de criativo ou público novo, escreva a task em `40-operacao-rotinas/tarefas/fila/` (árvore ESCRITA ou NEGÓCIO) e cite o id na análise.
 

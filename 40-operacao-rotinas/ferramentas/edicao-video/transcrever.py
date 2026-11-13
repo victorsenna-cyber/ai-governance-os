@@ -57,7 +57,21 @@ def main():
 
     tipo = "int8" if a.dispositivo != "cuda" else "float16"
     modelo = WhisperModel(a.modelo, device=a.dispositivo, compute_type=tipo)
-    segs, info = modelo.transcribe(str(video), language="pt", word_timestamps=True,
+    # 06/11/2026: o áudio entra como array numpy, decodificado pelo ffmpeg. Passar o caminho
+    # faz o faster-whisper chamar av.open(), que quebra com av 19 (TypeError metadata_errors).
+    # Mesmo contorno do transcrever-audio.py (memória faster-whisper, 15/10).
+    import subprocess, tempfile, wave
+    import numpy as np
+    fd, wav = tempfile.mkstemp(suffix=".wav"); os.close(fd)
+    try:
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", str(video),
+                        "-ar", "16000", "-ac", "1", wav], check=True)
+        w = wave.open(wav)
+        audio = np.frombuffer(w.readframes(w.getnframes()), np.int16).astype(np.float32) / 32768
+        w.close()
+    finally:
+        os.remove(wav)
+    segs, info = modelo.transcribe(audio, language="pt", word_timestamps=True,
                                    vad_filter=True, initial_prompt=prompt)
 
     palavras, segmentos = [], []

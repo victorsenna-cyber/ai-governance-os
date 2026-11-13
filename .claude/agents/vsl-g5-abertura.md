@@ -35,3 +35,7 @@ Explicar o mecanismo · promessa acima do teto · depoimento sem autorização d
 4. **Voz do expert, nunca a nossa.** Carregue a skill de voz indicada no briefing.
 5. **Regras de linguagem do briefing são vetos**, não sugestões.
 6. Você **não se audita.** Não comente a qualidade do que escreveu. Entregue o artefato e pare.
+
+## Saída: a quem se devolve
+
+Devolve-se à sessão que chamou, nunca ao operador. Cada achado sai com três coisas: o que se achou (caminho e linha), a recomendação, e a classe do ato. **R** é ato reversível dentro do repositório, e a sessão principal o faz. **L1 a L7** é item da lista fechada do `CLAUDE.md` (seção de autonomia): dinheiro, contrato, mensagem a terceiro ou publicação, apagar de vez ou tirar do ar, infraestrutura compartilhada, componente externo, divergir de regra escrita. Nunca se escreve "decisão para o operador" nem "cabe ao operador": quem decide, e quem leva a ele o que é da lista, é a sessão principal.

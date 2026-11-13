@@ -24,6 +24,8 @@ Uso (cwd = raiz do repo):
   python3 -X utf8 40-operacao-rotinas/ferramentas/renomear-conta.py --de "Nome Antigo" --para "Nome Novo" --dry-run
   python3 -X utf8 40-operacao-rotinas/ferramentas/renomear-conta.py --de "Nome Antigo" --para "Nome Novo"
   (--raiz clientes | parceiros | 30-comercial/assessoria-prospects; padrão: clientes)
+  Mover entre raízes (ex.: conta que virou parceria): --raiz-para, e o --para pode ter subpasta:
+  python3 -X utf8 40-operacao-rotinas/ferramentas/renomear-conta.py --de "Nome Antigo" --raiz-para parceiros --para "Parceiro/Projeto"
 """
 import argparse, os, subprocess, sys
 
@@ -51,18 +53,20 @@ def main():
     ap.add_argument("--de", required=True)
     ap.add_argument("--para", required=True)
     ap.add_argument("--raiz", default="clientes")
+    ap.add_argument("--raiz-para", default=None, help="raiz de destino, quando muda (padrão: a mesma)")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
 
     origem = os.path.join(RAIZ, a.raiz, a.de)
-    destino = os.path.join(RAIZ, a.raiz, a.para)
+    rp = a.raiz_para or a.raiz
+    destino = os.path.join(RAIZ, rp, a.para)
     if not os.path.isdir(origem):
         sys.exit(f"origem não existe: {a.raiz}/{a.de}/")
     if os.path.exists(destino):
-        sys.exit(f"destino já existe: {a.raiz}/{a.para}/")
+        sys.exit(f"destino já existe: {rp}/{a.para}/")
 
     antigos = [s.encode("utf-8") for s in formas(a.raiz, a.de)]
-    novos = [s.encode("utf-8") for s in formas(a.raiz, a.para)]
+    novos = [s.encode("utf-8") for s in formas(rp, a.para)]
 
     # 1. inventário (antes de mover, com os caminhos ainda antigos)
     alvos = []
@@ -87,7 +91,7 @@ def main():
             if nova not in linhas and nova not in acrescentar:
                 acrescentar.append(nova)
 
-    print(f"{a.raiz}/{a.de}/ → {a.raiz}/{a.para}/")
+    print(f"{a.raiz}/{a.de}/ → {rp}/{a.para}/")
     print(f".gitignore: {len(acrescentar)} linha(s) nova(s) para o caminho novo (as antigas ficam)")
     for p, n in alvos:
         print(f"  {n:>3}× {p}")
@@ -106,6 +110,7 @@ def main():
 
     # 3. mover
     try:
+        os.makedirs(os.path.dirname(destino), exist_ok=True)
         os.rename(origem, destino)
     except PermissionError as e:
         print(f"🔴 pasta em uso, nada movido ({e.strerror}). Feche a sessão, terminal ou janela que está dentro dela e rode de novo.")
@@ -114,7 +119,7 @@ def main():
     # 4. reescrever (os caminhos dentro da pasta movida mudaram junto)
     for p, _ in alvos:
         if p.startswith(f"{a.raiz}/{a.de}/"):
-            p = f"{a.raiz}/{a.para}/" + p[len(f"{a.raiz}/{a.de}/"):]
+            p = f"{rp}/{a.para}/" + p[len(f"{a.raiz}/{a.de}/"):]
         f = os.path.join(RAIZ, p)
         b = open(f, "rb").read()
         for x, y in zip(antigos, novos):

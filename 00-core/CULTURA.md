@@ -38,6 +38,7 @@ Cultura que decide não nasce de benchmark: nasce do compromisso que o {{OPERADO
 - **Fazemos:** quem vende conhece a capacidade (régua em `POLITICAS-DE-DECISAO.md` §4); quem entrega conhece a promessa (contrato e expectativa registrados no kickoff).
 - **Nunca:** fechar cliente que a capacidade do mês não sustenta; prometer prazo ou resultado que a operação não confirmou.
 - **Quando violado:** o cliente é avisado por nós antes de descobrir sozinho, com plano de correção. Esconder atraso é a violação mais grave desta cultura.
+- **Retorno atrasado:** mensagem de cliente, prospect ou parceiro com 3+ dias sem resposta nossa (limiar default, ajustável pelo {{OPERADOR}}), ou entrega fora do prazo dito, abre assim: **(1)** desculpa curta, na voz de quem assina · **(2)** a falha real de processo, nomeada, nunca "correria" · **(3)** o "mas" que aponta a melhoria, verificável por quem recebe · **(4)** um mini bônus de custo baixo, nunca dinheiro, desconto ou escopo · **(5)** só então a resposta ao que foi perguntado. Envio pela palavra do {{OPERADOR}} (mensagem a terceiro). Versão completa: `00-core/roteador/ARVORE-ESCRITA.md` §7.
 
 ## 5. Medição precede melhoria
 

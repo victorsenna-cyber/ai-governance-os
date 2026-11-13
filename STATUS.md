@@ -4,6 +4,8 @@
 > **Como se escreve aqui:** as entradas novas entram **no topo**, acima desta linha, como citação de uma linha de abertura em negrito (`> **🟢/🟡/🔴 Área — DD/MM/AAAA · O QUE ACONTECEU, EM UMA FRASE.** detalhe…`). Emoji: 🟢 fechado/positivo · 🟡 em andamento · 🔴 risco ou decisão pendente · ⭐ regra nova. Toda entrada diz **o fato, a decisão, o descartado e o próximo passo com dono** (`CLAUDE.md` §11). O que só existe na conversa não existe.
 > **Como se lê:** pelo topo — as entradas dos últimos 30 dias e as §1–§5. O §6 e os registros antigos por `grep`, nunca o arquivo inteiro. Bloco cuja data mais recente tem mais de 60 dias vai para `40-operacao-rotinas/rotinas/STATUS-HISTORICO-<ano>.md`, com ponteiro de uma linha.
 
+> **⭐ Casa — esta versão do template · MÉTODOS NOVOS NO `100-métodos/`.** Esta versão traz `METODO-DECISAO-DE-OFERTA` (o que propor a cada pessoa, lido sobre `30-comercial/INVENTARIO-DE-CAPACIDADES.md`) e `METODO-ONBOARDING-ORQUESTRADO` (do aceite ao valor percebido, em seis etapas), ambos 🟡 provisórios, roteados nas árvores e no mapa do `CLAUDE.md`. Descartado: ativar por memória do operador. Próximo passo: `{{OPERADOR}}` preenche a camada 1 do inventário e roda um caso real antes de promover a ✅.
+
 > **⭐ Casa — {{DATA_INSTANCIACAO}} · REPOSITÓRIO INSTANCIADO A PARTIR DO TEMPLATE CONTINUUM.** Placeholders: `python3 40-operacao-rotinas/ferramentas/instanciar-template.py --listar` mostra o que ainda falta. Pendências de calibração do dia 1 listadas no §6. Próximo passo: `{{OPERADOR}}` roda o primeiro pedido real pelo roteador (`CLAUDE.md` §6) e registra aqui o que o repositório não soube responder.
 
 ---

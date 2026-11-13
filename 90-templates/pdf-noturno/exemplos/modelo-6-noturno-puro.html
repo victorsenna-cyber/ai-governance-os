@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- AMOSTRA VISUAL do MODELO 6 · Noturno puro (CATALOGO-PDF.md). Só noturno.css.
+     Conta fictícia: Oficina Alvorada. Nenhum dado de cliente.
+     Gerar, na pasta do modelo: python3 -X utf8 gerar_pdf.py exemplos/modelo-6-noturno-puro.html exemplos/MODELO-6-NOTURNO-PURO.pdf -->
+<html lang="pt-BR">
+<head><meta charset="utf-8"><title>MODELO 6 · Noturno puro · amostra</title>
+<link rel="stylesheet" href="../noturno.css">
+</head>
+<body>
+
+<div class="capa">
+  <div class="kicker">MODELO 6 · Noturno puro · amostra</div>
+  <h1>Por que a Oficina Alvorada perde orçamento</h1>
+  <p class="lead">Uma leitura de decisão para uma conta de exemplo: quanto custa responder tarde, e o que muda quando a resposta sai em quatro horas.</p>
+  <div class="rodape">Continuum AI Systems · amostra do modelo 6</div>
+</div>
+
+<h1>O custo de responder tarde</h1>
+<p class="sub"><strong>Quando usar:</strong> só quando o operador pede (o padrão é o elétrico).</p>
+
+<div class="numeros">
+  <div class="col"><span class="n">40</span><span class="lbl">pedidos de orçamento por mês pelo WhatsApp</span></div>
+  <div class="col"><span class="n">1 dia</span><span class="lbl">tempo médio de resposta hoje</span></div>
+  <div class="col"><span class="n">n=0</span><span class="lbl">conversão medida: ainda não há registro de quantos viraram serviço</span></div>
+</div>
+
+<table>
+  <tr><th style="width:30%">Cenário</th><th style="width:22%">Resposta</th><th>O que se espera</th></tr>
+  <tr><td><strong>Conservador</strong></td><td>em 1 dia, como hoje</td><td>nada muda; serve de linha de base para medir os outros dois</td></tr>
+  <tr><td><strong>Provável</strong></td><td>em 4 horas</td><td>mais conversas chegam à foto do painel; o número se mede em quatro semanas</td></tr>
+  <tr><td><strong>Otimista</strong></td><td>em 1 hora</td><td>exige alguém só no WhatsApp; não cabe na equipe atual</td></tr>
+</table>
+
+<div class="destaque">
+  <span class="lead">O cenário provável é o único que cabe na equipe que existe.</span>
+  <p>O otimista pede uma contratação; o conservador é o que já está dando errado.</p>
+</div>
+
+<p class="ancora">Quem responde primeiro <span>orça primeiro</span>.</p>
+
+<div class="page-break"></div>
+<h1>O caminho do pedido</h1>
+<p class="sub">O diagrama abre, o texto detalha.</p>
+
+<svg class="fluxo" viewBox="0 0 700 150" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .n6-bx  { fill:#2b2b30; stroke:#44444b; stroke-width:1; }
+  .n6-bxo { fill:#3a2f2b; stroke:#96684f; stroke-width:1.3; }
+  .n6-tx  { font-family:Lato; font-size:12.5px; fill:#e2dfdb; text-anchor:middle; }
+  .n6-txb { font-family:Lato; font-size:12.5px; font-weight:bold; fill:#f2efec; text-anchor:middle; }
+  .n6-txs { font-family:Lato; font-size:9.5px; fill:#98948f; text-anchor:middle; }
+  .n6-ln  { stroke:#6b6864; stroke-width:1.3; fill:none; }
+  .n6-lnd { stroke:#57544f; stroke-width:1.1; fill:none; stroke-dasharray:4 3; }
+</style>
+  <defs><marker id="n6-ar" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#6b6864"/></marker></defs>
+  <rect class="n6-bx" x="6" y="30" width="150" height="52" rx="5"/>
+  <text class="n6-tx" x="81" y="52">mensagem</text><text class="n6-txs" x="81" y="68">WhatsApp</text>
+  <rect class="n6-bx" x="182" y="30" width="150" height="52" rx="5"/>
+  <text class="n6-tx" x="257" y="52">triagem</text><text class="n6-txs" x="257" y="68">foto do painel</text>
+  <rect class="n6-bxo" x="358" y="30" width="150" height="52" rx="5"/>
+  <text class="n6-txb" x="433" y="52">orçamento</text><text class="n6-txs" x="433" y="68">em 4 horas</text>
+  <rect class="n6-bx" x="534" y="30" width="160" height="52" rx="5"/>
+  <text class="n6-tx" x="614" y="52">serviço</text><text class="n6-txs" x="614" y="68">carro agendado</text>
+  <line class="n6-ln" x1="156" y1="56" x2="180" y2="56" marker-end="url(#n6-ar)"/>
+  <line class="n6-ln" x1="332" y1="56" x2="356" y2="56" marker-end="url(#n6-ar)"/>
+  <line class="n6-ln" x1="508" y1="56" x2="532" y2="56" marker-end="url(#n6-ar)"/>
+  <path class="n6-lnd" d="M433,82 V122 H257 V84" marker-end="url(#n6-ar)"/>
+  <text class="n6-txs" x="345" y="116">sem resposta em 1 dia: retorno curto</text>
+</svg>
+<p class="legenda-fluxo">A caixa em cobre é a que decide: é nela que o pedido esfria.</p>
+
+<h2>O que precisa existir</h2>
+<table>
+  <tr><th style="width:50%">Nosso</th><th>Da oficina</th></tr>
+  <tr><td>as mensagens de triagem e retorno</td><td>alguém que responda até as 18 h</td></tr>
+  <tr><td>as etiquetas do WhatsApp Business</td><td>o registro de quantos orçamentos viraram serviço</td></tr>
+</table>
+
+<div class="copiar-rotulo">mensagem de retorno, para colar</div>
+<div class="copiar">Oi, [nome]. O orçamento do seu carro segue valendo até sexta. Quer que eu reserve um horário?</div>
+
+<div class="nota"><strong>O que este documento não faz:</strong> não projeta faturamento. Com conversão n=0, qualquer número seria hipótese no eixo do documento.</div>
+
+</body>
+</html>

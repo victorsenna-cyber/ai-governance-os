@@ -1,0 +1,46 @@
+{
+ "_sobre": "Registro dos repositórios que nasceram deste (cliente, parceiro, template). Copie para DERIVADOS.json e troque o exemplo pelos seus. derivados.py --estado lê; --delta e --abrir-task apontam o que portar; --registrar anda a base depois do porte.",
+ "recebe": {
+  "cliente-governanca": [
+   "90-templates/repo-cliente/",
+   "90-templates/repo-agentes/",
+   "90-templates/pdf-noturno/",
+   "90-templates/CATALOGO-PDF.md",
+   "90-templates/direcoes-de-interface/"
+  ],
+  "cliente-pessoal": [
+   "90-templates/repo-cliente/",
+   "90-templates/pdf-noturno/",
+   "90-templates/CATALOGO-PDF.md"
+  ],
+  "parceiro-projeto": [
+   "90-templates/repo-cliente/",
+   "90-templates/desenho-de-produto/",
+   "90-templates/direcoes-de-interface/",
+   "100-métodos/METODO-DESENHO-DE-PRODUTO.md",
+   ".claude/agents/leitor-sintetico.md"
+  ]
+ },
+ "so_da_casa": [
+  ".claude/settings.local.json",
+  "/_legado/",
+  "10-skills/voz-operador",
+  "40-operacao-rotinas/ferramentas/medir-voz-operador.py",
+  "AGENTS.md"
+ ],
+ "repos": [],
+ "_exemplo_repo": {
+  "nome": "Repositório do cliente exemplo",
+  "tipo": "cliente-governanca",
+  "conta": "<Conta>",
+  "pasta": "clientes/<Conta>/entregaveis/repo-<conta>",
+  "remoto": "https://github.com/<org>/<repo>.git",
+  "publico": false,
+  "ativo": true,
+  "base_governanca": "<commit da casa no último porte>",
+  "base_data": "AAAA-MM-DD",
+  "base_derivado": "<commit do derivado>",
+  "excecoes": "EXCECOES-DA-CASA.md"
+ },
+ "quarentena": []
+}

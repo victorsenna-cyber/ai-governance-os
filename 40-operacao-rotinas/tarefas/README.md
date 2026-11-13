@@ -10,11 +10,11 @@
 | `fila/` | planejada ou pronta para rodar | o Opus escreve aqui |
 | `executando/` | um worker está nela (há `.lock` na raiz de `tarefas/`) | despachante |
 | `revisao/` | executada; espera amostra do Opus (N1, N3, N4 e N5 sempre; N2 quando `carga` ≠ `mecanica`) | despachante → Opus (task recorrente `revisar-amostra`) |
-| `decisao/` | precisa de escolha do {{OPERADOR}} (também vira cartão em `DECISOES-PENDENTES.md`) | despachante ou Opus |
+| `decisao/` | precisa de escolha do {{OPERADOR}} (também vira cartão em `DECISOES-PENDENTES.md`, no molde `modelos/cartao-decisao.md`, régua `ferramentas/decisoes_cartao.py --lint`) | despachante ou Opus |
 | `entregue/` | pronta e conferida | despachante (N0/N2 mecânica com verificação) ou Opus |
 | `falhou/` | gate reprovou ou o worker quebrou; o motivo está no `## Log` | despachante |
 | `log/` | uma linha por execução em `GASTO.jsonl` (tokens, nível, modelo, resultado) e um `RODADA-*.md` por rodada | despachante |
-| `modelos/` | tasks-modelo com `<Cliente>`/`NN`/`AAAA-MM-DD` por preencher; **o despachante não lê esta pasta** — copiar para `fila/` e preencher (`analise-campanha-1-coleta`, `-2-analise`, `-3-implementacao`) | o Opus |
+| `modelos/` | tasks-modelo com `<Cliente>`/`NN`/`AAAA-MM-DD` por preencher; **o despachante não lê esta pasta** — copiar para `fila/` e preencher (`analise-campanha-1-coleta`, `-2-analise`, `-3-implementacao`, `cartao-decisao`, `contexto-propagar`, `destilar-decisoes`, `entregavel`, `ordem-whatsapp`, `portar-derivados`, `porte-template`, `porte-template-modelo`) | o Opus |
 
 Arquivo `PAUSA` em `tarefas/` para tudo. Três falhas seguidas numa rodada param a rodada.
 
@@ -40,12 +40,23 @@ insumos: a.md; b.md           # caminhos exatos, separados por ;
 saida: caminho.md             # UM caminho
 alcada: nao envia; nao decide preco; nao escreve em DECISOES.md
 estimativa_tokens: 20000      # input + cache novo + output (sem cache lido)
+orcamento:                    # `isento` = não espera a fatia (só ordem do {{OPERADOR}} por mensagem)
 depende_de:                   # ids separados por ,
 tipo_decisao:                 # se produz decisão: o tipo (para a escada A0–A3)
 prioridade: 2                 # 1 fogo · 2 esta semana · 3 quando couber
 recorrencia:                  # vazio · diaria · semanal
 estado: pronta                # planejada pronta executando em_revisao aguardando_operador entregue bloqueada falhou
 agendada_para:                # ISO; vazio = já
+# — só tipo: entregavel (nasce por `entregaveis.py --nova`) —
+tipo:                         # entregavel = promessa nossa ao cliente; o despachante local pula, uma rotina agendada executa
+prometido_em:                 # data da call ou da mensagem em que prometemos
+prometido_para:               # prazo DITO ao cliente; vazio = sem prazo dito
+destinatario:                 # a pessoa, não a conta
+forma:                        # documento · mensagem · artefato · pacote
+fonte:                        # arquivo + ID do ponto + timestamp; sem fonte não nasce
+pronto_em:                    # a rotina preenche
+enviado_em:                   # só o clique Enviado do {{OPERADOR}} (ou a ordem literal dele) preenche
+enviado_por:                  # painel | sessao-operador
 ---
 # <título>
 ## Pedido
@@ -56,7 +67,7 @@ agendada_para:                # ISO; vazio = já
 <o despachante acrescenta aqui>
 ```
 
-🔴 Réguas: dado `C`/`S` nunca em N1 · nada sai para cliente sem o {{OPERADOR}} · sem `## Pronto quando` não roda · nunca abaixo do `nivel_minimo`; orçamento batido = adia (se tem prazo e cabe) ou vira cartão de decisão · um escritor no repo por vez.
+🔴 Réguas: dado `C`/`S` nunca em N1 · nada sai para cliente sem o {{OPERADOR}} · sem `## Pronto quando` não roda · nunca abaixo do `nivel_minimo`; orçamento batido = adia (se tem prazo e cabe) ou vira cartão de decisão (molde `modelos/cartao-decisao.md`) · um escritor no repo por vez.
 
 ## 3. Níveis
 

@@ -1,0 +1,67 @@
+/* {{EMPRESA}} (o sistema) — o que os dois painéis (Caixa, na raiz, e Projetos, em /projetos/) dividem: a paleta, nos dois temas,
+   e a barra lateral. Publicado na raiz do domínio pelo publicar.py do Caixa; o Projetos lê ../sistema.css.
+   Barra lateral no lugar dos botões do topo, como um SaaS; botões largos e baixos; bordas de ~8-10px; versão clara puxada para o
+   cinza, não azulada no fundo; azul somente no gráfico.
+   O tema sai do sistema.js (data-theme no <html>): a escolha fica no aparelho; sem escolha, segue o do sistema operacional. */
+
+/* ── paleta: uma base, dois nomes (o Projetos lê --fg…, o artefato do Caixa lê --color-* e --cds-*) ── */
+:root {
+  color-scheme: dark;
+  --fg: #f0efec; --fg-2: #c3c2b7; --fg-muted: #898781;
+  --bg: #0b0b0b; --panel: #1a1a19; --panel-2: #20201f; --side: #111110; --line: rgb(255 255 255 / 10%);
+  --ok: #0ca30c; --warn: #db9300; --bad: #ec7e7e; --bad-strong: #d03b3b;
+  --accent: #3987e5; --cyan: #2fd3d3;   /* os azuis: gráfico, task, marco, hoje, recomendação */
+  --chart-axis: #383835; --chart-grid: rgb(255 255 255 / 10%); --chart-muted: #5f5e5a; --chart-reference: #97958d;
+  --shadow-popover: 0 8px 24px #00000052, 0 2px 6px #0003;
+  --hover: rgb(255 255 255 / 5%);
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  /* cinza neutro, sem azul no fundo: os mesmos tons quentes-neutros da escura, invertidos */
+  --fg: #1b1b1a; --fg-2: #3f3e3a; --fg-muted: #6d6c66;
+  --bg: #e9e9e7; --panel: #f6f6f4; --panel-2: #ececea; --side: #dfdfdc; --line: rgb(0 0 0 / 11%);
+  --ok: #0b850b; --warn: #a86d00; --bad: #c43d3d; --bad-strong: #d03b3b;
+  --accent: #3987e5; --cyan: #10a0a0;   /* o azul é o mesmo; o ciano desce um tom só para a letra ser lida no cinza */
+  --chart-axis: #c4c3bd; --chart-grid: rgb(0 0 0 / 8%); --chart-muted: #bab9b3; --chart-reference: #7d7c76;
+  --shadow-popover: 0 8px 24px rgb(0 0 0 / 12%), 0 2px 6px rgb(0 0 0 / 8%);
+  --hover: rgb(0 0 0 / 5%);
+}
+:root {
+  --color-fg: var(--fg); --color-fg-muted: var(--fg-muted); --color-bg: var(--bg); --color-panel: var(--panel);
+  --color-border-line: var(--line); --color-ok: var(--ok); --color-warn: var(--warn); --color-bad: var(--bad);
+  --cds-border: var(--line); --cds-text-secondary: var(--fg-2); --cds-surface-popover: var(--panel-2); --cds-shadow-popover: var(--shadow-popover);
+  --cds-chart-axis: var(--chart-axis); --cds-chart-grid: var(--chart-grid); --cds-chart-muted: var(--chart-muted);
+  --cds-chart-reference: var(--chart-reference); --cds-chart-status-critical: var(--bad-strong);
+}
+html, body { background: var(--bg); }
+
+/* ── barra lateral ── */
+#painel { display: grid; grid-template-columns: 232px minmax(0, 1fr); min-height: 100dvh; }
+.sis { position: sticky; top: 0; height: 100dvh; box-sizing: border-box; display: flex; flex-direction: column; gap: 2px;
+       padding: 18px 12px 14px; background: var(--side); border-right: 1px solid var(--line); font-size: .875rem; }
+.sis .marca { font-family: "Anthropic Serif", "Source Serif 4", ui-serif, Georgia, serif; font-size: 21px; letter-spacing: -.02em;
+              color: var(--fg); padding: 2px 12px 18px; display: flex; align-items: center; gap: 9px; }
+.sis .marca img { width: 22px; height: 22px; flex: none; object-fit: contain; }   /* o símbolo, sem fundo */
+.sis .grupo { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--fg-muted); padding: 6px 12px 4px; }
+.sis a, .sis button { display: flex; align-items: center; gap: 10px; width: 100%; box-sizing: border-box; padding: 8px 12px;
+                      border-radius: 8px; border: 1px solid transparent; background: none; color: var(--fg-2); font: inherit;
+                      font-size: .875rem; line-height: 1.25; text-decoration: none; text-align: left; cursor: pointer; }
+.sis a:hover, .sis button:hover { background: var(--hover); color: var(--fg); }
+.sis a[aria-current="page"] { background: var(--panel); border-color: var(--line); color: var(--fg); font-weight: 500; }
+.sis a:focus-visible, .sis button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.sis svg { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .85; }
+.sis .pe { margin-top: auto; display: flex; flex-direction: column; gap: 2px; padding-top: 10px; border-top: 1px solid var(--line); }
+.sis .pe button { color: var(--fg-muted); }
+.sis-main { min-width: 0; }
+
+@media (max-width: 760px) {
+  #painel { grid-template-columns: 1fr; }
+  .sis { position: static; height: auto; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 4px; padding: 8px 12px;
+         border-right: 0; border-bottom: 1px solid var(--line); }
+  .sis .marca { padding: 2px 8px 2px 4px; font-size: 18px; }
+  .sis .grupo { display: none; }
+  .sis a, .sis button { width: auto; }
+  .sis .pe { margin: 0 0 0 auto; flex-direction: row; border-top: 0; padding-top: 0; }
+  .sis .pe span { display: none; }
+  .sis .pe button { padding: 8px; }
+}

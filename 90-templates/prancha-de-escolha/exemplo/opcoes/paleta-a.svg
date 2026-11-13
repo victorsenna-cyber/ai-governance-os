@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400">
+<rect width="600" height="400" fill="#E5E5E5"/>
+<rect x="0" y="0" width="600" height="250" fill="#14213D"/>
+<text x="40" y="110" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="46" fill="#E5E5E5">OFICINA</text>
+<text x="40" y="165" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="46" fill="#FCA311">ALVORADA</text>
+<rect x="40" y="195" width="210" height="34" rx="17" fill="#FCA311"/>
+<text x="145" y="218" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="15" fill="#14213D">ORÇAMENTO EM 4 H</text>
+<rect x="40" y="285" width="80" height="80" fill="#14213D"/><rect x="140" y="285" width="80" height="80" fill="#FCA311"/><rect x="240" y="285" width="80" height="80" fill="#E5E5E5" stroke="#999"/>
+<text x="350" y="335" font-family="Arial, sans-serif" font-size="20" fill="#14213D">Noite e laranja</text>
+</svg>

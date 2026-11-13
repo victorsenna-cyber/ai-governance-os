@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>[TÍTULO DA PÁGINA — até 60 caracteres]</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* TOKENS DA IDENTIDADE: troque só aqui */
+  --cor-fundo:#050b1f;
+  --cor-texto:#eef2ff;
+  --cor-acento:#2f6bff;
+  --cor-acento-2:#22c55e;
+  --fonte-titulo:'Anton',Impact,sans-serif;
+  --fonte-texto:'Inter',system-ui,sans-serif;
+  --cor-fundo-2:#0b1636;
+  --cor-texto-suave:#a9b4d6;
+  --cor-borda:color-mix(in srgb, var(--cor-texto) 14%, transparent);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cor-fundo);color:var(--cor-texto);font-family:var(--fonte-texto);line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.wrap{max-width:640px;margin:0 auto;padding:0 20px}
+header{padding:24px 0 8px;text-align:center}
+header img{height:40px;width:auto;margin:0 auto}
+
+/* BARRA DE PROGRESSO: a % vem do atributo style="width:" do .barra-in */
+.progresso{padding:8px 0 0}
+.barra{height:12px;border-radius:999px;background:color-mix(in srgb, var(--cor-texto) 12%, transparent);overflow:hidden;position:relative}
+.barra-in{height:100%;width:90%;border-radius:999px;background:linear-gradient(90deg,var(--cor-acento),color-mix(in srgb, var(--cor-acento) 60%, #fff))}
+.barra-txt{display:block;text-align:right;font-size:11px;color:var(--cor-texto-suave);margin-top:4px}
+
+h1{font-family:var(--fonte-titulo);font-weight:400;text-transform:uppercase;font-size:clamp(1.7rem,5vw,2.4rem);line-height:1.1;text-align:center;margin:28px 0 8px}
+.sub{text-align:center;color:var(--cor-texto-suave);margin-bottom:24px}
+
+.passo{background:var(--cor-fundo-2);border:1px solid var(--cor-borda);border-radius:18px;padding:24px;margin-bottom:18px}
+.passo .n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--cor-acento);font-weight:700;font-size:14px;margin-right:8px}
+.passo h2{font-size:1rem;font-weight:600;margin-bottom:14px;display:flex;align-items:center}
+
+/* PERGUNTA DE QUALIFICAÇÃO (opcional): cartão claro com opções */
+.pergunta{background:#fff;color:#111318;border-radius:14px;padding:20px}
+.pergunta p{font-weight:600;margin-bottom:12px;font-size:15px}
+.pergunta label{display:flex;gap:10px;align-items:center;padding:8px 0;font-size:14px;cursor:pointer}
+.pergunta input{accent-color:var(--cor-acento);width:18px;height:18px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 28px;border:0;border-radius:999px;background:var(--cor-acento-2);color:#04210f;font:inherit;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;box-shadow:0 12px 30px -12px var(--cor-acento-2);transition:transform .25s,filter .25s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn.escuro{background:#111318;color:#fff;box-shadow:none;min-height:44px;padding:10px 22px;font-size:12px}
+.centro{text-align:center;margin-top:14px}
+.aviso{margin-top:14px;font-size:13px;color:var(--cor-texto-suave);text-align:center}
+
+footer{margin:36px 0 0;padding:24px 0 40px;border-top:1px solid var(--cor-borda);text-align:center;color:var(--cor-texto-suave);font-size:12px}
+footer a{color:inherit}
+</style>
+</head>
+<body>
+
+<!-- 1. LOGO + PROGRESSO (a pessoa já converteu: "falta só um passo") -->
+<header class="wrap">
+  <img src="assets/ph-logo.svg" alt="[LOGO]">
+  <div class="progresso">
+    <div class="barra"><div class="barra-in" style="width:90%"></div></div>
+    <span class="barra-txt">90%</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>[HEADLINE: confirmação — sua vaga está quase garantida]</h1>
+  <p class="sub">[SUBTÍTULO: agora só falta um passo — diga qual]</p>
+
+  <!-- 2. PASSO 1: pergunta de qualificação (opcional; apague o bloco se não houver) -->
+  <section class="passo">
+    <h2><span class="n">1</span>[TÍTULO: responda a pergunta abaixo]</h2>
+    <form class="pergunta" action="{{FORM_ACTION}}" method="post">
+      <p>[PERGUNTA: qualificação em 1 linha]</p>
+      <label><input type="radio" name="resposta" value="a">[OPÇÃO: resposta A]</label>
+      <label><input type="radio" name="resposta" value="b">[OPÇÃO: resposta B]</label>
+      <div style="margin-top:10px"><button class="btn escuro" type="submit">[CTA: próxima]</button></div>
+    </form>
+  </section>
+
+  <!-- 3. PASSO 2: ação que garante a vaga (entrar no grupo / salvar link / confirmar) -->
+  <section class="passo">
+    <h2><span class="n">2</span>[TÍTULO: clique no botão para concluir]</h2>
+    <p style="color:var(--cor-texto-suave);font-size:14px;margin-bottom:14px">[TEXTO: o que acontece ao clicar e por que é obrigatório — 1 a 2 linhas]</p>
+    <div class="centro"><a class="btn" href="{{LINK_WHATSAPP}}">[CTA: concluir inscrição]</a></div>
+    <p class="aviso">[AVISO: onde chegam o link e os lembretes]</p>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div>[LEGAL: © ano, razão social, registro fiscal]</div>
+  <div style="margin:8px 0"><a href="{{LINK_PRIVACIDADE}}">[LINK: Privacidade]</a> · <a href="{{LINK_TERMOS}}">[LINK: Termos]</a></div>
+  <div>[LEGAL: aviso de resultados e isenção de plataformas]</div>
+</footer>
+
+</body>
+</html>

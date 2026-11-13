@@ -1,0 +1,983 @@
+<!-- Caixa · {{EMPRESA}} — as seis telas do dinheiro. Direção Grafite.
+     Este arquivo é código nosso e a fonte. Tokens e componentes: ../sistema.css e ../sistema.js.
+     Aqui mora só o layout das telas. Todo número sai de um dataset da RPC painel_dados; peça sem dataset fica fora. -->
+<style>
+  .cx { max-width: var(--content-max); margin-inline: auto; }
+  .cx-page { padding-top: var(--s-2); }
+  .cx-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); align-items: stretch; }
+  .cx-grid + .cx-grid { margin-top: var(--gap); }
+  .g12 { grid-column: span 12; } .g8 { grid-column: span 8; } .g7 { grid-column: span 7; } .g6 { grid-column: span 6; }
+  .g5 { grid-column: span 5; } .g4 { grid-column: span 4; } .g3 { grid-column: span 3; } .k { grid-column: span 3; }
+  .cx-filtros { display: flex; align-items: center; gap: 8px; }
+  .cx-v { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin: -2px 0 12px; }
+  .cx-v .sis-card-v.neg, .cx .neg { color: var(--bad); }
+  .cx .pos { color: var(--ok); }
+  .cx-v small { font-size: var(--t-label); color: var(--fg-muted); }
+  .cx-v small b { font-family: var(--font-num); font-weight: 500; color: var(--fg-2); }
+  .cx-agenda { max-height: 330px; overflow: auto; margin: 0 -6px; padding: 0 6px; scrollbar-width: thin; }
+  .cx-filtro-dia { margin-bottom: 8px; }
+  .cx-res .sis-card-v { margin-bottom: 4px; }
+  .cx-res .sis-calor-leitura { min-height: 2.9em; }
+  .cx-busca { width: 320px; max-width: 100%; }
+  .cx-foot { display: block; margin-top: var(--s-6); line-height: 1.6; }
+  .cx-foot i { display: inline-block; margin-right: 6px; vertical-align: 1px; }
+  .cx-foot code { font-family: var(--font-num); }
+  .cx-grid > .sis-card { display: flex; flex-direction: column; }
+  .cx-grid > .sis-card.sis-kpi { display: flex; }
+  .cx-vence .sis-barras { flex: 1; margin-top: 4px; }
+  .cx-vence .sis-barra { height: 100%; }
+  .cx-vence .sis-barra .trilho { flex: 1; height: auto; min-height: var(--trilho, 140px); }
+  @media (max-width: 1023px) {
+    .g8, .g7, .g5, .cx-vence { grid-column: span 12; }
+    .k { grid-column: span 6; }
+    .cx-agenda-c { grid-column: span 8; } .cx-res { grid-column: span 4; }
+  }
+  @media (max-width: 760px) {
+    .g12, .g8, .g7, .g6, .g5, .g4, .g3, .cx-agenda-c, .cx-res { grid-column: span 12; }
+    .k { grid-column: span 6; }
+    .k.solo { grid-column: span 12; }
+    .sis-kpi { min-height: 104px; padding: 12px; }
+    .sis-kpi-p { padding-right: 0; }
+    .sis-kpi .sis-spark { position: static; margin-top: 2px; }
+    .sis-kpi-p small { white-space: nowrap; }
+    .cx-busca { width: 100%; }
+    .sis-hero-comp { flex-direction: column; gap: 2px; }
+    .sis-hero-comp .sep { display: none; }
+  }
+</style>
+
+<div class="cx">
+  <div class="cx-filtros" id="cx-filtros">
+    <select class="sis-pill" id="mes" aria-label="Mês"><option value="tudo">Todos os meses</option></select>
+    <div class="sis-seg" role="radiogroup" aria-label="Conta">
+      <button type="button" class="sis-pill" role="radio" data-escopo="todas" aria-checked="true">Tudo</button>
+      <button type="button" class="sis-pill" role="radio" data-escopo="pessoal" aria-checked="false">Pessoal</button>
+      <button type="button" class="sis-pill" role="radio" data-escopo="empresa" aria-checked="false">Empresa</button>
+    </div>
+  </div>
+
+  <!-- VISÃO §4.1 -->
+  <section class="cx-page" id="p-visao" data-tela="visao">
+    <div class="sis-hero" id="v-heroi"></div>
+    <div class="cx-grid" id="v-kpis"></div>
+    <div class="cx-grid">
+      <article class="sis-card g8" id="v-saldo"></article>
+      <article class="sis-card g4 cx-vence" id="v-vence"></article>
+    </div>
+    <div class="cx-grid">
+      <article class="sis-card g5" id="v-fluxo"></article>
+      <article class="sis-card g3 cx-res" id="v-res"></article>
+      <article class="sis-card g4 cx-agenda-c" id="v-agenda"></article>
+    </div>
+    <div class="cx-grid"><article class="sis-card g12" id="v-conferir"></article></div>
+  </section>
+
+  <!-- DRE §4.2 -->
+  <section class="cx-page" id="p-dre" data-tela="dre" hidden>
+    <div class="sis-hero" id="d-heroi"></div>
+    <div class="cx-grid">
+      <article class="sis-card g12" id="d-fluxo"></article>
+      <article class="sis-card g12" id="d-meses"></article>
+      <article class="sis-card g7" id="d-tab"></article>
+      <article class="sis-card g5" id="d-cat"></article>
+    </div>
+  </section>
+
+  <!-- FLUXO §4.3 -->
+  <section class="cx-page" id="p-fluxo" data-tela="fluxo" hidden>
+    <div class="cx-grid">
+      <article class="sis-card g12" id="f-saldo"></article>
+      <article class="sis-card g12" id="f-semanas"></article>
+      <article class="sis-card g12" id="f-tab"></article>
+    </div>
+  </section>
+
+  <!-- A PAGAR §4.4 -->
+  <section class="cx-page" id="p-pagar" data-tela="pagar" hidden>
+    <div class="cx-grid" id="a-kpis"></div>
+    <div class="cx-grid"><article class="sis-card g12" id="a-tab"></article></div>
+  </section>
+
+  <!-- A RECEBER §4.5 -->
+  <section class="cx-page" id="p-receber" data-tela="receber" hidden>
+    <div class="cx-grid" id="r-kpis"></div>
+    <div class="cx-grid"><article class="sis-card g12" id="r-tab"></article></div>
+  </section>
+
+  <!-- LANÇAMENTOS §4.6 -->
+  <section class="cx-page" id="p-lancamentos" data-tela="lancamentos" hidden>
+    <div class="cx-grid"><article class="sis-card g12" id="l-tab"></article></div>
+  </section>
+
+  <p class="sis-src cx-foot" id="cx-rodape"></p>
+</div>
+
+<script>
+(() => {
+  const root = document.querySelector('.cx');
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => [...document.querySelectorAll(s)];
+  const { brl, dm, diaCurto, soma, esc } = window.sis;
+  const PCT = new Intl.NumberFormat('pt-BR', { style: 'percent', maximumFractionDigits: 0 });
+  const UM = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+  const MESX = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+  const SEMX = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+  const mesNome = (ym) => (ym === 'ano' ? `este ano (${(hojeISO() || '').slice(0, 4)})` : `${MES[+ym.slice(5, 7) - 1]} ${ym.slice(0, 4)}`);
+  const mesLongo = (ym) => `${MESX[+ym.slice(5, 7) - 1]} de ${ym.slice(0, 4)}`;
+  const dt = (s) => new Date(s + 'T00:00:00Z');
+  const porExtenso = (s) => `${SEMX[dt(s).getUTCDay()]}, ${+s.slice(8, 10)} de ${MESX[+s.slice(5, 7) - 1]}`;
+  const sinal = (v, casas) => (v < 0 ? '−' : '+') + brl(Math.abs(v), casas);
+  const compacto = (v) => { const a = Math.abs(v), s = v < 0 ? '−' : ''; return a < 1000 ? `${s}R$ ${Math.round(a)}` : a < 1e6 ? `${s}R$ ${(a / 1000).toLocaleString('pt-BR', { maximumFractionDigits: a < 1e4 ? 1 : 0 })} mil` : `${s}R$ ${(a / 1e6).toLocaleString('pt-BR', { maximumFractionDigits: 1 })} mi`; };
+  const soma_ = (rs, f) => rs.reduce((s, r) => s + (+f(r) || 0), 0);
+  const estreito = () => matchMedia('(max-width: 760px)').matches;
+  const minimo = () => matchMedia('(max-width: 560px)').matches;
+  const ICO = {
+    alerta: '<path d="M12 4 3 19.5h18z"/><path d="M12 10v4.5M12 17h.01"/>',
+    pagar: '<path d="M7 17 17 7M9 7h8v8"/>',
+    receber: '<path d="M17 7 7 17M15 17H7V9"/>',
+    saiu: '<path d="M3 7l6 6 4-4 8 8M15 17h6v-6"/>',
+    juros: '<path d="M5 19 19 5"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',
+    cima: '<path d="M12 19V5M6 11l6-6 6 6"/>',
+    baixo: '<path d="M12 5v14M6 13l6 6 6-6"/>',
+  };
+  const ic = (k, extra = '') => `<span class="sis-ic"${extra}><svg viewBox="0 0 24 24" aria-hidden="true">${ICO[k]}</svg></span>`;
+
+  // ── estado ───────────────────────────────────────────────
+  const TELAS = ['visao', 'dre', 'fluxo', 'pagar', 'receber', 'lancamentos'];
+  let tab = 'visao', filtroPagar = 'todas', busca = '';
+  let venceFiltro = null, semanaAtiva = null;
+  const graf = {};                                  // por gráfico: { intervalo, dia }
+  const mesAba = {};                                // mês por aba: Lançamentos abre no mês corrente, as outras em todos
+  const escopo = () => dash.params().escopo || 'todas';
+  const naConta = (r) => escopo() === 'todas' || r.conta === escopo();
+  const ok = (id) => dash.data(id).status === 'ok';
+  const linhas = (id) => (ok(id) ? dash.data(id).data : []);
+  const kpi = (e = escopo()) => linhas('kpis').find((r) => r.escopo === e) || null;
+  const hojeISO = () => (linhas('kpis')[0] || {}).hoje || null;
+  const mesAtual = () => (hojeISO() || '').slice(0, 7) || null;
+  const mes = () => mesAba[tab] ?? (tab === 'lancamentos' ? mesAtual() || 'tudo' : 'tudo');
+  const mesRef = () => (mes() === 'tudo' || mes() === 'ano' ? mesAtual() : mes());   // o mês das peças que precisam de um mês (fluxo, resultado)
+  const noMes = (d) => mes() === 'tudo' || (mes() === 'ano' ? (d || '').slice(0, 4) === (hojeISO() || '').slice(0, 4) : (d || '').slice(0, 7) === mes());
+  const lancs = () => linhas('lancamentos').filter((r) => r.conta !== 'conciliar' && naConta(r));   // todo cálculo exclui 'conciliar' (§4)
+  const dreDe = (m, e = escopo()) => linhas('dre_mensal').find((r) => r.escopo === e && r.mes === m) || null;
+  function falha(el, ...ids) {
+    const st = ids.map((id) => dash.data(id).status);
+    if (st.some((s) => s === 'error' || s === 'connect' || s === 'declined' || s === 'missing')) { el.innerHTML = '<p class="sis-falha">Não carregou. Tente de novo em instantes.</p>'; return true; }
+    if (st.some((s) => s !== 'ok')) { el.innerHTML = '<p class="vazio"><span class="sis-esq">carregando</span></p>'; return true; }
+    return false;
+  }
+  const chip = (txt, tom = '') => `<span class="sis-chip ${tom}">${txt}</span>`;
+  const cab = (rot, dir = '') => `<header class="sis-card-h"><h2>${rot}</h2>${dir}</header>`;
+
+  // ── controles ────────────────────────────────────────────
+  const slot = document.querySelector('[data-sis-filtros]');
+  if (slot) slot.append($('#cx-filtros'));
+  $$('.cx-filtros [data-escopo]').forEach((b) => b.addEventListener('click', () => dash.setParams({ escopo: b.dataset.escopo })));
+  $('#mes').addEventListener('change', (e) => { mesAba[tab] = e.target.value; venceFiltro = null; desenhar(); });
+  function irPara(t, rolar) {
+    tab = t;
+    $$('.cx-page').forEach((p) => { p.hidden = p.dataset.tela !== t; });
+    dash.setLink(t);
+    if (window.sis) sis.marcarAtual();
+    const p = $(`#p-${t}`);
+    p.classList.add('sis-entra'); setTimeout(() => p.classList.remove('sis-entra'), 700);
+    desenhar();
+    if (rolar) window.scrollTo(0, 0);
+  }
+  root.addEventListener('change', (ev) => {
+    const j = ev.target.closest('[data-graf-janela]');
+    if (j && j.value) { graf[j.dataset.grafJanela].intervalo = j.value; desenhar(); }
+  });
+  window.addEventListener('hashchange', () => { const h = location.hash.slice(1); if (TELAS.includes(h) && h !== tab) irPara(h, true); });
+  root.addEventListener('click', (ev) => {
+    const f = ev.target.closest('[data-filtro-pagar]');
+    if (f) { filtroPagar = f.dataset.filtroPagar; return; }
+    const sol = ev.target.closest('[data-soltar-dia]');
+    if (sol) { venceFiltro = null; visao(); return; }
+    const fp = ev.target.closest('#a-filtro [data-f]');
+    if (fp) { filtroPagar = fp.dataset.f; contas('pagar'); return; }
+    const iv = ev.target.closest('[data-intervalo]');
+    if (iv) { const g = graf[iv.dataset.graf]; g.intervalo = iv.dataset.intervalo; desenhar(); return; }
+    const det = ev.target.closest('a[data-busca]');
+    if (det) { ev.preventDefault(); busca = det.dataset.busca.toLowerCase(); mesAba.lancamentos = det.dataset.mes; location.hash = 'lancamentos'; }
+  });
+  root.addEventListener('input', (ev) => { if (ev.target.id === 'busca') { busca = ev.target.value.trim().toLowerCase(); lancamentos(true); } });
+  document.addEventListener('sistema:tema', () => desenhar());
+
+  function opcoesMes() {
+    const sel = $('#mes');
+    const ms = new Set();
+    linhas('lancamentos').forEach((r) => ms.add(r.data.slice(0, 7)));
+    linhas('contas_resumo').forEach((r) => { if (r.vencimento) ms.add(r.vencimento.slice(0, 7)); });
+    if (mes() !== 'tudo') ms.add(mes());
+    ms.delete('ano');
+    const ma = mesAtual() || '';
+    const futuros = [...ms].filter((m) => m > ma).sort();
+    const passados = [...ms].filter((m) => m < ma).sort().reverse();
+    const anos = [...new Set(passados.map((m) => m.slice(0, 4)))];
+    const grupos = [['', [['tudo', 'Todos os meses'], ['ano', mesNome('ano')], ...(ma ? [[ma, `${mesNome(ma)} · este mês`]] : [])]],
+      ...(futuros.length ? [['À frente', futuros.map((m) => [m, mesNome(m)])]] : []),
+      ...anos.map((a) => [a, passados.filter((m) => m.startsWith(a)).map((m) => [m, mesNome(m)])])];
+    const sig = JSON.stringify(grupos);
+    if (sel.dataset.sig !== sig) {
+      const op = ([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; return o; };
+      sel.replaceChildren(...grupos.flatMap(([rot, itens]) => {
+        if (!rot) return itens.map(op);
+        const g = document.createElement('optgroup'); g.label = rot; g.append(...itens.map(op)); return [g];
+      }));
+      sel.dataset.sig = sig;
+    }
+    sel.value = mes();
+  }
+
+  // ── marcação de fonte, rodapé, barra lateral ─────────────
+  function sincronia() {
+    const k = kpi('todas'), el = document.querySelector('[data-sis-sinc]');
+    let txt = 'não lido', cls = 'sem';
+    if (k && k.sincronizado_em) {
+      const dias = Math.round((dt(k.hoje) - dt(k.sincronizado_em.slice(0, 10))) / 864e5);
+      txt = `sincronizado ${dm(k.sincronizado_em.slice(0, 10))} ${k.sincronizado_em.slice(11, 16)}`; cls = dias > 1 ? 'velho' : '';
+    }
+    if (el) { el.className = 'sis-src ' + cls; el.querySelector('span').textContent = txt; }
+    $('#cx-rodape').innerHTML = `<i class="${cls}"></i>Fonte: <code>940-operador/FINANCAS.md</code> e <code>45-financeiro/LANCAMENTOS-EMPRESA.md</code>, copiados para o Supabase a cada push na main · ${esc(txt)}${k && k.commit ? ` · commit <code>${esc(k.commit)}</code>` : ''}`;
+    $('#cx-rodape').className = 'sis-src cx-foot ' + cls;
+    return { txt, cls };
+  }
+
+  // os seis alertas condicionais (as mesmas condições de antes) e o aviso do pé da barra lateral
+  function alertas(kr) {
+    if (!kr) return [];
+    const b = (v) => `<b class="n">${brl(v, 2)}</b>`;
+    return [
+      kr.caixa_estimado < 0 && { k: 'negativo', bad: true, t: `O caixa calculado está em ${b(kr.caixa_estimado)}: há saídas registradas sem a entrada que as pagou. Conferir o saldo no app e lançar a entrada que falta.` },
+      kr.dias_desde_conferido > 7 && { k: 'conferido', t: `Último saldo conferido há <b class="n">${kr.dias_desde_conferido}</b> dias.` },
+      kr.acordo_valor > 0 && { k: 'acordo', bad: true, t: `Acordo de 19/10: pagar ${b(kr.acordo_valor)} até <b class="n">${dm(kr.acordo_prazo)}</b> (entrada + 1ª parcela, com multa e juros até o dia), senão ele protocola a ação direto. A 2ª parcela fica fora do acordo.` },
+      kr.contas_vencidas > 0 && { k: 'vencidas', bad: true, t: `<b class="n">${kr.contas_vencidas}</b> conta(s) vencida(s): ${b(kr.vencido)} de principal, ${b(kr.vencido_atualizado)} com multa e juros, que crescem ${b(kr.juros_por_dia)} por dia.` },
+      kr.receber_atrasado > 0 && { k: 'atrasado', t: `${b(kr.receber_atrasado)} a receber já passou da data.` },
+      kr.a_conciliar > 0 && { k: 'conciliar', t: `<b class="n">${kr.a_conciliar}</b> lançamento(s) esperando conciliação.` },
+    ].filter(Boolean)
+      // por gravidade, crítico primeiro: o aviso mini do pé da barra lateral é o primeiro desta lista [hipótese H3]
+      .map((x, i) => ({ x, i, g: GRAVE.includes(x.k) ? 0 : x.bad ? 1 : 2 })).sort((a, b) => a.g - b.g || a.i - b.i).map((o) => o.x);
+  }
+  const GRAVE = ['negativo', 'vencidas'];
+  function lateral() {
+    const kt = kpi('todas');
+    sis.contadorCaixa(ok('kpis') ? linhas('kpis') : null);
+    const cz = dash.cruzado ? dash.cruzado() : null;
+    if (cz && cz.lido) sis.contadoresProjetos(cz.projetos, cz.mensagens);
+    if (!kt) { sis.aviso(null); return; }
+    const a = alertas(kpi());
+    const txt = (h) => h.replace(/<[^>]+>/g, '');
+    if (!a.length) sis.aviso({ estado: 'saudavel', palavra: 'Em dia', motivo: 'nada a conferir no caixa', href: '#visao' });
+    else sis.aviso({ estado: GRAVE.includes(a[0].k) ? 'critica' : 'atencao', motivo: txt(a[0].t), href: '#visao' });   // [hipótese H3]
+  }
+
+  // ── 4.1 Visão ────────────────────────────────────────────
+  function visao() {
+    heroiCaixa();
+    kpisVisao();
+    grafico($('#v-saldo'), 'visao', '30');
+    vence7();
+    fluxoMes($('#v-fluxo'), 220);
+    resultado();
+    agenda();
+    conferir();
+  }
+
+  function folego(kr) {
+    const ma = mesAtual();
+    const fechados = linhas('dre_mensal').filter((r) => r.escopo === 'todas' && r.mes < ma).sort((a, b) => b.mes.localeCompare(a.mes)).slice(0, 3);   // [hipótese H8]
+    if (!fechados.length) return '';
+    const media = soma_(fechados, (r) => r.saidas) / fechados.length;
+    if (!(media > 0)) return '';
+    const n = kr.caixa_estimado / media;
+    if (n <= 0) return chip('não cobre as saídas', 'bad');
+    return chip(`cobre ${UM.format(n)} ${n >= 2 ? 'meses' : 'mês'} de saídas`, n < 1 ? 'bad' : '');
+  }
+
+  function heroiCaixa() {
+    const el = $('#v-heroi');
+    const k = dash.data('kpis');
+    if (k.status !== 'ok') {
+      el.innerHTML = `<span class="sis-hero-r">Caixa estimado hoje</span><div class="sis-hero-l">${k.status === 'loading' ? '<b class="sis-esq">—</b>' : '<b>—</b>'}</div><p class="sis-src sem"><i></i>${k.status === 'loading' ? 'carregando' : 'não lido'}</p>`;
+      return;
+    }
+    const kr = kpi(); if (!kr) { el.innerHTML = ''; return; }
+    const f = kr.fluxo_desde_conferido;
+    const { txt, cls } = sincronia();
+    el.innerHTML = `<span class="sis-hero-r">Caixa estimado hoje</span>
+      <div class="sis-hero-l"><b class="n${kr.caixa_estimado < 0 ? ' neg' : ''}">${brl(kr.caixa_estimado, 2)}</b>${folego(kr)}</div>
+      <p class="sis-hero-comp"><span>Conferido <strong>${brl(kr.caixa_conferido, 2)}</strong> em <strong>${dm(kr.caixa_conferido_em)}</strong></span><span class="sep">·</span>
+        <span>Movimento desde então <strong>${f < 0 ? '↘' : '↗'} ${sinal(f, 2)}</strong></span></p>
+      <p class="sis-src ${cls}"><i></i>${esc(txt)}</p>
+      <div class="sis-hero-acoes">
+        <a class="sis-btn primario" href="#pagar" data-filtro-pagar="${kr.contas_vencidas > 0 ? 'vencidas' : '30'}">Ver o que vence</a>
+        <a class="sis-btn secundario" href="#receber">A receber</a>
+        <a class="sis-btn secundario" href="#lancamentos">Lançamentos</a>
+      </div>`;
+  }
+
+  function cartaoKpi(o) {
+    const tag = o.href ? 'a' : 'article';
+    return `<${tag} class="sis-card sis-kpi k ${o.cls || ''} ${o.estado || ''}"${o.href ? ` href="${o.href}"` : ''}${o.filtro ? ` data-filtro-pagar="${o.filtro}"` : ''}>
+      <div class="sis-kpi-t">${ic(o.ic)}<span>${o.rot}</span></div>
+      <b class="n${o.neg ? ' neg' : ''}">${o.valor}</b>
+      <div class="sis-kpi-p">${o.chip || ''}${o.sub ? `<small>${o.sub}</small>` : ''}</div>${o.spark || ''}</${tag}>`;
+  }
+
+  // a diária chega agrupada (uma linha, n noites a partir de 'dias'); aqui ela se abre noite a noite,
+  // senão as 30 noites caíam inteiras no dia da primeira
+  const abrirDiarias = (cs, campo) => cs.flatMap((c) => (c.recorrencia === 'diaria' && c.n > 1 && c.dias != null
+    ? Array.from({ length: c.n }, (_, i) => ({ dias: c.dias + i, v: c.unitario }))
+    : [{ dias: c.dias, v: campo(c) }]));
+  function faixas(tipo, ini, passo, n, campo) {
+    const cs = abrirDiarias(linhas('contas_resumo').filter((c) => c.tipo === tipo && naConta(c) && c.dias != null), (c) => c[campo]);
+    return Array.from({ length: n }, (_, i) => soma_(cs.filter((c) => c.dias >= ini + i * passo && c.dias < Math.min(ini + (i + 1) * passo, tipo === 'pagar' ? 31 : 1e9)), (c) => c.v));
+  }
+  function seteDias() {
+    const cs = abrirDiarias(linhas('contas_resumo').filter((c) => c.tipo === 'pagar' && naConta(c)), (c) => c.valor_atualizado ?? c.valor);
+    return Array.from({ length: 7 }, (_, k) => soma_(cs.filter((c) => c.dias === k), (c) => c.v));
+  }
+  // caixa mínimo = um mês de saídas, pela média dos até 3 últimos meses fechados (a mesma régua do "cobre N meses")
+  function mediaSaidas() {
+    const ma = mesAtual();
+    const fechados = linhas('dre_mensal').filter((r) => r.escopo === 'todas' && r.mes < ma).sort((a, b) => b.mes.localeCompare(a.mes)).slice(0, 3);
+    const media = fechados.length ? soma_(fechados, (r) => r.saidas) / fechados.length : 0;
+    return media > 0 ? media : null;
+  }
+
+  function kpisVisao() {
+    const el = $('#v-kpis');
+    if (!ok('kpis')) { el.innerHTML = ['Vencido, com multa e juros', 'A pagar em 30 dias', 'A receber', 'Saiu no mês'].map((r) => cartaoKpi({ ic: 'alerta', rot: r, valor: '<span class="sis-esq">—</span>' })).join(''); return; }
+    const kr = kpi(); if (!kr) return;
+    const hoje = hojeISO(), ma = mesAtual();
+    // 1 · vencido
+    const venc = kr.vencido_atualizado > 0;
+    let subV = `${kr.contas_vencidas} ${kr.contas_vencidas === 1 ? 'conta' : 'contas'} · encargos ${brl(kr.encargos_vencidos)}`;
+    if (kr.acordo_valor > 0) subV = `no acordo até ${dm(kr.acordo_prazo)}: ${brl(kr.acordo_valor)}`;
+    // 2 · a pagar 30 d
+    const sete = soma_(seteDias(), (v) => v);
+    // 4 · saiu no mês, contra o mesmo trecho do mês anterior
+    const [a, m] = ma.split('-').map(Number);
+    const pm = m === 1 ? `${a - 1}-12` : `${a}-${String(m - 1).padStart(2, '0')}`;
+    const ultimo = new Date(Date.UTC(+pm.slice(0, 4), +pm.slice(5, 7), 0)).getUTCDate();
+    const diaH = Math.min(+hoje.slice(8, 10), ultimo);
+    const base = soma_(lancs().filter((r) => r.sentido === 'saida' && r.data >= `${pm}-01` && r.data <= `${pm}-${String(diaH).padStart(2, '0')}`), (r) => r.valor);
+    let chipS = '';
+    if (base > 0) {
+      const v = (kr.saiu_mes - base) / base;
+      chipS = chip(`${v > 0 ? '↑' : v < 0 ? '↓' : ''} ${PCT.format(Math.abs(v))} vs. 1 a ${diaH}/${pm.slice(5, 7)}`, v > 0 ? 'bad' : v < 0 ? 'ok' : '');
+    }
+    const meses = []; for (let i = 5; i >= 0; i--) { const d = new Date(Date.UTC(a, m - 1 - i, 1)); meses.push(d.toISOString().slice(0, 7)); }
+    const dres = linhas('dre_mensal').filter((r) => r.escopo === escopo());
+    const prim = dres.length ? dres.map((r) => r.mes).sort()[0] : ma;
+    const serie = meses.filter((x) => x >= prim).map((x) => (dreDe(x) || { saidas: 0 }).saidas);
+    el.innerHTML = [
+      cartaoKpi({ href: '#pagar', filtro: 'vencidas', ic: 'alerta', rot: 'Vencido, com multa e juros', valor: brl(kr.vencido_atualizado), estado: venc ? 'is-bad' : 'is-ok',
+        chip: venc ? chip(`+ ${brl(kr.juros_por_dia, 2)} por dia`, 'bad') : chip('nada vencido', 'ok'), sub: venc ? subV : '' }),
+      cartaoKpi({ href: '#pagar', filtro: '30', ic: 'pagar', rot: 'A pagar em 30 dias', valor: brl(kr.pagar_30d), sub: `em 7 dias: ${brl(sete)}`,
+        spark: sis.spark(faixas('pagar', 0, 7, 5, 'valor'), { tipo: 'barras' }) }),
+      cartaoKpi({ href: '#receber', ic: 'receber', rot: 'A receber', valor: brl(kr.receber_total), estado: kr.receber_atrasado > 0 ? 'is-bad' : '',
+        chip: kr.receber_atrasado > 0 ? chip(`${brl(kr.receber_atrasado)} atrasado`, 'bad') : '', spark: sis.spark(faixas('receber', 0, 7, 5, 'valor'), { tipo: 'barras' }) }),
+      cartaoKpi({ href: '#lancamentos', ic: 'saiu', rot: 'Saiu no mês', valor: brl(kr.saiu_mes), chip: chipS, sub: `entrou ${brl(kr.entrou_mes)}`,
+        spark: sis.spark(serie, { incompleto: true }) }),
+    ].join('');
+  }
+
+  // ── 3.13 saldo, dia a dia, com a régua de dias ───────────
+  // a projeção nasce no dia do caixa conferido; antes dele o saldo se refaz de trás para frente pelos lançamentos
+  // (saldo do dia anterior = saldo do dia − o que entrou + o que saiu no dia). Cartão compartilhado de terceiro não mexe na conta.
+  function comPassado(proj, desde) {
+    if (!proj.length) return proj;
+    const liq = new Map();
+    linhas('lancamentos').filter((r) => r.conta !== 'conciliar' && !/cart/i.test(r.meio || '')).forEach((r) => {
+      const k = (r.data || '').slice(0, 10), o = liq.get(k) || { e: 0, s: 0 };
+      if (r.sentido === 'entrada') o.e += +r.valor; else o.s += +r.valor;
+      liq.set(k, o);
+    });
+    const de = (d) => liq.get(d) || { e: 0, s: 0 };
+    proj = proj.slice();
+    proj[0] = { ...proj[0], entradas: de(proj[0].dia).e, saidas: de(proj[0].dia).s };   // o dia da conferência: barras pelos lançamentos
+    if (!desde || desde >= proj[0].dia) return proj;
+    const antes = [];
+    let d = proj[0].dia, s = proj[0].saldo_conservador;
+    while (d > desde) {
+      s -= de(d).e - de(d).s;
+      d = soma(d, -1);
+      antes.unshift({ dia: d, saldo_conservador: s, saldo_com_receber: s, projetado: false, entradas: de(d).e, saidas: de(d).s, receber: 0 });
+    }
+    return antes.concat(proj);
+  }
+  // 13 semanas e 12 meses: o saldo é o do último dia do período; as barras somam o período
+  const segunda = (d) => soma(d, -((dt(d).getUTCDay() + 6) % 7));
+  function agrupar(rows, chaveDe, rotulo, hoje) {
+    const out = [];
+    rows.forEach((r) => {
+      const k = chaveDe(r.dia);
+      let b = out[out.length - 1];
+      if (!b || b.k !== k) { b = { k, dia: k.length === 7 ? k + '-01' : k, rot: rotulo(k), entradas: 0, saidas: 0, receber: 0 }; out.push(b); }
+      b.fim = r.dia; b.saldo_conservador = r.saldo_conservador; b.saldo_com_receber = r.saldo_com_receber;
+      b.entradas += r.entradas || 0; b.saidas += r.saidas || 0; b.receber += r.receber || 0;
+    });
+    out.forEach((b) => { b.projetado = b.fim > hoje; b.f = b.fim >= hoje; });
+    return out;
+  }
+  function grafico(card, chave, padrao) {
+    const g = graf[chave] || (graf[chave] = { intervalo: padrao, dia: null });
+    const rp = linhas('resumo_projecao')[0] || null;
+    const hoje = hojeISO();
+    const umMes = mes() !== 'tudo';
+    const doAno = mes() === 'ano';
+    // janela em 7, 14, 21 ou 30 dias (30 padrão); com um mês escolhido, o mês inteiro, do dia 1 ao último
+    // + as três vistas-padrão de fluxo projetado (30 dias dia a dia, 13 semanas, 12 meses); 30 dias segue o padrão
+    const JAN = [['7', '7 dias'], ['14', '14 dias'], ['21', '21 dias'], ['30', '30 dias'], ['13s', '13 semanas'], ['12m', '12 meses']];
+    const pills = umMes ? `<span class="sis-card-sub" style="margin:0">${doAno ? 'janeiro a dezembro: o realizado e a projeção' : mesNome(mes()) + ', do dia 1 ao último'}</span>`
+      : `<div class="sis-pills" role="group" aria-label="Horizonte">
+      <select class="sis-pill" data-graf-janela="${chave}" aria-label="Horizonte" aria-pressed="${g.intervalo !== 'tudo'}">
+        ${g.intervalo === 'tudo' ? '<option value="" selected hidden>horizonte</option>' : ''}${JAN.map(([n, t]) => `<option value="${n}"${g.intervalo === n ? ' selected' : ''}>${t}</option>`).join('')}</select>
+      <button type="button" class="sis-pill" data-graf="${chave}" data-intervalo="tudo" aria-pressed="${g.intervalo === 'tudo'}">Desde a conferência</button></div>`;
+    const grao = doAno ? 'semana' : umMes ? 'dia' : g.intervalo === '13s' ? 'semana' : g.intervalo === '12m' ? 'mes' : 'dia';
+    const titulo = doAno ? 'Saldo do ano, semana a semana' : { dia: 'Saldo, dia a dia', semana: 'Saldo, semana a semana', mes: 'Saldo, mês a mês' }[grao];
+    let valor = '';
+    if (rp && chave === 'visao' && rp.menor_saldo != null) valor = `<div class="cx-v"><span class="sis-card-v${rp.menor_saldo < 0 ? ' neg' : ''}">${brl(rp.menor_saldo)}<small>menor saldo em 30 dias</small></span><small>em <b>${dm(rp.dia_menor_saldo)}</b></small></div>`;
+    if (rp && chave === 'fluxo') valor = `<div class="cx-v"><span class="sis-card-v${rp.fim_conservador < 0 ? ' neg' : ''}">${brl(rp.fim_conservador)}<small>em ${dm(rp.ate)}, sem nova entrada</small></span><small>com o combinado: <b>${brl(rp.fim_com_receber)}</b></small></div>`;
+    const mn = mediaSaidas();
+    card.innerHTML = cab(titulo, pills) + valor + '<div class="sis-linha"></div><p class="sis-legenda"><span><i></i>sem nova entrada</span><span><i class="s2"></i>com o combinado a receber</span>'
+      + (mn ? `<span><i style="border-top:2px dashed var(--bad)"></i>caixa mínimo: 1 mês de saídas (${brl(mn)}, média dos meses fechados)</span>` : '')
+      + '<span><i style="border-top:6px solid var(--fg-2);width:8px"></i>entrou</span><span><i style="border-top:6px solid var(--bad);width:8px"></i>saiu / a pagar</span><span><i style="border-top:6px solid var(--chart-2);width:8px"></i>combinado a receber</span><span>tracejado = projeção · a projeção soma as duas contas</span></p>';
+    const el = card.querySelector('.sis-linha');
+    if (falha(el, 'projecao', 'kpis')) return;
+    const proj0 = linhas('projecao');
+    let rows;
+    if (doAno && hoje) {
+      const a = hoje.slice(0, 4), ini = segunda(`${a}-01-01`), fim = `${a}-12-31`;
+      rows = agrupar(comPassado(proj0, ini).filter((r) => r.dia >= ini && r.dia <= fim), segunda, (k) => `semana de ${dm(k)}`, hoje);
+    } else if (umMes) {
+      const ini = mes() + '-01', fim = soma(soma(ini, 32).slice(0, 7) + '-01', -1);
+      rows = comPassado(proj0, ini).filter((r) => r.dia >= ini && r.dia <= fim);
+    } else if (grao === 'semana' && hoje) {
+      const ini = segunda(hoje), fim = soma(ini, 13 * 7 - 1);
+      rows = agrupar(comPassado(proj0, ini).filter((r) => r.dia >= ini && r.dia <= fim), segunda, (k) => `semana de ${dm(k)}`, hoje);
+    } else if (grao === 'mes' && hoje) {
+      const ini = mesAtual() + '-01', d0 = dt(ini);
+      const fim = new Date(Date.UTC(d0.getUTCFullYear(), d0.getUTCMonth() + 12, 0)).toISOString().slice(0, 10);
+      rows = agrupar(comPassado(proj0, ini).filter((r) => r.dia >= ini && r.dia <= fim), (d) => d.slice(0, 7), (k) => mesNome(k), hoje);
+    } else if (g.intervalo !== 'tudo' && hoje) {
+      const n = +g.intervalo || 30;
+      rows = comPassado(proj0, soma(hoje, -7)).filter((r) => r.dia >= soma(hoje, -7) && r.dia <= soma(hoje, n));
+    } else rows = comPassado(proj0).filter((r) => !hoje || r.dia <= soma(hoje, 30));   // desde a conferência: até 30 dias à frente
+    if (grao === 'dia') rows = rows.map((r) => ({ ...r, f: !hoje || r.dia >= hoje }));
+    if (rows.length < 2) { el.innerHTML = '<p class="vazio">sem projeção para desenhar</p>'; return; }
+    const atual = rows.findIndex((r) => r.dia <= hoje && (r.fim || r.dia) >= hoje);
+    if (!g.dia || !rows.some((r) => r.dia === g.dia)) g.dia = grao === 'dia' && rp && rp.dia_menor_saldo && rows.some((r) => r.dia === rp.dia_menor_saldo) ? rp.dia_menor_saldo : atual >= 0 ? rows[atual].dia : rows[rows.length - 1].dia;
+
+    const W = Math.max(280, el.clientWidth), H = estreito() ? 200 : chave === 'fluxo' ? 360 : 260;
+    const HB = estreito() ? 48 : 64;                  // a faixa das barras, embaixo da linha
+    const vals = rows.flatMap((r) => [r.saldo_conservador, ...(r.f ? [r.saldo_com_receber] : [])]).concat(mn ? [mn] : []);
+    let lo = Math.min(...vals), hi = Math.max(...vals);
+    if (lo === hi) { lo -= 1; hi += 1; }
+    const pad = (hi - lo) * 0.08;
+    const y = d3.scaleLinear([lo - pad, hi + pad], [H - 8, 12]).nice(4);
+    const ticks = y.ticks(4);
+    const ml = Math.max(44, 8 + Math.max(...ticks.map((t) => compacto(t).length)) * 6.2);
+    const m = { t: 12, r: 12, b: 8, l: ml };
+    y.range([H - m.b, m.t]);
+    const x = d3.scaleUtc([dt(rows[0].dia), dt(rows[rows.length - 1].dia)], [m.l, W - m.r]);
+    const X = (r) => x(dt(r.dia));
+    const pxDia = (W - m.l - m.r) / (rows.length - 1);
+    const passo = [1, 2, 3, 7].find((p) => pxDia * p >= 26) || 7;
+    const iHoje = Math.max(0, atual);
+    const abaixo = mn ? rows.find((r) => r.f && r.saldo_conservador < mn) : null;
+
+    const svg = d3.create('svg').attr('width', W).attr('height', H + HB).attr('viewBox', `0 0 ${W} ${H + HB}`).attr('role', 'img')
+      .attr('aria-label', `${titulo}, de ${dm(rows[0].dia)} a ${dm(rows[rows.length - 1].fim || rows[rows.length - 1].dia)}.` + (rp && rp.menor_saldo != null ? ` Menor saldo em 30 dias: ${brl(rp.menor_saldo)} em ${dm(rp.dia_menor_saldo)}.` : '')
+        + (abaixo ? ` Abaixo do caixa mínimo a partir de ${dm(abaixo.dia)}.` : ''));
+    const uid = 'a' + chave;
+    const grad = svg.append('defs').append('linearGradient').attr('id', uid).attr('x1', 0).attr('x2', 0).attr('y1', 0).attr('y2', 1);
+    grad.append('stop').attr('offset', 0).style('stop-color', 'var(--chart-1)').style('stop-opacity', .14);
+    grad.append('stop').attr('offset', 1).style('stop-color', 'var(--chart-1)').style('stop-opacity', 0);
+    const gg = svg.append('g');
+    const pontilhado = (s) => s.style('stroke', 'var(--chart-grid)').attr('stroke-dasharray', '1 5').attr('stroke-linecap', 'round');
+    ticks.forEach((t) => {
+      pontilhado(gg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(t)).attr('y2', y(t)));
+      gg.append('text').attr('x', m.l - 8).attr('y', y(t) + 4).attr('text-anchor', 'end').attr('font-size', 11).style('fill', 'var(--fg-muted)').text(compacto(t));
+    });
+    rows.forEach((r, i) => { if (((i - iHoje) % passo + passo) % passo === 0) pontilhado(gg.append('line').attr('x1', X(r)).attr('x2', X(r)).attr('y1', m.t).attr('y2', H - m.b)); });
+    if (y.domain()[0] < 0) {
+      gg.append('rect').attr('x', m.l).attr('width', W - m.l - m.r).attr('y', y(0)).attr('height', Math.max(0, H - m.b - y(0))).style('fill', 'var(--bad-soft)');
+      gg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(0)).attr('y2', y(0)).style('stroke', 'var(--bad-strong)');
+      gg.append('text').attr('x', W - m.r).attr('y', y(0) - 5).attr('text-anchor', 'end').attr('font-size', 11).style('fill', 'var(--bad)').text('zero');
+    }
+    if (mn) {
+      gg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(mn)).attr('y2', y(mn)).style('stroke', 'var(--bad)').attr('stroke-dasharray', '6 4').attr('opacity', .8);
+      gg.append('text').attr('x', m.l + 4).attr('y', y(mn) - 5).attr('font-size', 11).style('fill', 'var(--bad)')
+        .text(abaixo ? `caixa mínimo · abaixo ${abaixo.dia <= hoje ? 'desde hoje' : 'a partir de ' + dm(abaixo.dia)}` : 'caixa mínimo');
+    }
+    // barras: entrou para cima, saiu para baixo, o combinado a receber empilhado em cima do que entrou
+    const yB = H + HB / 2, maxB = Math.max(1, ...rows.map((r) => Math.max((r.entradas || 0) + (r.receber || 0), r.saidas || 0)));
+    const hs = d3.scaleSqrt([0, maxB], [0, HB / 2 - 4]), hb = (v) => (v > 0 ? Math.max(2, hs(v)) : 0);
+    const bw = Math.max(1.5, Math.min(22, pxDia * 0.62));
+    gg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', yB).attr('y2', yB).style('stroke', 'var(--chart-grid)');
+    rows.forEach((r) => {
+      const cx = X(r) - bw / 2, e = r.entradas || 0, c = r.receber || 0, s = r.saidas || 0, op = r.projetado ? .45 : .8;
+      if (e) gg.append('rect').attr('x', cx).attr('width', bw).attr('y', yB - hb(e)).attr('height', hb(e)).attr('rx', 1).style('fill', 'var(--fg-2)').attr('opacity', op);
+      if (c) gg.append('rect').attr('x', cx).attr('width', bw).attr('y', yB - hb(e) - hb(c)).attr('height', hb(c)).attr('rx', 1).style('fill', 'var(--chart-2)').attr('opacity', .6);
+      if (s) gg.append('rect').attr('x', cx).attr('width', bw).attr('y', yB).attr('height', hb(s)).attr('rx', 1).style('fill', 'var(--bad)').attr('opacity', op);
+    });
+    const temHoje = hoje && hoje >= rows[0].dia && hoje <= (rows[rows.length - 1].fim || rows[rows.length - 1].dia);
+    if (temHoje) {
+      gg.append('line').attr('x1', x(dt(hoje))).attr('x2', x(dt(hoje))).attr('y1', m.t).attr('y2', H - m.b).style('stroke', 'var(--chart-axis)').attr('stroke-width', 1.5);
+      gg.append('text').attr('x', x(dt(hoje)) + 5).attr('y', m.t + 9).attr('font-size', 11).style('fill', 'var(--fg-muted)').text('hoje');
+    }
+    const curva = d3.curveMonotoneX;
+    const real = rows.filter((r) => !r.projetado);
+    const proj = rows.filter((r, i) => r.projetado || (rows[i + 1] && rows[i + 1].projetado));
+    const l1 = d3.line().x(X).y((r) => y(r.saldo_conservador)).curve(curva);
+    if (real.length > 1) gg.append('path').datum(real).attr('d', d3.area().x(X).y0(H - m.b).y1((r) => y(r.saldo_conservador)).curve(curva)).style('fill', `url(#${uid})`);
+    if (real.length > 1) gg.append('path').datum(real).attr('d', l1).style('fill', 'none').style('stroke', 'var(--chart-1)').attr('stroke-width', 2).attr('stroke-linecap', 'round');
+    if (proj.length > 1) gg.append('path').datum(proj).attr('d', l1).style('fill', 'none').style('stroke', 'var(--chart-1)').attr('stroke-width', 2).attr('stroke-dasharray', '5 4');
+    const fut = rows.filter((r) => r.f);
+    if (fut.length > 1) gg.append('path').datum(fut).attr('d', d3.line().x(X).y((r) => y(r.saldo_com_receber)).curve(curva)).style('fill', 'none').style('stroke', 'var(--chart-2)').attr('stroke-width', 2).attr('stroke-dasharray', '5 4');
+    // rótulo direto na ponta de cada série
+    const ult = rows[rows.length - 1];
+    let ya = y(ult.saldo_conservador) - 8, yb = y(ult.saldo_com_receber) - 8;
+    if (fut.length > 1 && Math.abs(ya - yb) < 14) { if (ya <= yb) { ya -= 7; yb += 7; } else { ya += 7; yb -= 7; } }
+    gg.append('text').attr('class', 'rot').attr('x', W - m.r).attr('y', Math.max(10, ya)).attr('text-anchor', 'end').attr('font-size', 11).style('fill', 'var(--fg-2)').text('sem nova entrada');
+    if (fut.length > 1) gg.append('text').attr('class', 'rot').attr('x', W - m.r).attr('y', Math.max(10, yb)).attr('text-anchor', 'end').attr('font-size', 11).style('fill', 'var(--accent-text)').text('com o combinado');
+    // fio-guia, marcador
+    const guia = gg.append('line').attr('y1', m.t).attr('y2', H - m.b).style('stroke', 'var(--chart-axis)').attr('stroke-dasharray', '2 3').attr('opacity', 0);
+    const mk2 = gg.append('g').attr('class', 'marcador');
+    mk2.append('circle').attr('r', 4).style('fill', 'var(--panel)').style('stroke', 'var(--chart-2)').attr('stroke-width', 2);
+    const mk1 = gg.append('g').attr('class', 'marcador');
+    mk1.append('circle').attr('r', 10).style('fill', 'var(--accent-halo)');
+    mk1.append('circle').attr('r', 4.5).style('fill', 'var(--accent-mark)');
+    const alvo = svg.append('rect').attr('x', m.l).attr('y', 0).attr('width', W - m.l - m.r).attr('height', H + HB).attr('fill', 'transparent').style('cursor', 'pointer');
+    const maisPerto = (px) => rows[Math.max(0, Math.min(rows.length - 1, Math.round((px - m.l) / pxDia)))];
+    alvo.on('pointermove', (ev) => { const r = maisPerto(d3.pointer(ev)[0]); guia.attr('x1', X(r)).attr('x2', X(r)).attr('opacity', 1); })
+      .on('pointerleave', () => guia.attr('opacity', 0))
+      .on('click', (ev) => definir(maisPerto(d3.pointer(ev)[0]).dia));
+
+    const balao = document.createElement('div'); balao.className = 'sis-balao'; balao.setAttribute('aria-hidden', 'true');
+    const regua = document.createElement('div'); regua.className = 'sis-regua'; regua.setAttribute('role', 'radiogroup'); regua.setAttribute('aria-label', 'Dia');
+    const viva = document.createElement('div'); viva.className = 'sis-sr'; viva.setAttribute('aria-live', 'polite');
+    el.replaceChildren(svg.node(), balao, regua, viva);
+
+    function definir(dia, focar) {
+      g.dia = dia;
+      const i = rows.findIndex((r) => r.dia === dia), r = rows[i];
+      const cx = X(r), y1 = y(r.saldo_conservador), y2 = y(r.saldo_com_receber), s2 = r.f;
+      mk1.attr('transform', `translate(${cx},${y1})`);
+      mk2.attr('transform', `translate(${cx},${y2})`).attr('opacity', s2 ? 1 : 0);
+      const data = `${r.rot || diaCurto(r.dia).replace(' ', ', ')}${r.projetado ? ' · projeção' : ''}`;
+      const fimP = r.fim ? ` <small>(saldo em ${dm(r.fim)})</small>` : '';
+      balao.innerHTML = `<span class="d">${data}${fimP}</span><div><i style="background:var(--chart-1)"></i>sem nova entrada<b>${brl(r.saldo_conservador)}</b></div>`
+        + (r.projetado ? `<div><i style="background:var(--chart-2)"></i>com o combinado<b>${brl(r.saldo_com_receber)}</b></div>` : '')
+        + `<div><i style="background:var(--fg-2)"></i>entrou<b>${brl(r.entradas || 0)}</b></div>`
+        + (r.receber ? `<div><i style="background:var(--chart-2);opacity:.6"></i>combinado a receber<b>${brl(r.receber)}</b></div>` : '')
+        + `<div><i style="background:var(--bad);opacity:.6"></i>${r.projetado ? 'a pagar' : 'saiu'}<b>${brl(r.saidas || 0)}</b></div>`
+        + (r.dia === hoje && seteDias()[0] > 0 ? `<div><i style="background:var(--bad)"></i>vence hoje, em aberto<b>${brl(seteDias()[0])}</b></div>` : '');
+      const bw = balao.offsetWidth, bh = balao.offsetHeight;
+      let left = cx + 14; if (left + bw > W) left = cx - 14 - bw; left = Math.max(0, left);
+      let top = Math.min(y1, s2 ? y2 : y1) - bh - 12; if (top < 0) top = Math.max(y1, s2 ? y2 : y1) + 14; top = Math.min(top, H - bh);
+      balao.style.left = left + 'px'; balao.style.top = top + 'px';
+      viva.textContent = `${r.rot || porExtenso(r.dia)}${r.projetado ? ', projeção' : ''}: sem nova entrada ${brl(r.saldo_conservador)}${r.projetado ? `; com o combinado ${brl(r.saldo_com_receber)}` : ''}.`;
+      // a régua: um passo fixo ancorado em hoje; o dia ativo sempre tem pílula
+      const vis = new Set(rows.map((_, k) => k).filter((k) => ((k - iHoje) % passo + passo) % passo === 0));
+      if (!vis.has(i)) {
+        vis.add(i);
+        [...vis].forEach((k) => { if (k !== i && k !== iHoje && Math.abs(k - i) < passo) vis.delete(k); });
+      }
+      const larg = Math.max(22, Math.min(grao === 'dia' ? 34 : 46, pxDia * passo - 3));
+      regua.replaceChildren(...[...vis].sort((a, b) => a - b).map((k) => {
+        const rr = rows[k], b = document.createElement('button');
+        b.type = 'button'; b.className = 'sis-day' + (rr.dia === hoje ? ' hoje' : '');
+        b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', String(k === i)); b.tabIndex = k === i ? 0 : -1;
+        b.setAttribute('aria-label', (rr.rot || porExtenso(rr.dia)) + (rr.dia === hoje ? ', hoje' : ''));
+        b.dataset.dia = rr.dia; b.style.left = X(rr) + 'px'; b.style.width = larg + 'px';
+        b.textContent = grao === 'mes' ? mesNome(rr.dia.slice(0, 7)).slice(0, 3) : grao === 'semana' ? dm(rr.dia)
+          : rr.dia.slice(8, 10) === '01' ? `1/${rr.dia.slice(5, 7)}` : String(+rr.dia.slice(8, 10));
+        return b;
+      }));
+      if (focar) regua.querySelector('[aria-checked="true"]')?.focus();
+    }
+    regua.addEventListener('click', (ev) => { const b = ev.target.closest('.sis-day'); if (b) definir(b.dataset.dia, true); });
+    regua.addEventListener('keydown', (ev) => {
+      const i = rows.findIndex((r) => r.dia === g.dia);
+      const n = { ArrowRight: ev.shiftKey ? passo : 1, ArrowLeft: ev.shiftKey ? -passo : -1 }[ev.key];
+      let j = null;
+      if (n) j = Math.max(0, Math.min(rows.length - 1, i + n));
+      if (ev.key === 'Home') j = iHoje;
+      if (ev.key === 'End') j = rows.length - 1;
+      if (j == null) return;
+      ev.preventDefault();
+      definir(rows[j].dia, true);
+    });
+    definir(g.dia);
+  }
+
+  // ── vence em 7 dias (3.14), que filtra a Agenda ──────────
+  function vence7() {
+    const el = $('#v-vence');
+    if (!ok('contas_resumo') || !ok('kpis')) { el.innerHTML = cab('Vence em 7 dias'); falha(el.appendChild(document.createElement('div')), 'contas_resumo', 'kpis'); return; }
+    const hoje = hojeISO(), v = seteDias(), tot = soma_(v, (x) => x);
+    const maior = tot > 0 ? v.indexOf(Math.max(...v)) : -1;
+    const ativo = venceFiltro ?? maior;
+    el.innerHTML = cab('Vence em 7 dias', tot > 0 ? '' : chip('nada vence em 7 dias', 'ok')) + `<div class="cx-v"><span class="sis-card-v">${brl(tot)}</span><small>a pagar, de hoje a ${dm(soma(hoje, 6))}</small></div>`;
+    el.append(sis.barras(v.map((x, k) => {
+      const d = soma(hoje, k);
+      return { rot: k ? diaCurto(d).slice(0, 3) : 'hoje', valor: x, txt: brl(x), aria: `${porExtenso(d)}: ${brl(x)} a pagar` };
+    }), { ativo, trilho: estreito() ? 110 : 140, onClick: (k) => { venceFiltro = venceFiltro === k ? null : k; vence7(); agenda(); } }));
+  }
+
+  // ── para onde foi (3.15): o mês em três colunas ──────────
+  function fluxoMes(card, h) {
+    const mr = mesRef();
+    const dr = mr ? dreDe(mr) : null;
+    card.innerHTML = cab(`Para onde foi · ${mr ? mesNome(mr) : ''}`) + (dr ? `<div class="cx-v"><span class="sis-card-v">${brl(dr.entradas)}</span><small>entrou · saiu <b>${brl(dr.saidas)}</b></small></div>` : '') + '<div class="sis-fluxo"></div>';
+    const el = card.querySelector('.sis-fluxo');
+    if (falha(el, 'lancamentos', 'kpis')) return;
+    const ls = lancs().filter((r) => r.data.slice(0, 7) === mr);
+    if (!ls.length) { el.innerHTML = `<p class="vazio">sem lançamentos em ${mr ? mesLongo(mr) : 'este mês'}</p>`; return; }
+    const E = soma_(ls.filter((r) => r.sentido === 'entrada'), (r) => r.valor), S = soma_(ls.filter((r) => r.sentido === 'saida'), (r) => r.valor);
+    const T = Math.max(E, S);
+    const agrupar = (rs, chave, max, resto) => {
+      const mp = new Map(); rs.forEach((r) => { const k = r[chave] || (chave === 'categoria' ? 'outros' : 'sem nome'); mp.set(k, (mp.get(k) || 0) + r.valor); });
+      const tudo = [...mp].sort((a, b) => b[1] - a[1]);
+      const fica = tudo.filter(([, v], i) => i < max && v >= T * 0.02);
+      const sobra = soma_(tudo.filter((x) => !fica.includes(x)), (x) => x[1]);
+      const out = fica.map(([nome, v]) => ({ nome, v, link: chave === 'categoria' && nome !== 'outros' }));
+      if (sobra > 0) out.push({ nome: resto, v: sobra });
+      return out;
+    };
+    const esq = agrupar(ls.filter((r) => r.sentido === 'entrada'), 'contraparte', 4, 'outras');   // [hipótese H5]
+    const dir = agrupar(ls.filter((r) => r.sentido === 'saida'), 'categoria', 5, 'outros');
+    if (S > E) esq.push({ nome: 'Do caixa', v: S - E, tipo: 'docaixa' });
+    if (E > S) dir.push({ nome: 'Sobra', v: E - S, tipo: 'sobra' });
+    const cats = agrupar(ls.filter((r) => r.sentido === 'saida'), 'categoria', 99, 'outros');
+    const lista = `<div>${cats.map((c) => `<div class="sis-catbar"><span>${esc(c.nome)}</span><span class="tr"><i style="width:${((c.v / (cats[0].v || 1)) * 100).toFixed(1)}%"></i></span><span class="v">${brl(c.v)}</span></div>`).join('') || '<p class="vazio">nenhuma saída no mês</p>'}</div>`;
+    if (minimo()) { el.innerHTML = lista; return; }
+    const W = Math.max(300, el.clientWidth), NW = Math.round(Math.max(56, Math.min(96, W * 0.2))), CW = 76, GAP = 6, MIN = 14;
+    const nmax = Math.max(esq.length, dir.length, 1);
+    const k = (h - (nmax - 1) * GAP) / T;
+    // altura mínima de 14 px (e não 6): todo nó leva o próprio rótulo dentro, numa linha, sem invadir as fitas
+    const pilha = (ns) => soma_(ns, (n) => Math.max(MIN, n.v * k)) + (ns.length - 1) * GAP;
+    const H = Math.ceil(Math.max(h, pilha(esq), pilha(dir)));
+    const coluna = (ns, x) => {
+      let yy = (H - pilha(ns)) / 2;
+      return ns.map((n) => { const o = { ...n, x, y: yy, h: Math.max(MIN, n.v * k) }; yy += o.h + GAP; return o; });
+    };
+    const L = coluna(esq, 0), R = coluna(dir, W - NW);
+    const C = { nome: E >= S ? 'Entrou' : 'Saiu', v: T, x: (W - CW) / 2, w: CW, y: (H - T * k) / 2, h: T * k, tipo: 'centro' };
+    const NS = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('height', H); svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', `Em ${mesLongo(mr)}: entrou ${brl(E)} e saiu ${brl(S)}. ` + dir.map((d) => `${d.nome} ${brl(d.v)}`).join(', '));
+    el.replaceChildren(svg);   // no documento antes dos rótulos: eles se medem para caber
+    const fita = (x0, a0, a1, x1, b0, b1, de, para) => {
+      const mx = (x0 + x1) / 2, p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', `M${x0} ${a0}C${mx} ${a0} ${mx} ${b0} ${x1} ${b0}L${x1} ${b1}C${mx} ${b1} ${mx} ${a1} ${x0} ${a1}Z`);
+      p.setAttribute('class', 'fita'); p.dataset.no = de + '|' + para; svg.append(p);
+    };
+    let acc = C.y;
+    L.forEach((n, i) => { const t = n.v * k; fita(n.x + NW, n.y, n.y + t, C.x, acc, acc + t, 'e' + i, 'c'); acc += t; });
+    acc = C.y;
+    R.forEach((n, i) => { const t = n.v * k; fita(C.x + CW, acc, acc + t, n.x, n.y, n.y + t, 'c', 'd' + i); acc += t; });
+    const caber = (t, px) => {   // corta o nome (o tspan sem classe) até a linha caber em px; o valor fica inteiro
+      const alvo = t.querySelector('tspan:not(.v)') || t.lastChild;
+      let s = alvo.textContent;
+      while (t.getComputedTextLength() > px && s.length > 1) { s = s.slice(0, -1); alvo.textContent = s.trimEnd() + '…'; }
+      if (t.getComputedTextLength() > px) alvo.textContent = '';
+    };
+    const no = (n, id) => {
+      const g = document.createElementNS(NS, n.link ? 'a' : 'g');
+      g.setAttribute('class', 'no' + (n.tipo ? ' ' + n.tipo : '')); g.dataset.id = id;
+      if (n.link) { g.setAttribute('href', '#lancamentos'); g.dataset.busca = n.nome; g.dataset.mes = mr; g.setAttribute('aria-label', `${n.nome}: ${brl(n.v)}. Ver os lançamentos`); }
+      const r = document.createElementNS(NS, 'rect');
+      Object.entries({ x: n.x, y: n.y, width: n.w || NW, height: n.h, rx: Math.min(8, n.h / 2) }).forEach(([a, v]) => r.setAttribute(a, v));
+      const ti = document.createElementNS(NS, 'title'); ti.textContent = `${n.nome}: ${brl(n.v)}`;
+      g.append(ti, r);
+      svg.append(g);
+      const larg = (n.w || NW) - 12;
+      const linha = (yy, partes) => {
+        const t = document.createElementNS(NS, 'text'); t.setAttribute('x', n.x + 7); t.setAttribute('y', yy);
+        partes.forEach(([txt, cls]) => { const s = document.createElementNS(NS, 'tspan'); if (cls) s.setAttribute('class', cls); s.textContent = txt; t.append(s); });
+        g.append(t); caber(t, larg);
+      };
+      if (n.h >= 34) { linha(n.y + 15, [[n.nome, '']]); linha(n.y + 29, [[compacto(n.v), 'v']]); }
+      else linha(n.y + n.h / 2 + 4, [[n.nome + ' ', ''], [compacto(n.v), 'v']]);
+    };
+    L.forEach((n, i) => no(n, 'e' + i)); R.forEach((n, i) => no(n, 'd' + i)); no(C, 'c');
+    const acender = (id) => { el.classList.toggle('foco', !!id); svg.querySelectorAll('.fita').forEach((f) => f.classList.toggle('acesa', !!id && f.dataset.no.split('|').includes(id))); };
+    svg.querySelectorAll('.no').forEach((n) => {
+      n.addEventListener('pointerenter', () => acender(n.dataset.id)); n.addEventListener('pointerleave', () => acender(null));
+      n.addEventListener('focus', () => acender(n.dataset.id)); n.addEventListener('blur', () => acender(null));
+    });
+    const det = document.createElement('details'); det.innerHTML = `<summary>ver em lista</summary>${lista}`; el.append(det);
+  }
+
+  // ── resultado do mês, com o calor das saídas (3.16) ──────
+  function resultado() {
+    const el = $('#v-res');
+    const mr = mesRef(), dr = mr ? dreDe(mr) : null;
+    const margem = dr && dr.margem != null ? chip(PCT.format(dr.margem) + ' de margem', dr.margem < 0 ? 'bad' : 'ok') : '';
+    el.innerHTML = cab(`Resultado · ${mr ? mesNome(mr) : ''}`) + `<div class="cx-v"><span class="sis-card-v${dr && dr.resultado < 0 ? ' neg' : ''}">${dr ? sinal(dr.resultado) : '—'}</span>${margem}</div>`;
+    const box = document.createElement('div'); el.append(box);
+    if (falha(box, 'lancamentos', 'kpis')) return;
+    const hoje = hojeISO();
+    const mp = new Map();
+    lancs().filter((r) => r.sentido === 'saida').forEach((r) => { const o = mp.get(r.data) || { v: 0, n: 0 }; o.v += r.valor; o.n += 1; mp.set(r.data, o); });
+    const larg = (box.clientWidth || el.clientWidth - 32);
+    const N = Math.max(6, Math.min(12, Math.floor((larg + 3) / 17)));
+    const seg = soma(hoje, -((dt(hoje).getUTCDay() + 6) % 7));
+    const de = soma(seg, -7 * (N - 1));
+    const dias = [...mp].filter(([d]) => d >= de && d <= hoje);
+    const top = dias.sort((a, b) => b[1].v - a[1].v)[0];
+    box.append(sis.calor(mp, { de, ate: hoje, hoje, modo: 'estatico',
+      resumo: `Saídas por dia, de ${dm(de)} a ${dm(hoje)}: ${dias.length} dias com saída${top ? `, a maior ${brl(top[1].v)} em ${dm(top[0])}` : ''}.`,
+      rotulo: (d, reg) => (reg ? `${diaCurto(d)} · saiu ${brl(reg.v, 2)} · ${reg.n} ${reg.n === 1 ? 'lançamento' : 'lançamentos'}` : `${diaCurto(d)} · nada saiu`) }));
+    const sub = document.createElement('p'); sub.className = 'sis-card-sub'; sub.textContent = 'cada quadrado, o que saiu no dia'; box.append(sub);
+  }
+
+  // ── agenda (3.10) ────────────────────────────────────────
+  function itemConta(c) {
+    const rec = c.tipo === 'receber';
+    const cls = c.dias != null && c.dias < 0 ? 'venc' : c.dias != null && c.dias <= 7 ? 'perto' : '';
+    const v = rec ? c.valor : (c.valor_atualizado ?? c.valor);
+    return `<li class="sis-item ${cls}">${ic(rec ? 'baixo' : 'cima')}<div class="sis-item-t"><div>${esc(c.contraparte)}</div><small>${esc([c.descricao, c.situacao].filter(Boolean).join(' · '))}</small></div>
+      <div class="sis-item-v"><b class="${rec ? 'pos' : ''}">${rec ? '+' : '−'}${brl(v)}</b><small>${c.vencimento ? dm(c.vencimento) : 'sem data'}</small></div></li>`;
+  }
+  function agenda() {
+    const el = $('#v-agenda');
+    el.innerHTML = cab('Agenda', '<a class="sis-pill" href="#pagar" data-filtro-pagar="todas">Ver todas</a>');
+    const box = document.createElement('div'); el.append(box);
+    if (falha(box, 'contas_resumo', 'kpis')) return;
+    let rows = linhas('contas_resumo').filter((c) => naConta(c) && (mes() === 'tudo' || noMes(c.vencimento)));
+    let filtro = '';
+    if (venceFiltro != null) {
+      const d = soma(hojeISO(), venceFiltro);
+      rows = rows.filter((c) => (c.recorrencia === 'diaria' && c.n > 1 ? venceFiltro >= c.dias && venceFiltro < c.dias + c.n : c.dias === venceFiltro));
+      filtro = `<div class="cx-filtro-dia"><button type="button" class="sis-pill" aria-pressed="true" data-soltar-dia aria-label="Soltar o filtro de ${diaCurto(d)}">${diaCurto(d)} ✕</button></div>`;
+    }
+    const datadas = rows.filter((c) => c.vencimento).sort((a, b) => a.vencimento.localeCompare(b.vencimento)).slice(0, 9);
+    const semData = venceFiltro == null ? rows.filter((c) => !c.vencimento) : [];
+    box.innerHTML = filtro + (datadas.length + semData.length ? `<ul class="sis-lista cx-agenda">${[...datadas, ...semData].map(itemConta).join('')}</ul>` : '<p class="vazio">nada a vencer nesta conta</p>');
+  }
+
+  function conferir() {
+    const el = $('#v-conferir');
+    const a = ok('kpis') ? alertas(kpi()) : [];
+    el.hidden = !a.length;
+    el.innerHTML = cab('Conferir', `<span class="sis-card-sub" style="margin:0">o que o registro ainda não fecha</span>`) + `<ul class="sis-alertas">${a.map((x) => `<li class="sis-alerta${x.bad ? ' bad' : ''}"><span>${x.t}</span></li>`).join('')}</ul>`;
+  }
+
+  // ── tabelas (3.11) e a virada em lista no celular ────────
+  // cols: [rótulo, (linha) → html, classe]; grupo: { de, rotulo(chave, linhas) → [texto, subtotal] }; lista(linha) → item
+  function tabela(host, rows, cols, grupo, lista, vazio = 'nada aqui') {
+    if (!rows.length) { host.innerHTML = `<p class="vazio">${vazio}</p>`; return; }
+    if (estreito() && lista) {
+      let at; const out = [];
+      rows.forEach((r) => {
+        if (grupo && grupo.de(r) !== at) { at = grupo.de(r); const [t, s] = grupo.rotulo(at, rows.filter((x) => grupo.de(x) === at)); out.push(`<li class="grupo"><span>${t}</span><b>${s || ''}</b></li>`); }
+        const it = lista(r);
+        out.push(`<li class="sis-item ${it.cls || ''}${it.ic ? '' : ' sem-ic'}">${it.ic || ''}<div class="sis-item-t"><div>${it.t}</div><small>${it.s || ''}</small></div><div class="sis-item-v"><b class="${it.vcls || ''}">${it.v}</b><small>${it.q || ''}</small></div></li>`);
+      });
+      host.innerHTML = `<ul class="sis-lista sis-lista-t">${out.join('')}</ul>`;
+      return;
+    }
+    let at; const tr = [];
+    rows.forEach((r) => {
+      if (grupo && grupo.de(r) !== at) { at = grupo.de(r); const [t, s] = grupo.rotulo(at, rows.filter((x) => grupo.de(x) === at)); tr.push(`<tr class="grupo"><td colspan="${cols.length}">${t}${s ? `<span class="n">${s}</span>` : ''}</td></tr>`); }
+      tr.push(`<tr${r.__marca ? ' class="marcada"' : ''}>${cols.map(([, f, c]) => `<td${c ? ` class="${typeof c === 'function' ? c(r) : c}"` : ''}>${f(r)}</td>`).join('')}</tr>`);
+    });
+    host.innerHTML = `<div class="sis-table-w"><table class="sis-table"><thead><tr>${cols.map(([t, , c]) => `<th${c && /\bn\b/.test(typeof c === 'function' ? 'n' : c) ? ' class="n"' : ''}>${t}</th>`).join('')}</tr></thead><tbody>${tr.join('')}</tbody></table></div>`;
+  }
+  const situ = (r) => chip(esc(r.situacao || ''), r.dias != null && r.dias < 0 ? 'bad' : r.dias != null && r.dias <= 7 ? 'warn' : '');
+
+  // ── 4.2 DRE ──────────────────────────────────────────────
+  function dre() {
+    const empresa = escopo() === 'empresa';
+    const mr = mesRef(), dr = mr ? dreDe(mr) : null, h = $('#d-heroi');
+    if (!ok('dre_mensal')) { h.innerHTML = `<span class="sis-hero-r">Resultado</span><div class="sis-hero-l"><b class="sis-esq">—</b></div>`; }
+    else h.innerHTML = `<span class="sis-hero-r">Resultado de ${mr ? mesLongo(mr) : '—'}${empresa ? ' · empresa' : escopo() === 'pessoal' ? ' · pessoal' : ''}</span>
+      <div class="sis-hero-l"><b class="n${dr && dr.resultado < 0 ? ' neg' : ''}">${dr ? sinal(dr.resultado, 2) : '—'}</b>${dr && dr.margem != null ? chip(PCT.format(dr.margem) + ' de margem', dr.margem < 0 ? 'bad' : 'ok') : ''}</div>
+      ${dr ? `<p class="sis-hero-comp"><span>${empresa ? 'Receita bruta' : 'Entradas'} <strong>${brl(dr.entradas, 2)} ↗</strong></span><span class="sep">·</span><span>${empresa ? 'Custos e despesas' : 'Saídas'} <strong>${brl(dr.saidas, 2)} ↘</strong></span></p>` : ''}
+      <p class="sis-src${dr ? '' : ' sem'}"><i></i>${dr ? `${dr.lancamentos} ${dr.lancamentos === 1 ? 'lançamento' : 'lançamentos'} · regime de caixa` : `sem lançamentos em ${mr ? mesLongo(mr) : 'este mês'}`}</p>`;
+    fluxoMes($('#d-fluxo'), 320);
+    // por mês: barras em par, os últimos 12 meses
+    const el = $('#d-meses');
+    const ms = linhas('dre_mensal').filter((r) => r.escopo === escopo()).sort((a, b) => a.mes.localeCompare(b.mes)).slice(-12);
+    const at = ms.findIndex((r) => r.mes === mr);
+    const sel = ms[at];
+    el.innerHTML = cab('Por mês', sel ? `<span class="sis-card-sub" style="margin:0">${mesNome(sel.mes)}: entrou <b class="n">${brl(sel.entradas)}</b> · saiu <b class="n">${brl(sel.saidas)}</b></span>` : '');
+    if (!falha(el.appendChild(document.createElement('div')), 'dre_mensal')) {
+      el.lastChild.replaceWith(ms.length ? sis.barras(ms.map((r) => ({ rot: MES[+r.mes.slice(5, 7) - 1], e: r.entradas, s: r.saidas, aria: `${mesLongo(r.mes)}: entrou ${brl(r.entradas)}, saiu ${brl(r.saidas)}` })),
+        { tipo: 'par', ativo: at, trilho: 140, onClick: (i) => { mesAba.dre = ms[i].mes; desenhar(); } }) : Object.assign(document.createElement('p'), { className: 'vazio', textContent: 'sem meses com lançamento' }));
+      const leg = document.createElement('p'); leg.className = 'sis-legenda'; leg.innerHTML = '<span><i style="border-top:6px solid var(--fg-2);width:8px"></i>entrou</span><span><i style="border-top:6px solid var(--chart-muted);width:8px"></i>saiu</span>'; el.append(leg);
+    }
+    const t = $('#d-tab');
+    t.innerHTML = cab('Por mês, em tabela', `<span class="sis-card-sub" style="margin:0">${empresa ? 'empresa · ' : ''}empresa e pessoal na mesma conta</span>`);
+    const box = t.appendChild(document.createElement('div'));
+    if (!falha(box, 'dre_mensal')) {
+      const rows = linhas('dre_mensal').filter((r) => r.escopo === escopo() && noMes(r.mes)).sort((a, b) => b.mes.localeCompare(a.mes));
+      tabela(box, rows, [
+        ['Mês', (r) => mesNome(r.mes)], [empresa ? 'Receita bruta' : 'Entradas', (r) => brl(r.entradas, 2), 'n'], [empresa ? '(−) Custos' : '(−) Saídas', (r) => brl(r.saidas, 2), 'n'],
+        ['Resultado', (r) => sinal(r.resultado, 2), (r) => (r.resultado < 0 ? 'n neg' : 'n')], ['Margem', (r) => (r.margem == null ? '—' : PCT.format(r.margem)), 'n'], ['Lanç.', (r) => r.lancamentos, 'n'],
+      ], null, (r) => ({ t: mesNome(r.mes), s: `entrou ${brl(r.entradas)} · saiu ${brl(r.saidas)}`, v: sinal(r.resultado), vcls: r.resultado < 0 ? 'neg' : '', q: r.margem == null ? '' : PCT.format(r.margem) }), 'sem lançamento neste recorte (n = 0)');
+    }
+    const c = $('#d-cat');
+    c.innerHTML = cab('Por categoria', `<span class="sis-card-sub" style="margin:0">${mes() === 'tudo' ? 'todo o registro' : mesNome(mes())}</span>`);
+    const cb = c.appendChild(document.createElement('div'));
+    if (!falha(cb, 'categorias', 'lancamentos')) tabela(cb, catRows(), [
+      ['Sentido', (r) => (r.sentido === 'entrada' ? 'entrada' : 'saída')], ['Categoria', (r) => chip(esc(r.categoria))], ['Valor', (r) => brl(r.valor, 2), (r) => (r.sentido === 'entrada' ? 'n pos' : 'n')], ['Lanç.', (r) => r.lancamentos, 'n'],
+    ], null, (r) => ({ t: esc(r.categoria), s: `${r.sentido === 'entrada' ? 'entrada' : 'saída'} · ${r.lancamentos} lanç.`, v: (r.sentido === 'entrada' ? '+' : '−') + brl(r.valor), vcls: r.sentido === 'entrada' ? 'pos' : '' }));
+  }
+  // categorias do período: todos os meses = a consulta categorias; um mês = somado dos lançamentos desse mês
+  function catRows() {
+    if (mes() === 'tudo') return linhas('categorias').filter((r) => r.escopo === escopo());
+    const mp = new Map();
+    lancs().filter((r) => noMes(r.data)).forEach((r) => {
+      const cat = r.categoria || 'outros', k = r.sentido + '|' + cat;
+      const o = mp.get(k) || { escopo: escopo(), sentido: r.sentido, categoria: cat, valor: 0, lancamentos: 0 };
+      o.valor += r.valor; o.lancamentos += 1; mp.set(k, o);
+    });
+    return [...mp.values()].sort((a, b) => a.sentido.localeCompare(b.sentido) || b.valor - a.valor);
+  }
+
+  // ── 4.3 Fluxo ────────────────────────────────────────────
+  function fluxo() {
+    grafico($('#f-saldo'), 'fluxo', 'tudo');
+    const hoje = hojeISO();
+    const fimSem = (v) => soma(v, 6);
+    const naSemana = (v) => noMes(v) || noMes(fimSem(v));
+    const ss = linhas('semanas').filter((r) => r.escopo === escopo() && naSemana(r.semana)).sort((a, b) => a.semana.localeCompare(b.semana));
+    const corrente = ss.find((r) => hoje >= r.semana && hoje <= fimSem(r.semana));
+    if (!semanaAtiva || !ss.some((r) => r.semana === semanaAtiva)) semanaAtiva = corrente ? corrente.semana : (ss[ss.length - 1] || {}).semana || null;
+    const at = ss.findIndex((r) => r.semana === semanaAtiva), a = ss[at];
+    const el = $('#f-semanas');
+    el.innerHTML = cab('Por semana', a ? `<span class="sis-card-sub" style="margin:0">Semana de ${dm(a.semana)}: entra <b class="n">${brl(a.entrou + a.entra_previsto)}</b> · sai <b class="n">${brl(a.saiu + a.sai_previsto)}</b></span>` : '');
+    const box = el.appendChild(document.createElement('div'));
+    if (!falha(box, 'semanas', 'kpis')) {
+      if (!ss.length) box.innerHTML = '<p class="vazio">sem semanas neste recorte</p>';
+      else {
+        box.replaceWith(sis.barras(ss.map((r) => ({ rot: dm(r.semana), e: r.entrou, s: r.saiu, ep: r.entra_previsto, sp: r.sai_previsto,
+          aria: `Semana de ${dm(r.semana)}: entrou ${brl(r.entrou)}, saiu ${brl(r.saiu)}, entra previsto ${brl(r.entra_previsto)}, sai previsto ${brl(r.sai_previsto)}` })),
+          { tipo: 'par', ativo: at, trilho: estreito() ? 110 : 140, onClick: (i) => { semanaAtiva = ss[i].semana; fluxo(); } }));
+        const leg = document.createElement('p'); leg.className = 'sis-legenda';
+        leg.innerHTML = '<span><i style="border-top:6px solid var(--fg-2);width:8px"></i>entrou</span><span><i style="border-top:6px solid var(--chart-muted);width:8px"></i>saiu</span><span>listrado = previsto · a semana acesa se lê no cabeçalho e na tabela</span>';
+        el.append(leg);
+      }
+    }
+    const t = $('#f-tab');
+    t.innerHTML = cab('Por semana, em tabela', '<span class="sis-card-sub" style="margin:0">a partir do saldo conferido · vencido conta na semana de hoje</span>');
+    const tb = t.appendChild(document.createElement('div'));
+    const z = (v) => (v ? brl(v, 2) : '—');
+    if (!falha(tb, 'semanas')) tabela(tb, ss.map((r) => ({ ...r, __marca: r.semana === semanaAtiva })), [
+      ['Semana de', (r) => `${dm(r.semana)} a ${dm(fimSem(r.semana))}`], ['Entrou', (r) => z(r.entrou), (r) => (r.entrou ? 'n pos' : 'n')], ['Saiu', (r) => z(r.saiu), 'n'],
+      ['Entra (previsto)', (r) => z(r.entra_previsto), (r) => (r.entra_previsto ? 'n pos' : 'n')], ['Sai (previsto)', (r) => z(r.sai_previsto), 'n'],
+    ], null, (r) => ({ t: `${dm(r.semana)} a ${dm(fimSem(r.semana))}`, s: `previsto: entra ${brl(r.entra_previsto)} · sai ${brl(r.sai_previsto)}`, v: `${brl(r.entrou - r.saiu)}`, q: `entrou ${brl(r.entrou)} · saiu ${brl(r.saiu)}`, cls: r.semana === semanaAtiva ? 'perto' : '' }));
+  }
+
+  // ── 4.4 A pagar e 4.5 A receber ──────────────────────────
+  function contas(tipo) {
+    const kr = kpi();
+    const k = $(tipo === 'pagar' ? '#a-kpis' : '#r-kpis');
+    if (kr) {
+      if (tipo === 'pagar') k.innerHTML = [
+        cartaoKpi({ cls: 'g4', ic: 'alerta', rot: 'Vencido, com multa e juros', valor: brl(kr.vencido_atualizado, 2), estado: kr.vencido_atualizado > 0 ? 'is-bad' : '',
+          chip: kr.vencido_atualizado > 0 ? chip(`${kr.contas_vencidas} ${kr.contas_vencidas === 1 ? 'conta' : 'contas'}`, 'bad') : chip('nada vencido', 'ok'), sub: kr.vencido_atualizado > 0 ? `principal ${brl(kr.vencido, 2)}` : '' }),
+        cartaoKpi({ cls: 'g4', ic: 'pagar', rot: 'A pagar em 30 dias', valor: brl(kr.pagar_30d, 2), sub: 'sem contar o vencido' }),
+        cartaoKpi({ cls: 'g4 solo', ic: 'juros', rot: 'Juros por dia', valor: brl(kr.juros_por_dia, 2), estado: kr.juros_por_dia > 0 ? 'is-bad' : '',
+          sub: kr.acordo_valor > 0 ? `no acordo: ${brl(kr.acordo_valor, 2)} até ${dm(kr.acordo_prazo)}` : 'sobre o vencido' }),
+      ].join('').replaceAll('sis-kpi k ', 'sis-kpi ');
+      else k.innerHTML = [
+        cartaoKpi({ cls: 'g6', ic: 'receber', rot: 'A receber', valor: brl(kr.receber_total, 2), sub: 'com a certeza registrada em cada conta' }),
+        cartaoKpi({ cls: 'g6', ic: 'alerta', rot: 'Atrasado', valor: brl(kr.receber_atrasado, 2), estado: kr.receber_atrasado > 0 ? 'is-bad' : '', chip: kr.receber_atrasado > 0 ? chip('passou da data', 'bad') : chip('em dia', 'ok') }),
+      ].join('').replaceAll('sis-kpi k ', 'sis-kpi ');
+    } else k.innerHTML = '';
+    let rows = linhas('contas_resumo').filter((r) => r.tipo === tipo && naConta(r));
+    if (tipo === 'pagar') rows = rows.filter((r) => filtroPagar === 'todas' || (filtroPagar === 'vencidas' && r.dias < 0) || (filtroPagar === '30' && r.dias != null && r.dias >= 0 && r.dias <= 30) || (filtroPagar === 'sem' && r.vencimento == null));
+    if (mes() !== 'tudo') rows = rows.filter((r) => noMes(r.vencimento));
+    rows.sort((a, b) => (a.vencimento || '9').localeCompare(b.vencimento || '9'));
+    const campo = tipo === 'pagar' ? 'valor_atualizado' : 'valor';
+    const grupo = {
+      de: (r) => (r.vencimento ? r.vencimento.slice(0, 7) : 'sem data'),
+      rotulo: (g, rs) => [`${g === 'sem data' ? 'sem data' : mesNome(g)} · ${rs.length} ${rs.length > 1 ? 'contas' : 'conta'}`, brl(soma_(rs, (r) => r[campo] ?? r.valor), 2)],
+    };
+    const t = $(tipo === 'pagar' ? '#a-tab' : '#r-tab');
+    const F = [['todas', 'Todas'], ['vencidas', 'Vencidas'], ['30', '30 dias'], ['sem', 'Sem data']];
+    t.innerHTML = tipo === 'pagar'
+      ? cab('Em aberto', `<div class="sis-pills" id="a-filtro" role="group" aria-label="Filtro">${F.map(([f, r]) => `<button type="button" class="sis-pill" data-f="${f}" aria-pressed="${filtroPagar === f}">${r}</button>`).join('')}</div>`)
+      : cab('Previsto', '<span class="sis-card-sub" style="margin:0">com a certeza registrada</span>');
+    const box = t.appendChild(document.createElement('div'));
+    if (falha(box, 'contas_resumo')) return;
+    const venc = (r) => (r.vencimento ? dm(r.vencimento) : 'sem data');
+    if (tipo === 'pagar') tabela(box, rows, [
+      ['Vence', venc, 'n'], ['Para quem', (r) => esc(r.contraparte)], ['O quê', (r) => esc(r.descricao || ''), 'muted'], ['Conta', (r) => esc(r.conta)], ['Situação', situ],
+      ['Valor', (r) => brl(r.valor, 2), 'n'], ['Multa + juros', (r) => (r.encargos ? brl(r.encargos, 2) : '—'), (r) => (r.encargos ? 'n neg' : 'n')], ['Atualizado hoje', (r) => brl(r.valor_atualizado, 2), 'n'],
+      ['Até o prazo', (r) => (r.valor_no_prazo ? `${brl(r.valor_no_prazo, 2)}${r.limite ? ` · até ${dm(r.limite)}` : ''}` : '—'), 'n'],
+    ], grupo, (r) => ({ ic: ic('cima'), t: esc(r.contraparte), s: esc([r.descricao, r.situacao].filter(Boolean).join(' · ')), v: '−' + brl(r.valor_atualizado ?? r.valor, 2), q: venc(r), cls: r.dias != null && r.dias < 0 ? 'venc' : r.dias != null && r.dias <= 7 ? 'perto' : '' }), 'nada em aberto neste filtro');
+    else tabela(box, rows, [
+      ['Quando', venc, 'n'], ['De quem', (r) => esc(r.contraparte)], ['O quê', (r) => esc(r.descricao || ''), 'muted'], ['Situação', situ], ['Certeza', (r) => (r.certeza ? chip(esc(r.certeza)) : '—')], ['Valor', (r) => '+' + brl(r.valor, 2), 'n pos'],
+    ], grupo, (r) => ({ ic: ic('baixo'), t: esc(r.contraparte), s: esc([r.descricao, r.situacao, r.certeza].filter(Boolean).join(' · ')), v: '+' + brl(r.valor, 2), vcls: 'pos', q: venc(r), cls: r.dias != null && r.dias < 0 ? 'venc' : '' }), 'nada a receber neste recorte');
+  }
+
+  // ── 4.6 Lançamentos ──────────────────────────────────────
+  function lancamentos(soTabela) {
+    const t = $('#l-tab');
+    if (!soTabela || !t.querySelector('#busca')) {
+      t.innerHTML = cab(`Lançamentos · ${mes() === 'tudo' ? 'todos os meses' : mesNome(mes())}`, `<input class="sis-pill cx-busca" id="busca" type="search" placeholder="buscar contraparte, detalhe, categoria…" aria-label="Buscar lançamentos" value="${esc(busca)}">`) + '<div id="l-box"></div>';
+    }
+    const box = $('#l-box');
+    if (falha(box, 'lancamentos')) return;
+    const rows = linhas('lancamentos').filter((r) => (escopo() === 'todas' || r.conta === escopo()) && noMes(r.data) && (!busca || [r.contraparte, r.detalhe, r.categoria, r.conta].join(' ').toLowerCase().includes(busca)));
+    tabela(box, rows, [
+      ['Data', (r) => dm(r.data), 'n'], ['Hora', (r) => esc(r.hora || ''), 'n muted'], ['Contraparte', (r) => esc(r.contraparte)], ['Detalhe', (r) => esc(r.detalhe), 'muted'],
+      ['Categoria', (r) => (r.categoria ? chip(esc(r.categoria)) : '—')], ['Conta', (r) => esc(r.conta)], ['Meio', (r) => esc(r.meio || '')],
+      ['Valor', (r) => sinal(r.valor_assinado, 2), (r) => (r.valor_assinado > 0 ? 'n pos' : 'n')],
+    ], {
+      de: (r) => r.data.slice(0, 7),
+      // o subtotal é cálculo: exclui 'conciliar' (§4); a linha a conciliar continua visível na tabela
+      rotulo: (g, rs) => { const c = rs.filter((r) => r.conta !== 'conciliar'); return [`${mesNome(g)} · entrou ${brl(soma_(c.filter((r) => r.sentido === 'entrada'), (r) => r.valor), 2)} · saiu ${brl(soma_(c.filter((r) => r.sentido === 'saida'), (r) => r.valor), 2)}`, `${rs.length} ${rs.length > 1 ? 'lançamentos' : 'lançamento'}`]; },
+    }, (r) => ({ t: esc(r.contraparte || '—'), s: esc([r.detalhe, r.categoria].filter(Boolean).join(' · ')), v: sinal(r.valor_assinado, 2), vcls: r.valor_assinado > 0 ? 'pos' : '', q: `${dm(r.data)}${r.hora ? ' ' + esc(r.hora) : ''}` }),
+    busca ? `nada com “${esc(busca)}” neste recorte` : 'nenhum lançamento neste recorte');
+  }
+
+  function desenhar() {
+    $$('.cx-filtros [data-escopo]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.escopo === escopo())));
+    opcoesMes();
+    sincronia();
+    lateral();
+    sis.marcarAtual();   // a fita do celular só se mede com o painel visível
+    if (tab === 'visao') visao();
+    if (tab === 'dre') dre();
+    if (tab === 'fluxo') fluxo();
+    if (tab === 'pagar') contas('pagar');
+    if (tab === 'receber') contas('receber');
+    if (tab === 'lancamentos') lancamentos();
+  }
+
+  // ── busca (3.21, F6): o que se acha a partir desta página ──
+  function buscarLanc(nome) { busca = nome.toLowerCase(); mesAba.lancamentos = 'tudo'; const i = $('#busca'); if (i) i.value = busca; if (tab === 'lancamentos') desenhar(); else location.hash = 'lancamentos'; }
+  sis.buscaFonte(() => {
+    const out = [];
+    const nomes = [...new Set([...linhas('lancamentos').filter((r) => r.conta !== 'conciliar'), ...linhas('contas_resumo')].map((r) => r.contraparte).filter(Boolean))];
+    nomes.forEach((n) => out.push({ grupo: 'Lançamentos', titulo: n, sub: 'lançamentos', ic: 'lancamentos', ir: () => buscarLanc(n) }));
+    const cz = dash.cruzado ? dash.cruzado() : null, d = cz && cz.projetos;
+    if (d) {
+      (d.contas || []).forEach((c) => out.push({ grupo: 'Contas', titulo: c.conta, sub: `${c.fase || ''}${c.ativa ? '' : ' · fora das ativas'}`, inicial: c.conta, ir: '/projetos/?conta=' + encodeURIComponent(c.conta) + '#projetos' }));
+      (d.decisoes || []).forEach((x) => out.push({ grupo: 'Decisões', titulo: x.titulo || x.id, sub: `${x.id} · ${x.conta}`, ic: 'decisoes', ir: '/projetos/?dec=' + encodeURIComponent(x.id) + '#decisoes' }));
+      ((d.comercial || {}).itens || []).forEach((i) => out.push({ grupo: 'Comercial', titulo: i.nome, sub: i.etapa_nome || '', ic: 'comercial', ir: '/projetos/?ficha=' + encodeURIComponent(i.nome) + '#comercial' }));
+    }
+    return out;
+  });
+  // vindo da busca do Projetos: ?busca=<contraparte> abre Lançamentos já filtrado (a URL se limpa)
+  const qBusca = new URLSearchParams(location.search).get('busca');
+  if (qBusca) { busca = qBusca.toLowerCase(); mesAba.lancamentos = 'tudo'; history.replaceState(null, '', location.pathname + '#lancamentos'); }
+
+  const alvo = location.hash.slice(1);
+  if (TELAS.includes(alvo)) tab = alvo;
+  $$('.cx-page').forEach((p) => { p.hidden = p.dataset.tela !== tab; });
+  dash.onData(desenhar);
+})();
+</script>

@@ -24,6 +24,40 @@ JSON_PADRAO = os.path.join(TAR, "log", "decisoes-pagina.json")
 AUTONOMIA = os.path.join(RAIZ, "40-operacao-rotinas", "ferramentas", "autonomia.py")
 
 
+APELIDOS = {}   # rótulo de cartão (minúsculo) → nome da pasta em clientes/, quando o rótulo não é o nome da pasta
+# Conta de parceiro mora em parceiros/<Parceiro>/ e resolve por contas_da_casa.py
+
+
+def pasta_da_conta(rotulo):
+    """Rótulo do cartão → pasta em clientes/. None = casa (ou rótulo sem pasta: vai para DECISOES-CASA com aviso)."""
+    r = (rotulo or "").strip()
+    base = os.path.join(RAIZ, "clientes")
+    if not r or r.lower() in ("casa", "comercial") or not os.path.isdir(base):
+        return None
+    if os.path.isdir(os.path.join(base, r)):
+        return r
+    if r.lower() in APELIDOS and os.path.isdir(os.path.join(base, APELIDOS[r.lower()])):
+        return APELIDOS[r.lower()]
+    pastas = [n for n in os.listdir(base) if os.path.isdir(os.path.join(base, n)) and not n.startswith("_")]
+    for n in pastas:   # o conta: do frontmatter do PAINEL.md
+        p = os.path.join(base, n, "PAINEL.md")
+        if os.path.exists(p):
+            m = re.search(r"^conta:\s*(.+)$", io.open(p, encoding="utf-8").read(2000), re.M)
+            if m and m.group(1).strip().lower() == r.lower():
+                return n
+    # subprojeto de cliente (clientes/<Conta>/<subpasta>/PAINEL.md, conta: próprio) decide no DECISOES da mãe
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    try:
+        import contas_da_casa
+        pp = contas_da_casa.pasta_da_conta(RAIZ, r)
+        if pp and contas_da_casa.eh_subprojeto(RAIZ, pp):
+            return os.path.basename(os.path.dirname(os.path.normpath(pp)))
+    except ImportError:
+        pass
+    mesmas = [n for n in pastas if n.lower().split()[0] == r.lower().split()[0]]
+    return mesmas[0] if len(mesmas) == 1 else None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", default=JSON_PADRAO)
@@ -33,7 +67,7 @@ def main():
     if not os.path.exists(a.json):
         print(f"sem {os.path.relpath(a.json, RAIZ)}: exporte a coleção `decisoes` da página primeiro."); return 1
     dados = json.load(io.open(a.json, encoding="utf-8"))
-    docs = dados.get("documents") or dados.get("docs") or dados if isinstance(dados, list) else dados.get("documents", [])
+    docs = dados if isinstance(dados, list) else (dados.get("documents") or dados.get("docs") or [])
     if isinstance(docs, dict):
         docs = [dict(v, id=k) for k, v in docs.items()]
     texto = io.open(PEND, encoding="utf-8", newline="").read()
@@ -56,11 +90,26 @@ def main():
         conta = d.get("conta") or re.search(r"### [^·]+· ([^—·]+?) —", cartao)
         conta = conta if isinstance(conta, str) else (conta.group(1).strip() if conta else "casa")
         nota = d.get("ajuste") or ""
-        linha = f"- **{quando}** · escolha literal: **{esc}**" + (f" · ajuste: {nota}" if nota else "") + (f" · recomendado: {rec}" if rec else "")
+        if esc.upper() == "LIVRE":      # o botão "enviar" do sistema, sem letra (resposta livre)
+            esc, nota = "resposta livre", nota
+            linha = f"- **{quando}** · resposta livre do {{{{OPERADOR}}}} (sem letra): {nota}" + (f" · recomendado: {rec}" if rec else "")
+        else:
+            linha = f"- **{quando}** · escolha literal: **{esc}**" + (f" · ajuste: {nota}" if nota else "") + (f" · recomendado: {rec}" if rec else "")
         abertas = abertas.replace(cartao, "", 1)
         decididas = decididas.rstrip("\r\n") + nl + nl + cartao + nl + linha + nl
-        # DECISOES.md da conta
-        destino = os.path.join(RAIZ, "clientes", conta, "DECISOES.md") if conta.lower() != "casa" else os.path.join(TAR, "log", "DECISOES-CASA.md")
+        # DECISOES.md da conta (o rótulo do cartão não é, necessariamente, o nome da pasta; nunca se cria pasta)
+        pasta = pasta_da_conta(conta)
+        if not pasta:   # conta de parceiro: o DECISOES.md da pasta do parceiro, versionado na Governança
+            sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+            try:
+                import contas_da_casa
+                pp = contas_da_casa.pasta_da_conta(RAIZ, conta)
+                pasta = os.path.relpath(pp, os.path.join(RAIZ, "clientes")) if pp and os.sep + "parceiros" + os.sep in pp else None
+            except ImportError:
+                pasta = None
+        destino = os.path.join(RAIZ, "clientes", pasta, "DECISOES.md") if pasta else os.path.join(TAR, "log", "DECISOES-CASA.md")
+        if not pasta and conta.lower() not in ("casa", "comercial"):
+            nota = (nota + " · " if nota else "") + f"conta '{conta}' sem pasta em clientes/"
         registro = (f"{nl}## {did} — decidido em {quando} (página de decisão){nl}{nl}"
                     f"**Escolha literal do {{OPERADOR}}:** {esc}{(' · ajuste: ' + nota) if nota else ''}. **Recomendado:** {rec or '—'}. **Tipo:** `{tipo}`.{nl}{nl}{cartao}{nl}")
         print(f"{did}: escolha {esc} (recomendado {rec or '—'}) → {os.path.relpath(destino, RAIZ)}")

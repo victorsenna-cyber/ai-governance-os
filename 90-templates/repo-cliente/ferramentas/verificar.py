@@ -144,6 +144,7 @@ def estrutura(raiz):
 
     # 3. referências: todo caminho entre crases existe
     prefixos = set(raiz_dirs)
+    numeradas_ref = [d for d in raiz_dirs if re.match(r"^\d+", d)]
     raiz_arqs = {f for f in os.listdir(raiz) if os.path.isfile(os.path.join(raiz, f))}
     ferr = os.path.relpath(AQUI, raiz).replace("\\", "/") + "/"
     for rel in arquivos(raiz):
@@ -151,6 +152,14 @@ def estrutura(raiz):
             continue
         texto = open(os.path.join(raiz, rel), encoding="utf-8", errors="replace").read()
         for trecho in re.findall(r"`([^`\n]+)`", texto):
+            inteiro = trecho.strip().strip(".,;:()[]\"'").split("#")[0].rstrip()
+            # caminho com espaço (`00 - projeto/STATUS.md`): testa o trecho inteiro antes de quebrar em palavras
+            if (" " in inteiro and "/" in inteiro and inteiro.split("/")[0] in prefixos
+                    and not any(c in inteiro for c in "<>{}*$|") and not re.search(r"AAAA|MM-DD|\bNN\b|\.\.\.", inteiro)):
+                if not (os.path.exists(os.path.join(raiz, inteiro.rstrip("/")))
+                        or os.path.exists(os.path.join(raiz, os.path.dirname(rel), inteiro.rstrip("/")))):
+                    falhas.append(f"referência: {rel} cita `{inteiro}`, que não existe")
+                continue
             for cand in trecho.split():
                 cand = cand.strip(".,;:()[]\"'").split("#")[0]
                 if (not cand or any(c in cand for c in "<>{}*$|") or cand.startswith(("http", "~", "/"))
@@ -158,7 +167,9 @@ def estrutura(raiz):
                     continue
                 primeiro = cand.split("/")[0]
                 if "/" in cand and primeiro in prefixos or ("/" not in cand and cand in raiz_arqs | {"STATUS.md", "DECISOES.md", "CLAUDE.md", "README.md"}):
-                    if not os.path.exists(os.path.join(raiz, cand.rstrip("/"))):
+                    # nome solto vale também se morar numa pasta numerada de primeiro nível (`00 - projeto/STATUS.md`)
+                    em_numerada = "/" not in cand and any(os.path.exists(os.path.join(raiz, d, cand)) for d in numeradas_ref)
+                    if not os.path.exists(os.path.join(raiz, cand.rstrip("/"))) and not em_numerada:
                         falhas.append(f"referência: {rel} cita `{cand}`, que não existe")
     return sorted(set(falhas))
 

@@ -1,0 +1,21 @@
+{
+  "titulo": "MODELO 9 · Prancha de escolha ·",
+  "titulo_italico": "amostra",
+  "subtitulo": "Quando usar: degrau 5 do desenho de produto, kit de marca, direção de arte. · Conta de exemplo: Oficina Alvorada. Uma variável por linha, de 2 a 4 opções; a recomendação vai na mensagem, não na prancha.",
+  "saida": "MODELO-9-PRANCHA-DE-ESCOLHA.html",
+  "altura_png": 1500,
+  "secoes": [
+    {"codigo": "1", "nome": "Escolha a paleta", "colunas": 3,
+     "itens": [
+       {"img": "opcoes/paleta-a.svg", "rotulo": "A", "legenda": "noite e laranja: contraste alto, lê de longe no story", "mudar": "a cor do botão"},
+       {"img": "opcoes/paleta-b.svg", "rotulo": "B", "legenda": "musgo e menta: mais calma, puxa para revisão e cuidado"},
+       {"img": "opcoes/paleta-c.svg", "rotulo": "C", "legenda": "grafite e vermelho: urgência, puxa para freio e conserto"}
+     ]},
+    {"codigo": "2", "nome": "Escolha a letra do título", "colunas": 3,
+     "itens": [
+       {"img": "opcoes/titulo-a.svg", "rotulo": "A", "legenda": "condensada: cabe mais palavra na tela do story"},
+       {"img": "opcoes/titulo-b.svg", "rotulo": "B", "legenda": "serifada: mais formal, pesa na proposta de frota"},
+       {"img": "opcoes/titulo-c.svg", "rotulo": "C", "legenda": "sem serifa: neutra, a mesma do WhatsApp"}
+     ]}
+  ]
+}

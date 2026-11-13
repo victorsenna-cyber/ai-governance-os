@@ -1,12 +1,12 @@
 /* =========================================================
-   PDF NOTURNO · variante ELÉTRICA · instituída 16/10/2026, alçada {{OPERADOR}}
+   PDF NOTURNO · variante ELÉTRICA · alçada {{OPERADOR}}
    Carregar DEPOIS de noturno.css (e de noturno-celular.css, se for celular).
-   🔴 MODELO PADRÃO DE PDF DA CASA desde 16/10/2026 ({{OPERADOR}}: "quero fazer desse o nosso novo modelo de PDF").
+   🔴 MODELO PADRÃO DE PDF DA CASA (decisão do {{OPERADOR}}).
    Contraste alto, azul vibrante, título condensado em caixa alta. O noturno puro continua
    disponível, mas só quando pedido.
    Fontes: arquivos estáticos em fontes/, ao lado desta folha (copiar a pasta junto).
-   🔴 01/11/2026: nunca pelo <link> do Google Fonts. A fonte variável entra no PDF do
-   Chrome como dezenas de fontes Type3 e o PDF abre quebrado (um documento real, 30/10).
+   🔴 Nunca pelo <link> do Google Fonts. A fonte variável entra no PDF do
+   Chrome como dezenas de fontes Type3 e o PDF abre quebrado (visto em documento real).
    Não muda classe nenhuma: só cor, fonte e a capa. Acrescenta .fita e .passo.
    Gerar SEMPRE por gerar_pdf.py, que imprime e confere fonte, capa e página em branco.
    ========================================================= */
@@ -49,8 +49,11 @@ h1, h2 {
   font-family: "Anton", "Oswald", Impact, sans-serif; font-weight: normal;
   text-transform: uppercase; color: var(--branco); letter-spacing: 0.2pt; border: none;
 }
-h1 { font-size: 24pt; line-height: 1.02; margin-bottom: 3mm; }
-h2 { font-size: 19pt; line-height: 1.04; margin: 0 0 2.5mm 0; padding: 0; }
+/* padding-top segura o acento das maiúsculas da Anton dentro da caixa da linha.
+   Sem ele, o título que abre uma página (depois de page-break ou da capa) perdia o acento,
+   que o Chrome desenhava solto no pé da página anterior ("NAO E", "MAQUINA"). */
+h1 { font-size: 24pt; line-height: 1.02; padding-top: 0.3em; margin-bottom: 3mm; }
+h2 { font-size: 19pt; line-height: 1.04; margin: 0 0 2.5mm 0; padding: 0.25em 0 0 0; }
 h2 span, h1 span { color: var(--azul-claro); }
 h3 {
   font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 7pt;
@@ -70,12 +73,12 @@ code { font-family: "DejaVu Sans Mono", monospace; font-size: 7.6pt; color: #BFD
 }
 
 /* ---------- capa: página inteira, sem margem, com a fita ----------
-   🔴 01/11/2026: tudo na capa se mede pela PÁGINA, nunca em mm fixo.
+   🔴 Tudo na capa se mede pela PÁGINA, nunca em mm fixo.
    A altura vem de --pag-a (297mm no noturno.css, 160mm no noturno-celular.css);
    as posições são % da capa e a largura da fita é % da página. A4 e celular saem
    certos sem uma linha de CSS no documento: NÃO sobrescrever altura, top nem largura.
    O defeito que isto fecha: a fita tinha 140mm, medida para a página de 90mm do
-   celular, e no A4 parava no meio da página (três PDFs em 30/10, mais um em 01/11). */
+   celular, e no A4 parava no meio da página (visto em quatro PDFs reais). */
 .capa {
   position: relative; overflow: hidden; height: var(--pag-a, 297mm); padding: 0 8mm; margin: 0;
   background: var(--fundo); break-after: page;
@@ -85,7 +88,7 @@ code { font-family: "DejaVu Sans Mono", monospace; font-size: 7.6pt; color: #BFD
 .capa h1 { font-size: 36pt; line-height: 0.98; margin: 0 0 4mm 0; }
 .capa .lead { font-size: 9.6pt; color: var(--texto); line-height: 1.45; max-width: none; }
 .capa .botao {
-  display: inline-block; margin-top: 6mm; padding: 2.2mm 5mm; border-radius: 10mm;
+  display: inline-block; margin-top: 6mm; padding: 2.2mm 5mm; border-radius: 3px;
   background: linear-gradient(90deg, var(--azul), var(--azul-claro));
   font-family: "Montserrat"; font-weight: 700; font-size: 7pt; letter-spacing: 1.2pt; color: var(--branco);
 }
@@ -117,7 +120,7 @@ code { font-family: "DejaVu Sans Mono", monospace; font-size: 7.6pt; color: #BFD
 .destaque .lead { font-family: "Anton", sans-serif; text-transform: uppercase; font-size: 12pt; line-height: 1.12; color: var(--branco); }
 .nota { background: transparent; border: 1px solid var(--borda); border-radius: 1.5mm; color: var(--fraco); font-size: 8pt; padding: 2.6mm 3.2mm; }
 .nota strong { color: var(--texto); }
-.ancora { font-family: "Anton", sans-serif; text-transform: uppercase; font-size: 16pt; line-height: 1.08; color: var(--branco); margin: 6mm 0; padding: 0; }
+.ancora { font-family: "Anton", sans-serif; text-transform: uppercase; font-size: 16pt; line-height: 1.22; color: var(--branco); margin: 6mm 0; padding: 0; }
 .ancora span { color: var(--azul-claro); }
 
 table { font-size: 7.8pt; margin: 2.5mm 0; }
@@ -140,7 +143,7 @@ td strong { color: var(--branco); }
 .copiar-rotulo { color: var(--azul-claro); font-family: "Montserrat"; }
 .copiar { background: var(--painel); border-color: var(--borda); color: var(--branco); }
 
-/* coluna de estado numa tabela (01/11/2026): saiu de dois documentos reais, onde
+/* coluna de estado numa tabela: saiu de dois documentos reais, onde
    era CSS do documento. <td class="estado ok">FEITO</td> · ok azul · pend cinza · dono branco */
 .estado { font-family: "Montserrat"; font-weight: 700; font-size: 6.4pt; letter-spacing: 1pt; white-space: nowrap; }
 .estado.ok { color: var(--azul-claro); }
@@ -159,3 +162,10 @@ td strong { color: var(--branco); }
 .prompt { background: var(--painel); border: 1px solid var(--borda); border-radius: 1.5mm; padding: 2.4mm 2.6mm; margin-top: 1mm; }
 .prompt p { font-family: "Inter", sans-serif; font-size: 4.4pt; line-height: 1.28; color: #C7D4FF; margin: 0 0 1.1mm 0; }
 .prompt p:last-child { margin-bottom: 0; }
+
+/* Caminho e comando para copiar: numa linha só, sem quebra. Texto quebrado em duas
+   linhas no PDF sai pela metade na área de transferência. Uso: <a class="caminho" href="file:///...">C:\...</a> */
+.caminho { display:block; white-space:nowrap; overflow:visible; font-family:"Inter", sans-serif; font-size:5.3pt;
+  letter-spacing:-.05pt; color:#FFFFFF; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.14);
+  border-radius:1.2mm; padding:1.6mm 2mm; margin:1.2mm 0 3mm; text-decoration:none; }
+.caminho-rotulo { font-family:"Montserrat"; font-weight:700; font-size:5.8pt; letter-spacing:1pt; text-transform:uppercase; color:#8A8A8A; margin-top:2.4mm; }

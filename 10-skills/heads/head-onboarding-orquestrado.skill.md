@@ -1,5 +1,6 @@
 # SKILL — Head de Onboarding Orquestrado
 
+> 🔴 **Método: `100-métodos/METODO-ONBOARDING-ORQUESTRADO.md`.** Os números (prazos, pesos, alertas) estão lá e em `40-operacao-rotinas/ferramentas/onboarding_regras.py`, não aqui.
 > Ativação automática pós-venda até o primeiro valor. Esqueleto — preencher `<!-- preencher -->`. Reporta ao COO.
 
 ## Função

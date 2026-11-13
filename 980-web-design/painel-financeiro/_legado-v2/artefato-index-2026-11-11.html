@@ -1,0 +1,700 @@
+<!-- [LEGADO] Cópia íntegra de artefato/index.html antes da direção Grafite.
+     Era espelho byte a byte do artefato do claude.ai. Depois dela o repo é a fonte; nunca carregado. -->
+<style>
+  #dash-root { --dash-gutter: clamp(16px, 3vw, 40px); }
+  .cx { font-family: var(--font-anthropic-sans); color: var(--color-fg); max-width: 1320px; margin-inline: auto; }
+  .cx-top { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; justify-content: space-between; padding-block: var(--cds-pad-sm); }
+  .cx-tabs, .cx-seg { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--color-border-line); border-radius: 999px; background: var(--color-panel); overflow-x: auto; scrollbar-width: none; }
+  .cx-tabs button, .cx-seg button { border: 0; background: none; color: var(--color-fg-muted); padding: 6px 14px; border-radius: 999px; font: inherit; font-size: var(--cds-font-size-body); white-space: nowrap; cursor: pointer; transition: background var(--cds-dur-slow) var(--cds-ease-out), color var(--cds-dur-slow) var(--cds-ease-out); }
+  .cx-tabs button[aria-selected="true"] { background: var(--color-fg); color: var(--color-bg); }
+  .cx-seg button[aria-checked="true"] { background: var(--color-bg); color: var(--color-fg); box-shadow: 0 0 0 1px var(--color-border-line); }
+  .cx-hero { padding-block: clamp(20px, 5vw, 56px) var(--cds-pad-lg); }
+  .cx-eyebrow { font-size: var(--cds-font-size-caption); letter-spacing: .08em; text-transform: uppercase; color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-sm); }
+  .cx-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: clamp(28px, 4.6vw, 60px); line-height: 1.05; letter-spacing: -.015em; margin: 0; max-width: 24ch; }
+  .cx-title .soft { color: var(--color-fg-muted); font-style: italic; }
+  .cx-title .bad { color: var(--color-bad); } .cx-title .ok { color: var(--color-ok); }
+  .cx-grid { display: grid; gap: var(--cds-gap-md); grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .cx-card { position: relative; overflow: hidden; min-width: 0; background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
+  .cx-kpi { grid-column: span 2; display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-height: 148px; container-type: inline-size; }
+  .cx-kpi.main { grid-column: span 4; }
+  .cx-kpi.main::before { content: ""; position: absolute; width: 70%; aspect-ratio: 1; right: -25%; top: -45%; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--cds-chart-status-critical) 22%, transparent), transparent 70%); pointer-events: none; }
+  .cx-kpi.main.ok::before { background: radial-gradient(circle, color-mix(in srgb, var(--color-ok) 22%, transparent), transparent 70%); }
+  .cx-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .cx-big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: min(clamp(30px, 3vw, 44px), 17cqi); line-height: 1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; margin-top: auto; white-space: nowrap; }
+  .cx-kpi.main .cx-big { font-size: min(clamp(40px, 4.4vw, 64px), 14cqi); }
+  .cx-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+  .cx-neg { color: var(--color-bad); } .cx-pos { color: var(--color-ok); }
+  .cx-wide { grid-column: span 8; } .cx-side { grid-column: span 4; } .cx-half { grid-column: span 6; } .cx-full { grid-column: 1 / -1; }
+  .cx-h { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--cds-gap-sm); margin-bottom: var(--cds-gap-md); }
+  .cx-h h3 { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); }
+  .cx-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .cx-chart { position: relative; width: 100%; min-height: 260px; }
+  .cx-chart.tall { min-height: 360px; }
+  .cx-chart svg text { font-family: var(--font-anthropic-sans); }
+  .cx-tip { position: absolute; z-index: 3; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .cx-tip .d { color: var(--cds-text-secondary); display: block; margin-bottom: 2px; }
+  .cx-tip i { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; }
+  .cx-agenda { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; max-height: 470px; overflow: auto; }
+  .cx-agenda li { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: var(--cds-gap-sm); align-items: center; padding: var(--cds-pad-xs); border-radius: var(--cds-radius); }
+  .cx-agenda li:hover { background: color-mix(in srgb, var(--color-fg) 4%, transparent); }
+  .cx-day { text-align: center; line-height: 1; }
+  .cx-day b { display: block; font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 22px; }
+  .cx-day span { font-size: 10px; text-transform: uppercase; color: var(--color-fg-muted); }
+  .cx-what { min-width: 0; }
+  .cx-what div { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .cx-what small { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .cx-amt { font-variant-numeric: tabular-nums; font-weight: var(--cds-font-weight-medium); white-space: nowrap; }
+  .cx-chip { display: inline-block; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--color-border-line); font-size: 11px; color: var(--color-fg-muted); white-space: nowrap; }
+  .cx-chip.bad { color: var(--color-bad); border-color: color-mix(in srgb, var(--color-bad) 45%, transparent); }
+  .cx-chip.warn { color: var(--color-warn); border-color: color-mix(in srgb, var(--color-warn) 45%, transparent); }
+  .cx-bars { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+  .cx-bar { display: grid; grid-template-columns: minmax(70px, 30%) 1fr auto; gap: var(--cds-gap-sm); align-items: center; font-size: var(--cds-font-size-caption); }
+  .cx-bar .track { height: 10px; border-radius: 999px; background: color-mix(in srgb, var(--color-fg) 6%, transparent); overflow: hidden; }
+  .cx-bar .fill { height: 100%; border-radius: 999px; }
+  .cx-bar .v { font-variant-numeric: tabular-nums; color: var(--color-fg-muted); }
+  .cx-alerts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-body); }
+  .cx-alerts li { display: flex; gap: var(--cds-gap-sm); line-height: 1.45; }
+  .cx-alerts li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: .55em; border-radius: 50%; background: var(--color-warn); }
+  .cx-alerts li.bad::before { background: var(--color-bad); }
+  .cx-scroll { overflow: auto; max-height: 68vh; margin-inline: calc(-1 * var(--cds-pad-sm)); }
+  .cx-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-body); font-variant-numeric: tabular-nums; }
+  .cx-table th { position: sticky; top: 0; background: var(--color-panel); text-align: left; font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+  .cx-table td { padding: var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+  .cx-table tr:last-child td { border-bottom: 0; }
+  .cx-table .n { text-align: right; white-space: nowrap; }
+  .cx-table td.muted { color: var(--color-fg-muted); }
+  .cx-table tr.res td { font-family: var(--font-anthropic-serif); font-size: var(--cds-font-size-heading); }
+  .cx-chips { display: flex; gap: var(--cds-gap-xs); flex-wrap: wrap; }
+  .cx-chips button { border: 1px solid var(--color-border-line); background: none; color: var(--color-fg-muted); border-radius: 999px; padding: 4px 12px; font: inherit; font-size: var(--cds-font-size-caption); cursor: pointer; }
+  .cx-chips button[aria-pressed="true"] { background: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+  .cx-search { border: 1px solid var(--color-border-line); background: var(--color-bg); color: var(--color-fg); border-radius: 999px; padding: 6px 14px; font: inherit; font-size: var(--cds-font-size-body); min-width: 0; flex: 0 1 240px; }
+  .cx-ctrl { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; }
+  .cx-mes { border: 1px solid var(--color-border-line); background: var(--color-panel); color: var(--color-fg); border-radius: 999px; padding: 6px 14px; font: inherit; font-size: var(--cds-font-size-body); cursor: pointer; }
+  .cx-table tr.cx-div td { background: color-mix(in srgb, var(--color-fg) 5%, transparent); color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); padding-block: var(--cds-pad-xs); }
+  .cx-empty { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0; }
+  .cx-fail { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .cx-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+  .cx-foot { margin-top: var(--cds-pad-xl); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+  [data-dash-source-state=empty] { color: transparent; }
+  @media (max-width: 1080px) { .cx-kpi, .cx-kpi.main { grid-column: span 6; } .cx-wide, .cx-side, .cx-half { grid-column: 1 / -1; } }
+  @media (max-width: 560px) { .cx-kpi, .cx-kpi.main { grid-column: 1 / -1; } .cx-table .hide-n { display: none; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .cx-page.on .cx-card, .cx-page.on .cx-hero { animation: cx-rise var(--cds-dur-slow) var(--cds-ease-out) both; }
+    .cx-page.on .cx-card:nth-child(2) { animation-delay: 40ms; } .cx-page.on .cx-card:nth-child(3) { animation-delay: 80ms; }
+    .cx-page.on .cx-card:nth-child(4) { animation-delay: 120ms; } .cx-page.on .cx-card:nth-child(n+5) { animation-delay: 160ms; }
+  }
+  @keyframes cx-rise { from { opacity: 0; transform: translateY(10px); } }
+</style>
+
+<div class="cx">
+  <div class="cx-top">
+    <nav class="cx-tabs" role="tablist" aria-label="Seções">
+      <button role="tab" data-tab="visao" aria-selected="true">Visão</button>
+      <button role="tab" data-tab="dre">DRE</button>
+      <button role="tab" data-tab="fluxo">Fluxo de caixa</button>
+      <button role="tab" data-tab="pagar">A pagar</button>
+      <button role="tab" data-tab="receber">A receber</button>
+      <button role="tab" data-tab="lancamentos">Lançamentos</button>
+    </nav>
+    <div class="cx-ctrl">
+      <select class="cx-mes" id="mes" aria-label="Mês"><option value="tudo">Todos os meses</option></select>
+      <div class="cx-seg" role="radiogroup" aria-label="Conta">
+        <button role="radio" data-escopo="todas" aria-checked="true">Tudo</button>
+        <button role="radio" data-escopo="pessoal">Pessoal</button>
+        <button role="radio" data-escopo="empresa">Empresa</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISÃO -->
+  <section class="cx-page on" id="visao">
+    <div class="cx-grid" style="margin-top: var(--cds-pad-lg)">
+      <article class="cx-card cx-kpi main" id="kpi-caixa">
+        <span class="cx-label">Caixa estimado hoje · conta principal</span>
+        <span class="cx-big dash-skeleton" data-scope data-source="kpis" data-field="caixa_estimado">—</span>
+        <span class="cx-sub">conferido <span data-scope data-source="kpis" data-field="caixa_conferido">—</span> em <span data-scope data-source="kpis" data-field="caixa_conferido_em">—</span>, mais o registrado depois: <span data-scope data-source="kpis" data-field="fluxo_desde_conferido">—</span></span>
+      </article>
+      <article class="cx-card cx-kpi" id="kpi-vencido">
+        <span class="cx-label">Vencido, com multa e juros</span>
+        <span class="cx-big cx-neg dash-skeleton" data-scope data-source="kpis" data-field="vencido_atualizado">—</span>
+        <span class="cx-sub"><span data-scope data-source="kpis" data-field="vencido">—</span> + <span data-scope data-source="kpis" data-field="encargos_vencidos">—</span> de encargos · juros de <span data-scope data-source="kpis" data-field="juros_por_dia">—</span> por dia</span>
+      </article>
+      <article class="cx-card cx-kpi" id="kpi-pagar">
+        <span class="cx-label">A pagar · 30 dias</span>
+        <span class="cx-big dash-skeleton" data-scope data-source="kpis" data-field="pagar_30d">—</span>
+        <span class="cx-sub">sem contar o vencido</span>
+      </article>
+      <article class="cx-card cx-kpi" id="kpi-receber">
+        <span class="cx-label">A receber</span>
+        <span class="cx-big cx-pos dash-skeleton" data-scope data-source="kpis" data-field="receber_total">—</span>
+        <span class="cx-sub"><span data-scope data-source="kpis" data-field="receber_atrasado">—</span> já atrasado</span>
+      </article>
+      <article class="cx-card cx-kpi" id="kpi-mes">
+        <span class="cx-label">Saiu no mês</span>
+        <span class="cx-big dash-skeleton" data-scope data-source="kpis" data-field="saiu_mes">—</span>
+        <span class="cx-sub">entrou <span data-scope data-source="kpis" data-field="entrou_mes">—</span></span>
+      </article>
+
+      <article class="cx-card cx-wide" id="card-projecao">
+        <header class="cx-h"><h3>Saldo, dia a dia</h3><span class="cx-note">do último saldo conferido até 30 dias à frente · tracejado = projetado</span></header>
+        <div class="cx-chart" id="chart-projecao" data-source="projecao"></div>
+      </article>
+      <article class="cx-card cx-side" id="card-agenda">
+        <header class="cx-h"><h3>Agenda</h3><span class="cx-note">o que vence primeiro</span></header>
+        <ul class="cx-agenda" id="agenda" data-source="contas_resumo"></ul>
+      </article>
+      <article class="cx-card cx-half" id="card-categorias">
+        <header class="cx-h"><h3>Para onde foi</h3><span class="cx-note" id="cat-visao-note">saídas por categoria, todo o registro</span></header>
+        <div class="cx-bars" id="categorias" data-source="categorias"></div>
+      </article>
+      <article class="cx-card cx-half" id="card-conferir">
+        <header class="cx-h"><h3>Conferir</h3><span class="cx-note">o que o registro ainda não fecha</span></header>
+        <ul class="cx-alerts">
+          <li class="bad" data-alerta="negativo">O caixa calculado está em <span data-scope data-source="kpis" data-field="caixa_estimado">—</span>: há saídas registradas sem a entrada que as pagou. Conferir o saldo no app e lançar a entrada que falta.</li>
+          <li data-alerta="conferido">Último saldo conferido há <span data-scope data-source="kpis" data-field="dias_desde_conferido">—</span> dias.</li>
+          <li class="bad" data-alerta="acordo">Acordo de 19/10: pagar <span data-scope data-source="kpis" data-field="acordo_valor">—</span> até <span data-scope data-source="kpis" data-field="acordo_prazo">—</span> (entrada + 1ª parcela, com multa e juros até o dia), senão ele protocola a ação direto. A 2ª parcela fica fora do acordo.</li>
+          <li class="bad" data-alerta="vencidas"><span data-scope data-source="kpis" data-field="contas_vencidas">—</span> conta(s) vencida(s): <span data-scope data-source="kpis" data-field="vencido">—</span> de principal, <span data-scope data-source="kpis" data-field="vencido_atualizado">—</span> com multa e juros, que crescem <span data-scope data-source="kpis" data-field="juros_por_dia">—</span> por dia.</li>
+          <li data-alerta="atrasado"><span data-scope data-source="kpis" data-field="receber_atrasado">—</span> a receber já passou da data.</li>
+          <li data-alerta="conciliar"><span data-scope data-source="kpis" data-field="a_conciliar">—</span> lançamento(s) esperando conciliação.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- DRE -->
+  <section class="cx-page" id="dre" hidden>
+    <div class="cx-hero">
+      <p class="cx-eyebrow">Demonstração do resultado · regime de caixa</p>
+    </div>
+    <div class="cx-grid">
+      <article class="cx-card cx-full" id="card-dre">
+        <header class="cx-h"><h3>Por mês</h3><span class="cx-note" id="dre-note">sem CNPJ, tudo passa pela conta pessoal</span></header>
+        <div class="cx-scroll">
+          <table class="cx-table" data-source="dre_mensal" data-row-key="escopo,mes">
+            <thead><tr>
+              <th data-field="mes">Mês</th>
+              <th class="n" data-field="entradas" id="dre-th-entradas">Entradas</th>
+              <th class="n" data-field="saidas" id="dre-th-saidas">Saídas</th>
+              <th class="n" data-field="resultado">Resultado</th>
+              <th class="n" data-field="margem">Margem</th>
+              <th class="n hide-n" data-field="lancamentos">Lançamentos</th>
+            </tr></thead>
+            <tbody id="dre-body"></tbody>
+          </table>
+        </div>
+      </article>
+      <article class="cx-card cx-full" id="card-dre-cat">
+        <header class="cx-h"><h3>Por categoria</h3><span class="cx-note" id="cat-dre-note">todo o registro</span></header>
+        <div class="cx-scroll">
+          <table class="cx-table" data-source="categorias" data-row-key="escopo,sentido,categoria">
+            <thead><tr>
+              <th data-field="sentido">Sentido</th><th data-field="categoria">Categoria</th>
+              <th class="n" data-field="valor">Valor</th><th class="n hide-n" data-field="lancamentos">Lançamentos</th>
+            </tr></thead>
+            <tbody id="cat-body"></tbody>
+          </table>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- FLUXO -->
+  <section class="cx-page" id="fluxo" hidden>
+    <div class="cx-hero">
+      <p class="cx-eyebrow">Fluxo de caixa · registrado e projetado</p>
+    </div>
+    <div class="cx-grid">
+      <article class="cx-card cx-full" id="card-fluxo">
+        <header class="cx-h"><h3>Saldo, dia a dia</h3><span class="cx-note">conservador: paga o vencido e não conta nada a receber</span></header>
+        <div class="cx-chart tall" id="chart-fluxo" data-source="projecao"></div>
+      </article>
+      <article class="cx-card cx-full" id="card-semanas">
+        <header class="cx-h"><h3>Por semana</h3><span class="cx-note">a partir do saldo conferido · vencido conta na semana de hoje</span></header>
+        <div class="cx-scroll">
+          <table class="cx-table" data-source="semanas" data-row-key="semana,escopo">
+            <thead><tr>
+              <th data-field="semana">Semana de</th>
+              <th class="n" data-field="entrou">Entrou</th><th class="n" data-field="saiu">Saiu</th>
+              <th class="n" data-field="entra_previsto">Entra (previsto)</th><th class="n" data-field="sai_previsto">Sai (previsto)</th>
+            </tr></thead>
+            <tbody id="semanas-body"></tbody>
+          </table>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- A PAGAR -->
+  <section class="cx-page" id="pagar" hidden>
+    <div class="cx-hero">
+      <p class="cx-eyebrow">Contas a pagar</p>
+    </div>
+    <article class="cx-card" id="card-pagar">
+      <header class="cx-h"><h3>Em aberto</h3>
+        <div class="cx-chips" id="pagar-filtro">
+          <button data-f="todas" aria-pressed="true">Todas</button>
+          <button data-f="vencidas" aria-pressed="false">Vencidas</button>
+          <button data-f="30" aria-pressed="false">30 dias</button>
+          <button data-f="sem" aria-pressed="false">Sem data</button>
+        </div>
+      </header>
+      <div class="cx-scroll">
+        <table class="cx-table" data-source="contas_resumo" data-row-key="id">
+          <thead><tr>
+            <th data-field="vencimento">Vence</th><th data-field="contraparte">Para quem</th><th data-field="descricao">O quê</th>
+            <th class="hide-n" data-field="conta">Conta</th><th data-field="situacao">Situação</th><th class="n" data-field="valor">Valor</th><th class="n hide-n" data-field="encargos">Multa + juros</th><th class="n" data-field="valor_atualizado">Atualizado hoje</th><th class="n hide-n" data-field="valor_no_prazo">Até o prazo</th>
+          </tr></thead>
+          <tbody id="pagar-body"></tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
+  <!-- A RECEBER -->
+  <section class="cx-page" id="receber" hidden>
+    <div class="cx-hero">
+      <p class="cx-eyebrow">Contas a receber</p>
+    </div>
+    <article class="cx-card" id="card-receber">
+      <header class="cx-h"><h3>Previsto</h3><span class="cx-note">com a certeza registrada</span></header>
+      <div class="cx-scroll">
+        <table class="cx-table" data-source="contas_resumo" data-row-key="id">
+          <thead><tr>
+            <th data-field="vencimento">Quando</th><th data-field="contraparte">De quem</th><th data-field="descricao">O quê</th>
+            <th data-field="situacao">Situação</th><th class="hide-n" data-field="certeza">Certeza</th><th class="n" data-field="valor">Valor</th>
+          </tr></thead>
+          <tbody id="receber-body"></tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
+  <!-- LANÇAMENTOS -->
+  <section class="cx-page" id="lancamentos" hidden>
+    <div class="cx-hero">
+      <p class="cx-eyebrow">Extrato</p>
+    </div>
+    <article class="cx-card" id="card-lancamentos">
+      <header class="cx-h"><h3>Lançamentos</h3><input class="cx-search" id="busca" type="search" placeholder="buscar…" aria-label="Buscar lançamentos"></header>
+      <div class="cx-scroll">
+        <table class="cx-table" data-source="lancamentos" data-row-key="id">
+          <thead><tr>
+            <th data-field="data">Data</th><th class="hide-n" data-field="hora">Hora</th><th data-field="contraparte">Contraparte</th>
+            <th class="hide-n" data-field="detalhe">Detalhe</th><th data-field="categoria">Categoria</th><th class="hide-n" data-field="conta">Conta</th>
+            <th class="hide-n" data-field="meio">Meio</th><th class="n" data-field="valor_assinado">Valor</th>
+          </tr></thead>
+          <tbody id="lanc-body"></tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
+  <p class="cx-foot">Fonte: <code>940-operador/FINANCAS.md</code> e <code>45-financeiro/LANCAMENTOS-EMPRESA.md</code>, copiados para o Supabase a cada push na main. Sincronizado em <span data-source="kpis" data-field="sincronizado_em" data-where="escopo=todas">—</span> · commit <span data-source="kpis" data-field="commit" data-where="escopo=todas">—</span>.</p>
+</div>
+
+<script>
+dash.loader('kpis', { description: 'A resposta do Supabase (texto com o JSON entre marcadores) vira linhas.', fn: ({ answer }) => {
+  const t = typeof answer === 'string' ? answer : (answer && typeof answer.result === 'string' ? answer.result : JSON.stringify(answer));
+  const b = t.lastIndexOf('</untrusted-data-'), o = t.lastIndexOf('<untrusted-data-', b), a = t.indexOf('>', o);
+  if (b < 0 || o < 0 || a > b) throw new Error(t.slice(0, 400));
+  return JSON.parse(t.slice(a + 1, b).trim());
+} });
+dash.loader('projecao', { description: 'A resposta do Supabase (texto com o JSON entre marcadores) vira linhas.', fn: ({ answer }) => {
+  const t = typeof answer === 'string' ? answer : (answer && typeof answer.result === 'string' ? answer.result : JSON.stringify(answer));
+  const b = t.lastIndexOf('</untrusted-data-'), o = t.lastIndexOf('<untrusted-data-', b), a = t.indexOf('>', o);
+  if (b < 0 || o < 0 || a > b) throw new Error(t.slice(0, 400));
+  return JSON.parse(t.slice(a + 1, b).trim());
+} });
+dash.loader('resumo_projecao', { description: 'A resposta do Supabase (texto com o JSON entre marcadores) vira linhas.', fn: ({ answer }) => {
+  const t = typeof answer === 'string' ? answer : (answer && typeof answer.result === 'string' ? answer.result : JSON.stringify(answer));
+  const b = t.lastIndexOf('</untrusted-data-'), o = t.lastIndexOf('<untrusted-data-', b), a = t.indexOf('>', o);
+  if (b < 0 || o < 0 || a > b) throw new Error(t.slice(0, 400));
+  return JSON.parse(t.slice(a + 1, b).trim());
+} });
+dash.loader('semanas', { description: 'A resposta do Supabase (texto com o JSON entre marcadores) vira linhas.', fn: ({ answer }) => {
+  const t = typeof answer === 'string' ? answer : (answer && typeof answer.result === 'string' ? answer.result : JSON.stringify(answer));
+  const b = t.lastIndexOf('</untrusted-data-'), o = t.lastIndexOf('<untrusted-data-', b), a = t.indexOf('>', o);
+  if (b < 0 || o < 0 || a > b) throw new Error(t.slice(0, 400));
+  return JSON.parse(t.slice(a + 1, b).trim());
+} });
+dash.loader('contas_resumo', { description: 'A resposta do Supabase (texto com o JSON entre marcadores) vira linhas.', fn: ({ answer }) => {
+  const t = typeof answer === 'string' ? answer : (answer && typeof answer.result === 'string' ? answer.result : JSON.stringify(answer));
+  const b = t.lastIndexOf('</untrusted-data-'), o = t.lastIndexOf('<untrusted-data-', b), a = t.indexOf('>', o);
+  if (b < 0 || o < 0 || a > b) throw new Error(t.slice(0, 400));
+  return JSON.parse(t.slice(a + 1, b).trim());
+} });
+dash.loader('lancamentos', { description: 'A resposta do Supabase (texto com o JSON entre marcadores) vira linhas.', fn: ({ answer }) => {
+  const t = typeof answer === 'string' ? answer : (answer && typeof answer.result === 'string' ? answer.result : JSON.stringify(answer));
+  const b = t.lastIndexOf('</untrusted-data-'), o = t.lastIndexOf('<untrusted-data-', b), a = t.indexOf('>', o);
+  if (b < 0 || o < 0 || a > b) throw new Error(t.slice(0, 400));
+  return JSON.parse(t.slice(a + 1, b).trim());
+} });
+dash.loader('dre_mensal', { description: 'A resposta do Supabase (texto com o JSON entre marcadores) vira linhas.', fn: ({ answer }) => {
+  const t = typeof answer === 'string' ? answer : (answer && typeof answer.result === 'string' ? answer.result : JSON.stringify(answer));
+  const b = t.lastIndexOf('</untrusted-data-'), o = t.lastIndexOf('<untrusted-data-', b), a = t.indexOf('>', o);
+  if (b < 0 || o < 0 || a > b) throw new Error(t.slice(0, 400));
+  return JSON.parse(t.slice(a + 1, b).trim());
+} });
+dash.loader('categorias', { description: 'A resposta do Supabase (texto com o JSON entre marcadores) vira linhas.', fn: ({ answer }) => {
+  const t = typeof answer === 'string' ? answer : (answer && typeof answer.result === 'string' ? answer.result : JSON.stringify(answer));
+  const b = t.lastIndexOf('</untrusted-data-'), o = t.lastIndexOf('<untrusted-data-', b), a = t.indexOf('>', o);
+  if (b < 0 || o < 0 || a > b) throw new Error(t.slice(0, 400));
+  return JSON.parse(t.slice(a + 1, b).trim());
+} });
+</script>
+
+<script>
+(() => {
+  const root = document.querySelector('.cx');
+  const $ = (s) => root.querySelector(s);
+  const $$ = (s) => [...root.querySelectorAll(s)];
+  const BRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+  const BRL0 = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+  const PCT = new Intl.NumberFormat('pt-BR', { style: 'percent', maximumFractionDigits: 0 });
+  const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+  const dm = (s) => (s ? `${s.slice(8, 10)}/${s.slice(5, 7)}` : 'sem data');
+  const mesNome = (ym) => `${MES[+ym.slice(5, 7) - 1]} ${ym.slice(0, 4)}`;
+  const parse = (s) => new Date(s + 'T00:00:00Z');
+  const MONEY = new Set(['acordo_valor', 'vencido_atualizado', 'encargos_vencidos', 'juros_por_dia', 'caixa_estimado', 'caixa_conferido', 'fluxo_desde_conferido', 'vencido', 'pagar_30d', 'receber_total', 'receber_atrasado', 'saiu_mes', 'entrou_mes', 'menor_saldo', 'fim_com_receber', 'fim_conservador']);
+  const DATES = new Set(['acordo_prazo', 'caixa_conferido_em', 'dia_menor_saldo', 'ate']);
+  const show = (field, v) => v == null ? '—' : MONEY.has(field) ? BRL.format(v) : DATES.has(field) ? dm(v) : field === 'sincronizado_em' ? `${dm(v.slice(0, 10))} ${v.slice(11, 16)}` : String(v);
+
+  let tab = 'visao';
+  let filtroPagar = 'todas';
+  let busca = '';
+  const escopo = () => dash.params().escopo || 'todas';
+  const naConta = (r) => escopo() === 'todas' || r.conta === escopo();
+
+  // mês, por aba: Lançamentos abre no mês corrente; as outras abas, em todos os meses
+  const mesAba = {};
+  const mesAtual = () => { const k = dash.data('kpis'); return k.status === 'ok' && k.data[0] ? k.data[0].hoje.slice(0, 7) : null; };
+  const mes = () => mesAba[tab] ?? (tab === 'lancamentos' ? mesAtual() || 'tudo' : 'tudo');
+  const noMes = (d) => mes() === 'tudo' || (d || '').slice(0, 7) === mes();
+  const periodo = () => (mes() === 'tudo' ? 'todo o registro' : mesNome(mes()));
+
+  // ── controles ───────────────────────────────────────────
+  $$('.cx-tabs button').forEach((b) => b.addEventListener('click', () => irPara(b.dataset.tab)));
+  function irPara(t) {
+    tab = t;
+    $$('.cx-tabs button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === t)));
+    $$('.cx-page').forEach((p) => { p.hidden = p.id !== t; p.classList.toggle('on', p.id === t); });
+    dash.setLink(t);
+    desenhar();
+  }
+  $$('.cx-seg button').forEach((b) => b.addEventListener('click', () => dash.setParams({ escopo: b.dataset.escopo })));
+  $$('#pagar-filtro button').forEach((b) => b.addEventListener('click', () => {
+    filtroPagar = b.dataset.f;
+    $$('#pagar-filtro button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    desenhar();
+  }));
+  $('#busca').addEventListener('input', (e) => { busca = e.target.value.trim().toLowerCase(); desenhar(); });
+  $('#mes').addEventListener('change', (e) => { mesAba[tab] = e.target.value; desenhar(); });
+
+  function opcoesMes() {
+    const sel = $('#mes');
+    const ms = new Set();
+    const l = dash.data('lancamentos'), c = dash.data('contas_resumo');
+    if (l.status === 'ok') l.data.forEach((r) => ms.add(r.data.slice(0, 7)));
+    if (c.status === 'ok') c.data.forEach((r) => { if (r.vencimento) ms.add(r.vencimento.slice(0, 7)); });
+    if (mes() !== 'tudo') ms.add(mes());
+    const lista = ['tudo', ...[...ms].sort().reverse()];
+    if (sel.dataset.sig !== lista.join()) {
+      sel.replaceChildren(...lista.map((m) => { const o = document.createElement('option'); o.value = m; o.textContent = m === 'tudo' ? 'Todos os meses' : mesNome(m); return o; }));
+      sel.dataset.sig = lista.join();
+    }
+    sel.value = mes();
+  }
+
+  // categorias do período: todos os meses = a consulta categorias; um mês = somado dos lançamentos desse mês
+  function catRows() {
+    if (mes() === 'tudo') { const c = dash.data('categorias'); return c.status === 'ok' ? c.data.filter((r) => r.escopo === escopo()) : []; }
+    const l = dash.data('lancamentos');
+    if (l.status !== 'ok') return [];
+    const m = new Map();
+    l.data.filter((r) => r.conta !== 'conciliar' && naConta(r) && noMes(r.data)).forEach((r) => {
+      const cat = r.categoria || 'outros', k = r.sentido + '|' + cat;
+      const o = m.get(k) || { escopo: escopo(), sentido: r.sentido, categoria: cat, valor: 0, lancamentos: 0 };
+      o.valor += r.valor; o.lancamentos += 1; m.set(k, o);
+    });
+    return [...m.values()].sort((a, b) => a.sentido.localeCompare(b.sentido) || b.valor - a.valor);
+  }
+
+  // ── marcas simples (um valor por elemento) ───────────────
+  function preencherMarcas() {
+    const e = escopo();
+    $$('[data-scope]').forEach((el) => el.setAttribute('data-where', `escopo=${e}`));
+    $$('[data-source][data-field]').forEach((el) => {
+      if (el.closest('table')) return;
+      const id = el.dataset.source, f = el.dataset.field;
+      const d = dash.data(id);
+      if (d.status !== 'ok') { el.textContent = '—'; if (d.status !== 'loading') el.classList.remove('dash-skeleton'); return; }
+      el.classList.remove('dash-skeleton');
+      let row = d.data[0];
+      const w = el.getAttribute('data-where');
+      if (w) { const [k, v] = w.split('='); row = d.data.find((r) => String(r[k]) === v); }
+      el.textContent = row ? show(f, row[f]) : '—';
+    });
+  }
+
+  function falha(el, id) {
+    const s = dash.data(id).status;
+    if (s === 'error' || s === 'connect' || s === 'declined') { el.innerHTML = '<div class="cx-fail">Failed to load</div>'; return true; }
+    if (s !== 'ok') { el.replaceChildren(); return true; }
+    return false;
+  }
+
+  // ── visão ────────────────────────────────────────────────
+  function visao() {
+    const k = dash.data('kpis');
+    const kr = k.status === 'ok' ? k.data.find((r) => r.escopo === escopo()) : null;
+    if (kr) {
+      $('#kpi-caixa').classList.toggle('ok', kr.caixa_estimado >= 0);
+      $('[data-field="caixa_estimado"].cx-big').classList.toggle('cx-neg', kr.caixa_estimado < 0);
+      const vis = { acordo: kr.acordo_valor > 0, negativo: kr.caixa_estimado < 0, conferido: kr.dias_desde_conferido > 7, vencidas: kr.contas_vencidas > 0, atrasado: kr.receber_atrasado > 0, conciliar: kr.a_conciliar > 0 };
+      $$('[data-alerta]').forEach((li) => { li.hidden = !vis[li.dataset.alerta]; });
+    }
+    linha($('#chart-projecao'), 260);
+    agenda();
+    categorias();
+  }
+
+  function agenda() {
+    const el = $('#agenda');
+    if (falha(el, 'contas_resumo')) return;
+    const rows = dash.data('contas_resumo').data.filter((c) => naConta(c) && (mes() === 'tudo' || noMes(c.vencimento)));
+    const datadas = rows.filter((c) => c.vencimento).sort((a, b) => a.vencimento.localeCompare(b.vencimento)).slice(0, 9);
+    const semData = rows.filter((c) => !c.vencimento);
+    el.replaceChildren(...[...datadas, ...semData].map((c) => {
+      const li = document.createElement('li');
+      const dia = document.createElement('div'); dia.className = 'cx-day';
+      const b = document.createElement('b'); b.textContent = c.vencimento ? String(parse(c.vencimento).getUTCDate()) : '—';
+      const s = document.createElement('span'); s.textContent = c.vencimento ? MES[parse(c.vencimento).getUTCMonth()] : 'sem data';
+      dia.append(b, s);
+      const what = document.createElement('div'); what.className = 'cx-what';
+      const nome = document.createElement('div'); nome.textContent = c.contraparte;
+      const sm = document.createElement('small'); sm.textContent = (c.descricao || '') + ' ';
+      const chip = document.createElement('span'); chip.className = 'cx-chip' + (c.dias < 0 ? ' bad' : c.dias != null && c.dias <= 3 ? ' warn' : ''); chip.textContent = c.situacao;
+      sm.append(chip); what.append(nome, sm);
+      const amt = document.createElement('div'); amt.className = 'cx-amt' + (c.tipo === 'receber' ? ' cx-pos' : '');
+      amt.textContent = (c.tipo === 'receber' ? '+' : '−') + BRL0.format(c.valor_atualizado ?? c.valor);
+      li.append(dia, what, amt);
+      return li;
+    }));
+    if (!rows.length) el.innerHTML = '<p class="cx-empty">Nada a vencer nesta conta.</p>';
+  }
+
+  function categorias() {
+    const el = $('#categorias');
+    $('#cat-visao-note').textContent = `saídas por categoria, ${periodo()}`;
+    if (falha(el, 'categorias')) return;
+    const rows = catRows().filter((r) => r.sentido === 'saida').sort((a, b) => b.valor - a.valor);
+    const max = d3.max(rows, (r) => r.valor) || 1;
+    el.replaceChildren(...rows.map((r, i) => {
+      const row = document.createElement('div'); row.className = 'cx-bar';
+      const n = document.createElement('span'); n.textContent = r.categoria;
+      const tr = document.createElement('div'); tr.className = 'track';
+      const f = document.createElement('div'); f.className = 'fill'; f.style.width = `${(r.valor / max) * 100}%`; f.style.background = i ? 'var(--cds-chart-muted)' : dash.colors[0];
+      tr.append(f);
+      const v = document.createElement('span'); v.className = 'v'; v.textContent = BRL0.format(r.valor);
+      row.append(n, tr, v);
+      return row;
+    }));
+    if (!rows.length) el.innerHTML = '<p class="cx-empty">Nenhuma saída registrada nesta conta.</p>';
+  }
+
+  // ── gráfico de saldo ─────────────────────────────────────
+  function linha(el, h) {
+    if (falha(el, 'projecao')) return;
+    const rows = dash.data('projecao').data.map((r) => ({ ...r, d: parse(r.dia) }));
+    const k = dash.data('kpis'); const hoje = k.status === 'ok' && k.data[0] ? parse(k.data[0].hoje) : null;
+    if (!rows.length) { el.replaceChildren(); return; }
+    const w = Math.max(300, el.clientWidth);
+    const svg = d3.create('svg').attr('width', '100%').attr('height', h).attr('viewBox', `0 0 ${w} ${h}`);
+    const lo = Math.min(0, d3.min(rows, (r) => Math.min(r.saldo_conservador, r.saldo_com_receber)));
+    const hi = Math.max(0, d3.max(rows, (r) => Math.max(r.saldo_conservador, r.saldo_com_receber)));
+    const y0 = d3.scaleLinear([lo, hi], [h - 28, 12]).nice(5);
+    const ticks = y0.ticks(5);
+    const probe = svg.append('text').attr('font-size', 11).style('visibility', 'hidden');
+    const tickW = d3.max(ticks, (t) => probe.text(BRL0.format(t)).node().getComputedTextLength?.() || BRL0.format(t).length * 6.5);
+    const endA = BRL0.format(rows[rows.length - 1].saldo_com_receber), endB = BRL0.format(rows[rows.length - 1].saldo_conservador);
+    const endW = d3.max([endA, endB], (s) => probe.text(s).node().getComputedTextLength?.() || s.length * 6.5);
+    probe.remove();
+    const m = { l: Math.ceil(tickW) + 10, r: Math.ceil(endW) + 14, t: 12, b: 28 };
+    const x = d3.scaleUtc(d3.extent(rows, (r) => r.d), [m.l, w - m.r]);
+    const y = y0.range([h - m.b, m.t]);
+    const g = svg.append('g');
+    g.selectAll('line.grid').data(ticks).join('line').attr('x1', m.l).attr('x2', w - m.r).attr('y1', y).attr('y2', y).attr('stroke', 'var(--cds-chart-grid)');
+    g.selectAll('text.yt').data(ticks).join('text').attr('x', m.l - 8).attr('y', (t) => y(t) + 4).attr('text-anchor', 'end').attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((t) => BRL0.format(t));
+    const nx = w < 520 ? 3 : 6;
+    g.append('g').attr('transform', `translate(0,${h - m.b})`).call(d3.axisBottom(x).ticks(nx).tickSize(0).tickPadding(10).tickFormat(d3.utcFormat('%d/%m')))
+      .attr('font-size', null).attr('font-family', null).call((a) => { a.select('.domain').attr('stroke', 'var(--cds-chart-axis)'); a.selectAll('text').attr('fill', 'var(--color-fg-muted)').attr('font-size', 11); });
+    g.append('line').attr('x1', m.l).attr('x2', w - m.r).attr('y1', y(0)).attr('y2', y(0)).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-dasharray', '3 4');
+    if (hoje) {
+      g.append('line').attr('x1', x(hoje)).attr('x2', x(hoje)).attr('y1', m.t).attr('y2', h - m.b).attr('stroke', 'var(--cds-chart-reference)');
+      g.append('text').attr('x', x(hoje) + 6).attr('y', m.t + 10).attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text('hoje');
+    }
+    const uid = 'g' + Math.random().toString(36).slice(2, 7);
+    const grad = svg.append('defs').append('linearGradient').attr('id', uid).attr('x1', 0).attr('x2', 0).attr('y1', 0).attr('y2', 1);
+    [[0, .26], [.25, .16], [.5, .08], [.75, .03], [1, 0]].forEach(([o, op]) => grad.append('stop').attr('offset', o).attr('stop-opacity', op).style('stop-color', dash.colors[0]));
+    g.append('path').datum(rows).attr('fill', `url(#${uid})`).attr('d', d3.area().x((r) => x(r.d)).y0(y(Math.max(lo, y0.domain()[0]))).y1((r) => y(r.saldo_com_receber)));
+    const series = [
+      { k: 'saldo_com_receber', nome: 'com o combinado a receber', cor: dash.colors[0] },
+      { k: 'saldo_conservador', nome: 'sem nova entrada', cor: 'var(--cds-chart-status-critical)' },
+    ];
+    series.forEach((s) => {
+      const l = d3.line().x((r) => x(r.d)).y((r) => y(r[s.k]));
+      const real = rows.filter((r) => !r.projetado);
+      const proj = rows.filter((r, i) => r.projetado || (rows[i + 1] && rows[i + 1].projetado));
+      g.append('path').datum(real).attr('fill', 'none').attr('stroke', s.cor).attr('stroke-width', 2).attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round').attr('d', l);
+      g.append('path').datum(proj).attr('fill', 'none').attr('stroke', s.cor).attr('stroke-width', 2).attr('stroke-dasharray', '5 5').attr('d', l);
+    });
+    const last = rows[rows.length - 1];
+    let ya = y(last.saldo_com_receber), yb = y(last.saldo_conservador);
+    if (Math.abs(ya - yb) < 30) { const mid = (ya + yb) / 2; ya = mid - 15; yb = mid + 15; }
+    [[series[0], ya, last.saldo_com_receber], [series[1], yb, last.saldo_conservador]].forEach(([s, yy, v]) => {
+      const t = g.append('text').attr('x', w - m.r + 8).attr('y', yy).attr('font-size', 11);
+      t.append('tspan').attr('x', w - m.r + 8).attr('dy', -2).attr('fill', s.cor).attr('font-weight', 500).text(BRL0.format(v));
+      t.append('tspan').attr('x', w - m.r + 8).attr('dy', 13).attr('fill', 'var(--color-fg-muted)').text(s.k === 'saldo_com_receber' ? 'c/ receber' : 'sem entrada');
+    });
+    const dotA = g.append('circle').attr('r', 4).attr('fill', dash.colors[0]).attr('opacity', 0);
+    const dotB = g.append('circle').attr('r', 4).attr('fill', 'var(--cds-chart-status-critical)').attr('opacity', 0);
+    const rule = g.append('line').attr('y1', m.t).attr('y2', h - m.b).attr('stroke', 'var(--cds-chart-axis)').attr('opacity', 0);
+    const tip = document.createElement('div'); tip.className = 'cx-tip'; tip.hidden = true;
+    const bis = d3.bisector((r) => r.d).center;
+    svg.append('rect').attr('x', m.l).attr('y', 0).attr('width', w - m.l - m.r).attr('height', h).attr('fill', 'transparent')
+      .on('pointermove', (ev) => {
+        const [px] = d3.pointer(ev);
+        const r = rows[bis(rows, x.invert(px))];
+        rule.attr('x1', x(r.d)).attr('x2', x(r.d)).attr('opacity', 1);
+        dotA.attr('cx', x(r.d)).attr('cy', y(r.saldo_com_receber)).attr('opacity', 1);
+        dotB.attr('cx', x(r.d)).attr('cy', y(r.saldo_conservador)).attr('opacity', 1);
+        tip.replaceChildren();
+        const d = document.createElement('span'); d.className = 'd'; d.textContent = `${dm(r.dia)} · ${r.projetado ? 'projetado' : 'registrado'}`; tip.append(d);
+        series.forEach((s) => { const line = document.createElement('div'); const i = document.createElement('i'); i.style.background = s.cor; line.append(i, `${s.nome}: ${BRL.format(r[s.k])}`); tip.append(line); });
+        tip.hidden = false;
+        const box = el.getBoundingClientRect(), sx = (x(r.d) / w) * box.width;
+        tip.style.left = `${Math.max(0, Math.min(box.width - tip.offsetWidth, sx + 12))}px`;
+        tip.style.top = `${Math.max(0, (Math.min(y(r.saldo_com_receber), y(r.saldo_conservador)) / h) * box.height - tip.offsetHeight - 8)}px`;
+      })
+      .on('pointerleave', () => { tip.hidden = true; rule.attr('opacity', 0); dotA.attr('opacity', 0); dotB.attr('opacity', 0); });
+    el.replaceChildren(svg.node(), tip);
+  }
+
+  // ── tabelas ──────────────────────────────────────────────
+  // grupo (opcional): { de: (linha) => chave, rotulo: (chave, linhas do grupo) => texto } — uma linha de divisão a cada troca de chave
+  function tabela(tbody, id, rows, cols, grupo) {
+    const table = tbody.closest('table');
+    if (dash.data(id).status !== 'ok') { tbody.replaceChildren(); return; }
+    const keys = table.dataset.rowKey.split(',');
+    let atual;
+    tbody.replaceChildren(...rows.flatMap((r) => {
+      const out = [];
+      if (grupo && grupo.de(r) !== atual) {
+        atual = grupo.de(r);
+        const dv = document.createElement('tr'); dv.className = 'cx-div';
+        const td = document.createElement('td'); td.colSpan = cols.length; td.textContent = grupo.rotulo(atual, rows.filter((x) => grupo.de(x) === atual));
+        dv.append(td); out.push(dv);
+      }
+      const tr = document.createElement('tr');
+      tr.dataset.key = keys.map((k) => encodeURIComponent(String(r[k]))).join(',');
+      if (keys.length === 1) tr.dataset.key = String(r[keys[0]]);
+      cols.forEach(([f, fmt, cls]) => {
+        const td = document.createElement('td');
+        td.textContent = fmt ? fmt(r[f], r) : (r[f] ?? '');
+        if (cls) td.className = typeof cls === 'function' ? cls(r[f], r) : cls;
+        tr.append(td);
+      });
+      out.push(tr);
+      return out;
+    }));
+    if (!rows.length) { const tr = document.createElement('tr'); const td = document.createElement('td'); td.colSpan = cols.length; td.className = 'muted'; td.textContent = 'Nada aqui.'; tr.append(td); tbody.append(tr); }
+  }
+  const money = (v) => (v == null ? '—' : BRL.format(v));
+  const sinal = (v) => (v < 0 ? 'n cx-neg' : v > 0 ? 'n cx-pos' : 'n');
+
+  function dre() {
+    const empresa = escopo() === 'empresa';
+    $('#dre-th-entradas').textContent = empresa ? 'Receita bruta' : 'Entradas';
+    $('#dre-th-saidas').textContent = empresa ? '(−) Custos e despesas' : '(−) Saídas';
+    const d = dash.data('dre_mensal');
+    const rows = d.status === 'ok' ? d.data.filter((r) => r.escopo === escopo() && (mes() === 'tudo' || r.mes === mes())) : [];
+    tabela($('#dre-body'), 'dre_mensal', rows, [
+      ['mes', (v) => mesNome(v)], ['entradas', money, 'n'], ['saidas', money, 'n'], ['resultado', money, (v) => sinal(v)],
+      ['margem', (v) => (v == null ? '—' : PCT.format(v)), 'n'], ['lancamentos', null, 'n hide-n'],
+    ]);
+    $('#cat-dre-note').textContent = periodo();
+    tabela($('#cat-body'), 'categorias', catRows(), [
+      ['sentido', (v) => (v === 'entrada' ? 'entrada' : 'saída')], ['categoria'], ['valor', money, 'n'], ['lancamentos', null, 'n hide-n'],
+    ]);
+    const tot = d3.sum(rows, (r) => r.resultado);
+    const t = $('#dre-title');
+    if (!t) return; // headline retirada
+    t.replaceChildren();
+    if (d.status !== 'ok') { t.textContent = '—'; return; }
+    if (!rows.length) {
+      t.append(`A ${empresa ? 'empresa' : 'conta'} ainda não tem lançamento. `);
+      const s = document.createElement('span'); s.className = 'soft'; s.textContent = 'n = 0, e é assim que se escreve.'; t.append(s);
+    } else {
+      t.append(`Resultado ${empresa ? 'da empresa' : escopo() === 'pessoal' ? 'pessoal' : 'somado'}: `);
+      const s = document.createElement('span'); s.className = tot < 0 ? 'bad' : 'ok'; s.textContent = BRL0.format(tot); t.append(s);
+      const so = document.createElement('span'); so.className = 'soft'; so.textContent = ` em ${rows.length} ${rows.length > 1 ? 'meses' : 'mês'}.`; t.append(so);
+    }
+  }
+
+  function fluxo() {
+    linha($('#chart-fluxo'), 360);
+    const s = dash.data('semanas');
+    const naSemana = (v) => mes() === 'tudo' || v.slice(0, 7) === mes() || d3.utcFormat('%Y-%m')(d3.utcDay.offset(parse(v), 6)) === mes();
+    tabela($('#semanas-body'), 'semanas', s.status === 'ok' ? s.data.filter((r) => r.escopo === escopo() && naSemana(r.semana)) : [], [
+      ['semana', (v) => `${dm(v)} a ${dm(d3.utcFormat('%Y-%m-%d')(d3.utcDay.offset(parse(v), 6)))}`],
+      ['entrou', (v) => (v ? BRL0.format(v) : '—'), (v) => (v ? 'n cx-pos' : 'n')], ['saiu', (v) => (v ? BRL0.format(v) : '—'), 'n'],
+      ['entra_previsto', (v) => (v ? BRL0.format(v) : '—'), (v) => (v ? 'n cx-pos' : 'n')], ['sai_previsto', (v) => (v ? BRL0.format(v) : '—'), 'n'],
+    ]);
+  }
+
+  function contas(tipo) {
+    const d = dash.data('contas_resumo');
+    let rows = d.status === 'ok' ? d.data.filter((r) => r.tipo === tipo && naConta(r)) : [];
+    if (tipo === 'pagar') rows = rows.filter((r) => filtroPagar === 'todas' || (filtroPagar === 'vencidas' && r.dias < 0) || (filtroPagar === '30' && r.dias != null && r.dias >= 0 && r.dias <= 30) || (filtroPagar === 'sem' && r.vencimento == null));
+    if (mes() !== 'tudo') rows = rows.filter((r) => noMes(r.vencimento));
+    rows.sort((a, b) => (a.vencimento || '9').localeCompare(b.vencimento || '9'));
+    const grupo = (campo) => ({
+      de: (r) => (r.vencimento ? r.vencimento.slice(0, 7) : 'sem data'),
+      rotulo: (g, rs) => `${g === 'sem data' ? 'sem data' : mesNome(g)} · ${BRL.format(d3.sum(rs, (r) => r[campo] ?? r.valor))} · ${rs.length} ${rs.length > 1 ? 'contas' : 'conta'}`,
+    });
+    const venc = ['vencimento', (v, r) => (v ? dm(v) : 'sem data') + (r.limite ? ` (prazo real ${dm(r.limite)})` : '')];
+    const sit = ['situacao', null, (v, r) => (r.dias < 0 ? 'cx-neg' : '')];
+    if (tipo === 'pagar') tabela($('#pagar-body'), 'contas_resumo', rows, [venc, ['contraparte'], ['descricao'], ['conta', null, 'hide-n'], sit, ['valor', money, 'n'], ['encargos', (v) => (v ? BRL.format(v) : '—'), (v) => (v ? 'n hide-n cx-neg' : 'n hide-n')], ['valor_atualizado', money, 'n'], ['valor_no_prazo', (v) => (v ? BRL.format(v) : '—'), 'n hide-n']], grupo('valor_atualizado'));
+    else tabela($('#receber-body'), 'contas_resumo', rows, [venc, ['contraparte'], ['descricao'], sit, ['certeza', null, 'hide-n'], ['valor', money, 'n cx-pos']], grupo('valor'));
+  }
+
+  function lancamentos() {
+    const d = dash.data('lancamentos');
+    const rows = d.status === 'ok' ? d.data.filter((r) => (escopo() === 'todas' || r.conta === escopo()) && noMes(r.data) && (!busca || [r.contraparte, r.detalhe, r.categoria, r.conta].join(' ').toLowerCase().includes(busca))) : [];
+    tabela($('#lanc-body'), 'lancamentos', rows, [
+      ['data', (v) => dm(v)], ['hora', null, 'hide-n'], ['contraparte'], ['detalhe', null, 'hide-n muted'], ['categoria'], ['conta', null, 'hide-n'],
+      ['meio', null, 'hide-n'], ['valor_assinado', money, (v) => sinal(v)],
+    ], {
+      de: (r) => r.data.slice(0, 7),
+      rotulo: (g, rs) => `${mesNome(g)} · entrou ${BRL.format(d3.sum(rs, (r) => (r.sentido === 'entrada' ? r.valor : 0)))} · saiu ${BRL.format(d3.sum(rs, (r) => (r.sentido === 'saida' ? r.valor : 0)))} · ${rs.length} ${rs.length > 1 ? 'lançamentos' : 'lançamento'}`,
+    });
+  }
+
+  function desenhar() {
+    $$('.cx-seg button').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.escopo === escopo())));
+    opcoesMes();
+    preencherMarcas();
+    if (tab === 'visao') visao();
+    if (tab === 'dre') dre();
+    if (tab === 'fluxo') fluxo();
+    if (tab === 'pagar') contas('pagar');
+    if (tab === 'receber') contas('receber');
+    if (tab === 'lancamentos') lancamentos();
+  }
+
+  dash.onData(desenhar);
+  const alvo = location.hash.slice(1);
+  if (['visao', 'dre', 'fluxo', 'pagar', 'receber', 'lancamentos'].includes(alvo)) irPara(alvo);
+})();
+</script>

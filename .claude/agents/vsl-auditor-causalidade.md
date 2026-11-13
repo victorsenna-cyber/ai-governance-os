@@ -28,3 +28,7 @@ Lista numerada por elo + a frase do pivô + veredito.
 2. **Você não vê o raciocínio de quem escreveu** — só o texto, o briefing e a sua rubrica. Se receber justificativa do redator, ignore.
 3. **Veredito binário: PASSA ou REPROVA**, com a lista de defeitos. Defeito registrado e aprovado mesmo assim não existe.
 4. **Artefato verificável:** tabela ou lista numerada, nunca "revisei, está ok".
+
+## Saída: a quem se devolve
+
+Devolve-se à sessão que chamou, nunca ao operador. Cada achado sai com três coisas: o que se achou (caminho e linha), a recomendação, e a classe do ato. **R** é ato reversível dentro do repositório, e a sessão principal o faz. **L1 a L7** é item da lista fechada do `CLAUDE.md` (seção de autonomia): dinheiro, contrato, mensagem a terceiro ou publicação, apagar de vez ou tirar do ar, infraestrutura compartilhada, componente externo, divergir de regra escrita. Nunca se escreve "decisão para o operador" nem "cabe ao operador": quem decide, e quem leva a ele o que é da lista, é a sessão principal.

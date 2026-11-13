@@ -65,7 +65,7 @@ def montar_foto(p):
             "sem_toque_dias": c.get("sem_toque_dias"),
             "marcos_vencidos": [{"o_que": m.get("o_que"), "prazo": m.get("prazo"), "dono": m.get("dono"),
                                  "atraso_dias": -m["dias"]} for m in c.get("marcos", []) if m.get("vencido")],
-            "fonte": f"clientes/{c['conta']}/PAINEL.md", "lido_em": hora})
+            "fonte": (c.get("arquivos") or {}).get("painel") or f"clientes/{c['conta']}/PAINEL.md", "lido_em": hora})
 
     receber = [dict(r, conta_painel=c["conta"]) for c in p["contas"] for r in c.get("a_receber", [])]
     vencidos = [r for r in receber if r.get("dias") is not None and r["dias"] < 0]
@@ -113,11 +113,11 @@ def montar_foto(p):
         if md is not None and md < 0 and do_dono(c.get("marco_dono")):
             vistos.add(c.get("proximo_marco"))
             precisa.append({"id": "marco." + c["conta"], "texto": c.get("proximo_marco"), "conta": c["conta"],
-                            "prazo": c.get("marco_prazo"), "atraso_dias": -md, "fonte": f"clientes/{c['conta']}/PAINEL.md"})
+                            "prazo": c.get("marco_prazo"), "atraso_dias": -md, "fonte": (c.get("arquivos") or {}).get("painel") or f"clientes/{c['conta']}/PAINEL.md"})
         for i, m in enumerate(c.get("marcos", [])):
             if m.get("vencido") and do_dono(m.get("dono")) and m.get("o_que") not in vistos:
                 precisa.append({"id": f"marco.{c['conta']}.{i}", "texto": m.get("o_que"), "conta": c["conta"],
-                                "prazo": m.get("prazo"), "atraso_dias": -m["dias"], "fonte": f"clientes/{c['conta']}/PAINEL.md"})
+                                "prazo": m.get("prazo"), "atraso_dias": -m["dias"], "fonte": (c.get("arquivos") or {}).get("painel") or f"clientes/{c['conta']}/PAINEL.md"})
     for r in vencidos:
         precisa.append({"id": "receber." + r["id"], "texto": f"cobrar {r.get('contraparte')}", "valor": r["valor"],
                         "atraso_dias": -r["dias"], "fonte": r.get("origem")})

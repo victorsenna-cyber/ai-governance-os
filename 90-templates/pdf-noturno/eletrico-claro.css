@@ -1,0 +1,66 @@
+/* =========================================================
+   PDF NOTURNO · variante ELÉTRICA CLARA
+   Carregar DEPOIS de eletrico.css. Mesma arquitetura, mesmas fontes, mesmas classes:
+   só troca a paleta para fundo claro, com a cor da conta no lugar do azul.
+   Para quando o documento sai em A4 com paleta da conta e sem as faixas na primeira página.
+   Paleta por conta: html[data-paleta="..."]. A padrão (sem atributo) é papel e grafite.
+   A fita da capa não entra nesta variante: a capa clara é limpa. Se o documento tiver
+   .fita, ela some aqui, e o gerar_pdf.py ainda a conta pelo HTML: tirar as divs.
+   🔴 Não se escreve CSS novo por documento. Paleta nova de conta entra AQUI, nomeada.
+   ========================================================= */
+
+:root {
+  --fundo: #F4F1EC;
+  --painel: #EAE6DF;
+  --borda: #D3CEC5;
+  --azul: #2B2B2B;        /* o acento: nome herdado do eletrico.css, cor da conta */
+  --azul-claro: #1F1F1F;  /* o acento em texto: no fundo claro é o tom mais escuro */
+  --branco: #1E1C1A;      /* o que era branco (título, strong) vira a tinta */
+  --texto: #332F2B;
+  --fraco: #6E6862;
+  --botao-texto: #F4F1EC;
+}
+
+/* papel-musgo · paleta de exemplo: papel, musgo, terra, tinta (a paleta real vem do kit de marca da conta) */
+html[data-paleta="papel-musgo"] {
+  --fundo: #F6F1EA;
+  --painel: #ECE5DA;
+  --borda: #D6CCBE;
+  --azul: #3F6B57;
+  --azul-claro: #2F5343;
+  --branco: #2E2924;
+  --texto: #3B3530;
+  --fraco: #6F6459;
+  --botao-texto: #F6F1EA;
+}
+
+@page {
+  background: var(--fundo, #F4F1EC);
+  @bottom-left  { color: var(--fraco, #6E6862); }
+  @bottom-right { color: var(--fraco, #6E6862); }
+}
+
+html, body { background: var(--fundo); }
+em, i { color: var(--texto); }
+code { color: var(--azul-claro); }
+.legenda-fluxo { color: var(--fraco); }
+td { border-bottom-color: var(--borda); }
+
+.capa { background: var(--fundo); }
+.capa .botao { color: var(--botao-texto); }
+.fita { display: none; }
+
+.copiar { background: #FFFFFF; border-color: var(--borda); color: var(--branco); }
+.nota { color: var(--fraco); }
+.prompt p { color: var(--texto); }
+.arquivos li { color: var(--azul-claro); }
+.estado.ok { color: var(--azul-claro); }
+.estado.dono { color: var(--branco); }
+
+/* .copiar.compacto: bloco de colagem em corpo de leitura, para documento A4 com legenda longa
+   (plano de divulgação com uma semana por página). O .copiar do noturno é 10,5 pt / 1,6, medido para a
+   página de celular; no A4 uma legenda de oito parágrafos empurrava a semana para a página seguinte.
+   Uso: plano de divulgação em A4, uma semana por página. */
+.copiar.compacto { font-size: 9.4pt; line-height: 1.5; padding: 3mm 4mm; margin-bottom: 3mm; }
+.copiar.compacto p { margin-bottom: 2.2mm; }
+.copiar.compacto p:last-child { margin-bottom: 0; }

@@ -29,9 +29,13 @@ agendada_para: AAAA-MM-DDT09:00
 ⚠️ N5 agendado (`claude -p --model claude-fable-5-1`) só vale depois de provado fora de sessão nesta instalação; até lá esta task roda em sessão aberta.
 
 ## Pedido
-`100-métodos/METODO-ANALISE-DIARIA-DE-CAMPANHA.md` §3 e contrato §6.2. Escrever dois arquivos pelos moldes: `diario/<hoje>-ANALISE.md` (estado por item com o número que disparou a regra, §7.3 do método-mãe, plano da conta prevalece; anomalia e degrau do diagnóstico §7.4; CPA como juiz; amostra mínima; decisões em resumo; o que NÃO se faz, com motivo; aprendizado do dia) e `diario/<hoje>-BRIEFING.md`, o briefing de otimização: ordens na ordem, com `id`, nível, ação exata, de → para, regra + número, resultado esperado em número e data, `tipo_decisao`, alçada (§5 do método) e `aprovada`; via e prova; o que não tocar. O Sonnet executa só pelo briefing. Máximo uma mudança estrutural. Série com menos de 3 diários: só kill hard. Ordem A1 → também cartão em `40-operacao-rotinas/tarefas/DECISOES-PENDENTES.md`.
+`100-métodos/METODO-ANALISE-DIARIA-DE-CAMPANHA.md` §3 e contrato §6.2. Escrever dois arquivos pelos moldes: `diario/<hoje>-ANALISE.md` (estado por item com o número que disparou a regra, §7.3 do método-mãe, plano da conta prevalece; anomalia e degrau do diagnóstico §7.4; CPA como juiz; amostra mínima; decisões em resumo; o que NÃO se faz, com motivo; aprendizado do dia) e `diario/<hoje>-BRIEFING.md`, o briefing de otimização: ordens na ordem, com `id`, nível, ação exata, de → para, regra + número, resultado esperado em número e data, `tipo_decisao`, alçada (§5 do método) e `aprovada`; via e prova; o que não tocar. O Sonnet executa só pelo briefing. Ordem que pede a palavra do {{OPERADOR}} vira cartão em `DECISOES-PENDENTES.md` no molde `tarefas/modelos/cartao-decisao.md`, conferido com `decisoes_cartao.py --lint --id <id>` antes de fechar. Máximo uma mudança estrutural. Série com menos de 3 diários: só kill hard. Ordem A1 → também cartão em `40-operacao-rotinas/tarefas/DECISOES-PENDENTES.md`.
 
 ## Pronto quando
 `diario/<hoje>-ANALISE.md` e `diario/<hoje>-BRIEFING.md` existem; toda linha do §1 do briefing tem as dez colunas; o §4 da análise não está vazio; nenhum número dos dois arquivos falta nos diários carregados.
 
 ## Log
+
+## Saída: a quem se devolve
+
+Devolve-se à sessão que chamou, nunca ao {{OPERADOR}}. Cada achado sai com três coisas: o que se achou (caminho e linha), a recomendação, e a classe do ato. **R** é ato reversível dentro do repositório, e a sessão principal o faz. **L1 a L7** é item da lista fechada do `CLAUDE.md` §5.2: dinheiro, contrato, mensagem a terceiro ou publicação, apagar de vez ou tirar do ar, infraestrutura compartilhada, componente externo, divergir de regra escrita. Nunca se escreve "decisão para o {{OPERADOR}}" nem "cabe ao {{OPERADOR}}": quem decide, e quem leva a ele o que é da lista, é a sessão principal.

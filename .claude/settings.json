@@ -5,8 +5,31 @@
         "hooks": [
           {
             "type": "command",
-            "command": "P=; for c in python3 python py; do $c -c '' 2>/dev/null && P=$c && break; done; [ -n \"$P\" ] && PYTHONUTF8=1 $P \"$CLAUDE_PROJECT_DIR/40-operacao-rotinas/ferramentas/sincronizar.py\" --hook",
+            "command": "P=; for c in \"$LOCALAPPDATA/Python/bin/python.exe\" python3 python py; do $c -c '' 2>/dev/null && P=$c && break; done; [ -n \"$P\" ] && PYTHONUTF8=1 $P \"$CLAUDE_PROJECT_DIR/40-operacao-rotinas/ferramentas/sincronizar.py\" --hook",
             "timeout": 180
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "P=; for c in \"$LOCALAPPDATA/Python/bin/python.exe\" python3 python py; do $c -c '' 2>/dev/null && P=$c && break; done; [ -n \"$P\" ] && PYTHONUTF8=1 $P \"$CLAUDE_PROJECT_DIR/40-operacao-rotinas/ferramentas/gate-delegacao.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Read|Grep|Glob|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "P=; for c in \"$LOCALAPPDATA/Python/bin/python.exe\" python3 python py; do $c -c '' 2>/dev/null && P=$c && break; done; [ -n \"$P\" ] && PYTHONUTF8=1 $P \"$CLAUDE_PROJECT_DIR/40-operacao-rotinas/ferramentas/gate-delegacao.py\"",
+            "timeout": 10
           }
         ]
       }
@@ -16,7 +39,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "P=; for c in python3 python py; do $c -c '' 2>/dev/null && P=$c && break; done; [ -n \"$P\" ] && PYTHONUTF8=1 $P \"$CLAUDE_PROJECT_DIR/40-operacao-rotinas/ferramentas/sincronizar.py\" --hook",
+            "command": "P=; for c in \"$LOCALAPPDATA/Python/bin/python.exe\" python3 python py; do $c -c '' 2>/dev/null && P=$c && break; done; [ -n \"$P\" ] && PYTHONUTF8=1 $P \"$CLAUDE_PROJECT_DIR/40-operacao-rotinas/ferramentas/sincronizar.py\" --hook",
             "timeout": 180
           }
         ]

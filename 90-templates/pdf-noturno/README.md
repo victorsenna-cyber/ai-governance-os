@@ -18,9 +18,11 @@
 
 ## 2. COMO SE USA
 
+> 🔴 **Pedido por número:** o operador pede "PDF modelo N"; a tabela dos números está em `../CATALOGO-PDF.md` (1 elétrico A4, 2 elétrico celular, 3 elétrico claro A4, 4 elétrico claro celular, 5 pacote de colagem, 6 noturno puro; 7 a 9 são os outros geradores). Sem número, modelo 1.
+
 ```
 pasta-do-documento/
-  documento.html      ← cópia do modelo-estrutura.html desta pasta, nunca do HTML de outro cliente
+  documento.html      ← cópia do modelo-estrutura.html (ou do modelo-colagem-claro.html) desta pasta, nunca do HTML de outro cliente
   noturno.css         ← cópias desta pasta, as três juntas
   eletrico.css
   fontes/             ← as fontes estáticas (Anton, Inter, Montserrat)
@@ -31,6 +33,8 @@ python3 90-templates/pdf-noturno/gerar_pdf.py pasta-do-documento/documento.html 
 ```
 
 🔴 ⭐ **Todo PDF desta pasta sai pelo `gerar_pdf.py`.** Ele imprime pelo Chrome e **reprova**, com código 1, o PDF com fonte Type3, com fita da capa que não chega às duas bordas com texto, ou com página em branco. **Reprovado não se entrega.** Para conferir um PDF já pronto: `python3 gerar_pdf.py --conferir arquivo.pdf --html documento.html`. Depois de aprovado, olhar o PNG da capa: o script confere o que se mede, o olho confere o resto.
+
+🔴 **Destino do documento de cliente: `clientes/<Conta>/entregaveis/<AAAA-MM-DD - nome>/`, HTML e PDF juntos, com linha no `entregaveis/README.md`.** Nunca na raiz da conta nem numa pasta de entregas solta.
 
 **🔴 Não se escreve CSS novo por documento.** Classe nova que sirva a mais de um documento entra aqui; ajuste de um documento só não entra em lugar nenhum — **se precisou, quase sempre o conteúdo é que está errado.**
 
@@ -72,7 +76,15 @@ python3 90-templates/pdf-noturno/gerar_pdf.py pasta-do-documento/documento.html 
 
 ⚠️ **No Chrome, o `<style>` de um SVG vale para o documento inteiro.** Dois SVGs com a mesma classe (`.bx`, `.ts`) brigam, e o último vence. **Prefixar as classes de cada SVG** (`p-bx`, `q-ts`). O WeasyPrint isola; o Chrome não.
 
+🔴 **Acento de título no pé da página anterior (corrigido no modelo).** Título `h1`/`h2` em Anton que abre uma página (depois de `page-break` ou da capa) perdia o acento das maiúsculas: o Chrome o desenhava solto no pé da página anterior ("NAO E", "MAQUINA"). Causa: `line-height` 1.02 deixa o acento fora da caixa da linha. Conserto no `eletrico.css`: `padding-top` em `h1` e `h2`. **Documento gerado antes da correção com título acentuado no topo de página: recopiar o `eletrico.css` e regerar.** Conferência rápida: extrair o texto do PDF e procurar "NAO " ou "E " solto no pé de página.
+
 **Primeira aplicação:** um PDF de mapa de um repositório (classe ESTRUTURA, celular).
+
+### Variante elétrica clara
+
+`eletrico-claro.css`, carregado **depois** do `eletrico.css`. Mesmas fontes, classes e capa; só a paleta muda para fundo claro, com a cor da conta no lugar do azul, e **a capa sai sem fita**. Paleta por conta em `html[data-paleta="..."]` (a primeira: `papel-musgo`); sem atributo, papel e grafite. Paleta nova de conta entra nessa folha, nomeada, nunca no documento. Carga: `noturno.css` → `eletrico.css` → `eletrico-claro.css` (A4; para celular, `noturno-celular.css` logo depois do `noturno.css`).
+
+⭐ **Modelo que nasceu com ela: `modelo-colagem-claro.html`, o PACOTE DE COLAGEM.** É a quarta forma de documento, ao lado das três classes do §3-bis: responde *"o que eu colo, onde, e quando?"*. Capa limpa → o que fazer (o quê × quando) e como o canal vende, numa página → os campos do perfil na ordem da tela, um `.copiar` por campo → mensagens prontas → um post por página. Nenhuma decisão para o leitor. Exemplo gerado: `exemplos/MODELO-5-PACOTE-COLAGEM.pdf`. ⚠️ No A4, quebra de página só onde o leitor muda de tarefa: a cada bloco curto, a página fica vazia.
 
 ### Gerar no Windows, sem WeasyPrint *(pelo `gerar_pdf.py`)*
 

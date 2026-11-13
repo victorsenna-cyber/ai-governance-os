@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Três direções de interface</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --moldura: #101418; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0b0f12; color: #e8edf0; font-family: "Geist", system-ui, sans-serif; }
+  .topo { max-width: 1320px; margin: 0 auto; padding: 32px 16px 8px; }
+  .topo h1 { font-size: 28px; margin: 0 0 6px; font-weight: 600; }
+  .topo p { margin: 0; color: #9fb0ba; max-width: 760px; line-height: 1.5; }
+  .grade { max-width: 1320px; margin: 0 auto; padding: 24px 16px 64px; display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+  .op h2 { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #9fb0ba; margin: 0 0 4px; font-weight: 600; }
+  .op .porque { color: #c7d2d8; font-size: 15px; line-height: 1.5; margin: 0 0 16px; min-height: 68px; }
+  .tel { width: 100%; max-width: 390px; margin: 0 auto; min-height: 800px; border-radius: 36px; overflow: hidden; border: 8px solid var(--moldura); box-shadow: 0 30px 80px rgba(0,0,0,.5); display: flex; flex-direction: column; }
+
+  /* ================= estrutura comum (a cara vem de cada opção) ================= */
+  .tel .barra { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px 12px; }
+  .tel .logo { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: .02em; }
+  .tel .logo i { width: 26px; height: 26px; display: block; }
+  .tel .data { font-size: 13px; }
+  .tel .corpo { padding: 4px 16px 16px; flex: 1; display: grid; gap: 14px; align-content: start; }
+  .marca-fonte { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; }
+  .marca-fonte::before { content: ""; width: 6px; height: 6px; border-radius: 50%; }
+  .heroi { padding: 18px; display: grid; gap: 6px; position: relative; overflow: hidden; }
+  .heroi .n { font-size: 56px; line-height: 1; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .heroi .t { font-size: 18px; font-weight: 500; }
+  .heroi .bt { justify-self: start; margin-top: 10px; padding: 12px 18px; font: inherit; font-weight: 600; font-size: 15px; border: 0; cursor: pointer; }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .kpi { padding: 12px; display: grid; gap: 2px; }
+  .kpi b { font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .kpi span { font-size: 12px; }
+  .spark { height: 26px; width: 100%; display: block; margin-top: 4px; }
+  .sec { display: flex; justify-content: space-between; align-items: baseline; margin-top: 6px; }
+  .sec h3 { margin: 0; font-size: 17px; font-weight: 600; }
+  .sec small { font-size: 12px; }
+  .lista { display: grid; gap: 8px; }
+  .item { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; padding: 12px 14px; }
+  .led { width: 9px; height: 9px; border-radius: 50%; }
+  .item .q { font-weight: 500; font-size: 15px; }
+  .item .w { font-size: 13px; }
+  .pill { font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: 4px 8px; white-space: nowrap; }
+  .nav { display: grid; grid-template-columns: repeat(4, 1fr); padding: 10px 8px 18px; }
+  .nav a { text-align: center; font-size: 12px; text-decoration: none; padding: 8px 0; display: grid; gap: 4px; justify-items: center; }
+  .nav a i { width: 20px; height: 3px; border-radius: 2px; display: block; }
+
+  /* ================= A · SALA DE CONTROLE ================= */
+  .A .tel { background: #061118; color: #e6f1f4; font-family: "Space Grotesk", sans-serif;
+    background-image: linear-gradient(rgba(91,136,155,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(91,136,155,.07) 1px, transparent 1px); background-size: 22px 22px; }
+  .A .logo i { border: 2px solid #35e0e6; border-radius: 6px; box-shadow: 0 0 12px rgba(53,224,230,.5); }
+  .A .data, .A .w, .A .sec small, .A .kpi span { color: #86a3ae; }
+  .A .marca-fonte { font-family: "JetBrains Mono", monospace; color: #6fd8de; }
+  .A .marca-fonte::before { background: #35e0e6; box-shadow: 0 0 8px #35e0e6; }
+  .A .heroi { background: linear-gradient(140deg, #0d2733 0%, #0a1c25 100%); border: 1px solid rgba(53,224,230,.35); border-radius: 10px; }
+  .A .heroi::after { content: ""; position: absolute; right: -40px; top: -40px; width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, rgba(53,224,230,.22), transparent 70%); }
+  .A .heroi .n { font-family: "JetBrains Mono", monospace; color: #35e0e6; text-shadow: 0 0 24px rgba(53,224,230,.45); }
+  .A .heroi .bt { background: #35e0e6; color: #04141a; border-radius: 6px; }
+  .A .kpi { background: rgba(13,39,51,.7); border: 1px solid rgba(91,136,155,.25); border-radius: 8px; }
+  .A .kpi b { font-family: "JetBrains Mono", monospace; }
+  .A .item { background: rgba(13,39,51,.55); border: 1px solid rgba(91,136,155,.22); border-radius: 8px; }
+  .A .pill { font-family: "JetBrains Mono", monospace; border-radius: 4px; }
+  .A .ok { color: #4ef0a0; } .A .led.ok { background: #4ef0a0; box-shadow: 0 0 10px #4ef0a0; } .A .pill.ok { background: rgba(78,240,160,.12); }
+  .A .at { color: #ffc35a; } .A .led.at { background: #ffc35a; box-shadow: 0 0 10px #ffc35a; } .A .pill.at { background: rgba(255,195,90,.12); }
+  .A .er { color: #ff6b6b; } .A .led.er { background: #ff6b6b; box-shadow: 0 0 10px #ff6b6b; } .A .pill.er { background: rgba(255,107,107,.13); }
+  .A .in { color: #35e0e6; } .A .led.in { background: #35e0e6; box-shadow: 0 0 10px #35e0e6; } .A .pill.in { background: rgba(53,224,230,.12); }
+  .A .nav { border-top: 1px solid rgba(91,136,155,.25); background: rgba(6,17,24,.9); }
+  .A .nav a { color: #86a3ae; } .A .nav a[aria-current] { color: #e6f1f4; } .A .nav a[aria-current] i { background: #35e0e6; box-shadow: 0 0 10px #35e0e6; }
+  .A .spark path { stroke: #35e0e6; } .A .spark .area { fill: rgba(53,224,230,.12); stroke: none; }
+
+  /* ================= B · VIDRO PETRÓLEO ================= */
+  .B .tel { color: #f2f6f8; font-family: "Geist", sans-serif;
+    background: radial-gradient(120% 60% at 100% 0%, #2a6a7e 0%, transparent 55%), radial-gradient(90% 50% at 0% 40%, #1d4a5c 0%, transparent 60%), #0c1c25; }
+  .B .logo i { border-radius: 8px; background: linear-gradient(135deg, #7fe6c8, #4aa3c0); }
+  .B .data, .B .w, .B .sec small, .B .kpi span { color: #a9c0ca; }
+  .B .marca-fonte { font-family: "Geist Mono", monospace; color: #b9d6df; }
+  .B .marca-fonte::before { background: #7fe6c8; }
+  .B .heroi, .B .kpi, .B .item { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+  .B .heroi { border-radius: 22px; padding: 20px; }
+  .B .heroi .n { font-weight: 600; letter-spacing: -.03em; }
+  .B .heroi .bt { background: #7fe6c8; color: #062019; border-radius: 999px; }
+  .B .kpi { border-radius: 16px; }
+  .B .item { border-radius: 16px; }
+  .B .pill { border-radius: 999px; }
+  .B .ok { color: #7fe6c8; } .B .led.ok { background: #7fe6c8; } .B .pill.ok { background: rgba(127,230,200,.14); }
+  .B .at { color: #ffd27a; } .B .led.at { background: #ffd27a; } .B .pill.at { background: rgba(255,210,122,.14); }
+  .B .er { color: #ff8f8f; } .B .led.er { background: #ff8f8f; } .B .pill.er { background: rgba(255,143,143,.15); }
+  .B .in { color: #9fd3ea; } .B .led.in { background: #9fd3ea; } .B .pill.in { background: rgba(159,211,234,.14); }
+  .B .nav { margin: 0 12px 14px; border-radius: 22px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(18px); padding: 8px; }
+  .B .nav a { color: #a9c0ca; } .B .nav a[aria-current] { color: #fff; } .B .nav a[aria-current] i { background: #7fe6c8; }
+  .B .spark path { stroke: #7fe6c8; } .B .spark .area { fill: rgba(127,230,200,.15); stroke: none; }
+
+  /* ================= C · ENGENHARIA CLARA ================= */
+  .C .tel { background: #f6f8f9; color: #10202a; font-family: "IBM Plex Sans", sans-serif;
+    background-image: radial-gradient(#c9d5db 1px, transparent 1px); background-size: 18px 18px; }
+  .C .logo { color: #264357; } .C .logo i { background: #264357; border-radius: 5px; position: relative; }
+  .C .logo i::after { content: ""; position: absolute; inset: 7px; border-radius: 2px; background: #2e8cff; }
+  .C .data, .C .w, .C .sec small, .C .kpi span { color: #55697a; }
+  .C .marca-fonte { font-family: "IBM Plex Mono", monospace; color: #3d5566; }
+  .C .marca-fonte::before { background: #2e8cff; }
+  .C .heroi { background: #264357; color: #fff; border-radius: 12px; }
+  .C .heroi::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px); background-size: 16px 16px; pointer-events: none; }
+  .C .heroi .marca-fonte { color: #b9cdd5; }
+  .C .heroi .n { font-family: "IBM Plex Mono", monospace; font-weight: 500; }
+  .C .heroi .bt { background: #2e8cff; color: #fff; border-radius: 8px; position: relative; z-index: 1; }
+  .C .kpi, .C .item { background: #fff; border: 1px solid #dbe3e8; border-radius: 10px; box-shadow: 0 1px 2px rgba(16,32,42,.05); }
+  .C .kpi b { font-family: "IBM Plex Mono", monospace; font-weight: 500; }
+  .C .pill { font-family: "IBM Plex Mono", monospace; border-radius: 6px; }
+  .C .ok { color: #167a4a; } .C .led.ok { background: #1aa463; } .C .pill.ok { background: #e3f5ec; }
+  .C .at { color: #8a5a06; } .C .led.at { background: #e0a21b; } .C .pill.at { background: #fbf1da; }
+  .C .er { color: #b42318; } .C .led.er { background: #e5484d; } .C .pill.er { background: #fde8e8; }
+  .C .in { color: #1d5fc4; } .C .led.in { background: #2e8cff; } .C .pill.in { background: #e3eeff; }
+  .C .nav { background: #fff; border-top: 1px solid #dbe3e8; }
+  .C .nav a { color: #55697a; } .C .nav a[aria-current] { color: #264357; font-weight: 600; } .C .nav a[aria-current] i { background: #2e8cff; }
+  .C .spark path { stroke: #2e8cff; } .C .spark .area { fill: rgba(46,140,255,.12); stroke: none; }
+</style>
+</head>
+<body>
+<div class="topo">
+  <h1>Três direções de interface · tecnologia</h1>
+  <p>A mesma tela <strong>Hoje</strong>, com os mesmos dados fictícios, em três caras. Mostra-se ao cliente com a marca dele trocada nos tokens; escolhe-se uma inteira, ou uma padrão e outra como troca. Em todas, o número continua marcado com a fonte e a hora.</p>
+</div>
+<div class="grade" id="grade"></div>
+
+<template id="tela">
+  <div class="tel">
+    <div class="barra"><span class="logo"><i></i>Empresa</span><span class="data">sex · 06/11</span></div>
+    <div class="corpo">
+      <div class="heroi">
+        <span class="marca-fonte">fila de decisões · 11:40</span>
+        <span class="n">3</span>
+        <span class="t">decisões esperam você</span>
+        <button class="bt" type="button">Ver as 3</button>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><span>Entregas hoje</span><b>4</b><svg class="spark" viewBox="0 0 100 26" preserveAspectRatio="none"><path class="area" d="M0 20 L20 16 L40 18 L60 9 L80 12 L100 5 L100 26 L0 26Z"/><path d="M0 20 L20 16 L40 18 L60 9 L80 12 L100 5" fill="none" stroke-width="2"/></svg></div>
+        <div class="kpi"><span>Atrasadas</span><b class="er">1</b><svg class="spark" viewBox="0 0 100 26" preserveAspectRatio="none"><path class="area" d="M0 8 L20 12 L40 10 L60 16 L80 18 L100 20 L100 26 L0 26Z"/><path d="M0 8 L20 12 L40 10 L60 16 L80 18 L100 20" fill="none" stroke-width="2"/></svg></div>
+        <div class="kpi"><span>Amanhã</span><b>6</b><svg class="spark" viewBox="0 0 100 26" preserveAspectRatio="none"><path class="area" d="M0 18 L20 14 L40 15 L60 11 L80 8 L100 9 L100 26 L0 26Z"/><path d="M0 18 L20 14 L40 15 L60 11 L80 8 L100 9" fill="none" stroke-width="2"/></svg></div>
+      </div>
+      <div class="sec"><h3>Entregas de hoje</h3><small class="marca-fonte">planilha · 11:40</small></div>
+      <div class="lista">
+        <div class="item"><i class="led er"></i><div><div class="q">12 cochos de sal U</div><div class="w">Fazenda Boa Vista · Vila Bela</div></div><span class="pill er">atrasada</span></div>
+        <div class="item"><i class="led at"></i><div><div class="q">2 bases de caixa d'água</div><div class="w">Sítio Três Irmãos · Jauru</div></div><span class="pill at">sem nota</span></div>
+        <div class="item"><i class="led ok"></i><div><div class="q">30 mourões</div><div class="w">Fazenda Santa Clara · Comodoro</div></div><span class="pill ok">carregado</span></div>
+        <div class="item"><i class="led in"></i><div><div class="q">1 mata-burro 3 m</div><div class="w">Retira no pátio · 15h</div></div><span class="pill in">retirada</span></div>
+      </div>
+    </div>
+    <nav class="nav"><a href="#" aria-current="page"><i></i>Hoje</a><a href="#"><i></i>Entregas</a><a href="#"><i></i>Caixa</a><a href="#"><i></i>Equipe</a></nav>
+  </div>
+</template>
+
+<script>
+  var ops = [
+    ["A", "A · Sala de controle", "Escuro de instrumento: grade fina no fundo, número em fonte de código, luz ciano tirada do azul da logo, LEDs de status. Lê como central de monitoramento."],
+    ["B", "B · Vidro petróleo", "Fintech premium: o petróleo da logo vira luz de fundo, cartões de vidro por cima, cantos macios, verde-água na ação. Lê como app de banco digital."],
+    ["C", "C · Engenharia clara", "Claro e preciso: papel milimetrado de pontos, petróleo da logo como base, azul elétrico na ação, números em fonte de engenharia. Lê como software de projeto."]
+  ];
+  var g = document.getElementById("grade"), t = document.getElementById("tela");
+  ops.forEach(function (o) {
+    var d = document.createElement("section"); d.className = "op " + o[0];
+    d.innerHTML = "<h2>" + o[1] + "</h2><p class='porque'>" + o[2] + "</p>";
+    d.appendChild(t.content.cloneNode(true)); g.appendChild(d);
+  });
+</script>
+</body>
+</html>

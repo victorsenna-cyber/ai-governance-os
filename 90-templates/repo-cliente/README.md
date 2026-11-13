@@ -72,7 +72,7 @@
 
 ## 3-bis. 🔴 O REPO VIVO — onde mora e como sincroniza *(instituído, alçada {{OPERADOR}}; `CLAUDE.md` §11.6)*
 
-Repo entregue não é pasta entregue. **Ele mora na pasta do cliente, em `clientes/<Cliente>/entregaveis/<pasta>/`, como clone git com GitHub próprio, e só ali se edita** — como a Governança.
+Repo entregue não é pasta entregue. **Ele mora na pasta do cliente, em `clientes/<Cliente>/entregaveis/<pasta>/`, como clone git com GitHub próprio, e só ali se edita** — como a Governança. As entregas datadas (`entregaveis/<AAAA-MM-DD - nome>/`) ficam ao lado dele.
 
 | Ato, na tarefa em que o repo nasce | Como |
 |---|---|

@@ -14,6 +14,9 @@ Uma operação, igual em qualquer computador:
 
 Conflito: a mescla é desfeita, nada se perde, e o aviso diz o que fazer.
 
+Backup (10/11/2026): antes de juntar com o GitHub e depois de publicar, o backup.py guarda o estado numa cópia
+fora da pasta, neste computador (<pasta do usuário>/Backups-repositorios/). Falha no backup nunca para a sincronia.
+
 Roda sozinho pelos hooks de `.claude/settings.json` (ao abrir e ao fechar a conversa no Claude) e à mão:
   python <este arquivo> [-m "mensagem"] [--hook] [--sem-push]
 """
@@ -36,6 +39,12 @@ def _raiz():
 
 
 RAIZ = _raiz()
+
+
+def dentro_da_casa(raiz=None):
+    """A raiz do git é a da Governança Continuum (a pasta deste repositório ainda não tem git próprio)."""
+    raiz = RAIZ if raiz is None else raiz
+    return bool(raiz) and os.path.exists(os.path.join(raiz, "40-operacao-rotinas", "ferramentas", "verificar-propagacao.py"))
 
 
 def git(*args, ok=False):
@@ -96,6 +105,20 @@ def mesclar_main():
     return conflitos or ["(mescla recusada sem arquivo em conflito)"]
 
 
+def backup(avisos):
+    """Cópia local fora da pasta (backup.py). Em silêncio; o aviso só aparece quando algo foi reescrito ou falhou."""
+    try:
+        sys.path.insert(0, AQUI)
+        import backup as bk
+        r = bk.guardar(rz=RAIZ)
+        for parte in r.split(" · "):
+            if parte.startswith("⚠️") and ("💾 backup: " + parte) not in avisos:
+                avisos.append("💾 backup: " + parte)
+    except Exception as e:   # sem backup, sincroniza assim mesmo
+        if not avisos:
+            avisos.append(f"⚠️ backup local não rodou ({e})")
+
+
 def main():
     hook = "--hook" in sys.argv
     sem_push = "--sem-push" in sys.argv
@@ -114,11 +137,17 @@ def main():
 
     if not RAIZ:
         falhar("🔴 sincronizar: esta pasta não é um repositório git.")
+    if dentro_da_casa():
+        # 11/11/2026: repo de cliente ainda versionado DENTRO da Governança Continuum (sem git próprio, antes da
+        # instalação): a raiz do git é a da casa, e sincronizar daqui publicaria a Governança inteira. Não faz nada.
+        print("⏸ sincronizar: esta pasta ainda mora dentro da Governança Continuum, sem git próprio; "
+              "quem a publica é o sincronizar da Governança. Nada feito.")
+        return
     if os.name == "nt":
         git("config", "core.fileMode", "false", ok=True)
 
     onde = socket.gethostname()
-    carimbo = time.strftime("%d/%m/%Y %H:%M")
+    carimbo = time.strftime("%d/%m/%Y %H:%M", time.gmtime(time.time() - 3 * 3600))   # sempre BSB (a nuvem e a VPS rodam em UTC; 10/11/2026)
     try:
         if git("rev-parse", "-q", "--verify", "MERGE_HEAD", ok=True).returncode == 0:
             raise RuntimeError("há uma mescla em andamento: resolva os conflitos e rode de novo")
@@ -131,6 +160,8 @@ def main():
         if aviso:
             print(aviso)
         commitar(msg or f"sync ({onde}): {carimbo}")
+        avisos_bk = []
+        backup(avisos_bk)   # o estado daqui, antes de juntar com o GitHub
         duros = mesclar_main()
         if duros:
             falhar("🔴 sincronizar: o GitHub tem mudança que conflita com a daqui em " + ", ".join(duros)
@@ -146,6 +177,9 @@ def main():
                     raise RuntimeError("o GitHub mudou durante a publicação e gerou conflito")
             else:
                 raise RuntimeError("publicação recusada: " + (r.stderr or "").strip()[-300:])
+        backup(avisos_bk)   # o estado publicado e a main do GitHub como chegou
+        for a in avisos_bk:
+            print(a)
         print(f"✅ sincronizado ({onde}) {carimbo}")
     except RuntimeError as e:
         print(f"🔴 sincronizar: {e}", file=sys.stderr)

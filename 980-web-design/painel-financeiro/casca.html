@@ -1,14 +1,21 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#0b0b0b">
+  <meta name="theme-color" content="#0A0A0A">
   <title>Caixa · {{EMPRESA}}</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+  <!-- direção Grafite: Instrument Sans para palavra, Space Grotesk para número -->
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- tokens, casca e componentes do sistema, divididos com o Projetos -->
+  <link rel="stylesheet" href="sistema.css">
+  <script src="sistema.js"></script>
   <link rel="stylesheet" href="runtime.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
@@ -18,7 +25,7 @@
 <body>
   <section id="porta" class="porta" hidden>
     <form id="f-entrar">
-      <h1>Caixa</h1>
+      <h1><img src="simbolo.png" alt="">{{EMPRESA}}</h1>
       <input id="email" type="email" autocomplete="username" placeholder="e-mail" aria-label="E-mail" required>
       <input id="senha" type="password" autocomplete="current-password" placeholder="senha" aria-label="Senha">
       <button type="submit">Entrar</button>
@@ -29,7 +36,7 @@
 
   <section id="definir" class="porta" hidden>
     <form id="f-senha">
-      <h1>Caixa</h1>
+      <h1><img src="simbolo.png" alt="">{{EMPRESA}}</h1>
       <p class="lead">Crie a senha das próximas entradas. O link por e-mail fica só para quando esquecer.</p>
       <input id="senha-nova" type="password" autocomplete="new-password" minlength="8" placeholder="nova senha (8 ou mais)" aria-label="Nova senha" required>
       <input id="senha-conf" type="password" autocomplete="new-password" minlength="8" placeholder="repita a senha" aria-label="Repita a senha" required>
@@ -39,11 +46,30 @@
   </section>
 
   <div id="painel" hidden>
-    <nav class="sistema" aria-label="Sistema {{EMPRESA}}"><span class="marca">{{EMPRESA}}</span><a href="/" aria-current="page">Caixa</a><a href="/projetos/">Projetos</a></nav>
-    <div id="dash-root">
+    <!-- a barra lateral é montada pelo sistema.js, do mesmo mapa que o Projetos usa -->
+    <aside class="sis" data-sis-nav data-sis-pagina="caixa" data-sis-simbolo="simbolo.png" aria-label="{{EMPRESA}}"></aside>
+    <div class="sis-main">
+      <header class="sis-top">
+        <button type="button" class="sis-ico sis-menu" data-sis-menu aria-label="Abrir o menu" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+        <nav class="sis-trilha" aria-label="Você está em"><span data-sis-grupo>Caixa</span><span class="sep">/</span><b data-sis-tela>Visão</b></nav>
+        <div class="sis-top-dir">
+          <div class="sis-filtros" data-sis-filtros></div>
+          <span class="sis-src sem" data-sis-sinc><i></i><span>não lido</span></span>
+          <button type="button" class="sis-ico" data-alternar-tema aria-label="Mudar o tema"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+          <div class="sis-conta">
+            <button type="button" class="sis-ico" data-sis-conta aria-haspopup="menu" aria-expanded="false" aria-label="Conta">·</button>
+            <div class="sis-menu-conta" role="menu" hidden>
+              <button id="trocar-senha" type="button" role="menuitem"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3"/></svg>Trocar senha</button>
+              <button id="sair" type="button" role="menuitem"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M10 16l-4-4 4-4M6 12h10"/></svg>Sair</button>
+            </div>
+          </div>
+        </div>
+        <nav class="sis-fita" data-sis-fita aria-label="Caixa"></nav>
+      </header>
+      <div id="dash-root">
 <!--ARTEFATO-->
+      </div>
     </div>
-    <p class="rodape"><button id="trocar-senha" class="sair" type="button">trocar senha</button> · <button id="sair" class="sair" type="button">sair</button></p>
   </div>
 </body>
 </html>

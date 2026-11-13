@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0b0b0b">
+  <title>Caixa · Continuum-Analytics</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+  <!-- 06/11/2026: paleta (escura e clara) e barra lateral do sistema, divididas com o Projetos -->
+  <link rel="stylesheet" href="sistema.css">
+  <script src="sistema.js"></script>
+  <link rel="stylesheet" href="runtime.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="runtime.js"></script>
+</head>
+<body>
+  <section id="porta" class="porta" hidden>
+    <form id="f-entrar">
+      <h1>Continuum-Analytics</h1>
+      <input id="email" type="email" autocomplete="username" placeholder="e-mail" aria-label="E-mail" required>
+      <input id="senha" type="password" autocomplete="current-password" placeholder="senha" aria-label="Senha">
+      <button type="submit">Entrar</button>
+      <button id="pedir-link" class="link" type="button">Primeiro acesso ou esqueceu a senha? Receber link por e-mail</button>
+      <p id="porta-msg" role="status"></p>
+    </form>
+  </section>
+
+  <section id="definir" class="porta" hidden>
+    <form id="f-senha">
+      <h1>Continuum-Analytics</h1>
+      <p class="lead">Crie a senha das próximas entradas. O link por e-mail fica só para quando esquecer.</p>
+      <input id="senha-nova" type="password" autocomplete="new-password" minlength="8" placeholder="nova senha (8 ou mais)" aria-label="Nova senha" required>
+      <input id="senha-conf" type="password" autocomplete="new-password" minlength="8" placeholder="repita a senha" aria-label="Repita a senha" required>
+      <button type="submit">Salvar senha e entrar</button>
+      <p id="definir-msg" role="status"></p>
+    </form>
+  </section>
+
+  <div id="painel" hidden>
+    <aside class="sis" aria-label="Continuum-Analytics">
+      <div class="marca"><img src="simbolo.png" alt="" width="22" height="22">Continuum-Analytics</div>
+      <div class="grupo">Áreas</div>
+      <a href="/projetos/#operacao"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg><span>Operação</span></a>
+      <a href="/projetos/#comercial"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg><span>Comercial</span></a>
+      <a href="/projetos/#hoje"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg><span>Projetos</span></a>
+      <a href="/index.html" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h15a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z"/><path d="M3 7V6a2 2 0 0 1 2-2h11"/><path d="M16 14h2"/></svg><span>Caixa</span></a>
+      <div class="pe">
+        <button type="button" data-alternar-tema><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg><span>Tema claro</span></button>
+        <button id="trocar-senha" type="button" title="Trocar senha"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3"/></svg><span>Trocar senha</span></button>
+        <button id="sair" type="button" title="Sair"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4"/><path d="M10 16l-4-4 4-4M6 12h10"/></svg><span>Sair</span></button>
+      </div>
+    </aside>
+    <div class="sis-main">
+    <div id="dash-root">
+<!--ARTEFATO-->
+    </div>
+    </div>
+  </div>
+</body>
+</html>

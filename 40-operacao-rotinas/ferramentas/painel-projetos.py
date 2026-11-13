@@ -10,8 +10,14 @@ O painel é LEITOR, nunca fonte (mesma régua do financeiro). Este script só l�
                                           a defasagem do painel; nunca o conteúdo
   clientes/<Conta>/01 - contexto/OpenWA/  a data mais nova no nome dos arquivos (último toque por WhatsApp);
                                           em checkout parcial, pelos nomes no git (ls-tree), sem baixar os arquivos
+  clientes/<Conta>/<subpasta>/PAINEL.md   subprojeto (11/11/2026, contas_da_casa.py): cartão próprio com `conta:` próprio;
+                                          STATUS e OpenWA vêm da conta-mãe; lançamento do financeiro vai a ele pelo
+                                          `financeiro_ref:` (o resto fica na mãe, nada conta duas vezes); defasagem não
+                                          se mede nele. Marco que abre com ✅ está feito: não vence nem é pendência
   40-operacao-rotinas/tarefas/*/T-*.md    frontmatter das tasks (conta, prazo, prazo_duro, prioridade, estado)
   40-operacao-rotinas/tarefas/DECISOES-PENDENTES.md   os cartões em "## Abertas"
+  40-operacao-rotinas/tarefas/ (PAUSA, log/RODADA-*.md, log/GASTO.jsonl) e tokens/ORCAMENTO.json → payload["despachante"],
+                                          pelo despachante_painel.py (11/11/2026: tela Despachante)
   45-financeiro/LANCAMENTOS-EMPRESA.md    A receber e Receitas, pelas funções de financas-painel.py (importado)
 e publica UM documento JSON no Supabase (projeto <projeto-supabase>, tabela projetos_estado), que o site lê.
 
@@ -46,6 +52,11 @@ FASES = ("prospecto", "proposta", "fundar", "construir", "operar", "pausada", "e
 ATIVAS = ("prospecto", "proposta", "fundar", "construir", "operar")
 PASTAS_TASK = ("fila", "executando", "revisao", "decisao", "falhou")
 FUSO = dt.timezone(dt.timedelta(hours=-3))
+# 08/11/2026: a régua do Onboarding Orquestrado (aba Onboarding; 100-métodos/METODO-ONBOARDING-ORQUESTRADO.md)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import onboarding_regras as onb  # noqa: E402
+import comercial_regras as com  # noqa: E402  (08/11/2026: áreas Comercial e Operação)
+import contas_da_casa  # noqa: E402  (08/11/2026: conta em clientes/ ou em parceiros/<P>/PAINEL.md)
 
 
 def hoje():
@@ -114,7 +125,7 @@ def frontmatter(texto):
                 continue
             corpo = item[1:-1]
             d = {}
-            for k, v in re.findall(r"(o_que|prazo|dono|duro)\s*:\s*(.*?)(?=,\s*(?:o_que|prazo|dono|duro)\s*:|$)", corpo):
+            for k, v in re.findall(r"(o_que|prazo|dono|duro|task)\s*:\s*(.*?)(?=,\s*(?:o_que|prazo|dono|duro|task)\s*:|$)", corpo):
                 d[k] = v.strip().strip('"').strip("'")
             if not d.get("o_que"):
                 erros.append(f"marco sem o_que: {item[:60]}")
@@ -123,10 +134,10 @@ def frontmatter(texto):
             if d.get("prazo") and not prazo:
                 erros.append(f"prazo inválido no marco '{d['o_que'][:40]}': {d.get('prazo')}")
             marcos.append(dict(o_que=d["o_que"], prazo=prazo.isoformat() if prazo else None,
-                               dono=d.get("dono") or "", duro=(d.get("duro", "").lower() == "sim")))
+                               dono=d.get("dono") or "", duro=(d.get("duro", "").lower() == "sim"), task=d.get("task") or None))
             continue
         em_marcos = False
-        mm = re.match(r"^([A-Za-z_]+)\s*:\s*(.*)$", linha)
+        mm = re.match(r"^([A-Za-z_][A-Za-z0-9_]*)\s*:\s*(.*)$", linha)
         if not mm:
             erros.append(f"linha fora do esquema: {linha[:60]}")
             continue
@@ -140,7 +151,8 @@ def frontmatter(texto):
     fm["marcos"] = marcos
     if fm.get("fase") not in FASES:
         erros.append(f"fase inválida: {fm.get('fase')!r}")
-    for k in ("marco_prazo", "atualizado"):
+    datas_onb = [k for k in fm if k.startswith("onb_") and k not in ("onb_primeiro_valor_fala", "onb_renovacao", "onb_fora", "onb_promessas_orfas")]
+    for k in ["marco_prazo", "atualizado"] + datas_onb:
         if fm.get(k) and not iso(fm[k]):
             erros.append(f"{k} inválido: {fm[k]}")
     if not fm.get("atualizado"):
@@ -154,10 +166,8 @@ def frontmatter(texto):
 # ── fontes ─────────────────────────────────────────────────────────────────
 
 def contas():
-    if not os.path.isdir(CLIENTES):
-        return []
-    return sorted(n for n in os.listdir(CLIENTES)
-                  if os.path.isdir(os.path.join(CLIENTES, n)) and not n.startswith(("_", ".")))
+    """[(nome, pasta, rel)]: clientes/<Conta>/ e parceiros/<Parceiro>/ com PAINEL.md (contas_da_casa.py)."""
+    return contas_da_casa.contas(RAIZ)
 
 
 DATA_BR = re.compile(r"\b(\d{1,2})/(\d{1,2})/(20\d{2})\b")
@@ -241,30 +251,13 @@ def tasks():
 
 
 def decisoes():
-    t = ler(PENDENTES)
-    if "## Abertas" not in t:
-        return []
-    abertas = t.split("## Abertas", 1)[1].split("## Decididas", 1)[0]
-    out = []
-    for m in re.finditer(r"^### (D-[\d-]+) · (.*?)$\n((?:(?!^### ).*\n?)*)", abertas, re.M):
-        did, cab, corpo = m.group(1), m.group(2), m.group(3)
-        partes = [p.strip() for p in cab.split(" · ")]
-        conta_titulo = partes[0]
-        conta, titulo = (conta_titulo.split(" — ", 1) + [""])[:2]
-        tipo = re.search(r"tipo `([^`]+)`", cab)
-        auton = re.search(r"autonomia (A\d)", cab)
-        prazo = None
-        mp = re.search(r"prazo\s*:?\s*(\d{1,2}/\d{1,2}/\d{4}|\d{4}-\d{2}-\d{2})", cab)
-        if mp:
-            prazo = iso(mp.group(1))
-        opcoes = [dict(letra=l, texto=x.strip()) for l, x in re.findall(r"^- \*\*([A-C])\)\*\*\s*(.*?)$", corpo, re.M)]
-        rec = re.search(r"\*\*Recomendação:\*\*\s*([A-C])", corpo)
-        ctx = re.search(r"\*\*Contexto:\*\*\s*(.*?)(?=\n- \*\*[A-C]\)|\n\*\*Recomendação|\Z)", corpo, re.S)
-        out.append(dict(id=did, conta=conta.replace("Casa", "casa").strip(), titulo=titulo.strip(), tipo=tipo.group(1) if tipo else None,
-                        autonomia=auton.group(1) if auton else None, prazo=prazo.isoformat() if prazo else None,
-                        contexto=(ctx.group(1).strip() if ctx else "")[:600], opcoes=opcoes,
-                        recomendado=rec.group(1) if rec else None))
-    return out
+    # 12/11/2026 (PLANO-DECISOES-NO-PAINEL §4.2): o leitor é o decisoes_cartao.py, a fonte única do formato; sem corte
+    # de 600. Cartão = face (titulo, em_jogo, numeros, opcoes[letra, rotulo, efeito], porque, supondo) + lastro inteiro.
+    # Os nomes antigos ficam (id, conta, titulo, tipo, autonomia, prazo, recomendado: avisar-prazos e foto-da-operacao) e
+    # os apelidos opcoes[].texto = rótulo e contexto = "Em jogo" seguram a aba antiga aberta num navegador.
+    _sc = importlib.util.spec_from_file_location("decisoes_cartao", os.path.join(os.path.dirname(os.path.abspath(__file__)), "decisoes_cartao.py"))
+    _dc = importlib.util.module_from_spec(_sc); _sc.loader.exec_module(_dc)
+    return _dc.ler(ler(PENDENTES))
 
 
 def financeiro():
@@ -285,12 +278,36 @@ def financeiro():
     recebido = {}
     for r in receitas:
         recebido[r["contraparte"]] = recebido.get(r["contraparte"], 0) + float(r["valor"])
-    return dict(a_receber=a_receber, recebido=recebido)
+    entradas = [dict(data=r.get("data"), contraparte=r.get("contraparte"), valor=float(r["valor"]), ref=r.get("ref") or "")
+                for r in receitas]
+    return dict(a_receber=a_receber, recebido=recebido, entradas=entradas)
 
 
 def casa(nome, contraparte):
     a, b = nome.lower(), (contraparte or "").lower()
     return a in b or b in a or a.split()[0] in b.split()
+
+
+def casador(contas_info):
+    """11/11/2026 (subprojeto de cliente, contas_da_casa.py): de quem é um lançamento do financeiro.
+    contas_info: [dict(nome, pasta, fatos, sub, fm)]. Devolve f(info, contraparte, texto) -> bool.
+    Subprojeto: contraparte da mãe e o `financeiro_ref:` dele no texto do lançamento. Mãe: o casa() de sempre, menos o que
+    um subprojeto dela reclamou. Subprojeto sem `financeiro_ref:` não pega nada: um lançamento nunca conta duas vezes."""
+    refs = {}
+    for x in contas_info:
+        r = (x["fm"].get("financeiro_ref") or "").strip().lower()
+        if x["sub"] and r:
+            refs.setdefault(os.path.normcase(x["fatos"]), []).append(r)
+
+    def f(x, contraparte, texto):
+        t = (texto or "").lower()
+        if x["sub"]:
+            r = (x["fm"].get("financeiro_ref") or "").strip().lower()
+            return bool(r) and casa(os.path.basename(x["fatos"]), contraparte) and r in t
+        if not casa(x["nome"], contraparte):
+            return False
+        return not any(r in t for r in refs.get(os.path.normcase(x["pasta"]), []))
+    return f
 
 
 # ── montagem ───────────────────────────────────────────────────────────────
@@ -300,16 +317,28 @@ def montar():
     fin = financeiro()
     todas_tasks = tasks()
     todas_dec = decisoes()
-    saida = []
-    for nome in contas():
-        pasta = os.path.join(CLIENTES, nome)
+    saida, contas_fm = [], []
+    # 11/11/2026: subprojeto de cliente (clientes/<Conta>/<subpasta>/PAINEL.md com conta: próprio). O cartão é dele;
+    # STATUS, DECISOES, 01 - contexto/ (toque e silêncio) vêm da mãe (contas_da_casa.pasta_dos_fatos)
+    info = []
+    for nome, pasta, rel in contas():
         painel = os.path.join(pasta, "PAINEL.md")
-        status = os.path.join(pasta, "STATUS.md")
-        tem_painel, tem_status = os.path.exists(painel), os.path.exists(status)
+        tem_painel = os.path.exists(painel)
         fm, erros = (frontmatter(ler(painel)) if tem_painel else (None, ["sem PAINEL.md"]))
-        fm = fm or {}
+        fatos = contas_da_casa.pasta_dos_fatos(RAIZ, pasta)
+        sub = os.path.normcase(os.path.normpath(fatos)) != os.path.normcase(os.path.normpath(pasta))
+        rel_fatos = os.path.relpath(fatos, RAIZ).replace(os.sep, "/") if sub else rel
+        info.append(dict(nome=nome, pasta=pasta, rel=rel, fatos=fatos, rel_fatos=rel_fatos, sub=sub, fm=fm or {},
+                         erros=erros, tem_painel=tem_painel))
+    do_lanc = casador(info)
+    por_nome = {x["nome"].lower(): x for x in info}
+    for x in info:
+        nome, pasta, rel, fm, erros, tem_painel = x["nome"], x["pasta"], x["rel"], x["fm"], x["erros"], x["tem_painel"]
+        status = os.path.join(x["fatos"], "STATUS.md")
+        tem_status = os.path.exists(status)
+        contas_fm.append((nome, fm.get("fase"), fm))
         ult_status = ultima_data_no_texto(ler(status)) if tem_status else None
-        toque_wa = ultimo_toque_openwa(pasta)
+        toque_wa = ultimo_toque_openwa(x["fatos"])
         atualizado = iso(fm.get("atualizado"))
         toques = [d for d in (ult_status, toque_wa) if d]
         ultimo_toque = max(toques) if toques else None
@@ -318,16 +347,19 @@ def montar():
         marcos = []
         for mk in fm.get("marcos", []):
             d = dias(iso(mk["prazo"])) if mk["prazo"] else None
-            marcos.append(dict(mk, dias=d, vencido=(d is not None and d < 0)))
+            # 11/11/2026: marco que abre com ✅ está feito (convenção dos PAINEL.md); não vence nem conta como pendência
+            feito = mk["o_que"].lstrip().startswith("✅")
+            marcos.append(dict(mk, dias=d, feito=feito, vencido=(not feito and d is not None and d < 0)))
         minhas_tasks = [t for t in todas_tasks if t["conta"].lower() == nome.lower()]
         for t in minhas_tasks:
             d = dias(iso(t["prazo"])) if t["prazo"] else None
             t.update(dias=d, vencido=(d is not None and d < 0))
         minhas_dec = [d for d in todas_dec if d["conta"].lower() == nome.lower()]
         a_receber = [dict(r, dias=dias(iso(r["vencimento"])) if r.get("vencimento") else None)
-                     for r in fin["a_receber"] if casa(nome, r.get("contraparte"))]
-        recebido_fin = sum(v for k, v in fin["recebido"].items() if casa(nome, k))
-        defasagem = (ult_status - atualizado).days if (ult_status and atualizado and ult_status > atualizado) else 0
+                     for r in fin["a_receber"] if do_lanc(x, r.get("contraparte"), r.get("descricao"))]
+        recebido_fin = sum(e["valor"] for e in fin.get("entradas", []) if do_lanc(x, e.get("contraparte"), e.get("ref")))
+        # subprojeto: o STATUS é da mãe e anda com a outra frente; a defasagem não se mede nele (o silêncio, sim)
+        defasagem = (ult_status - atualizado).days if (not x["sub"] and ult_status and atualizado and ult_status > atualizado) else 0
         sem_toque = (h - ultimo_toque).days if ultimo_toque else None
         marco_prazo = iso(fm.get("marco_prazo"))
         prox = dias(marco_prazo) if marco_prazo else None
@@ -346,7 +378,7 @@ def montar():
                 motivos.append(("vermelho", "decisão com prazo vencido"))
             if sem_toque is not None and sem_toque > 14 and fase in ("construir", "operar"):
                 motivos.append(("vermelho", f"sem toque há {sem_toque} dias"))
-            if any(0 <= (m["dias"] if m["dias"] is not None else 99) <= 7 for m in marcos) or (prox is not None and 0 <= prox <= 7):
+            if any(not m["feito"] and 0 <= (m["dias"] if m["dias"] is not None else 99) <= 7 for m in marcos) or (prox is not None and 0 <= prox <= 7):
                 motivos.append(("amarelo", "prazo em até 7 dias"))
             if sem_toque is not None and 7 < sem_toque <= 14:
                 motivos.append(("amarelo", f"sem toque há {sem_toque} dias"))
@@ -359,20 +391,69 @@ def montar():
             conta=nome, fase=fase, ativa=ativa, projeto=fm.get("projeto", ""), proximo_marco=fm.get("proximo_marco", ""),
             marco_prazo=marco_prazo.isoformat() if marco_prazo else None, marco_dias=prox, marco_dono=fm.get("marco_dono", ""),
             contrato=num(fm.get("contrato")), recebido=num(fm.get("recebido")), recebido_financeiro=round(recebido_fin, 2),
+            recorrencia=(fm.get("recorrencia") or "").strip().lower() or None, mensalidade=num(fm.get("mensalidade")),
             risco=fm.get("risco", ""), atualizado=atualizado.isoformat() if atualizado else None,
             ultimo_registro=ult_status.isoformat() if ult_status else None, ultimo_whatsapp=toque_wa.isoformat() if toque_wa else None,
             sem_toque_dias=sem_toque, defasagem_dias=defasagem, marcos=marcos, tasks=minhas_tasks, decisoes=minhas_dec,
             a_receber=a_receber, saude=saude, motivos=[m for _, m in motivos], erros=erros,
+            onboarding=onb.calcular(fm, h, fase, ativa, sem_toque, a_receber, marcos),
             tem_painel=tem_painel, tem_status=tem_status,
-            arquivos=dict(painel="clientes/%s/PAINEL.md" % nome, status="clientes/%s/STATUS.md" % nome,
-                          decisoes="clientes/%s/DECISOES.md" % nome)))
+            conta_mae=os.path.basename(x["fatos"]) if x["sub"] else None,
+            arquivos=dict(painel="%s/PAINEL.md" % rel, status="%s/STATUS.md" % x["rel_fatos"],
+                          decisoes="%s/DECISOES.md" % x["rel_fatos"])))
+    # 12/11/2026 (T-2026-11-11-061): "espera resposta nossa há 3+ dias" — régua do retorno atrasado (ARVORE-ESCRITA §7)
+    try:
+        import sem_resposta
+        espera = sem_resposta.calcular(RAIZ, dt.datetime.now(FUSO).replace(tzinfo=None))
+    except Exception as e:  # noqa: BLE001  (o alerta some, o painel não cai)
+        print("! sem_resposta:", e)
+        espera = []
+    espera_conta = {}
+    for x in espera:
+        espera_conta.setdefault(x["conta"].lower(), x)
+    for c in saida:
+        x = espera_conta.get(c["conta"].lower())
+        c["sem_resposta"] = x
+        if x and c["ativa"]:
+            c["motivos"].append(x["texto"])
+            if x["dias"] >= 7 and c["saude"] != "vermelho":
+                c["saude"] = "vermelho"
+            elif c["saude"] == "verde":
+                c["saude"] = "amarelo"
     casa_tasks = [t for t in todas_tasks if t["conta"].lower() == "casa"]
     for t in casa_tasks:
         d = dias(iso(t["prazo"])) if t["prazo"] else None
         t.update(dias=d, vencido=(d is not None and d < 0))
+    # 09/11/2026: aba Entregáveis (PLANO-PRODUCAO-DE-ENTREGAVEIS §6); a fonte é a task tipo: entregavel
+    try:
+        _se = importlib.util.spec_from_file_location("entregaveis", os.path.join(os.path.dirname(os.path.abspath(__file__)), "entregaveis.py"))
+        _ent = importlib.util.module_from_spec(_se); _se.loader.exec_module(_ent)
+        entregaveis = _ent.painel()
+    except Exception as e:  # noqa: BLE001  (a aba some, o resto do painel não cai)
+        print("! entregaveis:", e)
+        entregaveis = []
+    # 11/11/2026: tela Despachante (despachante_painel.py, que importa as regras do despachar.py)
+    try:
+        import despachante_painel
+        despachante = despachante_painel.montar()
+    except Exception as e:  # noqa: BLE001  (a tela avisa que não leu; o resto do painel não cai)
+        print("! despachante:", e)
+        despachante = dict(erro=str(e))
+    comercial = com.montar(RAIZ, contas_fm, h, ler, ultimo_toque_openwa)
+    for it in comercial["itens"]:                      # prospect (e conta em proposta) com mensagem sem resposta nossa
+        x = espera_conta.get(str(it["nome"]).lower())
+        if x and it["etapa"] not in ("aceite", "perdido"):
+            it["alertas"].append(dict(nivel=sem_resposta.nivel(x["dias"]), texto=x["texto"], ato=x["ato"]))
+    comercial["resumo"]["alertas_vermelhos"] = sum(1 for i in comercial["itens"] for a in i["alertas"] if a["nivel"] == "vermelho")
+    comercial["resumo"]["alertas_amarelos"] = sum(1 for i in comercial["itens"] for a in i["alertas"] if a["nivel"] == "amarelo")
     return dict(
         gerado_em=dt.datetime.now(FUSO).strftime("%Y-%m-%d %H:%M"), hoje=h.isoformat(),
-        contas=saida, decisoes=todas_dec, tasks_casa=casa_tasks,
+        contas=saida, decisoes=todas_dec, tasks_casa=casa_tasks, onboarding=onb.resumo(saida), entregaveis=entregaveis,
+        despachante=despachante, sem_resposta=espera,
+        comercial=comercial,
+        receita=com.receita(saida, fin.get("entradas", []), h, casa,
+                            lanc=lambda c, r: do_lanc(por_nome[c["conta"].lower()], r.get("contraparte"), r.get("ref"))
+                            if c["conta"].lower() in por_nome else casa(c["conta"], r.get("contraparte"))),
         resumo=dict(contas=len(saida), ativas=sum(1 for c in saida if c["ativa"]),
                     vermelhas=sum(1 for c in saida if c["ativa"] and c["saude"] == "vermelho"),
                     decisoes_abertas=len(todas_dec), sem_painel=[c["conta"] for c in saida if not c["tem_painel"]],

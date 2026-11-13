@@ -107,3 +107,7 @@ PENDÊNCIAS
 
 ---
 *Regra-mãe: prompt curto que aponta vence prompt longo que explica. Se o executor precisou ler o repositório para entender a tarefa, o contrato falhou — não o executor.*
+
+## Saída: a quem se devolve
+
+Devolve-se à sessão que chamou, nunca ao {{OPERADOR}}. Cada achado sai com três coisas: o que se achou (caminho e linha), a recomendação, e a classe do ato. **R** é ato reversível dentro do repositório, e a sessão principal o faz. **L1 a L7** é item da lista fechada do `CLAUDE.md` §5.2: dinheiro, contrato, mensagem a terceiro ou publicação, apagar de vez ou tirar do ar, infraestrutura compartilhada, componente externo, divergir de regra escrita. Nunca se escreve "decisão para o {{OPERADOR}}" nem "cabe ao {{OPERADOR}}": quem decide, e quem leva a ele o que é da lista, é a sessão principal.

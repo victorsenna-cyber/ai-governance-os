@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>[TÍTULO DA PÁGINA — até 60 caracteres]</title>
+
+<style>:root{
+  /* TOKENS DA IDENTIDADE: troque só aqui */
+  --cor-fundo:#0b0711;
+  --cor-texto:#ede7f7;
+  --cor-acento:#8b5cf6;
+  --cor-acento-2:#f6c945;
+  --fonte-titulo:'Cormorant Garamond',Georgia,serif;
+  --fonte-texto:'Inter',system-ui,sans-serif;
+  --cor-fundo-2:#160e26;
+  --cor-fundo-3:#060409;
+  --cor-acento-claro:#c9b3ff;
+  --cor-texto-suave:#b6a9d1;
+}
+
+    @import url(assets/ph-16x9.svg);
+
+    /* ===== TOKENS ===== */
+    :root {
+      --vinho-profundo: var(--cor-fundo);
+      --vinho: var(--cor-fundo-2);
+      --preto-tinto: var(--cor-fundo-3);
+      --dourado-velho: var(--cor-acento);
+      --dourado-claro: var(--cor-acento-claro);
+      --ambar: #A855F7;
+      --creme: var(--cor-texto);
+      --creme-suave: var(--cor-texto-suave);
+      --cinza-vinho: #6B5A80;
+      --linha: color-mix(in srgb, var(--cor-acento) 18%, transparent);
+      /* Toque dourado luminoso (acento de diferenciação — base segue roxa) */
+      --ouro: var(--cor-acento-2);
+      --ouro-claro: #FFE08C;
+      --ouro-linha: color-mix(in srgb, var(--cor-acento-2) 30%, transparent);
+      --fd: var(--fonte-titulo);
+      --fc: var(--fonte-texto);
+      --mw: 1120px;
+      --mt: 720px;
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--vinho-profundo);
+      color: var(--creme);
+      font-family: var(--fc);
+      font-size: 1rem;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* ===== LAYOUT ===== */
+    .container { max-width: var(--mw); margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 2.5rem); }
+    .text-col { max-width: var(--mt); margin-inline: auto; }
+
+    /* ===== TYPE ===== */
+    .eyebrow {
+      font-family: var(--fc);
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dourado-velho);
+    }
+    .display {
+      font-family: var(--fd);
+      font-size: clamp(2.1rem, 5.5vw, 4.4rem);
+      font-weight: 500;
+      line-height: 1.13;
+      letter-spacing: -0.01em;
+    }
+    .h2 {
+      font-family: var(--fd);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+    .h3 { font-family: var(--fd); font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 500; }
+    .gold { color: var(--dourado-claro); }
+    .gold-grad {
+      background: linear-gradient(135deg, var(--dourado-velho), var(--dourado-claro));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .muted { color: var(--creme-suave); }
+
+    /* ===== SECTION ===== */
+    section { padding-block: clamp(4rem, 10vh, 8rem); }
+    section.alt { background: var(--vinho); }
+    section.dark { background: var(--preto-tinto); }
+    .sec-header { text-align: center; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+    .sec-intro { color: var(--creme-suave); max-width: 60ch; margin-inline: auto; margin-top: 1rem; }
+
+    /* ===== DIVIDER ===== */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-block: clamp(2.5rem, 5vw, 4.5rem);
+      opacity: 0.6;
+    }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--linha); }
+
+    /* ===== REVEAL ===== */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.vis { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+    .reveal-d5 { transition-delay: 0.5s; }
+    .reveal-d6 { transition-delay: 0.6s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn-p {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--dourado-velho) 0%, var(--dourado-claro) 100%);
+      color: var(--preto-tinto);
+      font-family: var(--fc);
+      font-size: 0.93rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.9rem 2.2rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      animation: gpulse 3s ease-in-out infinite;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-p:hover { transform: translateY(-2px); box-shadow: 0 10px 36px color-mix(in srgb, var(--cor-acento) 40%, transparent); }
+    .btn-p:focus-visible { outline: 2px solid var(--dourado-claro); outline-offset: 3px; border-radius: 999px; }
+    .btn-s {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--creme);
+      font-family: var(--fc);
+      font-size: 0.88rem;
+      font-weight: 400;
+      padding: 0.7rem 1.8rem;
+      border-radius: 999px;
+      border: 1px solid var(--dourado-velho);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-s:hover { background: color-mix(in srgb, var(--cor-acento) 10%, transparent); }
+    .btn-s:focus-visible { outline: 2px solid var(--dourado-claro); outline-offset: 3px; border-radius: 999px; }
+    @keyframes gpulse {
+      0%,100% { box-shadow: 0 4px 20px color-mix(in srgb, var(--cor-acento) 25%, transparent); }
+      50% { box-shadow: 0 4px 36px color-mix(in srgb, var(--cor-acento) 50%, transparent); }
+    }
+    @media (prefers-reduced-motion: reduce) { .btn-p { animation: none; } }
+
+    /* ===== TOP BAR ===== */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 0.7rem clamp(1.25rem,5vw,2.5rem);
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(6,4,9,.88);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--linha);
+      transform: translateY(-100%);
+      transition: transform 0.38s ease;
+    }
+    .topbar.vis { transform: translateY(0); }
+    .topbar-brand { font-family: var(--fd); font-size: 1rem; font-weight: 500; letter-spacing: 0.06em; color: var(--dourado-claro); }
+    .topbar .btn-p { padding: 0.45rem 1.3rem; font-size: 0.82rem; animation: none; }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex; align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 70% at 65% 55%, rgba(168,85,247,.07) 0%, transparent 68%),
+        var(--preto-tinto);
+    }
+    .hero-inner { position: relative; z-index: 2; width: 100%; padding-block: clamp(7rem,15vh,11rem); }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (min-width: 900px) { .hero-grid { grid-template-columns: 1fr 320px; gap: 4rem; } }
+    .hero-content { max-width: 700px; }
+    .hero-eyebrow { margin-bottom: 1.25rem; }
+    .hero h1 { margin-block: 1rem 1.5rem; }
+    .hero-sub { color: var(--creme-suave); font-size: clamp(1rem,1.4vw,1.15rem); max-width: 52ch; margin-bottom: 2rem; }
+    .hero-cta-wrap { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
+    .hero-microcopy { margin-top: 1.25rem; font-size: 0.8rem; color: var(--cinza-vinho); letter-spacing: 0.04em; }
+
+    /* Stars bg */
+    .stars { position: absolute; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+
+    /* ===== EBOOK COVER (3D, paleta violeta) ===== */
+    .cover-wrap { display: none; justify-content: center; perspective: 1200px; }
+    @media (min-width: 900px) { .cover-wrap { display: flex; } }
+    .ebook-cover {
+      position: relative;
+      width: clamp(200px, 22vw, 280px);
+      aspect-ratio: 2 / 3;
+      background:
+        radial-gradient(ellipse 90% 60% at 50% 18%, rgba(168,85,247,.18) 0%, transparent 60%),
+        linear-gradient(165deg, #1B1230 0%, var(--cor-fundo) 58%, var(--cor-fundo-2) 100%);
+      border-radius: 3px 9px 9px 3px;
+      box-shadow:
+        inset 0 0 0 1px color-mix(in srgb, var(--cor-acento) 35%, transparent),
+        0 0 46px rgba(168,85,247,.30),
+        0 32px 64px rgba(0,0,0,.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2.4rem 1.6rem;
+      text-align: center;
+      transform: rotateY(-16deg) rotateX(4deg);
+      animation: cbreathe 4.5s ease-in-out infinite;
+    }
+    .ebook-cover::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 14px;
+      background: linear-gradient(to right, rgba(0,0,0,.5) 0%, rgba(0,0,0,.05) 100%);
+      border-radius: 3px 0 0 3px;
+    }
+    .ebook-cover::after {
+      content: '';
+      position: absolute; inset: 8px;
+      border: 1px solid var(--ouro-linha);
+      border-radius: 2px 6px 6px 2px;
+      pointer-events: none;
+    }
+    .cover-seal { font-family: var(--fc); font-size: 0.58rem; font-weight: 500; color: var(--ouro); text-transform: uppercase; letter-spacing: 0.24em; opacity: 0.9; }
+    .cover-rule { display: block; width: 48px; height: 1px; background: linear-gradient(to right, transparent, var(--ouro), transparent); opacity: 0.7; margin: 0.85rem auto; }
+    .cover-symbol { margin: 0.4rem auto 0.9rem; }
+    .cover-title { font-family: var(--fd); font-size: clamp(1rem, 1.6vw, 1.25rem); font-weight: 600; color: var(--creme); line-height: 1.32; }
+    .cover-subtitle { font-family: var(--fc); font-size: 0.56rem; color: var(--creme-suave); letter-spacing: 0.08em; line-height: 1.6; margin-top: 0.55rem; text-transform: uppercase; }
+    .cover-author { font-family: var(--fd); font-size: 0.8rem; font-style: italic; color: var(--ouro-claro); margin-top: 1rem; letter-spacing: 0.04em; }
+    @keyframes cbreathe {
+      0%,100% { transform: rotateY(-16deg) rotateX(4deg) translateY(0); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cor-acento) 35%, transparent), 0 0 46px rgba(168,85,247,.30), 0 32px 64px rgba(0,0,0,.55); }
+      50% { transform: rotateY(-11deg) rotateX(2deg) translateY(-10px); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cor-acento) 45%, transparent), 0 0 64px rgba(168,85,247,.5), 0 36px 70px rgba(0,0,0,.55); }
+    }
+    @media (prefers-reduced-motion: reduce) { .ebook-cover { animation: none; } }
+
+    /* ===== FRASE MÃE ===== */
+    .frase-mae { background: var(--preto-tinto); padding: clamp(3rem,7vw,6rem) 1.5rem; text-align: center; }
+    .frase-mae blockquote {
+      font-family: var(--fd);
+      font-size: clamp(1.5rem,3.5vw,2.8rem);
+      font-weight: 400; font-style: italic;
+      color: var(--dourado-claro);
+      max-width: 820px; margin-inline: auto; line-height: 1.3;
+    }
+    .frase-mae cite { display: block; font-size: 0.8rem; font-style: normal; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cinza-vinho); margin-top: 1.25rem; }
+
+    /* ===== DOR ===== */
+    .dor-list { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; margin-block: 2rem; }
+    .dor-list li {
+      font-family: var(--fd);
+      font-size: clamp(1.1rem,2vw,1.5rem);
+      font-style: italic; color: var(--creme-suave);
+      padding-left: 1.5rem; border-left: 2px solid var(--linha);
+    }
+    .dor-punch { font-family: var(--fd); font-size: clamp(1.2rem,2.2vw,1.65rem); font-weight: 500; color: var(--creme); margin-top: 1.5rem; }
+
+    /* ===== VIRADA ===== */
+    .virada { text-align: center; }
+    .virada-anchor {
+      font-family: var(--fd);
+      font-size: clamp(1.5rem,3.5vw,2.7rem);
+      font-weight: 500; line-height: 1.25;
+      max-width: 820px; margin-inline: auto; margin-block: 1.5rem;
+      color: var(--dourado-claro);
+    }
+    .virada p { color: var(--creme-suave); max-width: 54ch; margin-inline: auto; margin-bottom: 2rem; }
+
+    /* ===== O QUE É ===== */
+    .oque-card {
+      background: color-mix(in srgb, var(--cor-fundo-2) 50%, transparent);
+      border: 1px solid var(--linha);
+      border-radius: 20px;
+      padding: clamp(2rem,5vw,3.5rem);
+      max-width: 800px; margin-inline: auto;
+    }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.75rem; }
+    .badge {
+      background: color-mix(in srgb, var(--cor-acento) 10%, transparent);
+      border: 1px solid var(--linha);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.76rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--dourado-claro);
+    }
+    .oque-card p { color: var(--creme-suave); max-width: 60ch; }
+
+    /* ===== COMPARATIVO ===== */
+    .cmp-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 2rem; }
+    @media (min-width: 760px) { .cmp-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+    .cmp-col { border: 1px solid var(--linha); border-radius: 18px; padding: clamp(1.5rem, 3vw, 2.25rem); }
+    .cmp-col.plain { background: rgba(255,255,255,.02); }
+    .cmp-col.ours { background: color-mix(in srgb, var(--cor-acento) 6%, transparent); border-color: var(--dourado-velho); }
+    .cmp-tag { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 1.25rem; }
+    .cmp-col.plain .cmp-tag { color: var(--cinza-vinho); }
+    .cmp-col.ours .cmp-tag { color: var(--ambar); }
+    .cmp-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+    .cmp-list li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.93rem; line-height: 1.5; }
+    .cmp-col.plain .cmp-list li { color: var(--cinza-vinho); }
+    .cmp-col.ours .cmp-list li { color: var(--creme-suave); }
+    .cmp-ico { flex-shrink: 0; margin-top: 0.15rem; }
+
+    /* ===== CTA INLINE ===== */
+    .cta-inline { text-align: center; margin-top: clamp(2rem, 4vw, 3rem); }
+    .cta-inline .mini-note { font-size: 0.86rem; color: var(--cinza-vinho); margin-top: 0.85rem; }
+
+    /* ===== MECANISMO (jornada) ===== */
+    .mec-intro { text-align: center; max-width: 640px; margin-inline: auto; margin-bottom: clamp(2rem,5vw,4rem); }
+    .mec-steps { display: flex; flex-direction: column; max-width: 640px; margin-inline: auto; }
+    .step { display: flex; gap: 1.5rem; align-items: flex-start; }
+    .step-line { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .step-dot {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: color-mix(in srgb, var(--cor-acento) 8%, transparent);
+      border: 1px solid var(--linha);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--fd); font-size: 0.95rem; color: var(--dourado-velho);
+      transition: background .5s, border-color .5s, color .5s;
+      flex-shrink: 0;
+    }
+    .step.lit .step-dot {
+      background: linear-gradient(135deg, var(--dourado-velho), var(--ambar));
+      border-color: var(--dourado-velho);
+      color: var(--preto-tinto);
+    }
+    .step-wire { width: 1px; flex: 1; min-height: 2rem; background: var(--linha); margin: 0.3rem 0; }
+    .step-body { padding: 0.6rem 0 2rem; }
+    .step-label { font-family: var(--fd); font-size: clamp(1.1rem,1.8vw,1.35rem); font-weight: 500; color: var(--creme); margin-bottom: 0.25rem; }
+    .step-desc { font-size: 0.88rem; color: var(--creme-suave); }
+    @media (prefers-reduced-motion: reduce) { .step-dot { transition: none; } }
+
+    /* ===== AMOSTRA (demo tabs) ===== */
+    .demo-tabs { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .demo-tab {
+      background: color-mix(in srgb, var(--cor-fundo-2) 50%, transparent);
+      border: 1px solid var(--linha);
+      border-radius: 999px;
+      padding: 0.5rem 1.4rem;
+      font-family: var(--fd); font-size: 1rem;
+      color: var(--creme-suave); cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .demo-tab.on, .demo-tab:hover { background: color-mix(in srgb, var(--cor-acento) 12%, transparent); border-color: var(--dourado-velho); color: var(--dourado-claro); }
+    .demo-tab:focus-visible { outline: 2px solid var(--dourado-claro); outline-offset: 3px; border-radius: 999px; }
+    .demo-panels { display: grid; }
+    .demo-panel {
+      grid-column: 1; grid-row: 1;
+      display: grid; grid-template-columns: 1fr; gap: 2.5rem;
+      align-items: start; opacity: 0; pointer-events: none;
+      transition: opacity .5s ease;
+    }
+    @media (min-width: 640px) { .demo-panel { grid-template-columns: 150px 1fr; } }
+    .demo-panel.on { opacity: 1; pointer-events: auto; }
+    @media (prefers-reduced-motion: reduce) {
+      .demo-panel { opacity: 0; transition: none; }
+      .demo-panel.on { opacity: 1; }
+    }
+    .demo-visual { display: flex; justify-content: center; align-items: flex-start; }
+    /* mini-página do eBook */
+    .page-mock {
+      width: 150px; aspect-ratio: 3/4;
+      background: linear-gradient(160deg, #16102A 0%, var(--cor-fundo) 100%);
+      border: 1px solid var(--linha);
+      border-radius: 4px 8px 8px 4px;
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cor-acento) 18%, transparent), 0 18px 38px rgba(0,0,0,.5);
+      padding: 1.1rem 0.95rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .page-mock .pm-chapter { font-family: var(--fd); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dourado-velho); }
+    .page-mock .pm-title { font-family: var(--fd); font-size: 0.92rem; font-weight: 600; color: var(--creme); line-height: 1.25; margin-bottom: 0.25rem; }
+    .page-mock .pm-line { height: 4px; border-radius: 2px; background: rgba(182,169,209,.18); }
+    .page-mock .pm-line.short { width: 60%; }
+    .page-mock .pm-glyph { margin-top: auto; text-align: center; color: color-mix(in srgb, var(--cor-acento) 50%, transparent); font-size: 0.8rem; }
+    .demo-card-name { font-family: var(--fd); font-size: 1.55rem; font-weight: 500; color: var(--dourado-claro); margin-bottom: 0.2rem; }
+    .demo-archetype { font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dourado-velho); margin-bottom: 1.25rem; }
+    .demo-text p { color: var(--creme-suave); font-size: 0.96rem; margin-bottom: 0.9rem; }
+    .demo-text p strong { color: var(--creme); }
+    .demo-q {
+      background: color-mix(in srgb, var(--cor-acento) 8%, transparent);
+      border-left: 3px solid var(--dourado-velho);
+      border-radius: 0 10px 10px 0;
+      padding: 1rem 1.25rem; margin-top: 0.5rem;
+    }
+    .demo-q strong { display: block; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dourado-velho); margin-bottom: 0.4rem; }
+    .demo-q p { color: var(--creme); font-family: var(--fd); font-size: 1.1rem; font-style: italic; margin: 0; }
+    .demo-close { font-family: var(--fd); font-size: 0.88rem; font-style: italic; color: var(--cinza-vinho); margin-top: 1rem; }
+
+    /* ===== PERGUNTAS ===== */
+    .perg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .perg-card {
+      background: color-mix(in srgb, var(--cor-fundo-2) 50%, transparent);
+      border: 1px solid var(--linha);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      font-family: var(--fd);
+      font-size: clamp(0.95rem,1.5vw,1.1rem);
+      font-style: italic; color: var(--creme-suave);
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .perg-card:hover { background: color-mix(in srgb, var(--cor-acento) 8%, transparent); border-color: color-mix(in srgb, var(--cor-acento) 40%, transparent); color: var(--creme); }
+    .perg-note { text-align: center; margin-top: 1.75rem; font-size: 0.9rem; color: var(--cinza-vinho); }
+
+    /* ===== CAPÍTULOS ===== */
+    .cap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+    .cap-card {
+      background: var(--vinho-profundo);
+      border: 1px solid var(--linha);
+      border-radius: 16px;
+      padding: 1.75rem 1.5rem;
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+    }
+    .cap-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--cor-acento) 50%, transparent); box-shadow: 0 8px 32px color-mix(in srgb, var(--cor-acento) 10%, transparent); }
+    .cap-n { font-family: var(--fd); font-size: 0.78rem; color: var(--dourado-velho); letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+    .cap-name { font-family: var(--fd); font-size: 1.1rem; font-weight: 500; color: var(--creme); margin-bottom: 0.35rem; line-height: 1.25; }
+    .cap-use { font-size: 0.82rem; color: var(--cinza-vinho); }
+    .cap-block-tag { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ouro); margin: 2.5rem 0 0.25rem; text-align: center; }
+
+    /* ===== PARA QUEM ===== */
+    .pq-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; }
+    @media (min-width: 640px) { .pq-grid { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+    .pq-col h3 { margin-bottom: 1.25rem; }
+    .pq-col.sim h3 { color: var(--dourado-claro); }
+    .pq-col.nao h3 { color: var(--cinza-vinho); }
+    .pq-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .pq-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.94rem; color: var(--creme-suave); line-height: 1.5; }
+    .pq-col.nao .pq-list li { color: var(--cinza-vinho); }
+    .pq-icon { flex-shrink: 0; margin-top: 0.15rem; }
+
+    /* ===== COMO FUNCIONA ===== */
+    .cf-steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem; margin-top: 2.5rem; }
+    .cf-step { text-align: center; padding: 1.5rem 1rem; }
+    .cf-num { font-family: var(--fd); font-size: 3.5rem; font-weight: 400; color: var(--dourado-velho); opacity: 0.35; line-height: 1; margin-bottom: 0.75rem; }
+    .cf-title { font-family: var(--fd); font-size: 1.2rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .cf-desc { font-size: 0.88rem; color: var(--creme-suave); }
+
+    /* ===== PROMESSA HONESTA (ex-ética) ===== */
+    .etica-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .etica-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.25rem 1.25rem;
+      background: rgba(255,255,255,.025);
+      border: 1px solid var(--linha);
+      border-radius: 12px;
+    }
+    .etica-ico { flex-shrink: 0; margin-top: 0.15rem; }
+    .etica-t { font-size: 0.91rem; color: var(--creme-suave); }
+    .etica-t strong { display: block; color: var(--creme); margin-bottom: 0.2rem; font-size: 0.96rem; }
+    .etica-frase { font-family: var(--fd); font-size: clamp(1.15rem,2vw,1.55rem); font-style: italic; text-align: center; color: var(--dourado-claro); margin-top: 2.5rem; }
+
+    /* ===== AUTORIDADE ===== */
+    .author-card { background: color-mix(in srgb, var(--cor-fundo-2) 50%, transparent); border: 1px solid var(--linha); border-radius: 20px; padding: clamp(2rem,5vw,3.25rem); max-width: 880px; margin-inline: auto; display: grid; gap: 2rem; align-items: center; }
+    @media (min-width: 720px) { .author-card { grid-template-columns: 170px 1fr; } }
+    .author-photo { width: 170px; height: 170px; border-radius: 50%; margin-inline: auto; border: 1px solid var(--dourado-velho); background: color-mix(in srgb, var(--cor-acento) 8%, transparent); object-fit: cover; display: block; }
+    .author-name { font-family: var(--fd); font-size: clamp(1.4rem,2.5vw,1.8rem); font-weight: 500; color: var(--dourado-claro); margin-bottom: 0.25rem; }
+    .author-role { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dourado-velho); margin-bottom: 1.25rem; }
+    .author-bio { color: var(--creme-suave); font-size: 0.96rem; }
+    .author-bio p { margin-bottom: 0.85rem; }
+    .author-link { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.88rem; color: var(--dourado-claro); border-bottom: 1px solid color-mix(in srgb, var(--cor-acento) 40%, transparent); padding-bottom: 0.1rem; }
+    .author-link:hover { border-color: var(--dourado-claro); }
+
+    /* ===== OFERTA ===== */
+    .oferta-wrap { max-width: 680px; margin-inline: auto; }
+    .oferta-card {
+      position: relative;
+      overflow: hidden;
+      background: color-mix(in srgb, var(--cor-fundo-2) 70%, transparent);
+      border: 1px solid var(--dourado-velho);
+      border-radius: 24px;
+      padding: clamp(2rem,6vw,4rem);
+      text-align: center;
+    }
+    .oferta-card::after {
+      content: '✦';
+      position: absolute; top: 1.1rem; right: 1.3rem;
+      font-size: 0.9rem; color: var(--ouro-linha);
+      pointer-events: none;
+    }
+    .oferta-list { list-style: none; text-align: left; display: flex; flex-direction: column; gap: 0.75rem; margin-block: 2rem; }
+    .oferta-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.94rem; color: var(--creme-suave); }
+    .oferta-list li svg { flex-shrink: 0; margin-top: 0.2rem; }
+    .oferta-old { font-size: 0.95rem; color: var(--cinza-vinho); text-decoration: line-through; text-decoration-color: var(--ouro-linha); }
+    .oferta-price { font-family: var(--fd); font-size: clamp(2.5rem,5vw,4rem); font-weight: 600; color: var(--ouro); margin-block: 0.4rem 1.5rem; letter-spacing: -0.02em; text-shadow: 0 0 26px color-mix(in srgb, var(--cor-acento-2) 28%, transparent); }
+    .oferta-price span { font-size: 0.46em; color: var(--creme-suave); vertical-align: top; line-height: 2.8; font-weight: 400; }
+    .oferta-cta { margin-top: 1.5rem; }
+    .oferta-note { margin-top: 1rem; font-size: 0.8rem; color: var(--cinza-vinho); }
+    .oferta-disclaimer { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--linha); font-size: 0.78rem; color: var(--cinza-vinho); }
+    .garantia { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; font-size: 0.82rem; color: var(--creme-suave); }
+
+    /* ===== FAQ ===== */
+    .faq-list { display: flex; flex-direction: column; gap: 0.5rem; max-width: 780px; margin-inline: auto; margin-top: 2rem; }
+    .faq-item { border: 1px solid var(--linha); border-radius: 14px; overflow: hidden; }
+    .faq-btn {
+      width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      padding: 1.2rem 1.5rem; background: color-mix(in srgb, var(--cor-fundo-2) 40%, transparent);
+      border: none; cursor: pointer;
+      font-family: var(--fd); font-size: clamp(1rem,1.5vw,1.12rem); font-weight: 500;
+      color: var(--creme); text-align: left; transition: background .2s;
+    }
+    .faq-btn:hover { background: color-mix(in srgb, var(--cor-acento) 8%, transparent); }
+    .faq-btn:focus-visible { outline: 2px solid var(--dourado-claro); outline-offset: -2px; border-radius: 14px; }
+    .faq-chev { flex-shrink: 0; color: var(--dourado-velho); transition: transform .3s; }
+    .faq-btn[aria-expanded="true"] .faq-chev { transform: rotate(180deg); }
+    .faq-body { max-height: 0; overflow: hidden; transition: max-height .4s ease, padding .3s; }
+    .faq-body.open { max-height: 500px; }
+    .faq-body-inner { padding: 0 1.5rem 1.25rem; color: var(--creme-suave); font-size: 0.94rem; }
+
+    /* ===== CHAMADA FINAL ===== */
+    .chamada { text-align: center; padding-block: clamp(5rem,12vh,10rem); background: var(--preto-tinto); position: relative; overflow: hidden; }
+    .chamada h2 { max-width: 600px; margin-inline: auto; margin-bottom: 1rem; }
+    .chamada p { color: var(--creme-suave); max-width: 50ch; margin-inline: auto; margin-bottom: 2.5rem; }
+
+    /* ===== FOOTER ===== */
+    footer { background: var(--preto-tinto); border-top: 1px solid var(--linha); padding: 2.5rem clamp(1.25rem,5vw,2.5rem); }
+    .footer-in { max-width: var(--mw); margin-inline: auto; display: flex; flex-direction: column; gap: 1rem; align-items: center; text-align: center; }
+    .footer-brand { font-family: var(--fd); font-size: 1.05rem; font-weight: 500; color: var(--dourado-claro); }
+    .footer-eco { font-size: 0.78rem; color: var(--cinza-vinho); letter-spacing: 0.1em; text-transform: uppercase; }
+    .footer-disclaimer { font-size: 0.78rem; color: var(--cinza-vinho); max-width: 66ch; }
+    .footer-links { display: flex; gap: 1.5rem; font-size: 0.8rem; color: var(--cinza-vinho); flex-wrap: wrap; justify-content: center; }
+    .footer-links a:hover { color: var(--creme-suave); }
+
+    /* ===== TOPBAR PRICE ===== */
+    .topbar-offer { display: flex; align-items: center; gap: 0.9rem; }
+    .topbar-price { font-size: 0.82rem; color: var(--creme-suave); white-space: nowrap; }
+    .topbar-price strong { color: var(--ouro); font-weight: 600; }
+    @media (max-width: 560px) { .topbar-price { display: none; } }
+
+    /* ===== HERO PRICE ===== */
+    .hero-price { margin-top: 0.9rem; font-size: 0.92rem; color: var(--creme-suave); }
+    .hero-price strong { color: var(--ouro); font-weight: 600; }
+  </style>
+<meta content="noindex" name="robots"/></head>
+<body>
+
+<!-- >>> SEÇÃO 1: TOPO FIXO: nome do produto, preço e CTA (aparece depois do hero) -->
+<header class="topbar" id="topbar" role="banner">
+<span class="topbar-brand">[RÓTULO: rótulo curto]</span>
+<span class="topbar-offer">
+<span class="topbar-price">[PREÇO: valor ou condição] <strong>[DESTAQUE]</strong></span>
+<a aria-label="[RÓTULO ACESSÍVEL]" class="btn-p" href="{{LINK_CTA}}">[CTA: verbo + benefício]</a>
+</span>
+</header>
+<main>
+
+<!-- >>> SEÇÃO 2: HERO: promessa, capa do produto em 3D, preço e CTA -->
+<section aria-labelledby="hero-heading" class="hero" id="hero">
+<div aria-hidden="true" class="stars">
+<svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+<circle cx="8%" cy="15%" fill="#8B5CF6" opacity=".4" r="1.2"></circle>
+<circle cx="15%" cy="42%" fill="#C9B3FF" opacity=".3" r="0.8"></circle>
+<circle cx="22%" cy="8%" fill="#8B5CF6" opacity=".35" r="1"></circle>
+<circle cx="31%" cy="73%" fill="#C9B3FF" opacity=".25" r="0.7"></circle>
+<circle cx="45%" cy="20%" fill="#8B5CF6" opacity=".3" r="1.4"></circle>
+<circle cx="52%" cy="88%" fill="#C9B3FF" opacity=".2" r="0.9"></circle>
+<circle cx="67%" cy="12%" fill="#8B5CF6" opacity=".35" r="1.1"></circle>
+<circle cx="73%" cy="55%" fill="#C9B3FF" opacity=".3" r="0.7"></circle>
+<circle cx="82%" cy="30%" fill="#8B5CF6" opacity=".4" r="1.3"></circle>
+<circle cx="90%" cy="78%" fill="#C9B3FF" opacity=".25" r="0.9"></circle>
+<circle cx="94%" cy="22%" fill="#8B5CF6" opacity=".3" r="1"></circle>
+<circle cx="5%" cy="85%" fill="#C9B3FF" opacity=".2" r="0.8"></circle>
+<circle cx="38%" cy="47%" fill="#8B5CF6" opacity=".2" r="0.6"></circle>
+<circle cx="60%" cy="65%" fill="#C9B3FF" opacity=".25" r="0.7"></circle>
+<circle cx="77%" cy="92%" fill="#8B5CF6" opacity=".3" r="0.8"></circle>
+<line opacity=".15" stroke="#8B5CF6" stroke-width="0.5" x1="8%" x2="22%" y1="15%" y2="8%"></line>
+<line opacity=".12" stroke="#8B5CF6" stroke-width="0.5" x1="22%" x2="45%" y1="8%" y2="20%"></line>
+<line opacity=".12" stroke="#8B5CF6" stroke-width="0.5" x1="67%" x2="82%" y1="12%" y2="30%"></line>
+<line opacity=".1" stroke="#8B5CF6" stroke-width="0.5" x1="82%" x2="90%" y1="30%" y2="78%"></line>
+</svg>
+</div>
+<div class="hero-inner">
+<div class="container">
+<div class="hero-grid">
+<div class="hero-content">
+<p class="eyebrow hero-eyebrow reveal">[SELO: selo curto]</p>
+<h1 class="display reveal reveal-d1" id="hero-heading">
+            [HEADLINE: promessa em 1 linha · quem + resultado + prazo]<br/>
+            
+          </h1>
+<p class="hero-sub reveal reveal-d2">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]</p>
+<div class="hero-cta-wrap reveal reveal-d3">
+<a class="btn-p" href="{{LINK_CTA}}">[CTA: verbo + benefício]</a>
+</div>
+<p class="hero-price reveal reveal-d3">[PREÇO: valor ou condição] <strong>[DESTAQUE]</strong> </p>
+<p class="hero-microcopy reveal reveal-d4">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</div>
+<div aria-hidden="true" class="cover-wrap">
+<div class="ebook-cover">
+<span class="cover-seal">[RÓTULO: rótulo curto]</span>
+<span class="cover-rule"></span>
+<span class="cover-symbol">
+<svg fill="none" height="42" viewbox="0 0 42 42" width="42" xmlns="http://www.w3.org/2000/svg">
+<circle cx="21" cy="21" r="16" stroke="rgba(139,92,246,0.3)" stroke-width="1"></circle>
+<path d="M21 7 C13 7 7 13 7 21 C7 29 13 35 21 35 C16 35 12 29 12 21 C12 13 16 7 21 7Z" fill="#8B5CF6" opacity="0.7"></path>
+<circle cx="28" cy="14" fill="#F6C945" opacity="0.95" r="1.6"></circle>
+<circle cx="31" cy="22" fill="#F6C945" opacity="0.85" r="1.2"></circle>
+<circle cx="27" cy="29" fill="#F6C945" opacity="0.85" r="1.4"></circle>
+</svg>
+</span>
+<span class="cover-title">[TÍTULO]<br/></span>
+<span class="cover-subtitle">[TÍTULO: título da seção]</span>
+<span class="cover-rule"></span>
+<span class="cover-author">[NOME: nome ou marca]</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div aria-label="[RÓTULO ACESSÍVEL]" class="frase-mae" role="complementary">
+<div class="container">
+<blockquote class="reveal">
+      [PROVA: depoimento: nome, cidade, resultado]
+      <cite>[NOME: nome ou marca]</cite>
+</blockquote>
+</div>
+</div>
+
+<!-- >>> SEÇÃO 3: RECONHECIMENTO: caminhos/dores do público -->
+<section aria-labelledby="dor-heading">
+<div class="container text-col">
+<p class="eyebrow reveal">[SELO: selo curto]</p>
+<h2 class="h2 reveal reveal-d1" id="dor-heading">[TÍTULO: título da seção · a ideia da seção em 1 frase]</h2>
+<ul aria-label="[RÓTULO ACESSÍVEL]" class="dor-list">
+<li class="reveal reveal-d1">[ITEM: benefício ou ponto da lista · o que a pessoa ganha]</li>
+<li class="reveal reveal-d2">[ITEM: benefício ou ponto da lista · o que a pessoa ganha · uma frase curta]</li>
+<li class="reveal reveal-d3">[ITEM: benefício ou ponto da lista · o que a pessoa ganha · uma frase curta]</li>
+<li class="reveal reveal-d4">[ITEM: benefício ou ponto da lista · o que a pessoa ganha]</li>
+<li class="reveal reveal-d5">[ITEM: benefício ou ponto da lista · o que a pessoa ganha · uma frase curta]</li>
+</ul>
+<p class="dor-punch reveal reveal-d6">[TEXTO: parágrafo de apoio · explique o como]<br/></p>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 4: VIRADA: a tese da página -->
+<section aria-labelledby="virada-heading" class="dark virada">
+<div class="container">
+<div class="text-col">
+<p class="eyebrow reveal" style="text-align:center">[SELO]</p>
+<h2 class="virada-anchor reveal reveal-d1" id="virada-heading">
+        [TÍTULO: título da seção · a ideia da seção em 1 frase · promessa ou pergunta · feche com benefício]
+      </h2>
+<p class="reveal reveal-d2">
+        [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]
+      </p>
+<p class="reveal reveal-d3">
+        [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto] <em>[DESTAQUE]</em> 
+      </p>
+<div class="reveal reveal-d4" style="text-align:center; margin-top:2rem">
+<a class="btn-s" href="{{LINK_CTA}}">[CTA: verbo + benefício]</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 5: O PRODUTO: apresentação -->
+<section aria-labelledby="oque-heading">
+<div class="container">
+<div class="sec-header">
+<p class="eyebrow reveal">[SELO]</p>
+<h2 class="h2 reveal reveal-d1" id="oque-heading">[TÍTULO: título da seção]</h2>
+</div>
+<div class="oque-card reveal reveal-d2">
+<div class="badges">
+<span class="badge">[SELO: selo curto]</span>
+<span class="badge">[SELO]</span>
+<span class="badge">[SELO: selo curto]</span>
+<span class="badge">[SELO: selo curto]</span>
+<span class="badge">[SELO: selo curto]</span>
+</div>
+<p>
+        [TEXTO] <strong>[DESTAQUE: palavra-chave]</strong> 
+      </p>
+<br/>
+<p>
+        [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]
+      </p>
+<br/>
+<p>
+        [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo]
+      </p>
+</div>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 6: DIFERENCIAL: por que este e não o gratuito -->
+<section aria-labelledby="cmp-heading" class="dark">
+<div class="container">
+<div class="sec-header">
+<p class="eyebrow reveal">[SELO: selo curto]</p>
+<h2 class="h2 reveal reveal-d1" id="cmp-heading">[TÍTULO: título da seção · a ideia da seção em 1 frase]</h2>
+<p class="sec-intro reveal reveal-d2">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo]</p>
+</div>
+<div class="cmp-grid">
+<div class="cmp-col plain reveal">
+<p class="cmp-tag">[SELO: selo curto]</p>
+<ul class="cmp-list">
+<li><span aria-hidden="true" class="cmp-ico"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#6B5A80" stroke-width="1.2"></circle><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#6B5A80" stroke-linecap="round" stroke-width="1.2"></path></svg></span>[ITEM: benefício ou ponto da lista · o que a pessoa ganha]</li>
+<li><span aria-hidden="true" class="cmp-ico"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#6B5A80" stroke-width="1.2"></circle><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#6B5A80" stroke-linecap="round" stroke-width="1.2"></path></svg></span>[ITEM: benefício ou ponto da lista · o que a pessoa ganha]</li>
+<li><span aria-hidden="true" class="cmp-ico"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#6B5A80" stroke-width="1.2"></circle><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#6B5A80" stroke-linecap="round" stroke-width="1.2"></path></svg></span>[ITEM: benefício ou ponto da lista · o que a pessoa ganha]</li>
+<li><span aria-hidden="true" class="cmp-ico"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#6B5A80" stroke-width="1.2"></circle><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#6B5A80" stroke-linecap="round" stroke-width="1.2"></path></svg></span>[ITEM: benefício ou ponto da lista]</li>
+</ul>
+</div>
+<div class="cmp-col ours reveal reveal-d1">
+<p class="cmp-tag">[SELO: selo curto]</p>
+<ul class="cmp-list">
+<li><span aria-hidden="true" class="cmp-ico"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M5 8l2 2 4-4.5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></span>[ITEM: benefício ou ponto da lista · o que a pessoa ganha]</li>
+<li><span aria-hidden="true" class="cmp-ico"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M5 8l2 2 4-4.5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></span>[ITEM: benefício ou ponto da lista · o que a pessoa ganha]</li>
+<li><span aria-hidden="true" class="cmp-ico"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M5 8l2 2 4-4.5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></span>[ITEM: benefício ou ponto da lista · o que a pessoa ganha]</li>
+<li><span aria-hidden="true" class="cmp-ico"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M5 8l2 2 4-4.5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg></span>[ITEM: benefício ou ponto da lista · o que a pessoa ganha]</li>
+</ul>
+</div>
+</div>
+<div class="cta-inline reveal reveal-d2">
+<a class="btn-p" href="{{LINK_CTA}}">[PREÇO: valor ou condição]</a>
+<p class="mini-note">[TEXTO: parágrafo de apoio · explique o como]</p>
+</div>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 7: JORNADA: o método em 4 movimentos -->
+<section aria-labelledby="mec-heading" class="alt">
+<div class="container">
+<div class="mec-intro">
+<p class="eyebrow reveal">[SELO: selo curto]</p>
+<h2 class="h2 reveal reveal-d1" id="mec-heading">[TÍTULO: título da seção · a ideia da seção em 1 frase]</h2>
+<p class="muted reveal reveal-d2">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]</p>
+</div>
+<div class="mec-steps" role="list">
+<div class="step" role="listitem">
+<div class="step-line">
+<div aria-hidden="true" class="step-dot">[RÓTULO]</div>
+<div class="step-wire"></div>
+</div>
+<div class="step-body">
+<p class="step-label">[TEXTO]</p>
+<p class="step-desc">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência]</p>
+</div>
+</div>
+<div class="step" role="listitem">
+<div class="step-line">
+<div aria-hidden="true" class="step-dot">[RÓTULO]</div>
+<div class="step-wire"></div>
+</div>
+<div class="step-body">
+<p class="step-label">[TEXTO: parágrafo de apoio]</p>
+<p class="step-desc">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência]</p>
+</div>
+</div>
+<div class="step" role="listitem">
+<div class="step-line">
+<div aria-hidden="true" class="step-dot">[RÓTULO]</div>
+<div class="step-wire"></div>
+</div>
+<div class="step-body">
+<p class="step-label">[TEXTO: parágrafo de apoio]</p>
+<p class="step-desc">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência]</p>
+</div>
+</div>
+<div class="step" role="listitem">
+<div class="step-line">
+<div aria-hidden="true" class="step-dot">[RÓTULO]</div>
+</div>
+<div class="step-body">
+<p class="step-label">[TEXTO: parágrafo de apoio]</p>
+<p class="step-desc">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência]</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 8: DEMONSTRAÇÃO: abas com amostra do conteúdo -->
+<section aria-labelledby="demo-heading" class="dark">
+<div class="container">
+<div class="sec-header">
+<p class="eyebrow reveal">[SELO: selo curto]</p>
+<h2 class="h2 reveal reveal-d1" id="demo-heading">[TÍTULO: título da seção · a ideia da seção em 1 frase]</h2>
+<p class="sec-intro reveal reveal-d2">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</div>
+
+<div aria-label="[RÓTULO ACESSÍVEL]" class="demo-tabs" role="tablist">
+<button aria-controls="panel-intro" aria-selected="true" class="demo-tab on" id="tab-intro" role="tab">[CTA]</button>
+<button aria-controls="panel-estrutura" aria-selected="false" class="demo-tab" id="tab-estrutura" role="tab">[CTA: verbo + benefício]</button>
+<button aria-controls="panel-espelho" aria-selected="false" class="demo-tab" id="tab-espelho" role="tab">[CTA: verbo + benefício]</button>
+</div>
+<div class="demo-panels">
+
+<div aria-labelledby="tab-intro" class="demo-panel on" id="panel-intro" role="tabpanel">
+<div class="demo-visual">
+<div aria-hidden="true" class="page-mock">
+<span class="pm-chapter">[RÓTULO]</span>
+<span class="pm-title">[TÍTULO]</span>
+<span class="pm-line"></span><span class="pm-line"></span><span class="pm-line short"></span>
+<span class="pm-line"></span><span class="pm-line short"></span>
+<span class="pm-glyph">✦</span>
+</div>
+</div>
+<div class="demo-text">
+<p class="demo-card-name">[NOME]</p>
+<p class="demo-archetype">[TEXTO: parágrafo de apoio]</p>
+<p>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]</p>
+<p><strong>[DESTAQUE]</strong> [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]</p>
+<p>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência]</p>
+<div class="demo-q">
+<strong>[RÓTULO: rótulo curto]</strong>
+<p>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência]</p>
+</div>
+<p class="demo-close">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</div>
+</div>
+
+<div aria-labelledby="tab-estrutura" class="demo-panel" id="panel-estrutura" role="tabpanel">
+<div class="demo-visual">
+<div aria-hidden="true" class="page-mock">
+<span class="pm-chapter">[RÓTULO]</span>
+<span class="pm-title">[TÍTULO: título da seção]</span>
+<span class="pm-line"></span><span class="pm-line short"></span><span class="pm-line"></span>
+<span class="pm-line"></span><span class="pm-line short"></span>
+<span class="pm-glyph">✦</span>
+</div>
+</div>
+<div class="demo-text">
+<p class="demo-card-name">[NOME: nome ou marca]</p>
+<p class="demo-archetype">[TEXTO: parágrafo de apoio · explique o como]</p>
+<p>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]</p>
+<p><strong>[DESTAQUE: palavra-chave]</strong> [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]</p>
+<p>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]</p>
+<div class="demo-q">
+<strong>[RÓTULO: rótulo curto]</strong>
+<p>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</div>
+<p class="demo-close">[TEXTO: parágrafo de apoio · explique o como]</p>
+</div>
+</div>
+
+<div aria-labelledby="tab-espelho" class="demo-panel" id="panel-espelho" role="tabpanel">
+<div class="demo-visual">
+<div aria-hidden="true" class="page-mock">
+<span class="pm-chapter">[RÓTULO]</span>
+<span class="pm-title">[TÍTULO: título da seção]</span>
+<span class="pm-line"></span><span class="pm-line"></span><span class="pm-line short"></span>
+<span class="pm-line"></span><span class="pm-line short"></span>
+<span class="pm-glyph">✦</span>
+</div>
+</div>
+<div class="demo-text">
+<p class="demo-card-name">[NOME: nome ou marca]</p>
+<p class="demo-archetype">[TEXTO: parágrafo de apoio]</p>
+<p>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]</p>
+<p><strong>[DESTAQUE: palavra-chave]</strong>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]</p>
+<p>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência]</p>
+<div class="demo-q">
+<strong>[RÓTULO: rótulo curto]</strong>
+<p>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</div>
+<p class="demo-close">[TEXTO: parágrafo de apoio · explique o como]</p>
+</div>
+</div>
+</div>
+<div class="reveal" style="text-align:center; margin-top:3rem">
+<a class="btn-p" href="{{LINK_CTA}}">[CTA: verbo + benefício]</a>
+</div>
+<p class="perg-note reveal" style="margin-top:1rem;">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência]</p>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 9: PERGUNTAS QUE O PRODUTO RESPONDE -->
+<section aria-labelledby="perg-heading">
+<div class="container">
+<div class="sec-header">
+<p class="eyebrow reveal">[SELO: selo curto]</p>
+<h2 class="h2 reveal reveal-d1" id="perg-heading">[TÍTULO: título da seção · a ideia da seção em 1 frase]</h2>
+<p class="sec-intro reveal reveal-d2">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</div>
+<div class="perg-grid">
+<div class="perg-card reveal reveal-d1">[TEXTO: parágrafo de apoio · explique o como]</div>
+<div class="perg-card reveal reveal-d2">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</div>
+<div class="perg-card reveal reveal-d3">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</div>
+<div class="perg-card reveal reveal-d4">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</div>
+<div class="perg-card reveal reveal-d1">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</div>
+<div class="perg-card reveal reveal-d2">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</div>
+<div class="perg-card reveal reveal-d3">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</div>
+<div class="perg-card reveal reveal-d4">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</div>
+</div>
+<p class="perg-note reveal">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência]</p>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 10: ESTRUTURA: capítulos e blocos -->
+<section aria-labelledby="cap-heading" class="alt">
+<div class="container">
+<div class="sec-header">
+<p class="eyebrow reveal">[SELO: selo curto]</p>
+<h2 class="h2 reveal reveal-d1" id="cap-heading">[TÍTULO: título da seção · a ideia da seção em 1 frase]</h2>
+<p class="sec-intro reveal reveal-d2">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo]</p>
+</div>
+<p class="cap-block-tag reveal">[SELO: selo curto]</p>
+<div class="cap-grid">
+<article class="cap-card reveal reveal-d1">
+<p class="cap-n">[TEXTO]</p>
+<p class="cap-name">[NOME]</p>
+<p class="cap-use">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</article>
+</div>
+<p class="cap-block-tag reveal">[SELO: selo curto]</p>
+<div class="cap-grid">
+<article class="cap-card reveal reveal-d1">
+<p class="cap-n">[TEXTO]</p>
+<p class="cap-name">[NOME: nome ou marca]</p>
+<p class="cap-use">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</article>
+<article class="cap-card reveal reveal-d2">
+<p class="cap-n">[TEXTO: parágrafo de apoio]</p>
+<p class="cap-name">[NOME: nome ou marca]</p>
+<p class="cap-use">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</article>
+<article class="cap-card reveal reveal-d3">
+<p class="cap-n">[TEXTO]</p>
+<p class="cap-name">[NOME: nome ou marca]</p>
+<p class="cap-use">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</article>
+</div>
+<p class="cap-block-tag reveal">[SELO: selo curto]</p>
+<div class="cap-grid">
+<article class="cap-card reveal reveal-d1">
+<p class="cap-n">[TEXTO]</p>
+<p class="cap-name">[NOME: nome ou marca]</p>
+<p class="cap-use">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</article>
+<article class="cap-card reveal reveal-d2">
+<p class="cap-n">[TEXTO]</p>
+<p class="cap-name">[NOME: nome ou marca]</p>
+<p class="cap-use">[TEXTO: parágrafo de apoio · explique o como]</p>
+</article>
+<article class="cap-card reveal reveal-d3">
+<p class="cap-n">[TEXTO: parágrafo de apoio]</p>
+<p class="cap-name">[NOME: nome ou marca]</p>
+<p class="cap-use">[TEXTO: parágrafo de apoio · explique o como]</p>
+</article>
+<article class="cap-card reveal reveal-d4">
+<p class="cap-n">[TEXTO: parágrafo de apoio]</p>
+<p class="cap-name">[NOME: nome ou marca]</p>
+<p class="cap-use">[TEXTO: parágrafo de apoio]</p>
+</article>
+<article class="cap-card reveal reveal-d1">
+<p class="cap-n">[TEXTO]</p>
+<p class="cap-name">[NOME: nome ou marca]</p>
+<p class="cap-use">[TEXTO: parágrafo de apoio · explique o como]</p>
+</article>
+</div>
+<p class="cap-block-tag reveal">[SELO: selo curto]</p>
+<div class="cap-grid">
+<article class="cap-card reveal reveal-d1">
+<p class="cap-n">[TEXTO]</p>
+<p class="cap-name">[NOME: nome ou marca]</p>
+<p class="cap-use">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</article>
+<article class="cap-card reveal reveal-d2">
+<p class="cap-n">[TEXTO]</p>
+<p class="cap-name">[NOME: nome ou marca]</p>
+<p class="cap-use">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</article>
+<article class="cap-card reveal reveal-d3">
+<p class="cap-n">[TEXTO: parágrafo de apoio]</p>
+<p class="cap-name">[NOME: nome ou marca]</p>
+<p class="cap-use">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</article>
+<article class="cap-card reveal reveal-d4">
+<p class="cap-n">[TEXTO: parágrafo de apoio]</p>
+<p class="cap-name">[NOME: nome ou marca]</p>
+<p class="cap-use">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</article>
+</div>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 11: PARA QUEM É -->
+<section aria-labelledby="pq-heading">
+<div class="container">
+<div class="sec-header">
+<p class="eyebrow reveal">[SELO: selo curto]</p>
+<h2 class="h2 reveal reveal-d1" id="pq-heading">[TÍTULO: título da seção]</h2>
+</div>
+<div class="pq-grid" style="max-width: var(--mt); margin-inline: auto;">
+<div class="pq-col sim reveal">
+<h3 class="h3">[TÍTULO: título da seção]</h3>
+<ul class="pq-list">
+<li>
+<span aria-hidden="true" class="pq-icon"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M4.5 8.5l2.5 2.5 4-5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg></span>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+<li>
+<span aria-hidden="true" class="pq-icon"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M4.5 8.5l2.5 2.5 4-5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg></span>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha · uma frase curta]
+          </li>
+<li>
+<span aria-hidden="true" class="pq-icon"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M4.5 8.5l2.5 2.5 4-5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg></span>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+<li>
+<span aria-hidden="true" class="pq-icon"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M4.5 8.5l2.5 2.5 4-5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg></span>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+<li>
+<span aria-hidden="true" class="pq-icon"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M4.5 8.5l2.5 2.5 4-5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg></span>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+</ul>
+</div>
+<div class="pq-col nao reveal reveal-d1">
+<h3 class="h3">[TÍTULO: título da seção]</h3>
+<ul class="pq-list">
+<li>
+<span aria-hidden="true" class="pq-icon"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#6B5A80" stroke-width="1.2"></circle><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#6B5A80" stroke-linecap="round" stroke-width="1.3"></path></svg></span>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+<li>
+<span aria-hidden="true" class="pq-icon"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#6B5A80" stroke-width="1.2"></circle><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#6B5A80" stroke-linecap="round" stroke-width="1.3"></path></svg></span>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+<li>
+<span aria-hidden="true" class="pq-icon"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#6B5A80" stroke-width="1.2"></circle><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#6B5A80" stroke-linecap="round" stroke-width="1.3"></path></svg></span>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+<li>
+<span aria-hidden="true" class="pq-icon"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#6B5A80" stroke-width="1.2"></circle><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#6B5A80" stroke-linecap="round" stroke-width="1.3"></path></svg></span>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+<li>
+<span aria-hidden="true" class="pq-icon"><svg fill="none" height="16" viewbox="0 0 16 16" width="16"><circle cx="8" cy="8" r="7" stroke="#6B5A80" stroke-width="1.2"></circle><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="#6B5A80" stroke-linecap="round" stroke-width="1.3"></path></svg></span>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 12: COMO RECEBER: entrega e acesso -->
+<section aria-labelledby="cf-heading" class="dark">
+<div class="container">
+<div class="sec-header">
+<p class="eyebrow reveal">[SELO: selo curto]</p>
+<h2 class="h2 reveal reveal-d1" id="cf-heading">[TÍTULO: título da seção]</h2>
+</div>
+<div class="cf-steps" style="max-width: var(--mt); margin-inline: auto;">
+<div class="cf-step reveal">
+<p class="cf-num">01</p>
+<p class="cf-title">[TÍTULO: título da seção]</p>
+<p class="cf-desc">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência]</p>
+</div>
+<div class="cf-step reveal reveal-d2">
+<p class="cf-num">02</p>
+<p class="cf-title">[TÍTULO: título da seção]</p>
+<p class="cf-desc">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</div>
+<div class="cf-step reveal reveal-d4">
+<p class="cf-num">03</p>
+<p class="cf-title">[TÍTULO: título da seção]</p>
+<p class="cf-desc">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência]</p>
+</div>
+</div>
+<div class="reveal" style="text-align:center; margin-top:3rem">
+<a class="btn-p" href="{{LINK_CTA}}">[CTA: verbo + benefício]</a>
+</div>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 13: O QUE ENTREGA E O QUE NÃO PROMETE -->
+<section aria-labelledby="etica-heading">
+<div class="container">
+<div class="sec-header">
+<p class="eyebrow reveal">[SELO: selo curto]</p>
+<h2 class="h2 reveal reveal-d1" id="etica-heading">[TÍTULO: título da seção · a ideia da seção em 1 frase]</h2>
+<p class="sec-intro reveal reveal-d2">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência]</p>
+</div>
+<div class="etica-grid">
+<div class="etica-item reveal">
+<span aria-hidden="true" class="etica-ico"><svg fill="none" height="20" viewbox="0 0 20 20" width="20"><path d="M10 2L3 5v5c0 4 3.1 7.7 7 8.9C13.9 17.7 17 14 17 10V5L10 2Z" stroke="#8B5CF6" stroke-width="1.3"></path><path d="M7 10l2 2 4-4" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg></span>
+<div class="etica-t"><strong>[DESTAQUE: palavra-chave]</strong>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</div>
+</div>
+<div class="etica-item reveal reveal-d1">
+<span aria-hidden="true" class="etica-ico"><svg fill="none" height="20" viewbox="0 0 20 20" width="20"><path d="M10 2L3 5v5c0 4 3.1 7.7 7 8.9C13.9 17.7 17 14 17 10V5L10 2Z" stroke="#8B5CF6" stroke-width="1.3"></path><path d="M7 10l2 2 4-4" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg></span>
+<div class="etica-t"><strong>[DESTAQUE: palavra-chave]</strong>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</div>
+</div>
+<div class="etica-item reveal reveal-d2">
+<span aria-hidden="true" class="etica-ico"><svg fill="none" height="20" viewbox="0 0 20 20" width="20"><path d="M10 2L3 5v5c0 4 3.1 7.7 7 8.9C13.9 17.7 17 14 17 10V5L10 2Z" stroke="#8B5CF6" stroke-width="1.3"></path><path d="M7 10l2 2 4-4" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg></span>
+<div class="etica-t"><strong>[DESTAQUE: palavra-chave]</strong>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência]</div>
+</div>
+<div class="etica-item reveal reveal-d3">
+<span aria-hidden="true" class="etica-ico"><svg fill="none" height="20" viewbox="0 0 20 20" width="20"><path d="M10 2L3 5v5c0 4 3.1 7.7 7 8.9C13.9 17.7 17 14 17 10V5L10 2Z" stroke="#8B5CF6" stroke-width="1.3"></path><path d="M7 10l2 2 4-4" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg></span>
+<div class="etica-t"><strong>[DESTAQUE: palavra-chave]</strong>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</div>
+</div>
+<div class="etica-item reveal reveal-d1">
+<span aria-hidden="true" class="etica-ico"><svg fill="none" height="20" viewbox="0 0 20 20" width="20"><path d="M10 2L3 5v5c0 4 3.1 7.7 7 8.9C13.9 17.7 17 14 17 10V5L10 2Z" stroke="#8B5CF6" stroke-width="1.3"></path><path d="M7 10l2 2 4-4" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg></span>
+<div class="etica-t"><strong>[DESTAQUE: palavra-chave]</strong>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</div>
+</div>
+<div class="etica-item reveal reveal-d2">
+<span aria-hidden="true" class="etica-ico"><svg fill="none" height="20" viewbox="0 0 20 20" width="20"><path d="M10 2L3 5v5c0 4 3.1 7.7 7 8.9C13.9 17.7 17 14 17 10V5L10 2Z" stroke="#8B5CF6" stroke-width="1.3"></path><path d="M7 10l2 2 4-4" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg></span>
+<div class="etica-t"><strong>[DESTAQUE: palavra-chave]</strong>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</div>
+</div>
+</div>
+<p class="etica-frase reveal">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</p>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 14: AUTOR(A): quem escreve e por quê -->
+<section aria-labelledby="author-heading">
+<div class="container">
+<div class="sec-header">
+<p class="eyebrow reveal">[SELO: selo curto]</p>
+<h2 class="h2 reveal reveal-d1" id="author-heading">[TÍTULO: título da seção]</h2>
+</div>
+<div class="author-card reveal reveal-d2">
+<img alt="[ALT: descrição da imagem]" class="author-photo" height="170" src="assets/ph-1x1.svg" width="170"/>
+<div class="author-bio">
+<p class="author-name">[NOME: nome ou marca]</p>
+<p class="author-role">[NOME: nome ou marca]</p>
+<p>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]</p>
+<p>[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto] <em>[DESTAQUE: palavra-chave]</em> </p>
+<a class="author-link" href="#">[NOME: nome ou marca]</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 15: OFERTA: preço, bônus e CTA -->
+<section aria-labelledby="oferta-heading" class="dark">
+<div class="container">
+<div class="sec-header">
+<p class="eyebrow reveal">[SELO: selo curto]</p>
+<h2 class="h2 reveal reveal-d1" id="oferta-heading">[TÍTULO: título da seção]</h2>
+</div>
+<div class="oferta-wrap">
+<div class="oferta-card reveal reveal-d2">
+<p class="eyebrow" style="margin-bottom:1rem">[SELO: selo curto]</p>
+<ul aria-label="[RÓTULO ACESSÍVEL]" class="oferta-list">
+<li>
+<svg aria-hidden="true" fill="none" height="18" viewbox="0 0 18 18" width="18"><circle cx="9" cy="9" r="8" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M5.5 9.5l2.5 2.5 4-5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+<li>
+<svg aria-hidden="true" fill="none" height="18" viewbox="0 0 18 18" width="18"><circle cx="9" cy="9" r="8" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M5.5 9.5l2.5 2.5 4-5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+<li>
+<svg aria-hidden="true" fill="none" height="18" viewbox="0 0 18 18" width="18"><circle cx="9" cy="9" r="8" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M5.5 9.5l2.5 2.5 4-5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+<li>
+<svg aria-hidden="true" fill="none" height="18" viewbox="0 0 18 18" width="18"><circle cx="9" cy="9" r="8" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M5.5 9.5l2.5 2.5 4-5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+<li>
+<svg aria-hidden="true" fill="none" height="18" viewbox="0 0 18 18" width="18"><circle cx="9" cy="9" r="8" stroke="#8B5CF6" stroke-width="1.2"></circle><path d="M5.5 9.5l2.5 2.5 4-5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4"></path></svg>
+            [ITEM: benefício ou ponto da lista · o que a pessoa ganha]
+          </li>
+</ul>
+<p class="oferta-old">[PREÇO]</p>
+<div class="oferta-price">
+<span>[DESTAQUE]</span> [PREÇO]
+        </div>
+<p class="oferta-note" style="margin-top:-0.5rem">[TEXTO: parágrafo de apoio · explique o como]</p>
+<div class="oferta-cta">
+<a class="btn-p" href="{{LINK_CTA}}" style="font-size:1.05rem; padding: 1rem 2.8rem;">
+            [PREÇO: valor ou condição]
+          </a>
+</div>
+<p class="oferta-note">[TEXTO: parágrafo de apoio · explique o como]</p>
+<div class="garantia"><svg aria-hidden="true" fill="none" height="16" viewbox="0 0 16 16" width="16"><path d="M8 1.5L2 4.5v3.5c0 3.3 2.4 6.4 6 7.2C11.6 14.4 14 11.3 14 8V4.5L8 1.5Z" stroke="#8B5CF6" stroke-width="1.2"></path><path d="M5.5 8l1.5 1.5 3.5-3.5" stroke="#8B5CF6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"></path></svg> [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]</div>
+<p class="oferta-disclaimer">[LEGAL: texto legal: razão social, registro fiscal, contato · termos e privacidade]</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 16: CLAREZA ANTES DA DECISÃO (FAQ/aviso) -->
+<section aria-labelledby="faq-heading">
+<div class="container">
+<div class="sec-header">
+<p class="eyebrow reveal">[SELO: selo curto]</p>
+<h2 class="h2 reveal reveal-d1" id="faq-heading">[TÍTULO: título da seção]</h2>
+</div>
+<div class="faq-list" role="list">
+<div class="faq-item reveal">
+<button aria-controls="faq-1" aria-expanded="false" class="faq-btn">
+          [CTA: verbo + benefício]
+          <svg aria-hidden="true" class="faq-chev" fill="none" height="20" viewbox="0 0 20 20" width="20"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path></svg>
+</button>
+<div class="faq-body" id="faq-1" role="region">
+<div class="faq-body-inner">
+            [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]
+          </div>
+</div>
+</div>
+<div class="faq-item reveal reveal-d1">
+<button aria-controls="faq-2" aria-expanded="false" class="faq-btn">
+          [CTA: verbo + benefício]
+          <svg aria-hidden="true" class="faq-chev" fill="none" height="20" viewbox="0 0 20 20" width="20"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path></svg>
+</button>
+<div class="faq-body" id="faq-2" role="region">
+<div class="faq-body-inner">
+            [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]
+          </div>
+</div>
+</div>
+<div class="faq-item reveal reveal-d2">
+<button aria-controls="faq-3" aria-expanded="false" class="faq-btn">
+          [CTA: verbo + benefício]
+          <svg aria-hidden="true" class="faq-chev" fill="none" height="20" viewbox="0 0 20 20" width="20"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path></svg>
+</button>
+<div class="faq-body" id="faq-3" role="region">
+<div class="faq-body-inner">
+            [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo]
+          </div>
+</div>
+</div>
+<div class="faq-item reveal reveal-d1">
+<button aria-controls="faq-4" aria-expanded="false" class="faq-btn">
+          [CTA: verbo + benefício]
+          <svg aria-hidden="true" class="faq-chev" fill="none" height="20" viewbox="0 0 20 20" width="20"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path></svg>
+</button>
+<div class="faq-body" id="faq-4" role="region">
+<div class="faq-body-inner">
+            [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]
+          </div>
+</div>
+</div>
+<div class="faq-item reveal reveal-d2">
+<button aria-controls="faq-5" aria-expanded="false" class="faq-btn">
+          [CTA: verbo + benefício]
+          <svg aria-hidden="true" class="faq-chev" fill="none" height="20" viewbox="0 0 20 20" width="20"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path></svg>
+</button>
+<div class="faq-body" id="faq-5" role="region">
+<div class="faq-body-inner">
+            [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo · fale na voz do cliente]
+          </div>
+</div>
+</div>
+<div class="faq-item reveal reveal-d1">
+<button aria-controls="faq-6" aria-expanded="false" class="faq-btn">
+          [CTA: verbo + benefício]
+          <svg aria-hidden="true" class="faq-chev" fill="none" height="20" viewbox="0 0 20 20" width="20"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path></svg>
+</button>
+<div class="faq-body" id="faq-6" role="region">
+<div class="faq-body-inner">
+            [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo]
+          </div>
+</div>
+</div>
+<div class="faq-item reveal reveal-d2">
+<button aria-controls="faq-7" aria-expanded="false" class="faq-btn">
+          [CTA: verbo + benefício]
+          <svg aria-hidden="true" class="faq-chev" fill="none" height="20" viewbox="0 0 20 20" width="20"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path></svg>
+</button>
+<div class="faq-body" id="faq-7" role="region">
+<div class="faq-body-inner">
+            [TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto · mostre a consequência · feche com o próximo passo]
+          </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- >>> SEÇÃO 17: CHAMADA FINAL -->
+<section aria-labelledby="chamada-heading" class="chamada">
+<div aria-hidden="true" class="stars">
+<svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12%" cy="20%" fill="#8B5CF6" opacity=".3" r="1.2"></circle>
+<circle cx="25%" cy="70%" fill="#C9B3FF" opacity=".25" r="0.9"></circle>
+<circle cx="50%" cy="10%" fill="#8B5CF6" opacity=".25" r="1.4"></circle>
+<circle cx="75%" cy="60%" fill="#C9B3FF" opacity=".3" r="1"></circle>
+<circle cx="88%" cy="25%" fill="#8B5CF6" opacity=".25" r="1.2"></circle>
+<circle cx="95%" cy="80%" fill="#C9B3FF" opacity=".2" r="0.8"></circle>
+</svg>
+</div>
+<div class="container" style="position:relative; z-index:2;">
+<p class="eyebrow reveal" style="text-align:center; margin-bottom:1.5rem;">[SELO: selo curto]</p>
+<h2 class="h2 reveal reveal-d1" id="chamada-heading">[TÍTULO: título da seção · a ideia da seção em 1 frase]<br/><span class="gold">[DESTAQUE: palavra-chave]</span></h2>
+<p class="reveal reveal-d2" style="text-align:center; margin-top:1rem;">[TEXTO: parágrafo de apoio · explique o como · dê um exemplo concreto]<br/></p>
+<div class="reveal reveal-d3" style="display:flex; justify-content:center; margin-top:2.5rem;">
+<a class="btn-p" href="{{LINK_CTA}}" style="font-size:1.05rem; padding:1.05rem 2.8rem;">[PREÇO: valor ou condição]</a>
+</div>
+<p class="reveal reveal-d4" style="text-align:center; margin-top:2.5rem; font-family:var(--fd); font-style:italic; color:var(--cinza-vinho); font-size:0.95rem;">[TEXTO: parágrafo de apoio · explique o como]</p>
+</div>
+</section>
+</main>
+
+<!-- >>> SEÇÃO 18: RODAPÉ legal e links -->
+<footer>
+<div class="footer-in">
+<p class="footer-brand">[LEGAL: texto legal: razão social, registro fiscal, contato]</p>
+<p class="footer-eco">[LEGAL: texto legal: razão social, registro fiscal, contato]</p>
+<p class="footer-disclaimer">
+      [LEGAL: texto legal: razão social, registro fiscal, contato · termos e privacidade]
+    </p>
+<nav aria-label="[RÓTULO ACESSÍVEL]" class="footer-links">
+<a href="{{LINK_TERMOS}}">[LINK: link]</a>
+<a href="{{LINK_PRIVACIDADE}}">[LINK: link]</a>
+<a href="#">[LINK: link]</a>
+</nav>
+</div>
+</footer>
+<script>
+  // ===== TOPBAR: exibe após o hero sair da viewport =====
+  const topbar = document.getElementById('topbar');
+  const hero = document.getElementById('hero');
+  const heroObs = new IntersectionObserver(
+    ([e]) => topbar.classList.toggle('vis', !e.isIntersecting),
+    { threshold: 0 }
+  );
+  heroObs.observe(hero);
+
+  // ===== REVEAL ON SCROLL =====
+  const revealEls = document.querySelectorAll('.reveal');
+  const revObs = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); revObs.unobserve(e.target); } }),
+    { threshold: 0.12 }
+  );
+  revealEls.forEach(el => revObs.observe(el));
+
+  // ===== MECANISMO: acende steps conforme entram na viewport =====
+  const steps = document.querySelectorAll('.step');
+  const stepObs = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('lit'); } }),
+    { threshold: 0.35 }
+  );
+  steps.forEach(s => stepObs.observe(s));
+
+  // ===== AMOSTRA TABS =====
+  const tabs = document.querySelectorAll('.demo-tab');
+  const panels = document.querySelectorAll('.demo-panel');
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => { t.classList.remove('on'); t.setAttribute('aria-selected', 'false'); });
+      panels.forEach(p => p.classList.remove('on'));
+      tab.classList.add('on');
+      tab.setAttribute('aria-selected', 'true');
+      panels[i].classList.add('on');
+    });
+    tab.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { const next = tabs[(i + 1) % tabs.length]; next.click(); next.focus(); }
+      if (e.key === 'ArrowLeft') { const prev = tabs[(i - 1 + tabs.length) % tabs.length]; prev.click(); prev.focus(); }
+    });
+  });
+
+  // ===== FAQ ACCORDION =====
+  const faqBtns = document.querySelectorAll('.faq-btn');
+  faqBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      faqBtns.forEach(b => {
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling.classList.remove('open');
+      });
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        btn.nextElementSibling.classList.add('open');
+      }
+    });
+  });
+</script>
+</body>
+</html>

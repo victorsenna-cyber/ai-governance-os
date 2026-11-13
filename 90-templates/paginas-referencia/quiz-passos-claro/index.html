@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>[TÍTULO DA PÁGINA — até 60 caracteres]</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* TOKENS DA IDENTIDADE: troque só aqui */
+  --cor-fundo:#f6f8fb;
+  --cor-texto:#0f172a;
+  --cor-acento:#15803d;
+  --cor-acento-2:#facc15;
+  --fonte-titulo:'Poppins',system-ui,sans-serif;
+  --fonte-texto:'Inter',system-ui,sans-serif;
+  --cor-card:#ffffff;
+  --cor-texto-suave:#475569;
+  --cor-borda:#dbe2ea;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cor-fundo);color:var(--cor-texto);font-family:var(--fonte-texto);line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh}
+img{max-width:100%;display:block}
+.wrap{max-width:560px;margin:0 auto;padding:24px 18px 56px}
+.logo{height:36px;width:auto;margin:0 auto 18px}
+
+/* telas: só uma visível por vez (JS troca a classe .on) */
+.tela{display:none}
+.tela.on{display:block;animation:entra .35s ease}
+@keyframes entra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+h1{font-family:var(--fonte-titulo);font-weight:800;font-size:clamp(1.5rem,5.4vw,2rem);line-height:1.15;text-align:center;letter-spacing:-.01em}
+h1 mark{background:var(--cor-acento);color:#fff;padding:0 8px;border-radius:6px}
+.sub{text-align:center;color:var(--cor-texto-suave);margin:10px 0 18px}
+.capa{aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:#dfe5ec;margin:0 0 20px}
+.capa img{width:100%;height:100%;object-fit:cover}
+
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:56px;padding:14px 22px;border:0;border-radius:999px;background:var(--cor-acento);color:#fff;font:inherit;font-weight:700;font-size:15px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;cursor:pointer;box-shadow:0 14px 30px -14px var(--cor-acento);transition:transform .2s,filter .2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.mini{display:flex;justify-content:center;gap:6px;align-items:center;font-size:12px;color:var(--cor-texto-suave);margin:10px 0 18px}
+
+.recebe{background:var(--cor-card);border:1px solid var(--cor-borda);border-radius:14px;padding:18px;margin-top:18px}
+.recebe h2{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.recebe ul{list-style:none;display:grid;gap:10px;font-size:14px}
+.recebe li{display:grid;grid-template-columns:22px 1fr;gap:8px}
+.recebe li::before{content:"✓";display:grid;place-items:center;width:20px;height:20px;border-radius:5px;background:color-mix(in srgb, var(--cor-acento) 15%, transparent);color:var(--cor-acento);font-weight:800;font-size:12px}
+
+/* progresso + pergunta */
+.prog{height:8px;background:var(--cor-borda);border-radius:999px;overflow:hidden;margin-bottom:6px}
+.prog i{display:block;height:100%;width:0;background:var(--cor-acento);transition:width .3s}
+.passo-n{font-size:12px;color:var(--cor-texto-suave);margin-bottom:18px;text-align:right}
+.pergunta{font-family:var(--fonte-titulo);font-weight:700;font-size:1.25rem;line-height:1.25;margin-bottom:16px}
+.opcoes{display:grid;gap:10px;margin-bottom:18px}
+.opcao{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:15px 16px;border:2px solid var(--cor-borda);border-radius:14px;background:var(--cor-card);color:inherit;font:inherit;font-weight:500;cursor:pointer;transition:border-color .2s,background .2s}
+.opcao:hover{border-color:color-mix(in srgb, var(--cor-acento) 50%, var(--cor-borda))}
+.opcao.sel{border-color:var(--cor-acento);background:color-mix(in srgb, var(--cor-acento) 9%, var(--cor-card))}
+.opcao b{display:grid;place-items:center;min-width:28px;height:28px;border-radius:8px;background:var(--cor-fundo);font-size:13px}
+.opcao.sel b{background:var(--cor-acento);color:#fff}
+
+/* resultado */
+.res-box{background:var(--cor-card);border:1px solid var(--cor-borda);border-radius:18px;padding:22px;margin:18px 0}
+.res-tag{display:inline-block;background:var(--cor-acento-2);color:#3b2f00;font-weight:800;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:10px}
+.res-box h2{font-family:var(--fonte-titulo);font-size:1.3rem;margin-bottom:8px}
+.res-box p{color:var(--cor-texto-suave);font-size:15px}
+footer{margin-top:28px;text-align:center;font-size:12px;color:var(--cor-texto-suave)}
+footer a{color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="logo" src="assets/ph-logo.svg" alt="[LOGO]">
+
+  <!-- TELA 0: INTRODUÇÃO (promessa + entrada no quiz) -->
+  <section class="tela on" id="t-intro">
+    <h1>[HEADLINE: promessa em 1 linha] <mark>[DESTAQUE: resultado + prazo]</mark></h1>
+    <p class="sub">[SUBTÍTULO: o que o teste revela e quanto tempo leva]</p>
+    <div class="capa"><img src="assets/ph-4x3.svg" alt="[ALT: imagem de capa do quiz]"></div>
+    <button class="btn" id="btn-iniciar" type="button">[CTA: iniciar o teste]</button>
+    <p class="mini">[AVISO: leva menos de 2 minutos · sem cadastro]</p>
+    <div class="recebe">
+      <h2>[TÍTULO: ao final você recebe]</h2>
+      <ul>
+        <li>[ITEM: entrega 1 do resultado]</li>
+        <li>[ITEM: entrega 2 do resultado]</li>
+        <li>[ITEM: entrega 3 do resultado]</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TELA 1: PERGUNTAS (o JS monta a partir do array PERGUNTAS lá embaixo) -->
+  <section class="tela" id="t-quiz">
+    <div class="prog"><i id="prog"></i></div>
+    <div class="passo-n" id="passo-n"></div>
+    <div class="pergunta" id="pergunta"></div>
+    <div class="opcoes" id="opcoes"></div>
+    <button class="btn" id="btn-prox" type="button" disabled>[CTA: continuar]</button>
+  </section>
+
+  <!-- TELA 2: CAPTURA (opcional: pedir contato antes de mostrar o resultado) -->
+  <section class="tela" id="t-captura">
+    <h1>[HEADLINE: seu resultado está pronto]</h1>
+    <p class="sub">[SUBTÍTULO: peça nome e WhatsApp para enviar o resultado]</p>
+    <form action="{{FORM_ACTION}}" method="post" id="form-captura" style="display:grid;gap:12px">
+      <input name="nome" placeholder="Seu nome" required style="padding:15px;border:2px solid var(--cor-borda);border-radius:14px;font:inherit">
+      <input name="whatsapp" type="tel" placeholder="Seu WhatsApp (DDD + telefone)" required style="padding:15px;border:2px solid var(--cor-borda);border-radius:14px;font:inherit">
+      <input type="hidden" name="resultado" id="campo-resultado">
+      <button class="btn" type="submit">[CTA: ver meu resultado]</button>
+    </form>
+  </section>
+
+  <!-- TELA 3: RESULTADO + CTA da oferta -->
+  <section class="tela" id="t-resultado">
+    <div class="res-box">
+      <span class="res-tag">[SELO: perfil / nível]</span>
+      <h2 id="res-titulo">[TÍTULO: nome do resultado]</h2>
+      <p id="res-texto">[TEXTO: diagnóstico em 2 a 3 linhas, na voz do público, ligando a resposta ao produto]</p>
+    </div>
+    <a class="btn" id="res-cta" href="{{LINK_CTA}}">[CTA: pegar a solução]</a>
+    <p class="mini">[AVISO: garantia, prazo ou vagas]</p>
+  </section>
+
+  <footer>
+    <div>[LEGAL: © ano, razão social, registro fiscal]</div>
+    <div style="margin-top:6px"><a href="{{LINK_PRIVACIDADE}}">[LINK: Privacidade]</a> · <a href="{{LINK_TERMOS}}">[LINK: Termos]</a></div>
+  </footer>
+</div>
+
+<script>
+/* ===== CONFIGURAÇÃO DO QUIZ: troque só este bloco =====
+   cada opção soma pontos a um perfil (a, b ou c); o perfil com mais pontos define o resultado. */
+var PERGUNTAS = [
+  { q: '[PERGUNTA 1: situação do público]', o: [ ['[OPÇÃO A]','a'], ['[OPÇÃO B]','b'], ['[OPÇÃO C]','c'] ] },
+  { q: '[PERGUNTA 2: dor ou obstáculo]',    o: [ ['[OPÇÃO A]','a'], ['[OPÇÃO B]','b'], ['[OPÇÃO C]','c'] ] },
+  { q: '[PERGUNTA 3: objetivo ou prazo]',   o: [ ['[OPÇÃO A]','a'], ['[OPÇÃO B]','b'], ['[OPÇÃO C]','c'] ] }
+];
+var RESULTADOS = {
+  a: { titulo: '[RESULTADO A: nome do perfil]', texto: '[TEXTO: diagnóstico do perfil A]', link: '{{LINK_CTA}}' },
+  b: { titulo: '[RESULTADO B: nome do perfil]', texto: '[TEXTO: diagnóstico do perfil B]', link: '{{LINK_CTA}}' },
+  c: { titulo: '[RESULTADO C: nome do perfil]', texto: '[TEXTO: diagnóstico do perfil C]', link: '{{LINK_CTA}}' }
+};
+var PEDIR_CONTATO = true;   /* false = vai direto da última pergunta ao resultado */
+
+/* ===== MOTOR (não precisa mexer) ===== */
+(function(){
+  var i = 0, escolha = null, pontos = {a:0,b:0,c:0};
+  function $(id){ return document.getElementById(id); }
+  function tela(id){ document.querySelectorAll('.tela').forEach(function(t){ t.classList.remove('on'); }); $(id).classList.add('on'); window.scrollTo(0,0); }
+  function mostrar(){
+    var p = PERGUNTAS[i]; escolha = null; $('btn-prox').disabled = true;
+    $('prog').style.width = (i / PERGUNTAS.length * 100) + '%';
+    $('passo-n').textContent = (i+1) + ' / ' + PERGUNTAS.length;
+    $('pergunta').textContent = p.q; $('opcoes').innerHTML = '';
+    p.o.forEach(function(op, k){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'opcao';
+      b.innerHTML = '<b>' + String.fromCharCode(65+k) + '</b><span></span>'; b.lastChild.textContent = op[0];
+      b.onclick = function(){ document.querySelectorAll('.opcao').forEach(function(x){ x.classList.remove('sel'); }); b.classList.add('sel'); escolha = op[1]; $('btn-prox').disabled = false; };
+      $('opcoes').appendChild(b);
+    });
+  }
+  function resultado(){
+    var perfil = Object.keys(pontos).sort(function(x,y){ return pontos[y]-pontos[x]; })[0];
+    var r = RESULTADOS[perfil]; $('res-titulo').textContent = r.titulo; $('res-texto').textContent = r.texto; $('res-cta').href = r.link;
+    $('campo-resultado').value = perfil; tela('t-resultado');
+  }
+  $('btn-iniciar').onclick = function(){ i = 0; pontos = {a:0,b:0,c:0}; tela('t-quiz'); mostrar(); };
+  $('btn-prox').onclick = function(){
+    pontos[escolha]++; i++;
+    if (i < PERGUNTAS.length) { mostrar(); }
+    else { $('prog').style.width = '100%'; if (PEDIR_CONTATO) { var perfil = Object.keys(pontos).sort(function(x,y){ return pontos[y]-pontos[x]; })[0]; $('campo-resultado').value = perfil; tela('t-captura'); } else { resultado(); } }
+  };
+  $('form-captura').addEventListener('submit', function(e){
+    /* sem backend: mostra o resultado na hora. Com backend, apague este handler e deixe o form postar. */
+    if (document.getElementById('form-captura').getAttribute('action').indexOf('{{') !== -1) { e.preventDefault(); resultado(); }
+  });
+})();
+</script>
+</body>
+</html>

@@ -108,6 +108,7 @@ Remover: redundância · teoria sem impacto · explicação desnecessária.
 - [ ] **P2 · Veto ponto a ponto.** Cada método carregado teve sua régua de veto honrada — **e dá para apontar ONDE.** "Cumprida" sem o "onde" não conta
 - [ ] **P3 · Contradição.** Dois métodos mandaram coisas opostas? **Nomear, dizer qual venceu e por qual precedência, e sinalizar ao usuário.** 🔴 Contradição resolvida em silêncio reprova
 - [ ] **P4 · Lastro.** Toda afirmação tem fonte, grau ou marcação. **Nada preenchido com plausível**
+- [ ] **P5 · Fecho sem oferta.** 🔴 **Resposta que termina oferecendo ato reversível ("faço agora?", "quer que eu…?") em vez de tê-lo feito reprova**, e relatório de subagente que endereça o {{OPERADOR}} também (o subagente devolve achado, recomendação e classe do ato à sessão principal). Ou o ato está feito e o fecho diz o que foi feito, ou o fecho diz qual item da lista fechada (`CLAUDE.md` §5.2) o segura. **Mecanismo opcional:** `40-operacao-rotinas/ferramentas/gate-fecho.py`, nos hooks `Stop` e `SubagentStop` do `.claude/settings.json`; cada bloqueio vai para `40-operacao-rotinas/tokens/GATE-FECHO.jsonl`. Sem o hook ligado, o passe se confere à mão
 
 **Três vereditos:** ✅ passa · ⚠️ **passa com desvio declarado** (o motivo está no output, visível) · 🔴 **reprova** (régua violada em silêncio, contradição não nomeada, afirmação sem lastro).
 

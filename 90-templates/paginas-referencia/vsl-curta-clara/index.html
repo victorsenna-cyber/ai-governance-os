@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>[TÍTULO DA PÁGINA — até 60 caracteres]</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* TOKENS DA IDENTIDADE: troque só aqui */
+  --cor-fundo:#ffffff;
+  --cor-texto:#111318;
+  --cor-acento:#22c55e;
+  --cor-acento-2:#0f172a;
+  --fonte-titulo:'Inter',system-ui,sans-serif;
+  --fonte-texto:'Inter',system-ui,sans-serif;
+  --cor-texto-suave:#4b5563;
+  --cor-borda:#e5e7eb;
+  --cor-secao-escura:#0b0d12;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cor-fundo);color:var(--cor-texto);font-family:var(--fonte-texto);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+
+/* 1. TOPO: promessa + vídeo */
+.topo{padding:44px 0 28px;text-align:center}
+.topo h1{font-family:var(--fonte-titulo);font-weight:800;font-size:clamp(1.9rem,5vw,3rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:12px}
+.topo .sub{color:var(--cor-texto-suave);font-size:1.125rem;margin-bottom:26px}
+.video{position:relative;aspect-ratio:16/9;background:#0a0a0a;border-radius:16px;box-shadow:0 24px 60px -24px rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;padding-bottom:14px;color:#9aa0aa;font-size:13px;overflow:hidden}
+.video::after{content:"";position:absolute;width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.5)}
+.video::before{content:"";position:absolute;z-index:1;border-left:20px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:6px}
+/* TROCAR: coloque aqui o embed do player (iframe) dentro de .video e remova o texto de apoio */
+
+/* 2. BULLETS DO QUE A PESSOA VAI VER */
+.bloco{padding:36px 0}
+.bloco h2{font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin-bottom:16px}
+.lista{list-style:none;display:grid;gap:14px}
+.lista li{display:grid;grid-template-columns:26px 1fr;gap:12px;align-items:start;padding-bottom:14px;border-bottom:1px solid var(--cor-borda)}
+.lista li::before{content:"";width:22px;height:22px;border-radius:50%;background:var(--cor-acento-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/70% no-repeat;margin-top:2px}
+
+/* CTA */
+.cta{text-align:center;padding:12px 0 8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:14px 34px;border:0;border-radius:12px;background:var(--cor-acento);color:#04210f;font:inherit;font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;cursor:pointer;box-shadow:0 14px 34px -14px var(--cor-acento);transition:transform .25s,filter .25s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.cta small{display:block;margin-top:10px;font-size:12px;color:var(--cor-texto-suave)}
+
+/* 3. PARA QUEM É */
+.para-quem{padding:32px 0 48px}
+.para-quem p.intro{color:var(--cor-texto-suave);margin-bottom:18px}
+
+/* 4. AUTORIDADE (seção escura) */
+.autor{background:var(--cor-secao-escura);color:#e8eaf0;padding:56px 0}
+.autor-grid{display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:center}
+.autor-foto{aspect-ratio:3/4;border-radius:16px;overflow:hidden;background:#151922}
+.autor-foto img{width:100%;height:100%;object-fit:cover}
+.autor h2{font-size:clamp(1.6rem,3.6vw,2.4rem);font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+.autor p{color:#b9bfcc;margin-bottom:10px}
+.selo{display:inline-block;margin-top:8px;padding:12px 18px;border-radius:12px;background:#151922;border:1px solid #232a38;font-weight:700;font-size:14px}
+
+/* 5. CTA FINAL */
+.final{padding:44px 0 72px;text-align:center}
+
+footer{padding:24px 0 40px;text-align:center;color:var(--cor-texto-suave);font-size:12px;border-top:1px solid var(--cor-borda)}
+footer a{color:inherit}
+
+@media (max-width:640px){.autor-grid{grid-template-columns:1fr}.autor-foto{max-width:220px}}
+</style>
+</head>
+<body>
+
+<!-- 1. TOPO: promessa + vídeo -->
+<header class="topo">
+  <div class="wrap">
+    <h1>[HEADLINE: promessa em 1 linha · quem + resultado + prazo]</h1>
+    <p class="sub">[SUBTÍTULO: a oferta em uma frase — para quem e o que muda]</p>
+    <div class="video" role="img" aria-label="[RÓTULO ACESSÍVEL]">[VÍDEO / EMBED 16:9]</div>
+  </div>
+</header>
+
+<!-- 2. O QUE A PESSOA VAI VER + CTA -->
+<section class="bloco">
+  <div class="wrap">
+    <h2>[TÍTULO: o que você vai ver agora]</h2>
+    <ul class="lista">
+      <li>[ITEM: benefício ou ponto 1 · o que a pessoa ganha · uma frase curta]</li>
+      <li>[ITEM: benefício ou ponto 2 · o que a pessoa ganha · uma frase curta]</li>
+      <li>[ITEM: benefício ou ponto 3 · o que a pessoa ganha · uma frase curta]</li>
+    </ul>
+    <div class="cta" style="margin-top:28px">
+      <a class="btn" href="{{LINK_CTA}}">[CTA: verbo + benefício]</a>
+      <small>[AVISO: condição, prazo ou garantia em 1 linha]</small>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PARA QUEM É -->
+<section class="para-quem">
+  <div class="wrap">
+    <h2 style="font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;margin-bottom:12px">[TÍTULO: para quem é]</h2>
+    <p class="intro">[TEXTO: uma frase que descreve quem se beneficia — na voz do público]</p>
+    <ul class="lista">
+      <li>[ITEM: perfil 1 · situação concreta do público]</li>
+      <li>[ITEM: perfil 2 · situação concreta do público]</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. AUTORIDADE -->
+<section class="autor">
+  <div class="wrap">
+    <div class="autor-grid">
+      <div class="autor-foto"><img src="assets/ph-3x4.svg" alt="[ALT: foto de quem assina]"></div>
+      <div>
+        <h2>[TÍTULO: quem é a pessoa que apresenta]</h2>
+        <p>[TEXTO: 2 a 3 linhas de autoridade — fato verificável, número, tempo de estrada]</p>
+        <p>[TEXTO: 1 linha de prova — o que já construiu ou entregou]</p>
+        <span class="selo">[SELO: número ou feito em destaque]</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. CTA FINAL -->
+<section class="final">
+  <div class="wrap">
+    <a class="btn" href="{{LINK_CTA}}">[CTA: verbo + benefício]</a>
+    <p style="margin-top:12px;font-size:12px;color:var(--cor-texto-suave)">[AVISO: condição, data, vagas]</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>[LEGAL: © ano, razão social, registro fiscal]</div>
+    <div style="margin:8px 0"><a href="{{LINK_PRIVACIDADE}}">[LINK: Privacidade]</a> · <a href="{{LINK_TERMOS}}">[LINK: Termos]</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

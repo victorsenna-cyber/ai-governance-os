@@ -38,7 +38,7 @@ formato no nome (TRANSCRICAO-WHATSAPP-AAAA-MM-DD-HHMMSS.md…) ou trecho dentro 
 de transcrição consolidado. Achou arquivo → move para o lado do áudio (da antessala, copia).
 Achou trecho → avisa e não transcreve. Só o que não existe em lugar nenhum é transcrito.
   ... <áudio> [<áudio> ...]          transcreve estes e atualiza o README de cada pasta
-  ... --status [<raiz>]              por pasta com áudio: último transcrito, novos e lacunas (não altera nada)
+  ... --status [<raiz>|--pasta <p>]  por pasta com áudio: último transcrito, novos e lacunas (não altera nada)
   ... --readme <pasta> [<pasta> ...] só (re)escreve o bloco do README
   ... --readme-todas [<raiz>]        idem, para toda pasta com áudio sob um caminho de "contexto"
   --modelo <nome>   large-v3 (padrão, mais preciso) · large-v3-turbo (local, ~4x mais rápido) · medium · small
@@ -53,7 +53,8 @@ movido para o lado do áudio, nunca refeito em silêncio.
 import io, os, re, subprocess, sys, tempfile, time, wave
 from datetime import datetime
 
-EXT = (".ogg", ".opus", ".m4a", ".mp3", ".wav", ".aac")
+# vídeo entra também (ex.: live gravada em .mov): o ffmpeg tira o áudio direto
+EXT = (".ogg", ".opus", ".m4a", ".mp3", ".wav", ".aac", ".mov", ".mp4", ".m4v", ".mkv", ".webm")
 MODELO_PADRAO = "large-v3"
 RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 IGNORAR = ("_arquivos", "90-staging-remoto", "node_modules", ".git", "_legado", "execução Codex")
@@ -302,12 +303,15 @@ def tirar(args, flag, com_valor=False):
     return True, args[:i] + args[i + 1:]
 
 def main(args):
+    if args[:1] in (["-h"], ["--help"], ["-?"]):
+        print(__doc__); return
     refazer, args = tirar(args, "--refazer")
     lacunas, args = tirar(args, "--lacunas")
     nome_modelo, args = tirar(args, "--modelo", True)
     nome_modelo = nome_modelo or MODELO_PADRAO
 
     if args[:1] == ["--status"]:
+        if args[1:2] == ["--pasta"]: args = ["--status"] + args[2:]   # --status --pasta <p> == --status <p>
         status(args[1] if len(args) > 1 else os.path.join(RAIZ, "clientes")); return
     if args[:1] == ["--readme"]:
         for p in args[1:]:
@@ -330,6 +334,9 @@ def main(args):
             log(f"aviso: {len(e['lacunas'])} lacuna(s) antiga(s) sem .md, não transcritas (use --lacunas): " + ", ".join(e["lacunas"][:5]))
         alvos = [os.path.join(pasta, f) for f in sorted(alvos, key=lambda f: chave(f, pasta))]
     else:
+        desconhecidas = [a for a in args if a.startswith("-") and not os.path.exists(a)]
+        if desconhecidas:  # "--help" virou caminho de áudio e carregou o large-v3 à toa
+            print(f"opção desconhecida: {' '.join(desconhecidas)}\n"); print(__doc__); sys.exit(2)
         alvos = args
     if not alvos and args[:1] != ["--pasta"]:
         print(__doc__); sys.exit(1)

@@ -23,7 +23,10 @@ from pathlib import Path
 try:
     import fitz
 except ImportError:
-    sys.exit("falta o PyMuPDF: python3 -m pip install pymupdf")
+    try:
+        import pymupdf as fitz   # 12/11/2026: no Ubuntu da VPS o pacote python3-pymupdf só traz o nome novo
+    except ImportError:
+        sys.exit("falta o PyMuPDF: python3 -m pip install pymupdf (Ubuntu: apt install python3-pymupdf)")
 
 CANDIDATOS_CHROME = [
     os.environ.get("CHROME", ""),
@@ -32,6 +35,7 @@ CANDIDATOS_CHROME = [
     r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
     shutil.which("google-chrome") or "", shutil.which("chromium") or "", shutil.which("chromium-browser") or "",
+    "/usr/local/bin/chrome-headless-shell",   # VPS da casa (12/11/2026): Chrome for Testing, headless shell, em /opt
 ]
 
 
@@ -48,6 +52,7 @@ def imprimir(html: Path, pdf: Path):
     with tempfile.TemporaryDirectory() as tmp:
         saida_tmp = Path(tmp) / "saida.pdf"
         cmd = [achar_chrome(), "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
+               *(["--no-sandbox"] if sys.platform.startswith("linux") else []),   # VPS: usuário de serviço sem namespace
                "--virtual-time-budget=10000", f"--print-to-pdf={saida_tmp}", html.resolve().as_uri()]
         r = subprocess.run(cmd, capture_output=True, timeout=180)
         if not saida_tmp.exists():

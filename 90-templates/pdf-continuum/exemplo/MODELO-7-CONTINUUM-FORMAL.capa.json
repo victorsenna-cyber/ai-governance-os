@@ -1,0 +1,22 @@
+{
+  "sobretitulo": "MODELO 7 &middot; Continuum formal &middot; amostra",
+  "titulo": "Revisão de frota",
+  "titulo_italico": "Oficina Alvorada",
+  "subtitulo": [
+    "Conta de exemplo &middot; 5 de novembro de 2026",
+    "Escopo, preço, condições e prazo, para assinar"
+  ],
+  "meta": {
+    "Gerador": "build-pdf.py",
+    "Paleta": "ouro-rubi",
+    "Frota": "12 carros",
+    "Prazo mínimo": "6 meses",
+    "Validade": "15 dias"
+  },
+  "rodape": {
+    "rotulo": "Regra deste documento",
+    "frase": "Cada cláusula é o que se compromete, e nada além dela.",
+    "nota": "Amostra visual do modelo 7, com uma conta fictícia."
+  },
+  "cabecalho": "MODELO 7 · CONTINUUM FORMAL · AMOSTRA · 05/11/2026"
+}

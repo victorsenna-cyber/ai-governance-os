@@ -1,7 +1,8 @@
-// Painel Caixa — o `dash` que o tipo Dashboard do claude.ai dá à página, reescrito para rodar fora dele.
-// A página (artefato/index.html) chama dash.data, dash.onData, dash.loader, dash.params, dash.setParams,
-// dash.setLink e dash.colors; é só isso que existe aqui. Os dados vêm da função public.painel_dados() do
-// Supabase, que roda as oito consultas do artefato sem alteração (supabase/004-painel-dados.sql).
+// Painel Caixa — o `dash` que o tipo Dashboard do claude.ai dava à página, reescrito para rodar fora dele.
+// A página (artefato/index.html) chama dash.data, dash.onData, dash.params, dash.setParams e dash.setLink; é só isso
+// que existe aqui. Os dados vêm da função public.painel_dados() do Supabase, que roda as oito consultas
+// (supabase/004-painel-dados.sql). 11/11/2026: saiu dash.colors (oito hex, o azul): as cores dos gráficos são os
+// tokens --chart-1 e --chart-2 do sistema.css (DECISAO-UI.md F1); saiu dash.loader (só servia dentro do claude.ai).
 (() => {
   const DATASETS = ['kpis', 'projecao', 'resumo_projecao', 'semanas', 'contas_resumo', 'lancamentos', 'dre_mensal', 'categorias'];
   const PARAMS = { escopo: 'todas' }; // dash/params do artefato
@@ -19,15 +20,14 @@
       return { status: s.status, data: s.data, rows: s.data, columns, message: s.message, refreshing: false, meta: [] };
     },
     onData(fn) { ouvintes.push(fn); try { fn(); } catch (e) { console.error(e); } },
-    loader() {}, // a resposta já chega em linhas; o loader do artefato só desembrulhava o texto do conector
-    calc() {},
-    colors: ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'],
     params: () => ({ ...params }),
     setParams(p) { params = { ...params, ...p }; try { localStorage.setItem('caixa.params', JSON.stringify(params)); } catch (e) {} avisar(); },
     resetParams() { params = { ...PARAMS }; try { localStorage.removeItem('caixa.params'); } catch (e) {} avisar(); },
     setLink(nome) { history.replaceState(null, '', '#' + nome); },
     refresh() { carregar(); },
+    cruzado: () => cruz,   // F6: o estado do Projetos e a fila de mensagens, para os contadores cruzados e a busca
   };
+  let cruz = { lido: false, projetos: null, mensagens: null };
 
   let largura = window.innerWidth, t;
   window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => { if (window.innerWidth !== largura) { largura = window.innerWidth; avisar(); } }, 120); });
@@ -41,7 +41,13 @@
   async function carregar() {
     if (carregando) return;
     carregando = true;
-    const { data, error } = await sb.rpc('painel_dados');
+    // as mesmas leituras que o Projetos faz (mesma sessão, mesma RLS); a que falhar fica null e o contador some (F6)
+    const [{ data, error }, pj, mf] = await Promise.all([
+      sb.rpc('painel_dados'),
+      sb.from('projetos_estado').select('dados').eq('id', 1).maybeSingle().then((r) => r, () => ({ error: true })),
+      sb.from('mensagens_fila').select('id, estado').order('criado', { ascending: false }).limit(200).then((r) => r, () => ({ error: true })),
+    ]);
+    cruz = { lido: true, projetos: pj.error || !pj.data ? null : pj.data.dados, mensagens: mf.error ? null : mf.data || [] };
     carregando = false;
     DATASETS.forEach((id) => {
       estado[id] = error ? { status: 'error', data: [], message: error.message } : { status: 'ok', data: (data && data[id]) || [], message: '' };
@@ -73,7 +79,11 @@
   }
 
   // quem entrou pelo link e ainda não criou senha cria agora; quem já tem senha vai direto ao painel
-  const comSessao = (sess) => (sess.user && sess.user.user_metadata && sess.user.user_metadata.senha_definida ? entrar() : definir());
+  const comSessao = (sess) => {
+    const em = (sess.user && sess.user.email) || '';
+    document.querySelectorAll('[data-sis-conta]').forEach((b) => { b.textContent = (em[0] || '·').toUpperCase(); b.title = em; });
+    return sess.user && sess.user.user_metadata && sess.user.user_metadata.senha_definida ? entrar() : definir();
+  };
 
   const lembrar = (email) => { try { localStorage.setItem('caixa.email', email); } catch (e) {} };
   const ocupado = (form, sim) => form.querySelectorAll('button, input').forEach((el) => { el.disabled = sim; });
