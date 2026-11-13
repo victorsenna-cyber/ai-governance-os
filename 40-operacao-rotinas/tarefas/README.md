@@ -22,7 +22,7 @@ Arquivo `PAUSA` em `tarefas/` para tudo. Três falhas seguidas numa rodada param
 
 ```
 ---
-id: T-AAAA-MM-DD-001          # único; prefixo T-<data>-<nnn>
+id: T-AAAA-MM-DD-001          # único; prefixo T-<data>-<nnn>; nasce só pelo tarefa_id.py (§2.1)
 titulo: ...
 criada: AAAA-MM-DD
 prazo: AAAA-MM-DD             # vazio = sem prazo
@@ -66,6 +66,15 @@ enviado_por:                  # painel | sessao-operador
 ## Log
 <o despachante acrescenta aqui>
 ```
+
+### 2.1 Como abrir id
+
+🔴 **O id de task nasce só por `40-operacao-rotinas/ferramentas/tarefa_id.py`.** Duas máquinas diferentes deram o mesmo id a duas tasks no mesmo minuto, porque cada gerador contava só os arquivos da própria máquina.
+
+- **À mão ou pelo modelo:** `python3 -X utf8 "40-operacao-rotinas/ferramentas/tarefa_id.py"` imprime o próximo id, já reservado. Grava a task com esse id no nome do arquivo e no `id:`. Contar a pasta e somar 1 está proibido.
+- **Em código:** `import tarefa_id; tarefa_id.proximo(dia=..., tarefas=...)`. Todo gerador de task chama o mesmo, nunca o seu próprio.
+- **O formato não muda** (`T-AAAA-MM-DD-NNN`). Muda a **faixa do NNN por origem:** PC `001–499` · VPS `500–799` · nuvem `800–999`. Dentro da faixa, o próximo é o maior já usado mais 1, olhando as pastas locais e a `origin/main` já buscada (só leitura), com reserva atômica para dois processos na mesma máquina. O dia é o de Brasília em toda máquina. A origem se detecta sozinha; `CONTINUUM_ORIGEM=pc|vps|nuvem` força.
+- **Conferência:** o `verificar-propagacao.py` reprova id repetido entre as pastas-estado (`tarefa_id.py --duplicados`). A recorrente que renasce em `fila/` com o mesmo id e o mesmo título não conta. Teste de colisão: `tarefa_id.py --teste`.
 
 🔴 Réguas: dado `C`/`S` nunca em N1 · nada sai para cliente sem o {{OPERADOR}} · sem `## Pronto quando` não roda · nunca abaixo do `nivel_minimo`; orçamento batido = adia (se tem prazo e cabe) ou vira cartão de decisão (molde `modelos/cartao-decisao.md`) · um escritor no repo por vez.
 

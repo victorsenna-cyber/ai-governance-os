@@ -142,9 +142,10 @@ def chave_ordem(t):
 
 # ---------- --nova ----------
 def proximo_id():
-    pre = "T-%s-" % hoje().isoformat()
-    usados = [int(t.id[len(pre):]) for t in todas() if t.id.startswith(pre) and t.id[len(pre):].isdigit()]
-    return "%s%03d" % (pre, max(usados + [0]) + 1)
+    # 13/11/2026 (T-2026-11-12-022): o gerador único, com faixa por origem — a rotina da nuvem e o PC não repetem número
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import tarefa_id
+    return tarefa_id.proximo(dia=hoje().isoformat())
 
 
 def linha_readme(dir_ent, conta, nome_pasta, o_que, estado):

@@ -218,13 +218,10 @@ def task_aberta():
 
 
 def proximo_id():
-    pre = "T-%s-" % datetime.datetime.now(TZ).date().isoformat()
-    usados = []
-    for p in ("fila", "executando", "revisao", "decisao", "entregue", "falhou"):
-        pd = os.path.join(TAR, p)
-        if os.path.isdir(pd):
-            usados += [int(x[len(pre):len(pre) + 3]) for x in os.listdir(pd) if x.startswith(pre) and x[len(pre):len(pre) + 3].isdigit()]
-    return "%s%03d" % (pre, max(usados + [0]) + 1)
+    # 13/11/2026 (T-2026-11-12-022): o gerador único, com faixa por origem (PC, VPS e nuvem não repetem número)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import tarefa_id
+    return tarefa_id.proximo(dia=datetime.datetime.now(TZ).date().isoformat(), tarefas=TAR)
 
 
 def main():

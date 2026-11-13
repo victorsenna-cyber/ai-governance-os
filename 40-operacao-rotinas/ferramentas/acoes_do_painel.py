@@ -258,13 +258,11 @@ ETAPAS_COM = ("contato", "g0", "ancoras", "proposta", "aceite", "perdido")
 
 
 def _proximo_id(hoje):
-    n = 0
-    for p in PASTAS_TASK:
-        for f in (TAR / p).glob(f"T-{hoje}-*.md"):
-            m = re.match(rf"T-{hoje}-(\d+)", f.name)
-            if m:
-                n = max(n, int(m.group(1)))
-    return f"T-{hoje}-{n + 1:03d}"
+    # 13/11/2026 (T-2026-11-12-022): o gerador único, com faixa por origem; contar só esta máquina colidia com a VPS
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import tarefa_id
+    return tarefa_id.proximo(dia=hoje, tarefas=str(TAR))
 
 
 def _fm_por(texto, nl, campos):

@@ -20,7 +20,8 @@ E a sincronia do AGENTS.md.
 E o destino de entregável: clientes/<Conta>/entregaveis/<AAAA-MM-DD - nome>/.
 E, quando a ferramenta existe na pasta (senão o passo é pulado): a esteira de entregáveis (entregaveis.py: V-ENT-1..7),
 os cartões de decisão abertos (decisoes_cartao.py: V-DEC-1..6; molde em tarefas/modelos/cartao-decisao.md), o inventário
-de capacidades (inventario-capacidades.py: reprova) e os derivados (derivados.py, aviso).
+de capacidades (inventario-capacidades.py: reprova), os derivados (derivados.py, aviso) e o id de task repetido
+entre as pastas-estado (tarefa_id.py; a recorrente que renasce em fila/ não conta).
 E as fichas de prospect com produto sem oferta_recomendada (aviso).
 
 Uso:  python3 40-operacao-rotinas/ferramentas/verificar-propagacao.py
@@ -224,6 +225,7 @@ inv_linhas = _conferir_opcional("inventario", "inventario-capacidades.py")   # i
 ent_linhas = _conferir_opcional("entregaveis", "entregaveis.py")             # esteira de entregáveis: V-ENT-1..7
 der_linhas = _conferir_opcional("derivados", "derivados.py")                 # derivados (§11.7): aviso de porte atrasado; reprova só registro quebrado
 dec_linhas = _conferir_opcional("decisoes_cartao", "decisoes_cartao.py")     # cartões de decisão: V-DEC-1..6, face e lastro
+tid_linhas = _conferir_opcional("tarefa_id", "tarefa_id.py")                 # id de task repetido entre as pastas-estado (reprova)
 linhas_oferta = []
 for _p in sorted(os.listdir(_pros)) if os.path.isdir(_pros) else []:
     _arq = os.path.join(_pros, _p, "PAINEL.md")
@@ -266,5 +268,7 @@ print("\n## Derivados (`derivados.py`, CLAUDE.md §11.7, aviso)\n")
 print("\n".join("- " + l for l in der_linhas))
 print("\n## Pastas de conta (`clientes/` × `assessoria-prospects/`, aviso)\n")
 print("\n".join("- " + l for l in linhas_conta) or "- nenhuma anomalia")
+print("\n## Id de task (`tarefa_id.py`: faixa por origem, sem repetir entre máquinas)\n")
+print("\n".join("- " + l for l in tid_linhas))
 print("\n**Resultado:**", "✅ nada a propagar" if falhas == 0 else "🔴 %d pendência(s)" % falhas)
 sys.exit(0 if falhas == 0 else 1)
